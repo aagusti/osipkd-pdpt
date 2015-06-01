@@ -1,0 +1,384 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <h4>${request.title}</h4>
+    <hr>
+  <form id="header" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+      class="form-horizontal">
+  <fieldset class="deformFormFieldset">
+      <!--Tahun---------------------------------------------------------------->
+      <div class="form-group">
+        <div class="col-md-3">
+          <div id="item-tahun">
+            <label for="tahun" class="control-label col-md-3" id="req-tahun">
+                    Tahun</label>
+            <div class="col-md-9">
+               <input id="tahun" class=" form-control " type="text" 
+                      value="${request.session['tahun']}" 
+                      readonly name="tahun">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+           <input id="tahun_nm" class=" form-control " type="text" value="${request.session['ag_step_nm']}" name="tahun_nm" readonly>
+        </div>
+        
+      </div>
+
+      <!----------------------------------------------------------------------->
+      <input id="unit_id" type="hidden" value="${request.session['unit_id']}" name="unit_id">
+      <div class="form-group"><!--SKPD-->
+        <div class="col-md-3">
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-3" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-9">
+               <input id="unit_kd" class="form-control typeahead" type="text" value="${request.session['unit_kd']}" name="unit_kd" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="unit_nm" class=" form-control " type="text" value="${request.session['unit_nm']}" name="unit_nm" readonly>
+        </div>
+      </div>
+      
+      <!----------------------------------------------------------------------->
+      <input id="kegiatan_sub_id" type="hidden" value="${row and row.id or 0}" name="kegiatan_sub_id">
+      <div class="form-group"><!--Kegiatan-->
+        <div class="col-md-3">
+          <div id="item-kegiatan_kd">
+            <label for="kegiatan_kd" class="control-label col-md-3" id="req-kegiatan_kd">
+                    Kegiatan</label>
+            <div class="col-md-9">
+               <input id="kegiatan_kd" class=" form-control " type="text" value="${row and row.kegiatans.kode or None}-${row and row.no_urut or None}" name="kegiatan_kd" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="kegiatan_nm" class=" form-control " type="text" value="${row and row.nama or None}" name="kegiatan_nm"  readonly>
+        </div>
+      </div>
+      
+  </fieldset>
+
+  <!--------------------------------------------------------------------------->
+  <div class="row">
+    <table id="table1" class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rekening</th>
+                <th>No. Urut</th>
+                <th>Uraian</th>
+                <th>Nilai</th>
+                <th>RekeningNm</th>
+                <th>RekeningID</th>
+           </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div>
+    
+    <div class="row">
+        <fieldset class="deformFormFieldset">
+          <!--REKENING------------------------------------------------------------->
+          <input id="kegiatan_item_id" type="hidden" value="" name="kegiatan_item_id">
+          <input id="rekening_id" type="hidden" value="" name="rekening_id">
+          <div class="form-group">
+            <div class="col-md-3">
+              <div id="item-rekening_kd">
+                <label for="rekening_kd" class="control-label col-md-3" id="req-rekening_kd">
+                        Rekening</label>
+                <div class="col-md-9">
+                   <input id="rekening_kd" class=" form-control " type="text" value="" name="rekening_kd">
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+               <input id="rekening_nm" class=" form-control " type="text" value="" name="rekening_nm">
+            </div>
+            <div class="col-md-3">
+              <div id="item-amount">
+                <label for="amount" class="control-label col-md-3" id="req-amount">
+                         Nilai</label>
+                <div class="col-md-9">
+                   <input id="amount" class=" form-control " type="text" value="" name="amount">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--InternalKode Item-->
+          <div class="form-group">
+            <div class="col-md-3">
+              <div id="item-no_urut">
+                <label for="no_urut" class="control-label col-md-3" id="req-no_urut">
+                        No.</label>
+                <div class="col-md-9">
+                   <input id="no_urut" class=" form-control " type="text" value="" name="no_urut">
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+               <input id="nama" class=" form-control " type="text" value="" name="nama">
+            </div>
+            <!--Button----------------------------------------------------------->
+            <div class="col-md-2">
+                  <button id="rekening_add" name="baru" type="button" class="btn btn-primary "
+                        value="baru">Baru</button>
+                  <button id="rekening_save" name="simpan" type="submit" class="btn btn-primary "
+                        value="simpan">Update</button>
+                  <button id="rekening_cancel" name="batal" type="reset" class="btn btn-default "
+                        value="batal">Batal</button>
+              
+            </div>   
+            <script> 
+           $('#rekening_add').click(function () {
+                $('#kegiatan_item_id').val('');
+                $('#header').submit();
+           })
+          if ($('#kegiatan_kd').val()=='0.00.00.10-1')
+            var  url = 4;
+          else if ($('#kegiatan_kd').val()=='0.00.00.21-1')
+            var  url = 51;
+          else if ($('#kegiatan_kd').val()=='0.00.00.31-1')
+            var  url = 61;
+          else if ($('#kegiatan_kd').val()=='0.00.00.32-1')
+            var  url = 62;
+          else 
+            var  url = 52;
+                    
+          $('#rekening_kd').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/rekening/act/headofkode"+url+"?term=%QUERY", 
+          },{
+             "name"      : 'rekening_kd',
+             "displayKey": 'value',
+          }); 
+                  
+          $('#rekening_nm').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/rekening/act/headofnama"+url+"?term=%QUERY", 
+          },{
+             "name"      : 'rekening_nm',
+             "displayKey": 'value',
+          }); 
+        
+            $('#rekening_kd').bind('typeahead:selected', function(obj, datum, name) {  
+                  $('#rekening_nm').val(datum.nama);
+                  $('#rekening_id').val(datum.id);
+                  $('#nama').val(datum.nama);
+            });
+
+            $('#rekening_nm').bind('typeahead:selected', function(obj, datum, name) {      
+                  $('#rekening_kd').val(datum.kode);
+                  $('#rekening_id').val(datum.id);
+                  $('#nama').val(datum.nama); 
+            });
+            
+          $( "#header" ).submit(function( event ) {
+            var kegiatan_sub_id;
+            var is_success;
+            is_success = true;
+            kegiatan_sub_id = $('#kegiatan_sub_id').val();
+            var unit_id;
+            unit_id = $('#unit_id').val();
+            if (!unit_id) {
+                is_success = false;
+                
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + 'Pilih dulu SKPD');
+            }
+            if (!kegiatan_sub_id && is_success){
+                $.ajax({
+                  type: "POST",
+                  url : "/ag-kegiatan-sub/add/fast",
+                  data: "kegiatan_kd="+$('#kegiatan_kd').val(),
+                  success: function (html) {
+                    if (html.success == true) {
+                      $('#kegiatan_sub_id').val(html.id);
+                    oTableUrl = "/ag-kegiatan-item/act/grid?kegiatan_sub_id="+html.kegiatan_sub_id;  
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                      $("#errors").css('display', 'inline', 'important');
+                      $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                      $('#kegiatan_sub_id').val('');
+                      is_success=false;
+                    }
+                  },
+                  beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                  }
+                });                
+            }
+
+            if (is_success){
+              $.ajax({
+                type: "POST",
+                url : "/ag-kegiatan-item/add/fast",
+                data: $('#header').serialize(),
+                success: function (html) {
+                  if (html.success == true) {
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $('#kegiatan_item_id').val('');
+                    $('#nama').val('');
+                    $('#amount').val('');
+                    $('#rekening_kd').val('');
+                    $('#no_urut').val('');
+                    $('#rekening_nm').val('');
+                    $('#rekening_id').val('');
+
+                    oTable.fnReloadAjax(oTableUrl);
+                  } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  }
+                },
+                beforeSend: function () {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+              });
+            }
+            event.preventDefault();
+          });
+            </script>
+          </div>
+          
+
+        </fieldset>
+   </div>
+
+  </div>
+  
+  <div metal:fill-slot="scripts">
+    <script>
+      var mID;
+      var mThn;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/ag-kegiatan-item/act/grid?kegiatan_sub_id=${row and row.id or 0}";  
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+          "sDom"           : '<"toolbar">lfrtip',
+          "sAjaxSource"    : oTableUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : true,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, 100],
+              [10, 25, 50, 100]
+          ],
+         "aoColumnDefs": [{
+              "bSearchable": false,
+              "bVisible"   : false,
+              "aTargets"   : [0,5,6]
+          },{
+              "bSearchable": true,
+              "bSortable"  : false,
+              "aTargets"   : [3]
+          },{
+              "bSearchable": false,
+              "bSortable"  : false,
+              "aTargets"   : [1,2,4]
+          }],
+          "aoColumns": [
+              null,
+              {"width": "80px"},
+              {"width": "50px"},
+              null,
+              {"width": "150px", "sClass":"right"},
+              null,
+              null,
+          ]
+        });
+          
+        var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_add"    class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit"   class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          ' <button id="btn_close"  class="btn btn-warning"     type="button">Tutup</button>',
+          '	<!--button id="btn_csv" class="btn btn btn-default" type="button">CSV</button-->',
+          '	&nbsp;',
+          '</div>',
+        ];
+
+        var tb = tb_array.join(' ');
+        $("div.toolbar").html(tb);
+        $("div.toolbar").attr('style', 'display:block; float: left; margin-bottom:6px; line-height:16px;');
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                $('#kegiatan_item_id').val(aData[0]);
+                $('#nama').val(aData[3]);
+                $('#amount').val(aData[4]);
+                $('#rekening_kd').val(aData[1]);
+                $('#no_urut').val(aData[2]);
+                $('#rekening_nm').val(aData[5]);
+                $('#rekening_id').val(aData[6]);
+                mID = aData[0];
+                oTable.$('tr.row_selected').removeClass('row_selected');
+                $(this).addClass('row_selected');
+        }
+        });
+        $('#btn_add').click(function () {
+            window.location = '/ag-kegiatan-item/'+$('#kegiatan_sub_id').val()+'/add';
+        });
+
+        $('#btn_edit').click(function () {
+            if (mID) window.location = '/ag-kegiatan-item/'+$('#kegiatan_sub_id').val()+'/'+mID+'/edit';
+            else alert('Pilih Baris yang akan di edit');
+        });
+
+        $('#btn_delete').click(function () {
+            if (mID) {
+                window.location = "/ag-kegiatan-item/"+$('#kegiatan_sub_id').val()+"/"+mID+"/delete";
+            } else {
+                alert('Silahkan pilih data yang akan di hapus');
+            }
+        });        
+        
+        $('#btn_pdf').click(function () {
+            if ($('#kegiatan_kd').val()=='0.00.00.10')
+                url = "/ag-report/r${request.session['ag_step_id']}00/act/1";
+            else if ($('#kegiatan_kd').val()=='0.00.00.21')
+                url = "/ag-report/r${request.session['ag_step_id']}00/act/21";
+            else if ($('#kegiatan_kd').val()=='0.00.00.31')
+                url = "/ag-report/r${request.session['ag_step_id']}00/act/3";
+            else if ($('#kegiatan_kd').val()=='0.00.00.21')
+                url = "/ag-report/r${request.session['ag_step_id']}00/act/3";
+                
+            //alert(url);
+            window.location = url;
+        });
+        
+        $("#btn_close").click(function () {
+            window.location = '/ag-bl';
+            return false;
+        });
+
+        })
+    </script>
+  </div>
+</html>

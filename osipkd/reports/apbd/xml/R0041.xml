@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<apbd>
+  <master>
+    <rekaset>
+      <kode>01104</kode>
+      <uraian>A</uraian>
+      <level_id>1</level_id>
+    </rekaset>
+    <rekaset>
+      <kode>76102</kode>
+      <uraian>B</uraian>
+      <level_id>1</level_id>
+    </rekaset>
+  </master>
+</apbd>

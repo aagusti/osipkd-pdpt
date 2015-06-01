@@ -1,0 +1,298 @@
+<html metal:use-macro="load: ../tuskpd/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+    
+    <style>
+    .modalkegitem {
+        width: 900px;
+    }
+    
+    </style>
+
+    <script type='text/javascript'>
+      var mod = "/b103/997/";
+      var mID;
+      var oTable;
+      var iPos;
+      
+      $(document).ready(function () {
+
+        $("#btn_close").click(function () {
+            window.location = "/b103/001/frm/" + ${rows and rows.apinvoice_id or datas.apinvoice_id or 0};
+            return false;
+        });
+
+        $("#btn_save").click(function () {
+            var vol_1=document.getElementsByName('vol_1')[0].value;
+            var vol_2=document.getElementsByName('vol_2')[0].value;
+            var harga=document.getElementsByName('harga')[0].value;
+            var ppn_prsn=document.getElementsByName('ppn_prsn')[0].value/100;
+            var pph_prsn=document.getElementsByName('pph_prsn')[0].value/100;
+           
+            var jumlah=parseFloat(vol_1) * parseFloat(vol_2) * parseFloat(harga);
+            var jml_ppn=parseFloat(vol_1) * parseFloat(vol_2) * parseFloat(harga) * parseFloat(ppn_prsn);
+            var jml_pph=parseFloat(vol_1) * parseFloat(vol_2) * parseFloat(harga) * parseFloat(pph_prsn);
+            
+            document.getElementsByName('nilai')[0].value = jumlah;
+            document.getElementsByName('ppn')[0].value = jml_ppn;
+            document.getElementsByName('pph')[0].value = jml_pph;
+            
+            $.ajax({
+                type: "POST",
+                url: mod + "save",
+                data: $("#myform").serialize(),
+                success: function (html) {
+                    if (html.success == true) {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                },
+                beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+            });
+            return false;
+        });
+      });                  
+    </script>
+ 
+        <div class="panel-heading">
+            <h3 class="panel-title">Tagihan Item</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+                <input type="hidden" name="apinvoice_id" id="apinvoice_id" value="${rows and rows.apinvoice_id or datas.apinvoice_id or 0}"/>
+                <input type="hidden" name="kegiatan_sub_id" id="kegiatan_sub_id" value="${rows and rows.apinvoices.kegiatan_sub_id or datas.kegiatan_sub_id}"/>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+                    <div class="col-xs-1">
+                        <span class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True">${rows and rows.apinvoices.tahun_id or datas.tahun} </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="apinvoice_id">No. Invoice</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="apinvoice_id" id="apinvoice_id" value="${rows and rows.apinvoice_id or datas.apinvoice_id or 0}" readonly required />
+                    </div>
+                    <label class="control-label col-xs-2" for="kegiatan_item_id">Kegiatan Item</label>
+                    <div class="col-xs-6">                       
+                        <div class="input-group">
+                            <input class="form-control" type="hidden" name="kegiatan_item_id" id="kegiatan_item_id" value="${rows and rows.kegiatan_item_id}" /> 
+                            <span class="form-control" type="text" name="kegiatan_sub_nm" id="kegiatan_sub_nm" readonly="True">${rows and rows.kegiatanitems.nama}</span>
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btn_kegiatan_item">...</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="no_urut">No. Urut</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="no_urut" id="no_urut" value="${rows and rows.no_urut or None}" readonly required />
+                    </div>
+                    <label class="control-label col-xs-2" for="nama">Uraian</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama  or None}" required />
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="vol_1">Vol1</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="vol_1" id="vol_1" value="${rows and rows.vol_1  or None}" required />
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="vol_2">Vol2</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="vol_2" id="vol_2" value="${rows and rows.vol_2  or None}" required />
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="harga">Harga</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="harga" id="harga" value="${rows and rows.harga  or None}" required />
+                    </div>					
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="nilai">Jumlah</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="nilai" id="nilai" value="${rows and rows.nilai}" readonly required />
+                    </div>					
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="ppn_prsn">% Ppn</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="ppn_prsn" id="ppn_prsn" value="${rows and rows.ppn_prsn  or None}" required />
+                    </div>					
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="ppn">Ppn</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="ppn" id="ppn" value="${rows and rows.ppn}" readonly required />
+                    </div>					
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="pph_prsn">% Pph</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="pph_prsn" id="pph_prsn" value="${rows and rows.pph_prsn or None}" required />
+                    </div>					
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="pph">Pph</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="pph" id="pph" value="${rows and rows.pph}" readonly required />
+                    </div>					
+                </div>
+				<div class="form-group">
+                    <label class="control-label col-xs-2" for="notes1">Notes 1</label>
+                    <div class="col-xs-3">
+                        <input class="form-control" type="text" name="notes1" id="notes1" value="${rows and rows.notes1}" />
+                    </div>					
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="notes2">Notes 2</label>
+                    <div class="col-xs-3">
+                        <input class="form-control" type="text" name="notes2" id="notes2" value="${rows and rows.notes2}" />
+                    </div>					
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="notes3">Notes 3</label>
+                    <div class="col-xs-3">
+                        <input class="form-control" type="text" name="notes3" id="notes3" value="${rows and rows.notes3}" />
+                    </div>					
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                        <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+                        <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                    </div>
+                </div>
+              <br>
+            </form>
+        </div>
+        <!--panel-body-->
+
+        <script>
+            <!--Modal Kegiatan Item-->
+            $(document).ready(function () {
+                $('#btn_kegiatan_item').click(function() {
+                    var tblkegiatanitemUrl = "/apbd/dlg/kegiatanitem?pk_id="+$('#kegiatan_sub_id').val();
+                    tblkegiatanitem.fnReloadAjax(tblkegiatanitemUrl);
+                    $('#dlgKegiatanItem').modal('show');
+                });  
+                
+                var kegiatanItemID, kegiatanItemKd, kegiatanItemNm, kegiatanSubNm;
+                var iPos1;
+                var tblkegiatanitem;
+                var tblkegiatanitemUrl = "/apbd/dlg/kegiatanitem";
+                
+                tblkegiatanitem = $('#tblkegiatanitem').dataTable({
+                    "sAjaxSource"    : tblkegiatanitemUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 100, -1],
+                        [10, 25, 100, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible" : false, "aTargets": [0]}, 
+                        {"bSearchable": false, "bSortable": false, "bVisible": true, "aTargets": [3,4,5,6,7,8]},
+                        {"bSearchable": true,  "bVisible" : true,  "aTargets": [1,2]},
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "50px"}, 
+                        {"sWidth": "350px"}, 
+                        {"sWidth": "90px"},
+                        {"sWidth": "90px"},
+                        {"sWidth": "90px"},
+                        {"sWidth": "90px"},  
+                        {"sWidth": "90px"},
+                        {"sWidth": "90px"},                          
+                    ],
+                });
+                $('#tblkegiatanitem tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kegiatanItemID = ''; kegiatanItemKd = ''; kegiatanKd='';kegiatanSubNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1     = tblkegiatanitem.fnGetPosition(this);
+                        var aData = tblkegiatanitem.fnGetData(iPos1);
+                        kegiatanItemID = aData[0];
+                        kegiatanItemKd = aData[1];
+                        kegiatanItemNm = aData[2];
+                        
+                        //remove next line for multi select :D
+                        //tblkegiatanitem.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                $('#btn_pil_keg_item').click(function() {
+                    if(kegiatanItemID) {
+                        $('#dlgKegiatanItem').modal('hide');
+                        if ($('#nama').val()=='') {
+                            $('#nama').val(kegiatanItemNm);
+                        };
+                        if ($('#id').val()=='') {
+                                 $('#id').val(kegiatanItemID);
+                        };
+                        $('#kegiatan_item_id').val(kegiatanItemID);
+                        $('#kegiatan_sub_nm').text(kegiatanItemNm);
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end  Kegiatan Item*/     
+        </script>
+        <!-- Modal Kegiatan Item -->
+        <div class="modal fade" id="dlgKegiatanItem" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog modalkegitem">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKegiatanSubLabel">Pilih Kegiatan Item</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblkegiatanitem">
+                            <thead>
+                                <tr>
+                                  <th>Index</th>
+                                  <th>Kode</th>
+                                  <th>Nama</th>
+                                  <th>Volume 1</th>
+                                  <th>Volume 2</th>
+                                  <th>Hrg Satuan</th>
+                                  <th>Jumlah</th>
+                                  <th>Realisasi</th>
+                                  <th>Sisa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_keg_item" name="btn_pil_keg_item">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Kegiatan Item Modal -->
+  </div>
+</html>

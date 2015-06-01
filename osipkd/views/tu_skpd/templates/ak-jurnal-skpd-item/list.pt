@@ -1,0 +1,113 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <h4>${request.title}</h4>
+    <hr>
+    <table id="table1" class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>SKPD</th>
+                <th>Kode</th>
+                <th>Uraian</th>
+                <th>Ref. Kode</th>
+                <th>Ref. Nama</th>
+                <th>Tanggal</th>
+                <th>Nilai</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div>
+  
+  <div metal:fill-slot="scripts">
+    <script>
+      var mID;
+      var mThn;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/ak-jurnal-skpd/act/grid";;  
+        
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+          "sDom": '<"toolbar">lfrtip',
+          "sAjaxSource": oTableUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, 100],
+              [10, 25, 50, 100]
+          ],
+          "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible": false,
+                        "aTargets": [0]
+                    }],
+          "aoColumns": [
+              null,
+              {"width": "75px"},
+              {"width": "75px"},
+              null,
+               {"width": "100px", "sClass":"left"},
+              null,
+              {"width": "75px", "sClass":"center"},
+              {"width": "100px", "sClass":"right"},
+          ]
+        });
+          
+        var tb_array = [
+          '<div class="btn pull-left">',
+          '	<button id="btn_add" class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit" class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete" class="btn btn btn-danger" type="button">Hapus</button>',
+          '	<!--button id="btn_pdf" class="btn btn btn-warning" type="button">PDF</button-->',
+          '	<button id="btn_csv" class="btn btn btn-default" type="button">CSV</button>',
+          '	&nbsp;',
+          '</div>',
+        ];
+
+
+        var tb = tb_array.join(' ');
+        $("div.toolbar").html(tb);
+        $("div.toolbar").attr('style', 'display:block; float: left; margin-bottom:6px; line-height:16px;');
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                //mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                mID = aData[0];
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                        /*oTable2.fnReloadAjax("egaji/grid2?id=" + mID);*/                
+            }
+        });
+        $('#btn_add').click(function () {
+            window.location = '/ak-jurnal-skpd/add';
+        });
+
+        $('#btn_edit').click(function () {
+            if (mID) window.location = '/ak-jurnal-skpd/'+mID+'/edit';
+            else alert('Pilih Baris yang akan di edit');
+        });
+
+        $('#btn_delete').click(function () {
+            if (mID) window.location = '/ak-jurnal-skpd/'+mID+'/delete';
+            else alert('Pilih Baris yang akan di hapus');
+        });        
+
+        })
+    </script>
+  </div>
+</html>

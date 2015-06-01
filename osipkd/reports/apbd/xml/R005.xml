@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<apbd>
+  <master>
+    <pegawai>
+      <kode>01104</kode>
+      <uraian>A</uraian>
+    </pegawai>
+    <pegawai>
+      <kode>76102</kode>
+      <uraian>B</uraian>
+    </pegawai>
+  </master>
+</apbd>

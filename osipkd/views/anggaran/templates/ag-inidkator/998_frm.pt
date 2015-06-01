@@ -1,0 +1,191 @@
+<html metal:use-macro="load: ../anggaran/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_save").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/anggaran/998/save",
+                    data: $("#myform").serialize(),
+                    success: function (html) {
+                        if (html.success == true) {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                        } else {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                        }
+                    },
+                    beforeSend: function () {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                    }
+                });
+                return false;
+            });
+
+            $("#btn_close").click(function () {
+                window.location = '/anggaran/998';
+                return false;
+            });
+        });  
+    </script>
+
+    <div class="panel-heading">
+      <h3>INDIKATOR KEGIATAN</h3>
+      <div class="row">
+        <label class="control-label col-xs-2">${datas.status_apbd_nm} Tahun </label>
+        <label class="control-label col-xs-1">${datas.tahun}</label>
+      </div>
+	  
+      <div class="row">
+        <label class="control-label col-xs-2">SKPD/SKPKD</label>
+        <div class="col-xs-7">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+              </span>
+              <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${datas.unit_nm}" readonly>
+            </div>
+        </div>
+      </div>
+      
+      <div class="row">
+          <label class="control-label col-xs-2" for="kegiatan_kd">Kegiatan</label>
+          <div class="col-xs-7">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <span class="form-control" type="text" name="kegiatan_kd" id="kegiatan_kd" readonly="True">${heads and heads.kode}</span>
+              </span>
+              <span class="form-control" type="text" name="kegiatan_nm" id="kegiatan_nm" readonly="True">${heads and heads.kegiatan_nm}</span>
+            </div>
+          </div>
+      </div>
+      
+      <div class="row">
+          <label class="control-label col-xs-2" for="kegiatan_id">Sub Kegiatan</label>
+          <div class="col-xs-7">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <span class="form-control" type="text" name="kegiatan_id" id="sub_kegiatan_id" readonly="True">${heads and heads.no_urut}</span>
+              </span>
+              <span class="form-control" type="text" name="kegiatan_nm" id="kegiatan_nm" readonly="True">${heads and heads.nama}</span>
+            </div>
+          </div>
+      </div>
+    </div>
+    
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="${rows and rows.id}"/>
+      <input type="hidden" name="kegitan_sub_id" id="kegitan_sub_id" value="${rows and rows.kegitan_sub_id or heads.id}" />
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tipe">Tipe</label>
+          <div class="col-xs-2">
+              <select class="form-control" id="tipe" name="tipe">
+                  <option value="">Pilih Tipe</option>
+                  <option value="1" tal:attributes="selected 'selected' if rows and rows.tipe==1 else None">Capaian Program</option>
+                  <option value="2" tal:attributes="selected 'selected' if rows and rows.tipe==2 else None">Masukan</option>
+                  <option value="3" tal:attributes="selected 'selected' if rows and rows.tipe==3 else None">Keluaran</option>
+                  <option value="4" tal:attributes="selected 'selected' if rows and rows.tipe==4 else None">Hasil</option>
+              </select>
+          </div>
+      </div>
+	  
+      <div class="form-group">
+         <label class="control-label col-xs-2" for="no_urut">No. Urut</label>
+         <div class="col-xs-1">
+             <input class="form-control"type="text" name="no_urut" id="no_urut" value="${rows and rows.no_urut}" />
+        </div>
+      </div>
+	  
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tolok_ukur_1">Tolok Ukur RKA</label>
+          <div class="col-xs-4">
+              <input class="form-control" type="text" name="tolok_ukur_1" id="tolok_ukur_1" readonly="${datas.status_apbd!=1}" value="${rows and rows.tolok_ukur_1}" />
+          </div>
+      </div>
+	  
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="volume_1">Volume RKA</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="volume_1" id="volume_1" readonly="${datas.status_apbd!=1}" value="${rows and rows.volume_1}" />
+          </div>
+          <div class="col-xs-2">
+            <div class="input-group">
+              <span class="input-group-addon">Satuan</span>
+              <input class="form-control" type="text" name="satuan_1" id="satuan_1" readonly="${datas.status_apbd!=1}" value="${rows and rows.satuan_1}" />
+            </div>
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tolok_ukur_2">Tolok Ukur DPA</label>
+          <div class="col-xs-4">
+              <input class="form-control" type="text" name="tolok_ukur_2" id="tolok_ukur_2" readonly="${datas.status_apbd!=2}" value="${rows and rows.tolok_ukur_2}" />
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="volume_2">Volume DPA</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="volume_2" id="volume_2" readonly="${datas.status_apbd!=2}" value="${rows and rows.volume_2}" />
+          </div>
+          <div class="col-xs-2">
+            <div class="input-group">
+              <span class="input-group-addon">Satuan</span>
+              <input class="form-control" type="text" name="satuan_2" id="satuan_2" readonly="${datas.status_apbd!=2}" value="${rows and rows.satuan_2}" />
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tolok_ukur_3">Tolok Ukur RPKA</label>
+          <div class="col-xs-4">
+              <input class="form-control" type="text" name="tolok_ukur_3" id="tolok_ukur_3" readonly="${datas.status_apbd!=3}" value="${rows and rows.tolok_ukur_3}" />
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="volume_3">Volume RPKA</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="volume_3" id="volume_3" readonly="${datas.status_apbd!=3}" value="${rows and rows.volume_3}" />
+          </div>
+          <div class="col-xs-2">
+            <div class="input-group">
+              <span class="input-group-addon">Satuan</span>
+              <input class="form-control" type="text" name="satuan_3" id="satuan_3" readonly="${datas.status_apbd!=3}" value="${rows and rows.satuan_3}" />
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tolok_ukur_4">Tolok Ukur DPPA</label>
+          <div class="col-xs-4">
+              <input class="form-control" type="text" name="tolok_ukur_4" id="tolok_ukur_4" readonly="${datas.status_apbd!=4}" value="${rows and rows.tolok_ukur_4}" />
+          </div>
+      </div>
+	  
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="volume_4">Volume DPPA</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="volume_4" id="volume_4" readonly="${datas.status_apbd!=4}" value="${rows and rows.volume_4}" />
+          </div>
+          <div class="col-xs-2">
+            <div class="input-group">
+              <span class="input-group-addon">Satuan</span>
+              <input class="form-control" type="text" name="satuan_4" id="satuan_4" readonly="${datas.status_apbd!=4}" value="${rows and rows.satuan_4}" />
+            </div>
+          </div>
+      </div>
+	  
+      <div class="form-group">
+          <div class="col-xs-3">
+              <button type="button" class="btn-primary" id="btn_save">Simpan</button>
+              <button type="button" class="btn-danger" id="btn_cancel">Batal</button>
+              <button type="button" class="btn-warning" id="btn_close">Tutup</button>
+          </div>
+      </div>
+    </form>  
+    </div>
+  </div>
+</html>

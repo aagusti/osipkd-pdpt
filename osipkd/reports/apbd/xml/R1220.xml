@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<apbd>
+  <master>
+    <rka>
+      <tahun>2014</tahun>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan 1</urusan_nm>
+      <unit_id>1</unit_id>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit 1</unit_nm>
+      <program_kd>01</program_kd>
+      <program_nm>Program 1</program_nm>
+      <kegiatan_kd>01.01</kegiatan_kd>
+      <kegiatan_nm>Kegiatan 1</kegiatan_nm>
+      <lokasi>Lokasi</lokasi>
+      <target>Target</target>
+      <rek_kd>01.01.01.01</rek_kd>
+      <jumlah1>1000</jumlah1>
+      <jumlah2>1000</jumlah2>
+      <jumlah3>1000</jumlah3>
+      <jumlah4>1000</jumlah4>
+    </rka>
+    <rka>
+      <tahun>2014</tahun>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan 1</urusan_nm>
+      <unit_id>1</unit_id>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit 1</unit_nm>
+      <program_kd>01</program_kd>
+      <program_nm>Program 1</program_nm>
+      <kegiatan_kd>01.01</kegiatan_kd>
+      <kegiatan_nm>Kegiatan 1</kegiatan_nm>
+      <lokasi>Lokasi</lokasi>
+      <target>Target</target>
+      <rek_kd>01.01.01.01</rek_kd>
+      <jumlah1>1000</jumlah1>
+      <jumlah2>1000</jumlah2>
+      <jumlah3>1000</jumlah3>
+      <jumlah4>1000</jumlah4>
+    </rka>
+  </master>
+</apbd>

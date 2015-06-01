@@ -1,0 +1,657 @@
+<html metal:use-macro="load: ../anggaran/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/anggaran/022/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+
+                $("#btn_close").click(function () {
+                    window.location = '/anggaran/022';
+                    return false;
+                });
+                $( "#tgl_bahas_1,#tgl_bahas_2,#tgl_bahas_3,#tgl_bahas_4" ).datepicker({dateFormat:'dd-mm-yy'});
+            });
+            
+            
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Belanja Langsung</h3>
+        </div>
+        <div class="panel-body">
+          <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="${rows and rows.id}"/>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="tahun_id">${datas.status_apbd_nm} Tahun</label>
+              <div class="col-xs-1">
+                  <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${rows and rows.tahun_id or datas.tahun}" />
+              </div>
+              <label class="control-label col-xs-1" for="unit_id">SKPD/SKPKD</label>
+              <div class="col-xs-7">
+                <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+                <div class="input-group">
+                  <span class="input-group-btn">
+                      <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                  </span>
+                  <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+                </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="kegiatan_id">Kegiatan</label>
+              <div class="col-xs-1">
+                  <input class="form-control" name="kode" id="kode" readonly value="${rows and rows.kode}">
+              </div>
+              <div class="col-xs-8">
+                <div class="input-group">
+                  <input class="form-control" type="hidden" name="kegiatan_id" id="kegiatan_id" value="${rows and rows.kegiatan_id}" />
+                  <span class="form-control" type="text" name="kegiatan_nm" id="kegiatan_nm" readonly="True">${rows and rows.kegiatan_nm}</span>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btn_kegiatan">...</button>
+                  </span>
+                </div>
+              </div>
+          </div>
+          
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="no_urut">No. Urut</label>
+              <div class="col-xs-1">
+                  <input class="form-control" type="text" name="no_urut" id="no_urut" value="${rows and rows.no_urut}" required />
+              </div>
+              <label class="control-label col-xs-1" for="nama">Uraian</label>
+              <div class="col-xs-7">
+                  <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama}" required />
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="volume">Volume</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="volume" id="volume" value="${rows and rows.volume}" />
+              </div>
+            <label class="control-label col-xs-1" for="target">Target</label>
+            <div class="col-xs-3">
+                <input class="form-control" type="text" name="target" id="target" value="${rows and rows.target}" />
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="sifat">Sifat</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="sifat" id="sifat" value="${rows and rows.sifat}" />
+              </div>
+              <label class="control-label col-xs-1" for="kondisi">Kondisi</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="kondisi" id="kondisi" value="${rows and rows.kondisi}" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="lokasi">Lokasi</label>
+              <div class="col-xs-7">
+                  <input class="form-control" type="text" name="lokasi" id="lokasi" value="${rows and rows.lokasi}" />
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-2" for="ttd1nip">Pejabat 1</label> 
+            <div class="col-xs-3">
+                  <div class="input-group">
+                  <input class="form-control" type="hidden" name="ttd1nip" id="ttd1nip" value="${rows and rows.ttd1nip}" />
+                  <span class="form-control" type="text" name="pegawai_nm" id="pegawai_nm" readonly="True">${rows and rows.ttd1nip}</span>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btn_pejabat1">...</button>
+                  </span>
+                </div>       
+            </div>
+
+            <label class="control-label col-xs-1" for="ttd2nip">Pejabat 2</label>
+            <div class="col-xs-3">
+              <div class="input-group">
+                <input class="form-control" type="hidden" name="ttd2nip" id="ttd2nip" value="${rows and rows.ttd2nip}" />
+                <span class="form-control" type="text" name="pegawai_nm2" id="pegawai_nm2" readonly="True">${rows and rows.ttd2nip}</span>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btn_pejabat2">...</button>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB-->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="#pane1" data-toggle="tab">Anggaran</a></li>
+            <li><a href="#pane2" data-toggle="tab">Penjelasan</a></li>
+            <li><a href="#pane3"  data-toggle="tab">Pembahasan</a></li>
+            <li><a href="#pane4" data-toggle="tab">Multi year</a></li>
+          </ul>
+          <div class="tab-content">
+            <div id="pane1" class="tab-pane active">
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="sdana">Sumber Dana</label>
+                  <div class="col-xs-4">
+                      <input class="form-control" type="text" name="sdana" id="sdana" value="${rows and rows.sdana}" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="amt_lalu">Tahun lalu</label>
+                  <div class="col-xs-4">
+                      <input class="form-control" type="text" name="amt_lalu" id="amt_lalu" value="${rows and rows.amt_lalu or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="amt_yad">Tahun yad</label>
+                  <div class="col-xs-4">
+                      <input class="form-control" type="text" name="amt_yad" id="amt_yad" value="${rows and rows.amt_yad or 0}" />
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="ppas">PPAS</label>
+                  <div class="col-xs-4">
+                      <input class="form-control" type="text" name="ppas" id="ppas" value="${rows and rows.ppas or 0}" />
+                  </div>
+                <label class="control-label col-xs-2" for="ppa">PPA</label>
+                <div class="col-xs-4">
+                    <input class="form-control" type="text" name="ppa" id="ppa" value="${rows and rows.ppa or 0}" />
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="ppas_rev">Perubahan PPAS </label>
+                  <div class="col-xs-4">
+                      <input class="form-control" type="text" name="ppas_rev" id="ppas_rev" value="${rows and rows.ppas_rev or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="ppa_rev">Perubahan PPA</label>
+                  <div class="col-xs-4">
+                      <input class="form-control" type="text" name="ppa_rev" id="ppa_rev" value="${rows and rows.ppa_rev or 0}" />
+                  </div>
+              </div>
+              
+            </div>
+            
+            <div id="pane2" class="tab-pane">
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="waktu">Waktu Pelaksanaan</label>
+                  <div class="col-xs-3">
+                      <input class="form-control" type="text" name="waktu" id="waktu" value="${rows and rows.waktu}" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="notes">Catatan</label>
+                  <div class="col-xs-7">
+                      <input class="form-control" type="text" name="notes" id="notes" value="${rows and rows.notes}" />
+                  </div>
+              </div>
+
+              
+              <div class="form-group">
+                <label class="control-label col-xs-2" for="sasaran">Sasaran</label>
+                <div class="col-xs-7">
+                    <input class="form-control" type="text" name="sasaran" id="sasaran" value="${rows and rows.sasaran}" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="control-label col-xs-2" for="perubahan">Alasan perubahan</label>
+                <div class="col-xs-7">
+                    <input class="form-control" type="text" name="perubahan" id="perubahan" value="${rows and rows.perubahan}" />
+                </div>
+              </div>
+            
+            </div>
+            
+            <div id="pane3" class="tab-pane">
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="tgl_bahas_1">Tgl. RKA</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="tgl_bahas_1" id="tgl_bahas_1" value="${rows and rows.tgl_bahas_1}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="catatan_1">Catatan</label>
+                  <div class="col-xs-6">
+                      <input class="form-control" type="text" name="catatan_1" id="catatan_1" value="${rows and rows.catatan_1}" />
+                  </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="tgl_bahas_2">Tgl DPA</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="tgl_bahas_2" id="tgl_bahas_2" value="${rows and rows.tgl_bahas_2}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="catatan_2">Catatan</label>
+                  <div class="col-xs-6">
+                      <input class="form-control" type="text" name="catatan_2" id="catatan_2" value="${rows and rows.catatan_2}" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="tgl_bahas_3">Tgl RPKA</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="tgl_bahas_3" id="tgl_bahas_3" value="${rows and rows.tgl_bahas_3}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="catatan_3">Catatan</label>
+                  <div class="col-xs-6">
+                      <input class="form-control" type="text" name="catatan_3" id="catatan_3" value="${rows and rows.catatan_3}" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="tgl_bahas_4">Tgl DPPA</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="tgl_bahas_4" id="tgl_bahas_4" value="${rows and rows.tgl_bahas_4}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="catatan_4">Catatan</label>
+                  <div class="col-xs-6">
+                      <input class="form-control" type="text" name="catatan_4" id="catatan_4" value="${rows and rows.catatan_4}" />
+                  </div>
+              </div>
+            </div>
+            <div id="pane4" class="tab-pane">
+             <div class="form-group">
+                  <label class="control-label col-xs-2" for="tahunke">Tahun Ke</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="tahunke" id="tahunke" value="${rows and rows.tahunke}" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="h0yl">Anggaran Tahun 1</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="h0yl" id="h0yl" value="${rows and rows.h0yl or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="h1yl">Anggaran Tahun 2</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="h1yl" id="h1yl" value="${rows and rows.h1yl or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="h2yl">Anggaran Tahun 3</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="h2yl" id="h2yl" value="${rows and rows.h2yl or 0}" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="p0yl">Perubahan Tahun 1</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="p0yl" id="p0yl" value="${rows and rows.p0yl or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="p1yl">Perubahan Tahun 2</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="p1yl" id="p1yl" value="${rows and rows.p1yl or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="p2yl">Perubahan Tahun 3</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="p2yl" id="p2yl" value="${rows and rows.p2yl or 0}" />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label col-xs-2" for="r0yl">Realisasi Tahun 1</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="r0yl" id="r0yl" value="${rows and rows.r0yl or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="r1yl">Realisasi Tahun 2</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="r1yl" id="r1yl" value="${rows and rows.r1yl or 0}" />
+                  </div>
+                  <label class="control-label col-xs-2" for="r2yl">Realisasi Tahun 3</label>
+                  <div class="col-xs-2">
+                      <input class="form-control" type="text" name="r2yl" id="r2yl" value="${rows and rows.r2yl or 0}" />
+                  </div>
+              </div>
+              
+              
+            </div>
+         </div>
+          
+            
+              
+          <div class="form-group">
+              <div class="col-xs-3">
+                  <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                  <button type="reset" class="btn btn-danger" id="btn_cancel">Batal</button>
+                  <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+              </div>
+          </div>
+      </form>
+    </div> <!--panel-body-->
+        <script><!--Modal Kegiatan -->
+           $(document).ready(function () {
+                $('#btn_kegiatan').click(function() {
+                    $('#dlgKegiatan').modal('show');
+                });          
+                
+                var kegiatanID, kegiatanNm;
+                var iPos1;
+                var tblkegiatan;
+                var tblkegiatanUrl = "/apbd/dlg/kegiatan";
+                tblkegiatan = $('#tblkegiatan').dataTable({
+                    "sAjaxSource": tblkegiatanUrl,
+                    "bServerSide": true,
+                    "bProcessing": true,
+                    "sDom": '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort": true,
+                    "bInfo": false,
+                    "bFilter": true,
+                    "bAutoWidth": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible": false, "aTargets": [0,5]}, 
+                        {"bSearchable": false, "bVisible": true, "bSortable":false, "aTargets": [1,2,3]}, 
+                        {"bSearchable": true, "bVisible": true, "aTargets": [4]}
+                        
+                    ],
+
+                    "aoColumns": [
+                        null, {
+                        "sWidth": "25pt"},  {
+                        "sWidth": "25pt"},  {
+                        "sWidth": "25pt"}, 
+                        null, {
+                        "sWidth": "100pt"}
+                    ],
+                });
+                
+                $('#tblkegiatan tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kegiatanID = ''; urusanKd = ''; kegiatanKd='';kegiatanNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblkegiatan.fnGetPosition(this);
+                        var aData = tblkegiatan.fnGetData(iPos1);
+                        kegiatanID = aData[0];
+                        kegiatanKd = aData[1]+'.'+aData[2]+'.'+aData[3];
+                        kegiatanNm = aData[4];
+                        tblkegiatan.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                /* end datatable unit*/
+                
+
+
+                $('#btn_pil_keg').click(function() {
+                    if(kegiatanID) {
+                        $('#dlgKegiatan').modal('hide');
+                        if ($('#nama').val()=='') {
+                            $('#nama').val(kegiatanNm);
+                        };
+                        $('#kegiatan_id').val(kegiatanID);
+                        $('#kode').val(kegiatanKd);
+                        $('#kegiatan_nm').text(kegiatanNm);
+
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); /*end of kegiatan*/     
+    </script>
+        <!-- Modal Kegiatan -->
+        <div class="modal fade" id="dlgKegiatan" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgUnitLabel">Pilih Kegiatan</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblkegiatan">
+                            <thead>
+                                <tr>
+                                  <th>Index</th>
+                                  <th>Urs</th>
+                                  <th>Prg</th>
+                                  <th>Keg</th>
+                                  <th>Uraian</th>
+                                  <th>Program</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_keg" name="btn_pil_keg">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+        
+        <!-- Modal Pejabat 1 -->
+    <script>
+      /* start datatable pejabat*/
+      var pejabatID, pejabatNm;
+      var iPos1;
+      var tblpejabat;
+      var tblPejabatUrl = "/admin/pejabat/grid";
+
+      $(document).ready(function () {
+        $('#btn_pejabat1').click(function() {
+            $('#dlgPejabat').modal('show');
+        });
+
+        tblPejabat = $('#tblPejabat').dataTable({
+          "sAjaxSource": tblPejabatUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0] }, 
+            {"bSearchable": false, "bVisible": true, "aTargets": [1,2,3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "15%",
+              "sClass": "left"},
+              {"sWidth": "15%",
+              "sClass": "left"}
+          ],
+        });
+        
+        $('#tblPejabat tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                pejabatID = ''; pegawaiKd=''; pegawaiNm=''; jabatNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblPejabat.fnGetPosition(this);
+                var aData = tblPejabat.fnGetData(iPos1);
+                pejabatID = aData[0];
+                pegawaiKd = aData[1];
+                pegawaiNm = aData[2];
+                jabatNm = aData[3];
+                tblPejabat.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        
+        
+        /* end datatable pejabat*/
+
+        $('#btn_pil_pejabat1').click(function() {
+          if(pejabatID) {
+            $('#dlgPejabat').modal('hide');
+            $('#pejabat_ID').val(pejabatID);
+            $('#ttd1nip').val(pegawaiKd);
+            $('#pegawai_nm').text(pegawaiNm);
+            $('#jabat_nm').val(jabatNm);
+            
+            if ($('#nama1').val()==null || $('#nama1').val()==""){
+                $('#nama1').val(pegawaiNm);
+            };
+            
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgPejabat" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgPejabatLabel">Pilih Pejabat Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblPejabat">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kode Pejabat</th>
+                  <th>Nama</th>
+                  <th>Pejabat</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pil_pejabat1" name="btn_pil_pejabat1">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>      <!-- End Modal -->
+    
+    <!-- Modal Pejabat 2 -->
+    <script>
+      /* start datatable pejabat*/
+      var pejabatID2, pejabatNm2;
+      var iPos2;
+      var tblpejabat2;
+      var tblPejabatUrl = "/admin/pejabat/grid";
+
+      $(document).ready(function () {
+        $('#btn_pejabat2').click(function() {
+            $('#dlgPejabat2').modal('show');
+        });
+
+        tblPejabat2 = $('#tblPejabat2').dataTable({
+          "sAjaxSource": tblPejabatUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0] }, 
+            {"bSearchable": false, "bVisible": true, "aTargets": [1,2,3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "15%",
+              "sClass": "left"},
+              {"sWidth": "15%",
+              "sClass": "left"}
+          ],
+        });
+        
+        $('#tblPejabat2 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                pejabatID2 = ''; pegawaiKd2=''; pegawaiNm2=''; jabatNm2='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblPejabat2.fnGetPosition(this);
+                var aData = tblPejabat2.fnGetData(iPos1);
+                pejabatID2 = aData[0];
+                pegawaiKd2 = aData[1];
+                pegawaiNm2 = aData[2];
+                jabatNm2 = aData[3];
+                tblPejabat.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        
+        
+        /* end datatable pejabat*/
+
+        $('#btn_pil_pejabat2').click(function() {
+          if(pejabatID) {
+            $('#dlgPejabat2').modal('hide');
+            $('#pejabat_ID2').val(pejabatID2);
+            $('#ttd2nip').val(pegawaiKd2);
+            $('#pegawai_nm2').text(pegawaiNm2);
+            $('#jabat_nm2').val(jabatNm2);
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgPejabat2" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgPejabatLabel">Pilih Pejabat Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblPejabat2">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kode Pejabat</th>
+                  <th>Nama</th>
+                  <th>Pejabat</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pil_pejabat2" name="btn_pil_pejabat2">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>      <!-- End Modal -->  
+
+  </div>
+</html>

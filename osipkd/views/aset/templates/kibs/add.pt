@@ -1,0 +1,5 @@
+<html metal:use-macro="load: ../kibs.pt">
+<div metal:fill-slot="content">
+
+</div>
+</html>

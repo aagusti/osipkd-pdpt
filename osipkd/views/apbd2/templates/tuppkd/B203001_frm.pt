@@ -1,0 +1,522 @@
+<html metal:use-macro="load: ../tuppkd/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default">
+  
+  <style>
+  .modalkegitem {
+      width: 900px;
+  }
+  </style>
+
+  <script type='text/javascript'>
+   var mod ="/b203/001";
+    $(document).ready(function () {
+                 $("#btn_save").click(function () {
+                 $.ajax({
+                     type: "POST",
+                     url: mod+"/save",
+                     data: $("#myform").serialize(),
+                     success: function (html) {
+                         if (html.success == true) {
+                             $("#errors").css('display', 'inline', 'important');
+                             $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                         } else {
+                             $("#errors").css('display', 'inline', 'important');
+                             $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                         }
+                     },
+                     beforeSend: function () {
+                         $("#errors").css('display', 'inline', 'important');
+                         $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                     }
+                 });
+                 return false;
+                 });
+   
+                 $("#btn_close").click(function () {
+                     window.location = "/b203/001";
+                     return false;
+                 });
+   
+                 $( "#tanggal" ).datepicker({dateFormat:'dd-mm-yy'});
+
+        
+                 var dbDate = $('#tanggal').val();
+                 var date2 = new Date(dbDate);
+                 $('#tanggal').datepicker({ dateFormat : 'dd-mm-yy' }).datepicker('setDate', date2);
+          
+
+         });
+  </script>
+  <div class="panel-heading">
+      <h3 class="panel-title">Surat Perintah Pencairan Dana (SP2D)</h3>
+  </div>
+  <div class="panel-body">
+                
+    <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+          <div class="col-xs-1">
+              <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${datas.tahun}" />
+          </div>
+          <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+          <div class="col-xs-6">
+              <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+              <div class="input-group">
+                  <span class="input-group-btn">
+                  <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                  </span>
+                  <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+              </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-xs-2"  for="kode">Kode</label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}" />
+        </div>
+        <label class="control-label col-xs-1" for="tanggal">Tanggal</label>
+        <div class="col-xs-2">
+            <input class="form-control" type="text" name="tanggal" id="tanggal" value="${rows and rows.tanggal}" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="hidden" name="spm_id" id="spm_id" value="${rows and rows.spm_id}" />
+        <label class="control-label col-sm-2" for="spm_id">Pilih SPM</label>
+        <div class="col-sm-5">
+            <div class="input-group">
+              <span class="input-group-addon">
+                  <span name="kode1" id="kode1" readonly="True">${rows and rows.spms.kode}</span>
+              </span>
+              <span class="form-control" type="text" name="nama1" id="nama1" readonly="True">${rows and rows.spms.nama}</span>
+              <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button" name="btn_kegiatan_sub" id="btn_kegiatan_sub">...</button>
+              </span>
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-xs-2"  for="posted"></label>
+        <div class="col-xs-2">
+            <input class="form-control" type="hidden" name="posted" id="posted" value="${rows and rows.posted}" />
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#pane" data-toggle="tab">BUD</a></li>
+        <li><a href="#pane1" data-toggle="tab">Verifikasi</a></li>
+      </ul>
+      
+      <div class="tab-content"> 
+        <div id="pane" class="tab-pane active">
+          <div class="form-group">
+              <div class="col-xs-2">
+               <input class="form-control" type="hidden" name="bud_uid" id="bud_uid" value="${rows and rows.bud_uid}" />
+              </div>
+          </div>
+   
+          <div class="form-group">
+            <label class="control-label col-xs-2" for="bud_nip">NIP </label> 
+          <div class="col-xs-3">
+               <div class="input-group">
+                  <input class="form-control" type="text" name="bud_nip" id="bud_nip"  value="${rows and rows.bud_nip}" readonly />
+                  <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" id="btn_bud_uid">...</button>
+                  </span>
+               </div>
+          </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="bud_nama">Nama</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="bud_nama" id="bud_nama" value="${rows and rows.bud_nama}" readonly />
+              </div>
+          </div>
+        </div>
+
+        <div id="pane1" class="tab-pane">
+          <div class="form-group">
+              <div class="col-xs-2">
+               <input class="form-control" type="hidden" name="verified_uid" id="verified_uid" value="${rows and rows.verified_uid}" />
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-2" for="verified_nip">NIP </label> 
+            <div class="col-xs-3">
+                 <div class="input-group">
+                    <input class="form-control" type="text" name="verified_nip" id="verified_nip"  value="${rows and rows.verified_nip}" readonly />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" name="btn_verified_uid" id="btn_verified_uid">...</button>
+                    </span>
+                 </div>  
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="verified_nama">Nama</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="verified_nama" id="verified_nama" value="${rows and rows.verified_nama}" readonly />
+              </div>
+          </div>
+        </div>
+      </div>
+
+<!-----PERC----->
+      <div class="form-group">
+          <div class="col-xs-6"><br>
+              <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+              <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+              <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+          </div>
+      </div>
+    </form>
+  </div>
+
+        <script>
+            <!--Modal SPM -->
+            $(document).ready(function () {
+                $('#btn_kegiatan_sub').click(function() {
+                    $('#dlgKegiatanSub').modal('show');
+                });          
+                
+                var kegiatanSubID, kegiatanSubKd, kegiatanSubNm;
+                var iPos1;
+                var tblkegiatansub;
+                var tblkegiatansubUrl = "/apbd/dlg/spm";
+
+                tblkegiatansub = $('#tblkegiatansub').dataTable({
+                    "sAjaxSource"    : tblkegiatansubUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible"   : false,
+                        "aTargets"   : [0]
+                    },{
+                        "bSearchable": false,
+                        "bSortable"  : false,
+                        "aTargets"   : [1,2,3,4,5]
+                    },{
+                        "sClass"   : "right",
+                        "aTargets" : [5],
+                        "mRender"  : function (data, type, full) {
+                        return formatNumber(data);}
+                    }
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "50px"}, 
+                        {"sWidth": "70px"}, 
+                        {"sWidth": "20px"}, 
+                        {"sWidth": "150px"}, 
+                        {"sWidth": "100px"}, 
+                    ],
+                });
+
+                function formatNumber(n) {
+                         return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                         }
+
+                $('#tblkegiatansub tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kegiatanSubID = ''; kegiatanSubKd = ''; kegiatanKd='';kegiatanSubNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1     = tblkegiatansub.fnGetPosition(this);
+                        var aData = tblkegiatansub.fnGetData(iPos1);
+
+                        kegiatanSubID = aData[0];
+                        kegiatanSubKd = aData[1];
+                        kegiatanSubNm = aData[4];
+
+                        tblkegiatansub.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                /* end datatable unit*/
+
+                $('#btn_pil_keg_sub').click(function() {
+                    if(kegiatanSubID) {
+                        $('#dlgKegiatanSub').modal('hide');
+                        if ($('#nama1').val()=='') {
+                            $('#nama1').val(kegiatanSubNm);
+                        };
+                        if ($('#kode1').val()=='') {
+                            $('#kode1').val(kegiatanSubKd);
+                        };
+                        $('#spm_id').val(kegiatanSubID);
+                        $('#kode1').text(kegiatanSubKd);
+                        $('#nama1').text(kegiatanSubNm);
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of kegiatan*/     
+        </script>
+        <!-- Modal Kegiatan -->
+        <div class="modal fade" id="dlgKegiatanSub" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKegiatanSubLabel">Pilih SPM</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblkegiatansub">
+                            <thead>
+                                <tr>
+                                <th>Index</th>
+                                <th>Kode</th>
+                                <th>Tanggal SPM</th>
+                                <th>Jenis</th>
+                                <th>Uraian</th>
+                                <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_keg_sub" name="btn_pil_keg_sub">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <!--Modal bendaharasp2d -->
+        <script> 
+                var ttdID1, ttdID2, ttdKd, ttdNi, ttdNm; 
+                var iPos1;
+                var tblttd;
+                var tblttdUrl = "/apbd/dlg/bendaharasp2d?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_bud_uid').click(function() {
+                    var tblttdUrl = "/apbd/dlg/bendaharasp2d?pk_id="+$('#unit_id').val();
+                    tblttd.fnReloadAjax(tblttdUrl);
+                    $('#dlgTtd').modal('show');
+                });
+            
+                tblttd = $('#tblttd').dataTable({
+                    "sAjaxSource"    : tblttdUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {"bSearchable": false, "bVisible": false, "aTargets": [0,1] }, 
+                    {"bSearchable": false, "bVisible": true,  "aTargets": [2,3,4] },
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "15%", "sClass": "left"},
+                        {"sWidth": "25%", "sClass": "left"},
+                        {"sWidth": "25%", "sClass": "left"}
+                    ],
+                });
+                
+                $('#tblttd tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                       ttdID1 = ''; ttdID2 = ''; ttdKd=''; ttdNi=''; ttdNm=''; 
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblttd.fnGetPosition(this);
+                        var aData = tblttd.fnGetData(iPos1);
+                        ttdID1 = aData[0];
+                        ttdID2 = aData[1];
+                        ttdKd  = aData[2];
+                        ttdNi  = aData[3];
+                        ttdNm  = aData[4];
+                        tblttd.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+             
+                $('#btn_pil_ttd').click(function() {
+                    if(ttdID1) {
+                       
+                        $('#dlgTtd').modal('hide');
+                        $('#bud_uid').val(ttdID2);
+                        $('#bud_nip').val(ttdKd);
+                        $('#bud_nama').val(ttdNi);
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of ttd*/     
+        </script>
+        <!-- Modal Ttd -->
+        <div class="modal fade" id="dlgTtd" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgTtdLabel">Pilih Ttd</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblttd">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>Index</th>
+                                   <th>NIP</th>
+                                   <th>Nama</th>
+                                   <th>Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_ttd" name="btn_pil_ttd">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+ 
+        <!--Modal Verified Ttd -->
+        <script> 
+                var ttdID1, ttdID2, ttdKd, ttdNi, ttdNm; 
+                var iPos1;
+                var tblttd1;
+                var tblttd1Url = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_verified_uid').click(function() {
+                    var tblttd1Url = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                    tblttd1.fnReloadAjax(tblttd1Url);
+                    $('#dlgTtd1').modal('show');
+                });
+            
+                tblttd1 = $('#tblttd1').dataTable({
+                    "sAjaxSource"    : tblttd1Url,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {"bSearchable": false, "bVisible": false, "aTargets": [0,1] }, 
+                    {"bSearchable": false, "bVisible": true,  "aTargets": [2,3,4] },
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "15%", "sClass": "left"},
+                        {"sWidth": "25%", "sClass": "left"},
+                        {"sWidth": "25%", "sClass": "left"}
+                    ],
+                });
+                
+                $('#tblttd1 tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                       ttdID1 = ''; ttdID2 = ''; ttdKd=''; ttdNi=''; ttdNm=''; 
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblttd1.fnGetPosition(this);
+                        var aData = tblttd1.fnGetData(iPos1);
+                        ttdID1 = aData[0];
+                        ttdID2 = aData[1];
+                        ttdKd  = aData[2];
+                        ttdNi  = aData[3];
+                        ttdNm  = aData[4];
+                        tblttd.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+             
+                $('#btn_pil_ttd1').click(function() {
+                    if(ttdID1) {
+                       
+                        $('#dlgTtd1').modal('hide');
+                        $('#verified_uid').val(ttdID2);
+                        $('#verified').val(ttdKd);
+                        $('#verified_nama').val(ttdNi);
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of ttd1*/     
+        </script>
+        <!-- Modal Ttd1 -->
+        <div class="modal fade" id="dlgTtd1" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgTtd1Label">Pilih Ttd</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblttd1">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>Index</th>
+                                   <th>NIP</th>
+                                   <th>Nama</th>
+                                   <th>Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_ttd1" name="btn_pil_ttd1">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal --> 
+  </div>
+</html>

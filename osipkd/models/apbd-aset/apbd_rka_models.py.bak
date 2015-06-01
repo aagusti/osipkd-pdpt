@@ -1,0 +1,347 @@
+import sys
+from model_base import *
+from sqlalchemy import Column, Integer, String, SmallInteger, UniqueConstraint
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql.functions import concat
+from osipkd.models.apbd_admin_models import (KegiatanModel,UnitModel, 
+    ProgramModel, UrusanModel)
+
+class KegiatanSubModel(BaseModelDB, Base):
+    __tablename__  = 'kegiatan_subs'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+
+    tahun_id    = Column(BigInteger, ForeignKey("apbd.tahuns.id"),    nullable=False)
+    unit_id     = Column(Integer,    ForeignKey("apbd.units.id"),     nullable=False) 
+    kegiatan_id = Column(BigInteger, ForeignKey("apbd.kegiatans.id"), nullable=False)
+
+    kegiatans = relationship("KegiatanModel", backref="kegiatansubs")
+    units     = relationship("UnitModel",     backref="kegiatansubs") 
+    
+    no_urut  = Column(Integer, nullable=False)
+    #nama    = Column(String(255))
+    lokasi   = Column(String(255))
+    sifat    = Column(String(50))
+    bagian   = Column(String(50))
+    kondisi  = Column(String(255))
+    waktu    = Column(String(50))
+    amt_lalu = Column(BigInteger, nullable=False)
+    amt_yad  = Column(BigInteger, nullable=False)
+
+    sdana = Column(String(50))
+    
+    ttd1nip = Column(String(20))
+    ttd2nip = Column(String(20))
+
+    notes     = Column(String(255))
+    target    = Column(String(250))
+    sasaran   = Column(String(250))
+    perubahan = Column(String(250))
+
+    ppa      = Column(BigInteger, nullable=False)
+    ppas     = Column(BigInteger, nullable=False)
+    ppa_rev  = Column(BigInteger, nullable=False)
+    ppas_rev = Column(BigInteger, nullable=False)
+
+    volume = Column(String(100))
+
+    tgl_bahas_1 = Column(Date)
+    tgl_bahas_2 = Column(Date)
+    tgl_bahas_3 = Column(Date)
+    tgl_bahas_4 = Column(Date)
+    
+    catatan_1 = Column(String(255))
+    catatan_2 = Column(String(255))
+    catatan_3 = Column(String(255))
+    catatan_4 = Column(String(255))
+    pending   = Column(SmallInteger, nullable=False)
+    
+    tahunke = Column(SmallInteger, nullable=False )
+	
+    h0yl = Column(BigInteger, nullable=False)
+    p0yl = Column(BigInteger, nullable=False)
+    r0yl = Column(BigInteger, nullable=False)
+	
+    h1yl = Column(BigInteger, nullable=False)
+    p1yl = Column(BigInteger, nullable=False)
+    r1yl = Column(BigInteger, nullable=False)
+	
+    h2yl = Column(BigInteger, nullable=False)
+    p2yl = Column(BigInteger, nullable=False)
+    r2yl = Column(BigInteger, nullable=False)
+	
+    disabled = Column(SmallInteger, nullable=False, default=0)
+    UniqueConstraint('unit_id', 'tahun_id', 'kegiatan_id' , 'no_urut',  
+                name = 'kegiatan_sub_ukey')
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.tahun_id      = 'tahun_id' in data and data['tahun_id'] or None
+        self.unit_id       = 'unit_id' in data and data['unit_id'] or None
+        self.kegiatan_id   = 'kegiatan_id' in data and data['kegiatan_id'] or None
+        self.no_urut       = 'no_urut' in data and data['no_urut'] or None
+        #self.nama         = 'nama' in data and data['nama'] or None
+        self.lokasi        = 'lokasi' in data and data['lokasi'] or None
+        self.sifat         = 'sifat' in data and data['sifat'] or None
+        self.bagian        = 'bagian' in data and data['bagian'] or None
+        self.kondisi       = 'kondisi' in data and data['kondisi'] or None
+        self.waktu         = 'waktu' in data and data['waktu'] or None
+        self.amt_lalu      = 'amt_lalu' in data and data['amt_lalu'] or 0
+        self.amt_yad       = 'amt_yad' in data and data['amt_yad'] or 0
+        self.sdana         = 'sdana' in data and data['sdana'] or None
+        self.ttd1nip       = 'ttd1nip' in data and data['ttd1nip'] or None
+        self.ttd2nip       = 'ttd2nip' in data and data['ttd2nip'] or None
+        self.notes         = 'notes' in data and data['notes'] or None
+        self.target        = 'target' in data and data['target'] or None
+        self.sasaran       = 'sasaran' in data and data['sasaran'] or None
+        self.perubahan     = 'perubahan' in data and data['perubahan'] or None
+        self.ppa           = 'ppa' in data and data['ppa'] or 0
+        self.ppas          = 'ppas' in data and data['ppas'] or 0
+        self.ppa_rev       = 'ppa_rev' in data and data['ppa_rev'] or 0
+        self.ppas_rev      = 'ppas_rev' in data and data['ppas_rev'] or 0
+        self.volume        = 'volume' in data and data['volume'] or None
+        self.tgl_bahas_1   = 'tgl_bahas_1' in data and data['tgl_bahas_1'] or None
+        self.tgl_bahas_2   = 'tgl_bahas_2' in data and data['tgl_bahas_2'] or None
+        self.tgl_bahas_3   = 'tgl_bahas_3' in data and data['tgl_bahas_3'] or None
+        self.tgl_bahas_4   = 'tgl_bahas_4' in data and data['tgl_bahas_4'] or None
+        self.catatan_1     = 'catatan_1' in data and data['catatan_1'] or None
+        self.catatan_2     = 'catatan_2' in data and data['catatan_2'] or None
+        self.catatan_3     = 'catatan_3' in data and data['catatan_3'] or None
+        self.catatan_4     = 'catatan_4' in data and data['catatan_4'] or None
+        self.pending       = 'pending' in data and data['pending'] or 0
+        self.tahunke       = 'tahunke' in data and data['tahunke'] or 1
+        self.h0yl          = 'h0yl' in data and data['h0yl'] or 0
+        self.p0yl          = 'p0yl' in data and data['p0yl'] or 0
+        self.r0yl          = 'r0yl' in data and data['r0yl'] or 0
+        self.h1yl          = 'h1yl' in data and data['h1yl'] or 0
+        self.p1yl          = 'p1yl' in data and data['p1yl'] or 0
+        self.r1yl          = 'r1yl' in data and data['r1yl'] or 0
+        self.h2yl          = 'h2yl' in data and data['h2yl'] or 0
+        self.p2yl          = 'p2yl' in data and data['p2yl'] or 0
+        self.r2yl          = 'r2yl' in data and data['r2yl'] or 0
+        
+    @classmethod
+    def get_by_id(cls, id):
+        return DBSession.query(KegiatanSubModel)\
+                .join(KegiatanModel)\
+                .join(UnitModel)\
+                .filter(KegiatanSubModel.kegiatan_id==KegiatanModel.id,
+                        KegiatanSubModel.unit_id==UnitModel.id,
+                        KegiatanSubModel.id==id
+                ).first()
+    @classmethod
+    def get_header(cls, unit_id, keg_id):
+        return DBSession.query(KegiatanSubModel.id,
+            KegiatanSubModel.no_urut,
+            KegiatanSubModel.nama,
+            KegiatanModel.nama.label('kegiatan_nm'),
+            concat(UrusanModel.kode,'.',ProgramModel.kode,'.',
+                   KegiatanModel.kode).label('kode'),
+                   )\
+            .join(KegiatanModel)\
+            .join(ProgramModel)\
+            .join(UrusanModel)\
+            .filter(KegiatanSubModel.kegiatan_id==KegiatanModel.id,
+                    KegiatanModel.program_id==ProgramModel.id,
+                    ProgramModel.urusan_id==UrusanModel.id,
+                    KegiatanSubModel.unit_id==unit_id,
+                    KegiatanSubModel.id==keg_id).first()
+
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(KegiatanSubModel.no_urut).label('no_urut'))\
+                .filter(KegiatanSubModel.tahun_id==p['tahun_id'],
+                        KegiatanSubModel.unit_id==p['unit_id'],
+                        KegiatanSubModel.kegiatan_id==p['kegiatan_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1
+           
+                     ############################################
+                           ###    INDIKATOR KEGIATAN    ###
+                           ###  KegiatanIndikatorModel  ###
+                     ############################################   
+class KegiatanIndikatorModel(BaseDB, Base):
+    __tablename__  ='kegiatan_indikators'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    kegitan_sub_id = Column(BigInteger, ForeignKey("apbd.kegiatan_subs.id"), nullable=False)
+    tipe           = Column(SmallInteger, nullable=False)
+    no_urut        = Column(SmallInteger, nullable=False)
+
+    tolok_ukur_1   = Column(String(255), nullable=False)
+    volume_1       = Column(BigInteger,  nullable=False)
+    satuan_1       = Column(String(255), nullable=False)
+
+    tolok_ukur_2   = Column(String(255), nullable=False)
+    volume_2       = Column(BigInteger,  nullable=False)
+    satuan_2       = Column(String(255), nullable=False)
+
+    tolok_ukur_3   = Column(String(255), nullable=False)
+    volume_3       = Column(BigInteger,  nullable=False)
+    satuan_3       = Column(String(255), nullable=False)
+
+    tolok_ukur_4   = Column(String(255), nullable=False)
+    volume_4       = Column(BigInteger,  nullable=False)
+    satuan_4       = Column(String(255), nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.kegitan_sub_id ='kegitan_sub_id' in data and data['kegitan_sub_id'] or None
+        self.tipe           ='tipe' in data and data['tipe'] or None
+        self.no_urut        ='no_urut' in data and data['no_urut'] or None
+        self.tolok_ukur_1   ='tolok_ukur_1' in data and data['tolok_ukur_1'] or ""
+        self.volume_1       ='volume_1' in data and data['volume_1'] or 0
+        self.satuan_1       ='satuan_1' in data and data['satuan_1'] or ""
+        self.tolok_ukur_2   ='tolok_ukur_2' in data and data['tolok_ukur_2'] or ""
+        self.volume_2       ='volume_2' in data and data['volume_2'] or 0
+        self.satuan_2       ='satuan_2' in data and data['satuan_2'] or ""
+        self.tolok_ukur_3   ='tolok_ukur_3' in data and data['tolok_ukur_3'] or ""
+        self.volume_3       ='volume_3' in data and data['volume_3'] or 0
+        self.satuan_3       ='satuan_3' in data and data['satuan_3'] or ""
+        self.tolok_ukur_4   ='tolok_ukur_4' in data and data['tolok_ukur_4'] or ""
+        self.volume_4       ='volume_4' in data and data['volume_4'] or 0
+        self.satuan_4       ='satuan_4' in data and data['satuan_4'] or ""
+        
+		
+                     ############################################
+                             ###    ITEM KEGIATAN    ###
+                             ###  KegiatanItemModel  ###
+                     ############################################        
+class KegiatanItemModel(BaseDB, Base):
+    __tablename__   ='kegiatan_items'
+    __table_args__  = {'extend_existing':True,'schema' :'apbd'}
+
+    kegiatan_subs   = relationship("KegiatanSubModel", backref="kegiatan_items")    
+    rekenings       = relationship("RekeningModel",    backref="kegiatan_items")
+
+    kegiatan_sub_id = Column(BigInteger, ForeignKey("apbd.kegiatan_subs.id"), nullable=False)
+    rekening_id     = Column(Integer ,   ForeignKey("apbd.rekenings.id"),     nullable=False)    
+    kode            = Column(String(25))
+    nama            = Column(String(255), nullable=False)
+    no_urut         = Column(Integer , nullable=False)
+    header_id       = Column(BigInteger , nullable=True)
+
+    vol_1_1 = Column(BigInteger, nullable=False)
+    sat_1_1 = Column(String(25))
+    vol_1_2 = Column(BigInteger, nullable=False)
+    sat_1_2 = Column(String(25))
+    hsat_1  = Column(BigInteger, nullable=False)
+
+    vol_2_1 = Column(BigInteger, nullable=False)
+    sat_2_1 = Column(String(25))
+    vol_2_2 = Column(BigInteger, nullable=False)
+    sat_2_2 = Column(String(25))
+    hsat_2  = Column(BigInteger, nullable=False)
+
+    vol_3_1 = Column(BigInteger, nullable=False)
+    sat_3_1 = Column(String(25))
+    vol_3_2 = Column(BigInteger, nullable=False)
+    sat_3_2 = Column(String(25))
+    hsat_3 = Column(BigInteger,  nullable=False)
+
+    vol_4_1 = Column(BigInteger, nullable=False)
+    sat_4_1 = Column(String(25))
+    vol_4_2 = Column(BigInteger, nullable=False)
+    sat_4_2 = Column(String(25))
+    hsat_4 = Column(BigInteger, nullable=False)
+
+    pelaksana = Column(String(25))
+    mulai     = Column(Date)
+    selesai   = Column(Date)
+
+    bln01 = Column(BigInteger, nullable=False)
+    bln02 = Column(BigInteger, nullable=False)
+    bln03 = Column(BigInteger, nullable=False)
+    bln04 = Column(BigInteger, nullable=False)
+    bln05 = Column(BigInteger, nullable=False)
+    bln06 = Column(BigInteger, nullable=False)
+    bln07 = Column(BigInteger, nullable=False)
+    bln08 = Column(BigInteger, nullable=False)
+    bln09 = Column(BigInteger, nullable=False)
+    bln10 = Column(BigInteger, nullable=False)
+    bln11 = Column(BigInteger, nullable=False)
+    bln12 = Column(BigInteger, nullable=False)
+
+    ssh_id = Column(BigInteger) # link ke ssh?????
+
+    is_summary = Column(SmallInteger, nullable=False)
+    is_apbd    = Column(SmallInteger, nullable=False)
+
+    keterangan = Column(String(255))
+    UniqueConstraint ('kegiatan_sub_id','rekening_id','no_urut', name='kegiatan_item_uq')
+    
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.kode            ='kode' in data and data['kode'] or None
+        self.nama            ='nama' in data and data['nama'] or None
+        self.kegiatan_sub_id ='kegiatan_sub_id' in data and data['kegiatan_sub_id'] or None
+        self.rekening_id     ='rekening_id' in data and data['rekening_id'] or None
+        self.no_urut         ='no_urut' in data and data['no_urut'] or None
+        self.header_id       ='header_id' in data and data['header_id'] or 0
+        
+        self.vol_1_1         ='vol_1_1' in data and data['vol_1_1'] or 0
+        self.sat_1_1         ='sat_1_1' in data and data['sat_1_1'] or None
+        self.vol_1_2         ='vol_1_2' in data and data['vol_1_2'] or 0
+        self.sat_1_2         ='sat_1_2' in data and data['sat_1_2'] or None
+        self.hsat_1          ='hsat_1' in data and data['hsat_1'] or 0
+		
+        self.vol_2_1         ='vol_2_1' in data and data['vol_2_1'] or 0
+        self.sat_2_1         ='sat_2_1' in data and data['sat_2_1'] or None
+        self.vol_2_2         ='vol_2_2' in data and data['vol_2_2'] or 0
+        self.sat_2_2         ='sat_2_2' in data and data['sat_2_2'] or None
+        self.hsat_2          ='hsat_2' in data and data['hsat_2'] or 0
+		
+        self.vol_3_1         ='vol_3_1' in data and data['vol_3_1'] or 0
+        self.sat_3_1         ='sat_3_1' in data and data['sat_3_1'] or None
+        self.vol_3_2         ='vol_3_2' in data and data['vol_3_2'] or 0
+        self.sat_3_2         ='sat_3_2' in data and data['sat_3_2'] or None
+        self.hsat_3          ='hsat_3' in data and data['hsat_3'] or 0
+		
+        self.vol_4_1         ='vol_4_1' in data and data['vol_4_1'] or 0
+        self.sat_4_1         ='sat_4_1' in data and data['sat_4_1'] or None
+        self.vol_4_2         ='vol_4_2' in data and data['vol_4_2'] or 0
+        self.sat_4_2         ='sat_4_2' in data and data['sat_4_2'] or None
+        self.hsat_4          ='hsat_4' in data and data['hsat_4'] or 0
+		
+        self.pelaksana       ='pelaksana' in data and data['pelaksana'] or None
+        self.mulai           ='mulai' in data and data['mulai'] or None
+        self.selesai         ='selesai' in data and data['selesai'] or None
+		
+        self.bln01           ='bln01' in data and data['bln01'] or 0
+        self.bln02           ='bln02' in data and data['bln02'] or 0
+        self.bln03           ='bln03' in data and data['bln03'] or 0
+        self.bln04           ='bln04' in data and data['bln04'] or 0
+        self.bln05           ='bln05' in data and data['bln05'] or 0
+        self.bln06           ='bln06' in data and data['bln06'] or 0
+        self.bln07           ='bln07' in data and data['bln07'] or 0
+        self.bln08           ='bln08' in data and data['bln08'] or 0
+        self.bln09           ='bln09' in data and data['bln09'] or 0
+        self.bln10           ='bln10' in data and data['bln10'] or 0
+        self.bln11           ='bln11' in data and data['bln11'] or 0
+        self.bln12           ='bln12' in data and data['bln12'] or 0
+		
+        self.ssh_id          ='ssh_id' in data and data['ssh_id'] or None
+        self.is_summary      ='is_summary' in data and data['is_summary'] or 0
+        self.is_apbd         ='is_apbd' in data and data['is_apbd'] or 0
+        self.keterangan      ='keterangan' in data and data['keterangan'] or None
+
+    @classmethod
+    def update(cls, data):
+        if not data["mulai"]:
+            del data["mulai"]
+        if not data["selesai"]:
+            del data["selesai"]
+            
+        return super(KegiatanItemModel,cls).update(data)
+
+    @classmethod
+    def get_no_urut(cls, data):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter( cls.kegiatan_sub_id == data['kegiatan_sub_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1

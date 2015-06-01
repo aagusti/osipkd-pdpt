@@ -1,0 +1,186 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <h4>${request.title}</h4>
+    <hr>
+  <form id="header" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+      class="form-horizontal">
+  <fieldset class="deformFormFieldset">
+      <!--Tahun---------------------------------------------------------------->
+      <div class="form-group">
+        <div class="col-md-3">
+          <div id="item-tahun">
+            <label for="tahun" class="control-label col-md-3" id="req-tahun">
+                    Tahun</label>
+            <div class="col-md-9">
+               <input id="tahun" class=" form-control " type="text" 
+                      value="${request.session['tahun']}" 
+                      readonly name="tahun">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+           <input id="tahun_nm" class=" form-control " type="text" value="${request.session['ag_step_nm']}" name="tahun_nm" readonly>
+        </div>
+        
+      </div>
+
+      <!----------------------------------------------------------------------->
+      <input id="unit_id" type="hidden" value="${request.session['unit_id']}" name="unit_id">
+      <div class="form-group"><!--SKPD-->
+        <div class="col-md-3">
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-3" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-9">
+               <input id="unit_kd" class="form-control typeahead" type="text" value="${request.session['unit_kd']}" name="unit_kd" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="unit_nm" class=" form-control " type="text" value="${request.session['unit_nm']}" name="unit_nm" readonly>
+        </div>
+      </div>
+      
+      <!----------------------------------------------------------------------->
+      <input id="kegiatan_sub_id" type="hidden" value="${row and row.id or 0}" name="kegiatan_sub_id">
+      <div class="form-group"><!--Kegiatan-->
+        <div class="col-md-3">
+          <div id="item-kegiatan_kd">
+            <label for="kegiatan_kd" class="control-label col-md-3" id="req-kegiatan_kd">
+                    Kegiatan</label>
+            <div class="col-md-9">
+               <input id="kegiatan_kd" class=" form-control " type="text" value="${row and row.kegiatans.kode or None}-${row and row.no_urut or None}" name="kegiatan_kd" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="kegiatan_nm" class=" form-control " type="text" value="${row and row.nama or None}" name="kegiatan_nm"  readonly>
+        </div>
+      </div>
+      
+  </fieldset>
+
+  <!--------------------------------------------------------------------------->
+  <div class="row">
+    <table id="table1" class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Tipe</th>
+                <th>No.</th>
+                <th>Tolok Ukur</th>
+                <th>Volume</th>
+                <th>Satuan</th>
+           </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div>
+
+    <script>
+      var mID;
+      var mThn;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/ag-indikator/act/grid?kegiatan_sub_id=${row and row.id or 0}";  
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+          "sDom"           : '<"toolbar">lfrtip',
+          "sAjaxSource"    : oTableUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : false,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, 100],
+              [10, 25, 50, 100]
+          ],
+         "aoColumnDefs": [{
+              "bSearchable": false,
+              "bVisible"   : false,
+              "aTargets"   : [0]
+          },{
+              "bSearchable": false,
+              "bSortable"  : false,
+              "aTargets"   : [1,2,3,4,5]
+          },{
+              "render": function ( data, type, row ) {
+                  if (row[1]=="1") return "Capaian Program";
+                  else if (row[1]=="2") return "Masukan";
+                  else if (row[1]=="3") return "Keluaran";
+                  else if (row[1]=="4") return "Hasil";
+                  else return "Blm Definisi";
+              },
+              "targets": 1
+          }],
+          "aoColumns": [
+              null,
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}
+          ]
+        });
+          
+        var tb_array = [
+          '<div class="btn pull-left">',
+          '	<button id="btn_add"    class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit"   class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          ' <button id="btn_close"  class="btn btn-warning"     type="button">Tutup</button>',
+          '	&nbsp;',
+          '</div>',
+        ];
+
+        var tb = tb_array.join(' ');
+        $("div.toolbar").html(tb);
+        $("div.toolbar").attr('style', 'display:block; float: left; margin-bottom:6px; line-height:16px;');
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+
+                mID = aData[0];
+                oTable.$('tr.row_selected').removeClass('row_selected');
+                $(this).addClass('row_selected');
+        }
+        });
+        
+        // Menu Button //
+        $('#btn_add').click(function () {
+            window.location = '/ag-indikator/'+$('#kegiatan_sub_id').val()+'/add';
+        });
+
+        $('#btn_edit').click(function () {
+            if (mID) window.location = '/ag-indikator/'+$('#kegiatan_sub_id').val()+'/'+mID+'/edit';
+            else alert('Pilih Baris yang akan di edit');
+        });
+
+        $('#btn_delete').click(function () {
+            if (mID) window.location = "/ag-indikator/"+$('#kegiatan_sub_id').val()+"/"+mID+"/delete";
+            else alert('Pilih Baris yang akan di hapus');
+        });        
+        
+        $("#btn_close").click(function () {
+            window.location = '/ag-bl';
+            return false;
+        });
+
+        })
+    </script>
+  </div>
+</html>

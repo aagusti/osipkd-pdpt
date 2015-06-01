@@ -1,0 +1,47 @@
+<html metal:use-macro="load: ../../apptemplate.pt">
+    <div metal:fill-slot="nav">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seting <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b100/001">Parameter NO.</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pendapatan<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b102/001">Ketetapan</a></li>
+                    <li><a href="/b102/002">TBP</a></li>
+                    <li><a href="/b102/003">STS Bendahara Penerimaan</a></li>
+                    <li><a href="/b102/004">STS Kontra Pos</a></li>
+                    <li><a href="/b102/005">STS Lainnya</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Belanja <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b103/001">SPJ / Tagihan / Kwitansi</a></li>
+                    <li><a href="/b103/002">SPP</a></li>
+                    <li><a href="/b103/003">SPM</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pelaporan <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b104/r000">Register Tagihan/Kwitansi</a></li>
+                    <li><a href="/b104/r100">Register SPP</a></li>
+                    <li><a href="/b104/r200">Register SPM</a></li>
+                    <li><a href="/b104/r300">SPJ Fungsional</a></li>
+                    <li><a href="/b104/r400">SPJ Administrator</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div metal:fill-slot="content">
+        <div metal:define-slot="content2">
+        </div>
+    </div>
+</html>

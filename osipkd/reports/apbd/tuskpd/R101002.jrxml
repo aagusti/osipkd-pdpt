@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="R104001" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="0.9090909090909098"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[/apbd/arinvoice]]>
+	</queryString>
+	<field name="tahun" class="java.lang.String">
+		<fieldDescription><![CDATA[tahun]]></fieldDescription>
+	</field>
+	<field name="unit_nm" class="java.lang.String">
+		<fieldDescription><![CDATA[unit_nm]]></fieldDescription>
+	</field>
+	<field name="kode" class="java.lang.String">
+		<fieldDescription><![CDATA[kode]]></fieldDescription>
+	</field>
+	<field name="tgl_sts" class="java.lang.String">
+		<fieldDescription><![CDATA[tgl_sts]]></fieldDescription>
+	</field>
+	<field name="tgl_validasi" class="java.lang.String">
+		<fieldDescription><![CDATA[tgl_validasi]]></fieldDescription>
+	</field>
+	<field name="jenis" class="java.lang.String">
+		<fieldDescription><![CDATA[jenis]]></fieldDescription>
+	</field>
+	<field name="uraian" class="java.lang.String">
+		<fieldDescription><![CDATA[uraian]]></fieldDescription>
+	</field>
+	<field name="nominal" class="java.lang.String">
+		<fieldDescription><![CDATA[nominal]]></fieldDescription>
+	</field>
+	<field name="customer" class="java.lang.String">
+		<fieldDescription><![CDATA[customer]]></fieldDescription>
+	</field>
+	<field name="unit_kd" class="java.lang.String">
+		<fieldDescription><![CDATA[unit_kd]]></fieldDescription>
+	</field>
+	<field name="tipe" class="java.lang.String">
+		<fieldDescription><![CDATA[tipe]]></fieldDescription>
+	</field>
+	<variable name="jumlah1" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{jenis}=="1" ? Double.parseDouble($F{nominal}) : 0]]></variableExpression>
+	</variable>
+	<variable name="total1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{jumlah1}]]></variableExpression>
+	</variable>
+	<variable name="jumlah2" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{jenis}=="2" ? Double.parseDouble($F{nominal}) : 0]]></variableExpression>
+	</variable>
+	<variable name="jumlah3" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{jenis}=="3" ? Double.parseDouble($F{nominal}) : 0]]></variableExpression>
+	</variable>
+	<variable name="total2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{jumlah2}]]></variableExpression>
+	</variable>
+	<variable name="total3" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{jumlah3}]]></variableExpression>
+	</variable>
+	<variable name="jenis" class="java.lang.String">
+		<variableExpression><![CDATA[$F{jenis}=="1" ? "P" : $F{jenis}=="2" ? "CP" : $F{jenis}=="3" ? "L" : ""]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="16" width="555" height="16"/>
+				<textElement textAlignment="Center" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REGISTER STS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="555" height="16"/>
+				<textElement textAlignment="Center" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="32" width="554" height="16"/>
+				<textElement textAlignment="Center" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unit_nm}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="49">
+			<staticText>
+				<reportElement x="0" y="0" width="27" height="49"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No. Urut]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="0" width="58" height="49"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tgl. STS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="0" width="97" height="49"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No. STS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="19" width="77" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Pendapatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="19" width="77" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Kontra Pos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="19" width="73" height="30"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Pengembalian Kas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="0" width="146" height="49"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Uraian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="0" width="227" height="19"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Jumlah STS (Rp.)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="85" y="0" width="97" height="18"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kode}.substring(13)+"/"+$V{jenis}+"/"+$F{unit_kd}+"/"+$F{tahun}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="405" y="0" width="77" height="18"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="0" || $F{tipe}=="2" ? NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{jumlah2}) : 0]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="27" y="0" width="58" height="18"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_sts}.substring(8,10)+"-"+$F{tgl_sts}.substring(5,7)+"-"+$F{tgl_sts}.substring(0,4)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="328" y="0" width="77" height="18"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="0" || $F{tipe}=="1" ? NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{jumlah1}) : 0]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="482" y="0" width="73" height="18"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="0" || $F{tipe}=="3" ? NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{jumlah3}) : 0]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="27" height="18"/>
+				<box>
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="182" y="0" width="146" height="18"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Top" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uraian}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="11" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50">
+			<textField isBlankWhenNull="true">
+				<reportElement x="482" y="0" width="73" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="0" || $F{tipe}=="3" ? NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{total3}) : 0]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="328" y="0" width="77" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="0" || $F{tipe}=="1" ? NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{total1}) : 0]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="0" width="58" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="85" y="0" width="97" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="27" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="405" y="0" width="77" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="0" || $F{tipe}=="2" ? NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{total2}) : 0]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="182" y="0" width="146" height="20"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["JUMLAH"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

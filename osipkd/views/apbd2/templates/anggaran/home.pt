@@ -1,0 +1,15 @@
+<html metal:use-macro="load: template.pt">
+    <div metal:fill-slot="content2">
+		<div>
+		  <center>
+  			<h2>${datas['cust_nm']}</h2>
+            <h2>TAHUN ANGGARAN ${datas['tahun']}</h2>
+            <img src="${request.static_url('osipkd:static/images/logo.png')}" alt="logo" style="height:80px;">
+  			<h2>modul ${datas['app']}</h2>
+  			<p><strong>Modul ini merupakan bagian dari Aplikasi OpenSIPKD</strong></p>
+  			<p><strong>*** SELAMAT BEKERJA ***</strong></p>
+			</center>
+		</div>
+
+    </div>
+</html>

@@ -1,0 +1,197 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content" class="panel panel-default ">
+    <div class="panel-heading">
+        <h4 class="panel-title">Laporan PPKD</h4>
+    </div>
+    <script type='text/javascript'>
+      $(document).ready(function () {
+        $("#btn_save").click(function () {
+          $.ajax({
+            type: "POST",
+            url: "/aset/kategori/save",
+            data: $("#myform").serialize(),
+            success: function (html) {
+                if (html.success == true) {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+            },
+            beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+            }
+          });
+          return false;
+        });
+
+      $('#btn_report').click(function () {
+        if($('#unit_nm').val()=='Pilih Unit') {
+            alert('Silahkan pilih Unit terlebih dahulu!');
+            return;
+        }
+        var jenis = $('input[name="kib"]:checked').val();
+        if(jenis==undefined) {
+            alert('Silahkan pilih laporan yang akan ditampilkan!');
+            return;
+        }
+        //alert(jenis);
+        //window.open('/ag-report/r100/act/'+jenis);
+        /*if(jenis=='1') url = "/aset/lap01/kiba/act";
+        if(jenis=='2') url = "/aset/lap01/kibb/act";
+        if(jenis=='3') url = "/aset/lap01/kibc/act";
+        if(jenis=='4') url = "/aset/lap01/kibd/act";
+        if(jenis=='5') url = "/aset/lap01/kibe/act";
+        if(jenis=='6') url = "/aset/lap01/kibf/act";
+        if(jenis=='7') url = "/aset/lap01/10/act";
+        if(jenis=='8') url = "/aset/lap01/11/act";
+        if(jenis=='9') url = "/aset/lap01/12/act";
+        if(jenis=='10') url = "/aset/lap01/13/act";*/
+        url = "/aset/lap02/"+jenis+"/act";
+        //alert(url);
+        window.open(url);
+      });
+
+        $("#btn_close").click(function () {
+            window.location = '/aset';
+            return false;
+        });
+      
+      });
+    </script>
+        
+    <form id="header" method="POST" enctype="multipart/form-data" accept-charset="utf-8" class="form-horizontal">
+      <fieldset class="deformFormFieldset">
+        <div class="panel-heading">
+          <!--Tahun---------------------------------------------------------------->
+          <div class="form-group">
+            <div class="col-md-3">
+              <div id="item-tahun">
+                <label for="tahun" class="control-label col-md-3" id="req-tahun">
+                        Tahun</label>
+                <div class="col-md-9">
+                 <input id="tahun" class=" form-control " type="text" 
+                        value="${request.session['tahun']}" 
+                        readonly name="tahun">
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <script>
+            $('#unit_kd').typeahead({
+                "hint": true,
+                "highlight": true,
+                "minLength": 1,
+                "remote": "/unit/act/headofkode?term=%QUERY", 
+            },
+            {
+              "name": 'unit_kd',
+              "displayKey": 'value',
+            }); 
+                    
+            $('#unit_nm').typeahead({
+                "hint": true,
+                "highlight": true,
+                "minLength": 1,
+                "remote": "/unit/act/headofnama?term=%QUERY", 
+            },
+            {
+              "name": 'unit_nm',
+              "displayKey": 'value',
+            }); 
+            
+            function change_unit(){
+                $.ajax({
+                  type: "POST",
+                  url: "/unit/act/changeid",
+                  data: "unit_id="+$('#unit_id').val(),
+                  success: function (html) {
+                    if (html.success == true) {
+                      $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                      reload_kegiatan();
+                    } else {
+                      $("#errors").css('display', 'inline', 'important');
+                      $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                      $('#unit_kd').val('');
+                      $('#unit_nm').val('');
+                      $('#unit_id').val('');
+                    }
+                  },
+                  beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                  }
+                });
+            }
+            
+            $('#unit_kd').bind('typeahead:selected', function(obj, datum, name) {  
+                  $('#unit_nm').val(datum.nama);
+                  $('#unit_id').val(datum.id);
+                  change_unit();
+            });
+
+            $('#unit_nm').bind('typeahead:selected', function(obj, datum, name) {      
+                  $('#unit_kd').val(datum.kode);
+                  $('#unit_id').val(datum.id);
+                  change_unit()
+            });
+          </script> 
+        </div>
+
+        <div class="form-group">
+        <label class="control-label col-xs-2" for="jenis">Jenis Laporan</label>
+        <div class="col-sm-4">
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib01" value="kiba">KIB A (Tanah)</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib02" value="kibb">KIB B (Peralatan dan Mesin)</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib03" value="kibc">KIB C (Bangunan)</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib04" value="kibd">KIB D (Jalan, Jaringan dan Irigasi)</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib05" value="kibe">KIB E (Aset Lainnya)</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib06" value="kibf">KIB F (Konstruksi dalam Pengerjaan)</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib07" value="10">RUSAK BERAT</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib08" value="11">BUKU INVENTARIS</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib09" value="12">PENGHAPUSAN</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" name="kib" id="kib10" value="13">NERACA</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+              <div id="item-tahun">
+                <label class="control-label col-md" >
+                        </label>
+                <div class="col-md-9">
+              <button class="btn btn-primary" type="button" name="btn_report" id="btn_report">Cetak</button>
+              <button class="btn btn-warning" type="button" name="btn_close" id="btn_close">Tutup</button>
+
+                </div>
+              </div>
+            </div>
+        </div><br>
+		
+      </fieldset>
+    </form>
+  </div> 
+</html>

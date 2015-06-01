@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="R5002_subreport3" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[/apbd/kegiatan/item]]>
+	</queryString>
+	<field name="item_kd" class="java.lang.String">
+		<fieldDescription><![CDATA[item_kd]]></fieldDescription>
+	</field>
+	<field name="item_nm" class="java.lang.String">
+		<fieldDescription><![CDATA[item_nm]]></fieldDescription>
+	</field>
+	<field name="volume1" class="java.lang.String">
+		<fieldDescription><![CDATA[volume1]]></fieldDescription>
+	</field>
+	<field name="volume2" class="java.lang.String">
+		<fieldDescription><![CDATA[volume2]]></fieldDescription>
+	</field>
+	<field name="volume3" class="java.lang.String">
+		<fieldDescription><![CDATA[volume3]]></fieldDescription>
+	</field>
+	<field name="volume4" class="java.lang.String">
+		<fieldDescription><![CDATA[volume4]]></fieldDescription>
+	</field>
+	<field name="harga1" class="java.lang.String">
+		<fieldDescription><![CDATA[harga1]]></fieldDescription>
+	</field>
+	<field name="harga2" class="java.lang.String">
+		<fieldDescription><![CDATA[harga2]]></fieldDescription>
+	</field>
+	<field name="harga3" class="java.lang.String">
+		<fieldDescription><![CDATA[harga3]]></fieldDescription>
+	</field>
+	<field name="harga4" class="java.lang.String">
+		<fieldDescription><![CDATA[harga4]]></fieldDescription>
+	</field>
+	<field name="satuan11" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan11]]></fieldDescription>
+	</field>
+	<field name="satuan12" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan12]]></fieldDescription>
+	</field>
+	<field name="satuan21" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan21]]></fieldDescription>
+	</field>
+	<field name="satuan22" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan22]]></fieldDescription>
+	</field>
+	<field name="satuan31" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan31]]></fieldDescription>
+	</field>
+	<field name="satuan32" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan32]]></fieldDescription>
+	</field>
+	<field name="satuan41" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan41]]></fieldDescription>
+	</field>
+	<field name="satuan42" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan42]]></fieldDescription>
+	</field>
+	<variable name="vol_sat" class="java.lang.String">
+		<variableExpression><![CDATA[$F{volume2}+" "+$F{satuan21}+" "+$F{satuan22}]]></variableExpression>
+	</variable>
+	<variable name="jumlah" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{volume2})*Double.parseDouble($F{harga2})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="6" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_kd}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="6" y="0" width="63" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_nm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="26" height="12"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vol_sat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="0" width="56" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{jumlah})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

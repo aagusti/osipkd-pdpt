@@ -1,0 +1,223 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <h4>${request.title}</h4>
+    <hr>
+    <div class="row"> 
+        <!-- UNIT -------------------------------------------------------------------->
+        <input type="hidden" class="form-control" id="unit_id" 
+                    value="${request.session.unit_id}" readonly name="unit_id">
+                    
+        <div  id="item-unit_kd" class="col-md-3">
+          <label for="unit_kd" class="control-label col-md-3" id="req-unit_kd">SKPD</label>
+          <div class="col-md-8">
+           <input type="text" class="form-control typeahead" id="unit_kd" 
+                  name="unit_kd" value="${request.session.unit_kd}">
+          </div>
+        </div>
+        <div class="col-md-6" id="item-unit_nm">
+          <input type="text" class="form-control" id="unit_nm" 
+                 name="unit_nm" value="${request.session.unit_nm}">
+        </div><br>
+        <script>
+        $('#unit_kd').typeahead({
+            "hint"     : true,
+            "highlight": true,
+            "minLength": 1,
+            "remote"   : "/unit/act/headofkode?term=%QUERY", 
+        },{
+           "name"      : 'unit_kd',
+           "displayKey": 'value',
+        }); 
+                
+        $('#unit_nm').typeahead({
+            "hint"     : true,
+            "highlight": true,
+            "minLength": 1,
+            "remote"   : "/unit/act/headofnama?term=%QUERY", 
+        },{
+           "name"      : 'unit_nm',
+           "displayKey": 'value',
+        }); 
+        function change_unit(){
+            $.ajax({
+              type: "POST",
+              url : "/unit/act/changeid",
+              data: "unit_id="+$('#unit_id').val(),
+              success: function (html) {
+                if (html.success == true) {
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  //reload_kegiatan();
+                  oTable.fnReloadAjax("/aset/${kib}/grid/act");
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  $('#unit_kd').val('');
+                  $('#unit_nm').val('');
+                  $('#unit_id').val('');
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+        }
+        
+        $('#unit_kd').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#unit_nm').val(datum.nama);
+              $('#unit_id').val(datum.id);
+              change_unit();
+        });
+
+        $('#unit_nm').bind('typeahead:selected', function(obj, datum, name) {      
+              $('#unit_kd').val(datum.kode);
+              $('#unit_id').val(datum.id);
+              change_unit()
+        });
+        
+      </script>
+    </div>
+      
+  <div class="row">      
+    <table id="table1" class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>SKPD</th>
+                <th>No. Kategori</th>
+                <th>No. Register</th>
+                <th>Uraian</th>
+                <th>Tahun</th>
+                <th>Tahun Beli</th>
+                <th>Harga</th>
+                <th>Kondisi</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div>
+</div>
+  <div metal:fill-slot="scripts">
+    <script>
+      var mID;
+      var mThn;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/aset/${kib}/grid/act";
+      
+      Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
+        var n = this,
+            decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+            decSeparator = decSeparator == undefined ? "." : decSeparator,
+            thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+            sign = n < 0 ? "-" : "",
+            i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
+      };
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+          "sDom"           : '<"toolbar">lfrtip',
+          "sAjaxSource"    : oTableUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : true,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, 100],
+              [10, 25, 50, 100]
+          ],
+          "aoColumnDefs": [
+          {
+              "bSearchable": false,
+              "bVisible"   : false,
+              "aTargets"   : [0]
+          },{
+              "sClass"     : "right",
+              "aTargets"   : [7],
+              "mRender"    : function (data, type, full) {
+                             return formatNumber(data);}
+          }],
+          "aoColumns": [
+              null,
+              {"width": "70px" },
+              {"width": "120px"},
+              {"width": "70px", "sClass":"center"},
+              null,
+              {"width": "100px"},
+              {"width": "100px"},
+              {"width": "150px"},
+              {"width": "100px", "sClass":"center"},
+          ]
+        });
+          
+        var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_add"    class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit"   class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          '	<button id="btn_print"  class="btn btn btn-primary" type="button">Cetak</button>',
+          '	<button id="btn_close"  class="btn btn btn-warning" type="button">Tutup</button>',
+          '	&nbsp;',
+          '</div>',
+        ];
+
+        function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+                 
+        var tb = tb_array.join(' ');
+        $("div.toolbar").html(tb);
+        $("div.toolbar").attr('style', 'display:block; float: left; margin-bottom:6px; line-height:16px;');
+        
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                //mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                mID = aData[0];
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                        /*oTable2.fnReloadAjax("egaji/grid2?id=" + mID);*/                
+            }
+        });
+        
+        $('#btn_add').click(function () {
+            window.location = '/aset/${kib}/add';
+        });
+
+        $('#btn_edit').click(function () {
+            if (mID) window.location = '/aset/${kib}/'+mID+'/edit';
+            else alert('Pilih Baris yang akan di edit');
+        });
+
+        $('#btn_delete').click(function () {
+            if (mID) window.location = '/aset/${kib}/'+mID+'/delete';
+            else alert('Pilih Baris yang akan di hapus');
+        });
+
+        $('#btn_print').click(function () {
+            url = "/aset/lap01/${kib}/act";
+            window.open(url);
+        });
+
+        $("#btn_close").click(function () {
+            window.location = '/aset';
+            return false;
+        });
+        })
+    </script>
+  </div>
+</html>

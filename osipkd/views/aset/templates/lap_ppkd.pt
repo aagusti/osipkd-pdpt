@@ -1,0 +1,185 @@
+<html metal:use-macro="load: aset.pt">
+  <div metal:fill-slot="admin" class="panel panel-default">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_save").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/aset/kategori/save",
+                    data: $("#myform").serialize(),
+                    success: function (html) {
+                        if (html.success == true) {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                        } else {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                        }
+                    },
+                    beforeSend: function () {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                    }
+                });
+                return false;
+            });
+
+            $('#kib01').click(function () {
+              window.open('/aset/lap02/r101?tahun='+$('#tahun').val());
+            });
+
+            $('#kib02').click(function () {
+              window.open('/aset/lap02/r102?tahun='+$('#tahun').val());
+            });
+
+            $('#kib03').click(function () {
+              window.open('/aset/lap02/r103?tahun='+$('#tahun').val());
+            });
+
+            $('#kib04').click(function () {
+              window.open('/aset/lap02/r104?tahun='+$('#tahun').val());
+            });
+
+            $('#kib05').click(function () {
+              window.open('/aset/lap02/r105?tahun='+$('#tahun').val());
+            });
+            
+            $('#kib06').click(function () {
+              window.open('/aset/lap02/r106?tahun='+$('#tahun').val());
+            });
+
+            $('#kib08').click(function () {
+              window.open('/aset/lap02/r108?tahun='+$('#tahun').val());
+            });
+
+            $('#kib10').click(function () {
+              window.open('/aset/lap02/r110?tahun='+$('#tahun').val());
+            });
+        });
+    </script>
+        
+      <div class="panel-heading">
+            <h3 class="panel-title">LAPORAN PPKD</h3>
+      </div>
+      <div class="panel-body">
+
+          <div class="row">
+            <div class="col-lg-1">Tahun</div>
+            <div class="col-lg-1">
+              <input type="text" class="form-control" name="tahun" id="tahun" value="${datas and datas.tahun}" readonly>
+            </div><!-- /.col-lg-6 -->
+          </div><!-- /.row -->
+
+
+          <div class="row">
+            <div class="col-lg-1">PILIH REPORT</div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="radio" name="kib" id="kib01">
+                        </span>KIB A (TANAH)
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib02">
+                      </span>KIB B 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib03">
+                      </span>KIB C 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib04">
+                      </span>KIB D 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib05">
+                      </span>KIB E 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib06">
+                      </span>KIB F 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib07">
+                      </span>RUSAK BERAT
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib08">
+                      </span>BUKU INVENTARIS
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib09">
+                      </span>PENGHAPUSAN
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib10">
+                      </span>NERACA
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.col-lg-4 -->
+          </div><!-- /.row -->
+
+          <div class="row">
+            <div class="col-lg-1">Proses</div>
+            <div class="col-lg-4">
+              <div class="input-group">
+                  <button class="btn btn-primary" type="button" name="btn_report" id="btn_report">Klik disini</button>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+
+          </div><!-- /.row -->
+
+          
+        </div>
+
+
+    </div>
+</html>

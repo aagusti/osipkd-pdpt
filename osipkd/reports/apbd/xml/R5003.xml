@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<apbd>
+  <perda>
+    <lamp4>
+      <tahun>2014</tahun>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan</urusan_nm>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit</unit_nm>
+      <program_kd>01</program_kd>
+      <program_nm>Program</program_nm>
+      <kegiatan_kd>01</kegiatan_kd>
+      <kegiatan_nm>Program</kegiatan_nm>
+      <rek_kd>5.2.1.05.01</rek_kd>
+      <jumlah1>1000</jumlah1>
+      <jumlah2>2000</jumlah2>
+      <jumlah3>3000</jumlah3>
+      <jumlah4>4000</jumlah4>
+    </lamp4>
+  </perda>
+</apbd>

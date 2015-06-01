@@ -1,0 +1,714 @@
+import sys
+from model_base import *
+from sqlalchemy import Column, Integer, String, SmallInteger, UniqueConstraint, Date
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql.functions import concat
+from osipkd.models.apbd_admin_models import *
+#    ProgramModel, UrusanModel)
+from osipkd.models.apbd_rka_models import (KegiatanSubModel, KegiatanItemModel)  
+from tools import FixLength
+
+class SpdModel(BaseModelDB, Base):
+    __tablename__  = 'spds'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+
+    units       = relationship("UnitModel", backref="spds")
+
+    tahun_id    = Column(BigInteger,   ForeignKey("apbd.tahuns.id"), nullable=False)
+    unit_id     = Column(Integer,      ForeignKey("apbd.units.id"),  nullable=False) 
+    triwulan_id = Column(SmallInteger, nullable=False)
+    tanggal     = Column(Date,         nullable=False)
+    is_bl       = Column(SmallInteger, nullable=False)
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.tahun_id      = 'tahun_id'    in data and data['tahun_id']    or self.tahun
+        self.unit_id       = 'unit_id'     in data and data['unit_id']     or None
+        self.triwulan_id   = 'triwulan_id' in data and data['triwulan_id'] or None
+        self.tanggal       = 'tanggal'     in data and data['tanggal']     or None
+        self.is_bl         = 'is_bl'       in data and data['is_bl']       or 1
+    
+    @classmethod
+    def get_kode(cls, p):
+        spd_kode = FixLength(SPD_KODE)
+        
+        rows = DBSession.query(func.max(cls.kode).label('kode'))
+        if "tahun_id" in SPD_KODE:
+            rows.filter(cls.tahun_id == p['tahun_id'])
+        
+        if "is_bl" in SPD_KODE:
+            spd_kode['is_bl'] = p['is_bl']
+            rows.filter(cls.is_bl == p['is_bl'])
+        
+        rows = rows.first()
+        if rows and rows.kode:
+            spd_kode.set_raw(rows.kode)
+            spd_kode.set('no_urut', int(spd_kode.get('no_urut'))+1)
+
+        return spd_kode.get_raw()
+        #TODO: on save item calculate from other spd and kegiatan_sub
+           
+class SpdItemModel(BaseDB, Base):
+    __tablename__   = 'spd_items'
+    __table_args__  = {'extend_existing':True, 'schema' : 'apbd',}
+
+    kegiatansubs    = relationship("KegiatanSubModel", backref="spditems")
+
+    spd_id          = Column(BigInteger, ForeignKey("apbd.spds.id"),          nullable=False) 
+    kegiatan_sub_id = Column(BigInteger, ForeignKey("apbd.kegiatan_subs.id"), nullable=False)
+    anggaran        = Column(BigInteger, nullable=False)
+    lalu            = Column(BigInteger, nullable=False)
+    nominal         = Column(BigInteger, nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.spd_id           = 'spd_id'   in data and data['spd_id'] or None
+        self.kegiatan_sub_id  = 'kegiatan_sub_id' in data and data['kegiatan_sub_id'] or None
+        self.anggaran         = 'anggaran' in data and data['anggaran'] or 0
+        self.lalu             = 'lalu'     in data and data['lalu'] or 0
+        self.nominal          = 'nominal'  in data and data['nominal'] or 0
+
+class SppModel(BaseModelDB, Base):
+    __tablename__  = 'spps'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+
+    spds           = relationship("SpdModel", backref="spps")
+    units          = relationship("UnitModel", backref="spps")
+
+    spd_id         = Column(BigInteger, ForeignKey("apbd.spds.id"),   nullable=False) 
+    tahun_id       = Column(BigInteger, ForeignKey("apbd.tahuns.id"), nullable=False)
+    unit_id        = Column(Integer,    ForeignKey("apbd.units.id"),  nullable=False) 
+    no_urut        = Column(BigInteger, nullable=False)
+    tanggal        = Column(Date) 
+    nama           = Column(String(64), nullable=False)
+    kode           = Column(String(64), nullable=False)
+    jenis          = Column(BigInteger, nullable=False)                 
+    nominal        = Column(BigInteger, nullable=False)
+    ttd_uid        = Column(Integer)
+    ttd_nip        = Column(String(32))
+    ttd_nama       = Column(String(64))
+    ttd_jab        = Column(String(64))
+    bank_nama      = Column(String(64), nullable=False)
+    bank_account   = Column(String(32), nullable=False)
+    ap_nama        = Column(String(64), nullable=False)
+    ap_bank        = Column(String(64), nullable=False)
+    ap_rekening    = Column(String(32), nullable=False)
+    ap_npwp        = Column(String(32), nullable=False)
+    ap_nip         = Column(String(32))
+    ap_bentuk      = Column(String(64))
+    ap_alamat      = Column(String(64))
+    ap_pemilik     = Column(String(64))
+    ap_kontrak     = Column(String(64))
+    ap_waktu       = Column(String(64))
+    ap_uraian      = Column(String(64))
+    ap_tgl_kontrak = Column(Date)
+    ap_kegiatankd  = Column(String(32))
+    #PPTK
+    pptk_uid       = Column(Integer)
+    pptk_nama      = Column(String(64))
+    pptk_nip       = Column(String(32))
+    #Bendahara
+    barang_uid     = Column(Integer)
+    barang_nip     = Column(String(32))
+    barang_nama    = Column(String(64))
+    barang_jab     = Column(String(64))
+    #Kasi
+    kasi_uid       = Column(Integer)
+    kasi_nip       = Column(String(32))
+    kasi_nama      = Column(String(64))
+    kasi_jab       = Column(String(64))
+    verified_uid   = Column(Integer, nullable=False)
+
+    posted         = Column(SmallInteger, nullable=False)
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.tahun_id       = 'tahun_id'      in data and data['tahun_id']       or None 
+        self.unit_id        ='unit_id'        in data and data['unit_id']        or None 
+        self.no_urut        ='no_urut'        in data and data['no_urut']        or None 
+        self.tanggal        ='tanggal'        in data and data['tanggal']        or None 
+        self.nama           ='nama'           in data and data['nama']           or None 
+        self.kode           ='kode'           in data and data['kode']           or None 
+        self.jenis          ='jenis'          in data and data['jenis']          or None 
+        self.nominal        ='nominal'        in data and data['nominal']        or 0 
+        self.ttd_uid        ='ttd_uid'        in data and data['ttd_uid']        or None 
+        self.ttd_nip        ='ttd_nip'        in data and data['ttd_nip']        or None 
+        self.ttd_nama       ='ttd_nama'       in data and data['ttd_nama']       or None 
+        self.ttd_jab        ='ttd_jab'        in data and data['ttd_jab']        or None 
+        self.spd_id         ='spd_id'         in data and data['spd_id']         or None 
+        self.bank_nama      ='bank_nama'      in data and data['bank_nama']      or None 
+        self.bank_account   ='bank_account'   in data and data['bank_account']   or None 
+        self.ap_nama        ='ap_nama'        in data and data['ap_nama']        or None 
+        self.ap_bank        ='ap_bank'        in data and data['ap_bank']        or None 
+        self.ap_rekening    ='ap_rekening'    in data and data['ap_rekening']    or None 
+        self.ap_npwp        ='ap_npwp'        in data and data['ap_npwp']        or None 
+        self.ap_nip         ='ap_nip'         in data and data['ap_nip']         or None 
+        self.ap_bentuk      ='ap_bentuk'      in data and data['ap_bentuk']      or None 
+        self.ap_alamat      ='ap_alamat'      in data and data['ap_alamat']      or None 
+        self.ap_pemilik     ='ap_pemilik'     in data and data['ap_pemilik']     or None 
+        self.ap_kontrak     ='ap_kontrak'     in data and data['ap_kontrak']     or None 
+        self.ap_waktu       ='ap_waktu'       in data and data['ap_waktu']       or None 
+        self.ap_uraian      ='ap_uraian'      in data and data['ap_uraian']      or None 
+        self.ap_tgl_kontrak ='ap_tgl_kontrak' in data and data['ap_tgl_kontrak'] or None 
+        self.ap_kegiatankd  ='ap_kegiatankd'  in data and data['ap_kegiatankd']  or None 
+        self.pptk_uid       ='pptk_uid'       in data and data['pptk_uid']       or None 
+        self.pptk_nama      ='pptk_nama'      in data and data['pptk_nama']      or None 
+        self.pptk_nip       ='pptk_nip'       in data and data['pptk_nip']       or None 
+        self.barang_uid     ='barang_uid'     in data and data['barang_uid']     or None 
+        self.barang_nip     ='barang_nip'     in data and data['barang_nip']     or None 
+        self.barang_nama    ='barang_nama'    in data and data['barang_nama']    or None 
+        self.barang_jab     ='barang_jab'     in data and data['barang_jab']     or None 
+        self.kasi_uid       ='kasi_uid'       in data and data['kasi_uid']       or None 
+        self.kasi_nip       ='kasi_nip'       in data and data['kasi_nip']       or None 
+        self.kasi_nama      ='kasi_nama'      in data and data['kasi_nama']      or None 
+        self.kasi_jab       ='kasi_jab'       in data and data['kasi_jab']       or None 
+        self.posted         ='posted'         in data and data['posted']         or 1        
+        self.verified_uid   ='verified_uid'   in data and data['verified_uid']   or None         
+
+    @classmethod
+    def get_header(cls, unit_id, sub_keg_id):
+        return DBSession.query(cls.id,
+            cls.no_urut,
+            cls.nama).filter(cls.unit_id==unit_id,cls.id==sub_keg_id).first()
+
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter(cls.tahun_id==p['tahun_id'],
+                        cls.unit_id==p['unit_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1
+    
+    @classmethod
+    def get_nominal(cls, p):
+        return DBSession.query(func.sum(APInvoiceModel.jml_tagihan).label('jml_tagihan')
+                             ).join(SppItemModel,
+                             ).outerjoin(cls,
+                             ).filter(APInvoiceModel.id==SppItemModel.apinvoice_id, 
+                                      SppItemModel.spp_id==cls.id,
+                                      cls.id==p['id']
+                                      ).first()
+
+class SppItemModel(BaseDB, Base):
+    __tablename__  ='spp_items'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    spps           = relationship("SppModel",       backref="spps")
+    apinvoices     = relationship("APInvoiceModel", backref="apinvoices")
+
+    spp_id         = Column(BigInteger, ForeignKey("apbd.spps.id"),       nullable=False)
+    apinvoice_id   = Column(BigInteger, ForeignKey("apbd.apinvoices.id"), nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.apinvoice_id  = 'apinvoice_id'   in data and data['apinvoice_id']  or None
+        self.spp_id        = 'spp_id'         in data and data['spp_id']        or None
+        self.nama          = 'nama'           in data and data['nama']          or None 
+        self.nominal       = 'nominal'        in data and data['nominal']       or None    
+
+class SpmModel(BaseModelDB, Base):
+    __tablename__  = 'spms'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+    
+    spps           = relationship("SppModel", backref="spms")
+                   
+    spp_id         = Column(BigInteger,   ForeignKey("apbd.spps.id"), nullable=False)
+    kode           = Column(String(50),   nullable=False)
+    nama           = Column(String(250),  nullable=False)
+    tanggal        = Column(BigInteger,   nullable=False) 
+    ttd_uid        = Column(BigInteger,   nullable=False)
+    ttd_nip        = Column(String(50),   nullable=False)
+    ttd_nama       = Column(String(64),   nullable=False)
+    verified_uid   = Column(BigInteger,   nullable=False)
+    verified_nip   = Column(String(50),   nullable=False)
+    verified_nama  = Column(String(64),   nullable=False)
+                   
+    posted         = Column(SmallInteger, nullable=False)
+    disabled       = Column(SmallInteger, nullable=False, default=1)
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.kode           ='kode'           in data and data['kode']         or None 
+        self.nama           ='nama'           in data and data['nama']         or None 
+        self.tanggal        ='tanggal'        in data and data['tanggal']      or None 
+        self.ttd_uid        ='ttd_uid'        in data and data['ttd_uid']      or None 
+        self.ttd_nip        ='ttd_nip'        in data and data['ttd_nip']      or None
+        self.ttd_nama       ='ttd_nama'       in data and data['ttd_nama']     or None
+        self.verified_uid   ='verified_uid'   in data and data['verified_uid'] or None
+        self.verified_nip   ='verified_nip'   in data and data['verified_nip'] or None
+        self.verified_nama  ='verified_nama'  in data and data['verified_nama']or None
+        self.posted         ='posted'         in data and data['posted']       or 1
+        self.disabled       ='disabled'       in data and data['disabled']     or 1
+        self.spp_id         ='spp_id'         in data and data['spp_id']       or None 
+        
+class Sp2dModel(BaseDB, Base):
+    __tablename__  = 'sp2ds'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+
+    spms  = relationship("SpmModel", backref="sp2ds")
+
+    spm_id         = Column(BigInteger, ForeignKey("apbd.spms.id"), nullable=False)
+    kode           = Column(String(50), nullable=False)
+    tanggal        = Column(Date) 
+    bud_uid        = Column(BigInteger, nullable=False)
+    bud_nip        = Column(String(50), nullable=False)
+    bud_nama       = Column(String(64), nullable=False)
+    verified_uid   = Column(BigInteger, nullable=False)
+    verified_nip   = Column(String(50), nullable=False)
+    verified_nama  = Column(String(64), nullable=False)
+
+    posted         = Column(SmallInteger, nullable=False, default=0)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.spm_id        ='spm_id'        in data and data['spm_id']       or None 
+        self.kode          ='kode'          in data and data['kode']         or None 
+        self.tanggal       ='tanggal'       in data and data['tanggal']      or None 
+        self.bud_uid       ='bud_uid'       in data and data['bud_uid']      or None 
+        self.bud_nip       ='bud_nip'       in data and data['bud_nip']      or None
+        self.bud_nama      ='bud_nama'      in data and data['bud_nama']     or None
+        self.verified_uid  ='verified_uid'  in data and data['verified_uid'] or None
+        self.verified_nip  ='verified_nip'  in data and data['verified_nip'] or None
+        self.verified_nama ='verified_nama' in data and data['verified_nama']or None
+        self.posted        ='posted'        in data and data['posted']       or 0
+
+    @classmethod
+    def get_by_id(cls, id):
+        return DBSession.query(cls)\
+                .join(SpmModel)\
+                .filter(cls.id==id
+                ).first()
+
+class APInvoiceModel(BaseDB, Base):
+    __tablename__  = 'apinvoices'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+
+    kegiatansubs   = relationship("KegiatanSubModel", backref="apinvoices")
+    units          = relationship("UnitModel",        backref="apinvoices")
+
+    tahun_id        = Column(BigInteger, ForeignKey("apbd.tahuns.id"),        nullable=False)
+    unit_id         = Column(Integer,    ForeignKey("apbd.units.id"),         nullable=False) 
+    kegiatan_sub_id = Column(BigInteger, ForeignKey("apbd.kegiatan_subs.id"), nullable=False)
+    no_urut         = Column(Integer, nullable=False)
+    nama            = Column(String(255))
+    jenis           = Column(SmallInteger, nullable=False, default=0) #1 up 2 tu 3 gu 4 LS
+    ap_nomor        = Column(String(32))
+    ap_nama         = Column(String(64))
+    ap_tanggal      = Column(Date)
+    ap_rekening     = Column(String(32))
+    ap_npwp         = Column(String(16))
+    jml_tagihan     = Column(BigInteger, nullable=False)
+                    
+    disabled        = Column(SmallInteger, nullable=False, default=0)
+    posted          = Column(SmallInteger, nullable=False, default=0)
+    status_spp      = Column(SmallInteger, nullable=False, default=0)
+
+    UniqueConstraint('tahun_id', 'unit_id', 'no_urut',
+                name = 'invoice_ukey')
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.tahun_id        = 'tahun_id'    in data and data['tahun_id'] or self.tahun
+        self.unit_id         = 'unit_id'     in data and data['unit_id'] or None
+        self.kegiatan_sub_id = 'kegiatan_sub_id' in data and data['kegiatan_sub_id'] or None
+
+        self.no_urut       = 'no_urut'     in data and data['no_urut'] or None
+        self.nama          = 'nama'        in data and data['nama'] or None        
+        self.jenis         = 'jenis'       in data and data['jenis'] or 4        
+        self.ap_nomor      = 'ap_nomor'    in data and data['ap_nomor'] or None
+        self.ap_nama       = 'ap_nama'     in data and data['ap_nama'] or None
+        self.ap_tanggal    = 'ap_tanggal'  in data and datetime.strptime(data['ap_tanggal'],'%d-%m-%Y') or None
+        self.ap_rekening   = 'ap_rekening' in data and data['ap_rekening'] or None
+        self.ap_npwp       = 'ap_npwp'     in data and data['ap_npwp'] or None
+        self.jml_tagihan   = 'jml_tagihan' in data and data['jml_tagihan'] or 0
+
+        self.disabled      = 'disabled'    in data and data['disabled'] or 0
+        self.status_spp    = 'status_spp'  in data and data['status_spp'] or 0
+        
+    @classmethod
+    def get_by_id(cls, id):
+        return DBSession.query(cls)\
+                .join(KegiatanSubModel)\
+                .filter(cls.id==id
+                ).first()
+                
+    @classmethod
+    def get_header(cls, unit_id, sub_keg_id):
+        return DBSession.query(cls.id,
+            cls.no_urut,
+            cls.nama).first()
+
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter(cls.tahun_id==p['tahun_id'],
+                        cls.unit_id==p['unit_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1
+
+    @classmethod
+    def get_jml_tagihan(cls, p):
+        return DBSession.query(func.sum(APInvoiceItemModel.nilai).label('nilai')
+                             ).join(cls,
+                             ).filter(APInvoiceItemModel.apinvoice_id==cls.id,
+                                      cls.id==p['id']
+                                      ).first()
+  
+class APInvoiceItemModel(BaseDB, Base):
+    __tablename__  = 'apinvoice_items'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+    
+    kegiatanitems  =  relationship("KegiatanItemModel", backref="apinvoiceitems")
+    apinvoices     =  relationship("APInvoiceModel",    backref="apinvoiceitems")
+
+    apinvoice_id     = Column(BigInteger, ForeignKey("apbd.apinvoices.id"),     nullable=False)
+    kegiatan_item_id = Column(BigInteger, ForeignKey("apbd.kegiatan_items.id"), nullable=False)  
+    no_urut          = Column(Integer) 
+    nama             = Column(String(64)) 
+    vol_1            = Column(BigInteger,   nullable=False, default=0)
+    vol_2            = Column(BigInteger,   nullable=False, default=0)
+    harga            = Column(BigInteger,   nullable=False, default=0)
+    nilai            = Column(BigInteger,   nullable=False, default=0)
+    ppn_prsn         = Column(SmallInteger, nullable=False, default=0)
+    ppn              = Column(BigInteger,   nullable=False, default=0)
+    pph_prsn         = Column(SmallInteger, nullable=False, default=0)
+    pph              = Column(BigInteger,   nullable=False, default=0)
+    pph_id           = Column(SmallInteger) #42 #21 #22#23 #26
+    notes1           = Column(String(64)) 
+    notes2           = Column(String(64)) 
+    notes3           = Column(String(64)) 
+    
+    
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+    
+        self.apinvoice_id       = 'apinvoice_id'     in data and data['apinvoice_id'] or None
+        self.kegiatan_item_id   = 'kegiatan_item_id' in data and data['kegiatan_item_id'] or None
+
+        self.no_urut  = 'no_urut'  in data and data['no_urut'] or None
+        self.nama     = 'nama'     in data and data['nama'] or None
+        self.vol_1    = 'vol_1'    in data and data['vol_1'] or 0
+        self.vol_2    = 'vol_2'    in data and data['vol_2'] or 0
+        self.harga    = 'harga'    in data and data['harga'] or 0
+        self.nilai    = 'nilai'    in data and data['nilai'] or 0
+        self.ppn_prsn = 'ppn_prsn' in data and data['ppn_prsn'] or 0
+        self.ppn      = 'ppn'      in data and data['ppn'] or 0
+        self.pph_prsn = 'pph_prsn' in data and data['pph_prsn'] or 0
+        self.pph      = 'pph'      in data and data['pph'] or 0
+        self.pph_id   = 'pph_id'   in data and data['pph_id'] or 0
+        self.notes1   = 'notes1'   in data and data['notes1'] or None
+        self.notes2   = 'notes2'   in data and data['notes2'] or None
+        self.notes3   = 'notes3'   in data and data['notes3'] or None
+               
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter(cls.apinvoice_id==p['apinvoice_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1   
+
+    @classmethod
+    def get_apinvoice_item_id(cls, p):
+        row = DBSession.query(func.max(cls.id).label('apinvoice_item_id'))\
+                .filter(cls.apinvoice_id==p['apinvoice_id']
+                ).first()
+        if row and row.apinvoice_item_id:
+           return row.apinvoice_item_id+1
+        else:
+           return 1              
+
+class GiroModel(BaseDB, Base):
+    __tablename__  ='giros'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    sp2ds    = relationship("Sp2dModel", backref="giros")
+    units    = relationship("UnitModel", backref="giros")
+
+    tahun_id = Column(BigInteger, ForeignKey("apbd.tahuns.id"), nullable=False)
+    unit_id  = Column(Integer,    ForeignKey("apbd.units.id"),  nullable=False)
+    sp2d_id  = Column(BigInteger, ForeignKey("apbd.sp2ds.id"),  nullable=False)
+    kode     = Column(String(50))
+    nama     = Column(String(150))
+    tanggal  = Column(Date,         nullable=False)
+    nominal  = Column(BigInteger,   nullable=False, default=0)
+
+    posted   = Column(SmallInteger, nullable=False, default=0)
+    disabled = Column(SmallInteger, nullable=False, default=0)
+
+    UniqueConstraint('tahun_id', 'unit_id', 'kode',
+                name = 'giro_ukey')
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+
+        self.tahun_id   = 'tahun_id' in data and data['tahun_id'] or self.tahun
+        self.unit_id    = 'unit_id'  in data and data['unit_id']  or None
+        self.sp2d_id    = 'sp2d_id'  in data and data['sp2d_id']  or None
+        self.kode       = 'kode'     in data and data['kode']     or None
+        self.nama       = 'nama'     in data and data['nama']     or None
+        self.tanggal    = 'tanggal'  in data and data['tanggal']  or None
+        self.nominal    = 'nominal'  in data and data['nominal']  or None
+        self.posted     = 'posted'   in data and data['posted']   or None
+        self.disabled   = 'disabled' in data and data['disabled'] or 0
+
+class GiroItemModel(BaseDB, Base):
+    __tablename__  ='giro_items'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    sp2ds   = relationship("Sp2dModel", backref="giro_items")
+    giros   = relationship("GiroModel", backref="giro_items")
+
+    giro_id = Column(BigInteger, ForeignKey("apbd.giros.id"), nullable=False)
+    sp2d_id = Column(BigInteger, ForeignKey("apbd.sp2ds.id"), nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.giro_id   ='giro_id'  in data and data['giro_id']   or None 
+        self.sp2d_id   ='sp2d_id'  in data and data['sp2d_id']   or None 
+
+class ARInvoiceModel(BaseDB, Base):
+    __tablename__  ='arinvoices'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    kegiatansubs   = relationship("KegiatanSubModel", backref="arinvoices")
+    units          = relationship("UnitModel",        backref="arinvoices")
+
+    tahun_id        = Column(BigInteger, ForeignKey("apbd.tahuns.id"),        nullable=False)
+    unit_id         = Column(Integer,    ForeignKey("apbd.units.id"),         nullable=False) 
+    kegiatan_sub_id = Column(BigInteger, ForeignKey("apbd.kegiatan_subs.id"), nullable=False)
+    kode            = Column(String(50))
+    nama            = Column(String(255))
+    nilai           = Column(BigInteger, nullable=False)
+    bendahara_uid   = Column(Integer,    nullable=False)
+    bendahara_nm    = Column(String(64))
+    penyetor        = Column(String(64))
+    alamat          = Column(String(150))
+    tgl_terima      = Column(Date)    
+    tgl_validasi    = Column(Date)
+    posted          = Column(SmallInteger, nullable=False, default=0)
+    disabled        = Column(Integer, nullable=False, default=0)
+
+    UniqueConstraint('tahun_id', 'unit_id', 'kode',
+                name = 'arinvoice_ukey')
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.tahun_id        = 'tahun_id'        in data and data['tahun_id'] or self.tahun
+        self.unit_id         = 'unit_id'         in data and data['unit_id'] or None
+        self.kegiatan_sub_id = 'kegiatan_sub_id' in data and data['kegiatan_sub_id'] or None
+
+        self.kode           = 'kode'          in data and data['kode'] or None
+        self.nama           = 'nama'          in data and data['nama'] or None
+        self.posted         = 'posted'        in data and data['posted'] or 0
+        self.disabled       = 'disabled'      in data and data['disabled'] or 0
+        self.nilai          = 'nilai'         in data and data['nilai'] or 0        
+        self.bendahara_uid  = 'bendahara_uid' in data and data['bendahara_uid'] or None
+        self.bendahara_nm   = 'bendahara_nm'  in data and data['bendahara_nm'] or None
+        self.penyetor       = 'penyetor'      in data and data['penyetor'] or None
+        self.alamat         = 'alamat'        in data and data['alamat'] or None
+        self.tgl_terima     = 'tgl_terima'    in data and data['tgl_terima'] or None
+        self.tgl_validasi   = 'tgl_validasi'  in data and data['tgl_validasi'] or None
+   
+    @classmethod
+    def get_nilai(cls, p):
+        return DBSession.query(func.sum(ARInvoiceItemModel.nilai).label('nilai')
+                             ).join(cls,
+                             ).filter(ARInvoiceItemModel.arinvoice_id==cls.id, 
+                                      cls.id==p['id']
+                                      ).first()
+                    
+    @classmethod
+    def get_by_id(cls, id):
+        return DBSession.query(cls)\
+                .join(KegiatanSubModel)\
+                .filter(cls.id==id
+                ).first()
+                
+    @classmethod
+    def get_header(cls, unit_id):
+        return DBSession.query(cls.id,
+            cls.nama).first()
+
+class ARInvoiceItemModel(BaseDB, Base):
+    __tablename__  = 'arinvoice_items'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+    
+    kegiatanitems  =  relationship("KegiatanItemModel", backref="arinvoiceitems")
+    arinvoices     =  relationship("ARInvoiceModel",    backref="arinvoiceitems")
+
+    arinvoice_id     = Column(BigInteger, ForeignKey("apbd.arinvoices.id"),     nullable=False)
+    kegiatan_item_id = Column(BigInteger, ForeignKey("apbd.kegiatan_items.id"), nullable=False)  
+    no_urut          = Column(Integer) 
+    nama             = Column(String(64)) 
+    vol_1            = Column(BigInteger,   nullable=False, default=0)
+    vol_2            = Column(BigInteger,   nullable=False, default=0)
+    harga            = Column(BigInteger,   nullable=False, default=0)
+    nilai            = Column(BigInteger,   nullable=False, default=0)
+    notes1           = Column(String(64))  
+    
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+    
+        self.arinvoice_id       = 'arinvoice_id'     in data and data['arinvoice_id'] or None
+        self.kegiatan_item_id   = 'kegiatan_item_id' in data and data['kegiatan_item_id'] or None
+
+        self.no_urut  = 'no_urut'  in data and data['no_urut'] or None
+        self.nama     = 'nama'     in data and data['nama'] or None
+        self.vol_1    = 'vol_1'    in data and data['vol_1'] or 0
+        self.vol_2    = 'vol_2'    in data and data['vol_2'] or 0
+        self.harga    = 'harga'    in data and data['harga'] or 0
+        self.nilai    = 'nilai'    in data and data['nilai'] or 0
+        self.notes1   = 'notes1'   in data and data['notes1'] or None
+               
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter(cls.arinvoice_id==p['arinvoice_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1   
+
+    @classmethod
+    def get_arinvoice_item_id(cls, p):
+        row = DBSession.query(func.max(cls.id).label('arinvoice_item_id'))\
+                .filter(cls.arinvoice_id==p['arinvoice_id']
+                ).first()
+        if row and row.arinvoice_item_id:
+           return row.arinvoice_item_id+1
+        else:
+           return 1              
+
+class KetetapanModel(BaseDB, Base):
+    __tablename__  ='ketetapans'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    rekenings      = relationship("RekeningModel", backref="ketetapans")
+    units          = relationship("UnitModel",     backref="ketetapans")
+
+    tahun_id       = Column(BigInteger, ForeignKey("apbd.tahuns.id"),    nullable=False)
+    unit_id        = Column(Integer,    ForeignKey("apbd.units.id"),     nullable=False) 
+    rekening_id    = Column(Integer,    ForeignKey("apbd.rekenings.id"), nullable=False)
+    nama           = Column(String(150))
+    jumlah         = Column(BigInteger, nullable=False)
+    tgl_ketetapan  = Column(Date)    
+
+    UniqueConstraint('tahun_id', 'unit_id', 'kode',
+                name = 'ketetapan_ukey')
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.tahun_id      = data['tahun_id'] or self.tahun
+        self.unit_id       = data['unit_id'] or None
+        self.rekening_id   = data['rekening_id'] or None
+        self.nama          = data['nama'] or None        
+        self.jumlah        = data['jumlah'] or 0               
+        self.tgl_ketetapan = data['tgl_ketetapan'] 
+
+    @classmethod
+    def get_by_id(cls, id):
+        return DBSession.query(cls)\
+                .join(RekeningModel)\
+                .filter(cls.id==id
+                ).first()
+                
+    @classmethod
+    def get_header(cls, unit_id):
+        return DBSession.query(cls.id,
+            cls.nama).first()
+
+class StsModel(BaseModelDB, Base):
+    __tablename__  = 'sts'
+    __table_args__ = {'extend_existing':True, 'schema' : 'apbd',}
+
+    units          = relationship("UnitModel", backref="sts")
+
+    tahun_id       = Column(BigInteger, ForeignKey("apbd.tahuns.id"), nullable=False)
+    unit_id        = Column(Integer,    ForeignKey("apbd.units.id"),  nullable=False) 
+    no_urut        = Column(BigInteger, nullable=False)
+    kode           = Column(String(64), nullable=False)
+    nama           = Column(String(64), nullable=False)
+    jenis          = Column(BigInteger, nullable=False)                 
+    nominal        = Column(BigInteger, nullable=False)
+    ttd_uid        = Column(Integer,    nullable=False)
+    ttd_nip        = Column(String(32), nullable=False)
+    ttd_nama       = Column(String(64), nullable=False)
+    ttd_jab        = Column(String(64), nullable=False)
+    bank_nama      = Column(String(32), nullable=False)
+    bank_account   = Column(String(64), nullable=False)
+    tgl_sts        = Column(Date) 
+    tgl_validasi   = Column(Date)
+    posted          = Column(SmallInteger, nullable=False, default=0)
+
+    
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.tahun_id       ='tahun_id'       in data and data['tahun_id']       or None 
+        self.unit_id        ='unit_id'        in data and data['unit_id']        or None 
+        self.no_urut        ='no_urut'        in data and data['no_urut']        or None 
+        self.tgl_sts        ='tgl_sts'        in data and data['tgl_sts']        or None 
+        self.tgl_validasi   ='tgl_validasi'   in data and data['tgl_validasi']   or None 
+        self.kode           ='kode'           in data and data['kode']           or None 
+        self.nama           ='nama'           in data and data['nama']           or None 
+        self.jenis          ='jenis'          in data and data['jenis']          or None 
+        self.nominal        ='nominal'        in data and data['nominal']        or None 
+        self.ttd_uid        ='ttd_uid'        in data and data['ttd_uid']        or None 
+        self.ttd_nip        ='ttd_nip'        in data and data['ttd_nip']        or None 
+        self.ttd_nama       ='ttd_nama'       in data and data['ttd_nama']       or None 
+        self.ttd_jab        ='ttd_jab'        in data and data['ttd_jab']        or None 
+        self.bank_nama      ='bank_nama'      in data and data['bank_nama']      or None 
+        self.bank_account   ='bank_account'   in data and data['bank_account']   or None 
+        self.posted         ='posted'         in data and data['posted']         or 0 
+
+        
+    @classmethod
+    def get_nominal(cls, p):
+        return DBSession.query(func.sum(ARInvoiceModel.nilai).label('nilai')
+                             ).join(StsItemModel,
+                             ).outerjoin(cls,
+                             ).filter(ARInvoiceModel.id==StsItemModel.arinvoice_id, 
+                                      StsItemModel.sts_id==cls.id,
+                                      cls.id==p['id']
+                                      ).first()
+
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter(cls.tahun_id==p['tahun_id'],
+                        cls.unit_id==p['unit_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1  
+
+    #@classmethod
+    #def get_posting_all(cls, d):
+        #row = DBSession.query(cls)\
+                #.filter(cls.posted==0
+                #).first()
+
+class StsItemModel(BaseDB, Base):
+    __tablename__  ='sts_items'
+    __table_args__ = {'extend_existing':True,'schema' :'apbd'}
+
+    sts            =  relationship("StsModel",       backref="sts_items")
+    arinvoices     =  relationship("ARInvoiceModel", backref="sts_items")
+
+    sts_id         = Column(BigInteger, ForeignKey("apbd.sts.id"),        nullable=False)
+    arinvoice_id   = Column(BigInteger, ForeignKey("apbd.arinvoices.id"), nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.arinvoice_id  = 'arinvoice_id' in data and data['arinvoice_id'] or None
+        self.sts_id        = 'sts_id'       in data and data['sts_id']       or None

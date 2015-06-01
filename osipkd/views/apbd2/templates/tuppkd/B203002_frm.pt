@@ -1,0 +1,389 @@
+<html metal:use-macro="load: ../tuppkd/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default">
+  
+  <style>
+  .modalkegitem {
+      width: 900px;
+  }
+  </style>
+  
+  <script type='text/javascript'>
+      var smod = "/b203/002"
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = smod+"/grid2?giro_id="+${rows and rows.id or 0};
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          ' <button id="btn_tambah" class="btn btn btn-primary" type="button">Tambah</button>',
+          ' <button id="btn_hapus"  class="btn btn btn-danger"  type="button">Hapus</button>',
+          ' &nbsp;',
+          '</div>'
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,
+            /*"sDom": '<"toolbar">lfrtip',*/
+            "dom"            : '<"top"ilf>rt<"bottom"<"toolbar">p><"clear">',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+            
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [
+                {
+                    "bSearchable": false, 
+                    "bVisible"   : false,
+                    "aTargets"   : [0]
+                },{
+                    "bSearchable": true,
+                    "bSortable"  : false,
+                    "aTargets"   : [1,2,3,4,5,6]
+                },{
+                    "sClass"   : "right",
+                    "aTargets" : [6],
+                    "mRender"  : function (data, type, full) {
+                    return formatNumber(data);}
+                }
+            ],
+
+            "aoColumns": [
+                null, 
+                {"sWidth": "15px"},   
+                {"sWidth": "15px"}, 
+                {"sWidth": "15px"},
+                {"sWidth": "20px"},
+                {"sWidth": "50px"},
+                {"sWidth": "50px"}
+                
+            ],
+            
+         "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+                function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+ 
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                mID = ''; 
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos1);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        $('#btn_hapus').click(function () {
+          if (mID) {
+              var hapus = confirm('Hapus data ini?');
+              if (hapus == true) {
+                  $.ajax({
+                      type: "POST",
+                      url: smod+"/delitem",
+                      data: "id=" + mID,
+                      success: function (html) {
+                          if (html.success == true) {
+                              $("#errors").css('display', 'inline', 'important');
+                              $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                              var oTable = $('#table1').dataTable();
+                              oTable.fnReloadAjax();
+                          } else {
+                              $("#errors").css('display', 'inline', 'important');
+                              $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                          }
+                      },
+                      beforeSend: function () {
+                          $("#errors").css('display', 'inline', 'important');
+                          $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                      }
+                  });
+                  return false;
+              };
+          } else {
+              alert('Silahkan pilih data yang akan dihapus');
+          }
+        });
+
+        /*From-----------------------------------------------------------------*/
+
+        $("#btn_save").click(function () {
+            $.ajax({
+                type: "POST",
+                url: smod+"/save",
+                data: $("#myform").serialize(),
+                success: function (html) {
+                    if (html.success == true) {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                },
+                beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+            });
+            return false;
+        });
+
+        $("#btn_close").click(function () {
+            window.location = "/b203/002";
+            return false;
+        });
+
+        $( "#tanggal" ).datepicker({dateFormat:'dd-mm-yy'});
+
+      });
+        </script>
+  <div class="panel-heading">
+      <h3 class="panel-title">GIRO</h3>
+  </div>
+  <div class="panel-body">
+                
+    <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+          <div class="col-xs-1">
+              <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${datas.tahun}" />
+          </div>
+          <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+          <div class="col-xs-6">
+              <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+              <div class="input-group">
+                  <span class="input-group-btn">
+                  <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                  </span>
+                  <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="kode">Kode</label>
+            <div class="col-xs-2">
+                <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}" />
+            </div>
+          <div class="form-group">
+          <input type="hidden" name="sp2d_id" id="sp2d_id" value="${rows and rows.sp2d_id}" />
+          <label class="control-label col-sm-1" for="sp2d_id">SP2D</label>
+            <div class="col-sm-5">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                      <span name="kode1" id="kode1" readonly="True">${rows and rows.sp2ds.kode}</span>
+                  </span>
+                  <span class="form-control" type="text" name="nama1" id="nama1" readonly="True">${rows and rows.sp2ds.spms.nama}</span>
+                  <span class="input-group-btn">
+                      <button class="btn btn-primary" type="button" name="btn_kegiatan_sub" id="btn_kegiatan_sub">...</button>
+                  </span>
+                </div>
+            </div>
+          </div>        
+      </div>
+ 
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tanggal">Tanggal</label>
+              <div class="col-xs-2">
+                  <input class="form-control" type="text" name="tanggal" id="tanggal" value="${rows and rows.tanggal}" />
+              </div>
+          <label class="control-label col-xs-1" for="nama">Uraian</label>
+              <div class="col-xs-5">
+                  <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama}" />
+              </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="nominal">Nominal</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="nominal" id="nominal" value="${rows and rows.nominal}" readonly />
+          </div>
+          <label class="control-label col-sm-1">&nbsp;</label>
+            <label class="col-sm-2">
+            <input type="checkbox" name="posted" id="posted" 
+                tal:attributes="checked 'checked' if rows and rows.posted==1 else None">&nbsp; Posted
+            </label>
+      </div>
+      <div class="form-group">
+          <div class="col-xs-6"><br>
+              <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+              <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+              <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+          </div>
+      </div>
+    </form> 
+    </div>
+        <!--panel-body-->
+
+    <script>
+            <!--Modal SPM -->
+            $(document).ready(function () {
+                $('#btn_kegiatan_sub').click(function() {
+                    $('#dlgKegiatanSub').modal('show');
+                });          
+                
+                var kegiatanSubID, kegiatanSubKd, kegiatanSubNm;
+                var iPos1;
+                var tblkegiatansub;
+                var tblkegiatansubUrl = "/apbd/dlg/sp2d1";
+
+                tblkegiatansub = $('#tblkegiatansub').dataTable({
+                    "sAjaxSource"    : tblkegiatansubUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible"   : false,
+                        "aTargets"   : [0]
+                    },{
+                        "bSearchable": false,
+                        "bSortable"  : false,
+                        "aTargets"   : [1,2,3,4,5]
+                    },{
+                      "sClass": "right",
+                      "aTargets": [5],
+                      "mRender"  : function (data, type, full) {
+                           return formatNumber(data); 
+                      }
+                    }
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "50px"}, 
+                        {"sWidth": "70px"}, 
+                        {"sWidth": "20px"}, 
+                        {"sWidth": "150px"}, 
+                        {"sWidth": "100px"}, 
+                    ],
+                });
+
+                function formatNumber(n) {
+                         return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                         }
+
+                $('#tblkegiatansub tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kegiatanSubID = ''; kegiatanSubKd = ''; kegiatanKd='';kegiatanSubNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1     = tblkegiatansub.fnGetPosition(this);
+                        var aData = tblkegiatansub.fnGetData(iPos1);
+
+                        kegiatanSubID = aData[0];
+                        kegiatanSubKd = aData[1];
+                        kegiatanSubNm = aData[4];
+                        kegiatanSubNm1 = aData[5];
+                        tblkegiatansub.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                /* end datatable unit*/
+
+                $('#btn_pil_keg_sub').click(function() {
+                    if(kegiatanSubID) {
+                        $('#dlgKegiatanSub').modal('hide');
+                        if ($('#nama').val()=='') {
+                            $('#nama').val(kegiatanSubNm);
+                        };
+                        if ($('#nama1').val()=='') {
+                            $('#nama1').val(kegiatanSubNm);
+                        };
+                        if ($('#nominal').val()=='') {
+                            $('#nominal').val(kegiatanSubNm1);
+                        };
+                        if ($('#kode1').val()=='') {
+                            $('#kode1').val(kegiatanSubKd);
+                        };
+                        $('#sp2d_id').val(kegiatanSubID);
+                        $('#kode1').text(kegiatanSubKd);
+                        $('#nama1').text(kegiatanSubNm);
+                        $('#nama').text(kegiatanSubNm);
+                        $('#nominal').text(kegiatanSubNm1);                      
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of kegiatan*/     
+        </script>
+        <!-- Modal Kegiatan -->
+        <div class="modal fade" id="dlgKegiatanSub" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKegiatanSubLabel">Pilih SP2D</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblkegiatansub">
+                            <thead>
+                                <tr>
+                                <th>Index</th>
+                                <th>Kode SP2D</th>
+                                <th>Tanggal</th>
+                                <th>Kode SPM</th>
+                                <th>Uraian</th>
+                                <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_keg_sub" name="btn_pil_keg_sub">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+  </div>
+</html>

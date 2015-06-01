@@ -1,0 +1,580 @@
+<html metal:use-macro="load: ../tuskpd/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default">
+  
+  <style>
+  .modalkegitem {
+      width: 900px;
+  }
+  </style>
+  
+  <script type='text/javascript'>
+      var smod = "/b102/003"
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = smod+"/grid2?sts_id="+${rows and rows.id or 0};
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          ' <button id="btn_tambah" class="btn btn btn-primary" type="button">Tambah</button>',
+          ' <button id="btn_hapus"  class="btn btn btn-danger"  type="button">Hapus</button>',
+          ' &nbsp;',
+          '</div>'
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,
+            /*"sDom": '<"toolbar">lfrtip',*/
+            "dom"            : '<"top"ilf>rt<"bottom"<"toolbar">p><"clear">',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+            
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false, "bVisible": false,"aTargets": [0]
+                },{
+                "bSearchable": true,
+                "bSortable"  : false,
+                "aTargets"   : [1,2,3,4,5,6,7,8,9]
+                },{
+                  "sClass"   : "right",
+                  "aTargets" : [9],
+                  "mRender"  : function (data, type, full) {
+                  return formatNumber(data);}
+                  }
+            ],
+
+            "aoColumns": [
+                null, 
+                {"sWidth": "15px"},   
+                {"sWidth": "15px"}, 
+                {"sWidth": "15px"},
+                {"sWidth": "20px"},
+                {"sWidth": "20px"},
+                {"sWidth": "50px"},
+                {"sWidth": "50px"},
+                {"sWidth": "110px"},
+                {"sWidth": "50px"}, 
+            ],
+            
+         "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+                function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+ 
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                mID = ''; 
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos1);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        $('#btn_hapus').click(function () {
+          if (mID) {
+              var hapus = confirm('Hapus data ini?');
+              if (hapus == true) {
+                  $.ajax({
+                      type: "POST",
+                      url: smod+"/delitem",
+                      data: "id=" + mID,
+                      success: function (html) {
+                          if (html.success == true) {
+                              $("#errors").css('display', 'inline', 'important');
+                              $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                              var oTable = $('#table1').dataTable();
+                              oTable.fnReloadAjax();
+                          } else {
+                              $("#errors").css('display', 'inline', 'important');
+                              $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                          }
+                      },
+                      beforeSend: function () {
+                          $("#errors").css('display', 'inline', 'important');
+                          $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                      }
+                  });
+                  return false;
+              };
+          } else {
+              alert('Silahkan pilih data yang akan dihapus');
+          }
+        });
+
+        /*From-----------------------------------------------------------------*/
+
+        $("#btn_save").click(function () {
+            $.ajax({
+                type: "POST",
+                url: smod+"/save",
+                data: $("#myform").serialize(),
+                success: function (html) {
+                    if (html.success == true) {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                },
+                beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+            });
+            return false;
+        });
+
+        $("#btn_close").click(function () {
+            window.location = "/b102/003";
+            return false;
+        });
+
+        $( "#tgl_sts,#tgl_validasi" ).datepicker({dateFormat:'dd-mm-yy'});
+
+      });
+        </script>
+  
+  <div class="panel-heading">
+      <h3 class="panel-title">Surat Tanda Setoran (STS) Bendahara Penerimaan</h3>
+  </div>
+  <div class="panel-body">
+                
+    <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+          <div class="col-xs-1">
+              <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${rows and rows.tahun_id or datas.tahun}" />
+          </div>
+          <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+          <div class="col-xs-6">
+              <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+              <div class="input-group">
+                  <span class="input-group-btn">
+                  <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                  </span>
+                  <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+              </div>
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="kode">Kode</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}" />
+          </div>
+          <label class="control-label col-xs-1" for="tgl_sts">Tanggal</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="tgl_sts" id="tgl_sts" value="${rows and rows.tgl_sts}" />
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="nama">Uraian</label>
+          <div class="col-xs-5">
+              <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama or None}" />
+          </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="bank_nama">Bank Nama</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="bank_nama" id="bank_nama" value="${rows and rows.bank_nama}" />
+          </div>
+          <label class="control-label col-xs-1" for="nominal">Nominal</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="nominal" id="nominal" value="${rows and rows.nominal}" readonly />
+          </div>
+      </div>
+  
+      <br>
+    
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#pane" data-toggle="tab">Penerima</a></li>
+        <li><a href="#pane1" data-toggle="tab">TTD</a></li>
+      </ul>
+
+      <div class="tab-content">
+        
+        <br><div id="pane" class="tab-pane active">
+        <div class="form-group">
+              <label class="control-label col-xs-2" for="bank_nama">Bank Nama</label>
+              <div class="col-xs-2">
+                  <input class="form-control" type="text" name="bank_nama" id="bank_nama" value="${rows and rows.bank_nama}" />
+              </div>
+        </div>
+        <div class="form-group">
+              <label class="control-label col-xs-2" for="bank_account">Bank Account</label>
+              <div class="col-xs-2">
+                  <input class="form-control" type="text" name="bank_account" id="bank_account" value="${rows and rows.bank_account}" />
+              </div>
+        </div>
+        <div class="form-group">
+              <label class="control-label col-xs-2" for="tgl_validasi">Tgl Validasi</label>
+              <div class="col-xs-2">
+                  <input class="form-control" type="text" name="tgl_validasi" id="tgl_validasi" value="${rows and rows.tgl_validasi}" />
+              </div>
+          </div>
+        </div>      
+
+        <div id="pane1" class="tab-pane">
+          <div class="form-group">
+            <label class="control-label col-xs-2" for="ttd_nip">NIP </label> 
+            <div class="col-xs-3">
+                 <div class="input-group">
+                    <input class="form-control" type="text" name="ttd_nip" id="ttd_nip"  value="${rows and rows.ttd_nip}" readonly />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="btn_ttd">...</button>
+                    </span>
+                 </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="ttd_nama">Nama</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="ttd_nama" id="ttd_nama" value="${rows and rows.ttd_nama}" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="ttd_jab">Jabatan</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="ttd_jab" id="ttd_jab" value="${rows and rows.ttd_jab}" />
+              </div>
+          </div>
+       </div>
+       <div class="form-group">
+              <!--label class="control-label col-xs-2" for="ttd_nip">Ttd Uid</label-->
+            <div class="col-xs-2">
+               <input class="form-control" type="hidden" name="ttd_uid" id="ttd_uid" value="${rows and rows.ttd_uid}" />
+            </div>  
+       </div>
+             
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="no_urut"></label>
+          <div class="col-xs-2">
+              <input class="form-control" type="hidden" name="no_urut" id="no_urut" value="${rows and rows.no_urut}" readonly />
+          </div>
+          <label class="control-label col-xs-1" for="jenis"></label>
+          <div class="col-xs-2">
+              <input class="form-control" type="hidden" name="jenis" id="jenis" value="${rows and rows.jenis or None}" />
+          </div>
+      </div>
+      </div>
+ 
+      <div class="form-group">
+          <div class="col-xs-6"><br>
+              <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+              <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+              <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+          </div>
+      </div><br>
+    </form>
+ 
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>ID. STS</th>
+                    <th>ID. TBP</th>
+                    <th>Kode</th>
+                    <th>Tgl. Terima</th>
+                    <th>Tgl. Validasi</th>
+                    <th>Bendahara</th>
+                    <th>Penyetor</th>
+                    <th>Uraian</th>
+                    <th>Nilai</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+ 
+    </div>
+        <!--panel-body-->
+
+    <script>
+        <!--Modal Invoice -->
+                var apinvoiceID, apinvoiceKd, apinvoiceNm;
+                var iPos1;
+                var tblapinvoice;
+                var tblapinvoiceUrl = "/apbd/dlg/arinvoice?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_tambah').click(function() {
+                    if ($('#id').val()=="" || $('#id').val()=="0"){
+                      alert('Simpan Dulu Master Data');
+                      return;
+                    }
+                    var tblapinvoiceUrl = "/apbd/dlg/arinvoice?pk_id="+$('#unit_id').val();
+                    tblapinvoice.fnReloadAjax(tblapinvoiceUrl);
+                    $('#dlgApinvoice').modal('show');
+                });
+            
+                tblapinvoice = $('#tblapinvoice').dataTable({
+                    "sAjaxSource"    : tblapinvoiceUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible" : false, "aTargets": [0]}, 
+                        {"bSearchable": true, "bSortable": false, "bVisible": true, "aTargets": [2,3,4,5]},
+                        {"bSearchable": true,  "bVisible" : true,  "aTargets": [1,2,3,4,5]},{"sClass": "right",
+                         "aTargets": [5],
+                         "mRender"  : function (data, type, full) {
+                         return formatNumber(data);}
+                        }
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "50px"}, 
+                        {"sWidth": "50px"},
+                        {"sWidth": "50px"},                        
+                        {"sWidth": "50px"}, 
+                        {"sWidth": "50px"}                       
+                    ],
+                });
+
+                function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+   
+                $('#tblapinvoice tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        apinvoiceID = ''; apinvoiceKd=''; apinvoiceNm=''; apinvoiceNi='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblapinvoice.fnGetPosition(this);
+                        var aData = tblapinvoice.fnGetData(iPos1);
+                        apinvoiceID = aData[0];
+                        //apinvoiceKd = aData[1];
+                        //apinvoiceNm = aData[3];
+                        
+                        $(this).addClass('selected');
+                    }
+                });
+
+                $('#btn_pil_inv').click(function() { 
+                    if(apinvoiceID) {
+                        $('#dlgApinvoice').modal('hide');
+                        if ($("#id").val()=="" || $("#id").val()==0){
+                          alert('Simpan Dulu Master Data');
+                        }else{
+                          var anSelected = tblapinvoice.$('tr.selected');
+                          for (var i = 0; i < anSelected.length; i++) {
+                              var aData = tblapinvoice.fnGetData(anSelected[i]);
+                              //alert(aData[0]);
+                              var dataitem = 'arinvoice_id=' + aData[0] +
+                                  '&sts_id=' + $('#id').val();
+                              $.ajax({
+                                  type: "POST",
+                                  url: smod+"/saveitem",
+                                  data: dataitem,
+                                  success: function (html) {
+                                      oTable.fnReloadAjax();
+                                  },
+                              });
+                          };
+                        }
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of invoice*/     
+        </script>
+        <!-- Modal Invoice -->
+        <div class="modal fade" id="dlgApinvoice" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgApinvoiceLabel">Pilih TBP</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblapinvoice">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>No. TBP</th>
+                                   <th>Tgl. Terima</th>
+                                   <th>Tgl. Validasi</th>
+                                   <th>Uraian</th>
+                                   <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_inv" name="btn_pil_inv">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <!--Modal Ttd -->
+        <script> 
+                var ttdID1, ttdID2, ttdKd, ttdNi, ttdNm; 
+                var iPos1;
+                var tblttd;
+                var tblttdUrl = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_ttd').click(function() {
+                    var tblttdUrl = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                    tblttd.fnReloadAjax(tblttdUrl);
+                    $('#dlgTtd').modal('show');
+                });
+            
+                tblttd = $('#tblttd').dataTable({
+                    "sAjaxSource"    : tblttdUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {"bSearchable": false, "bVisible": false, "aTargets": [0,1] }, 
+                    {"bSearchable": false, "bVisible": true, "aTargets": [2,3,4] },
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "15%",
+                        "sClass": "left"},
+                        {"sWidth": "25%",
+                        "sClass": "left"},
+                        {"sWidth": "25%",
+                        "sClass": "left"}
+                    ],
+                });
+                
+                $('#tblttd tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                       ttdID1 = ''; ttdID2 = ''; ttdKd=''; ttdNi=''; ttdNm=''; 
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblttd.fnGetPosition(this);
+                        var aData = tblttd.fnGetData(iPos1);
+                        ttdID1 = aData[0];
+                        ttdID2 = aData[1];
+                        ttdKd  = aData[2];
+                        ttdNi  = aData[3];
+                        ttdNm  = aData[4];
+                        tblttd.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+             
+                $('#btn_pil_ttd').click(function() {
+                    if(ttdID1) {
+                       
+                        $('#dlgTtd').modal('hide');
+                        $('#ttd_uid').val(ttdID2);
+                        $('#ttd_nip').val(ttdKd);
+                        $('#ttd_nama').val(ttdNi);
+                        $('#ttd_jab').val(ttdNm);
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of ttd*/     
+        </script>
+        <!-- Modal Ttd -->
+        <div class="modal fade" id="dlgTtd" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgTtdLabel">Pilih Ttd</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblttd">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>Index</th>
+                                   <th>NIP</th>
+                                   <th>Nama</th>
+                                   <th>Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_ttd" name="btn_pil_ttd">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        
+  </div>
+</html>

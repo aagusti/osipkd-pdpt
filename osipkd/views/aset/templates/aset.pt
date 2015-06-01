@@ -1,0 +1,65 @@
+<html metal:use-macro="load: ../apptemplate.pt">
+    <div metal:fill-slot="nav">
+        <ul class="nav navbar-nav">
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">ASET <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/aset/kategori">Kategori</a></li>
+                    <li><a href="/aset/kebijakan">Kebijakan</a></li>
+                    <!--li><a href="/aset/units">Unit Kerja</a></li>
+                    <li><a href="/aset/users">Pengguna</a></li-->
+                </ul>
+            </li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entri <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/aset/kib">KIBS</a></li>
+                    <li><a href="/aset/kibdel">Penghapusan</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laporan <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/aset/lap01">SKPD</a></li>
+                    <li><a href="/aset/lap02">PPKD</a></li>
+                    <li><a href="/aset/lap03">ANALISA</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+<style >
+.v-center {display:table!important; height:125px;}
+
+.v-center div[class*='col-'] {
+	display: table-cell!important;
+    vertical-align:middle;
+    float:none;
+}
+.v-center img {max-height:125px;}
+
+
+
+</style>    
+    <div metal:fill-slot="content">
+        <div metal:define-slot="admin">
+          <div class="container">
+            <div class="col-xs-6 col-md-8 col-md-offset-2 v-center">
+               <div class="row" style="text-align: center">
+                  <strong> ${datas and datas.custnm or ''}</strong>
+               </div>
+               <div class="row" style="text-align: center">
+                  <img src="${request.static_url('osipkd:static/images/custlogo.jpg')}" alt="logo">  
+               </div>
+               <div class="row" style="text-align: center">
+                    <strong>MODULE ASET DAERAH</strong>
+               </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+</html>

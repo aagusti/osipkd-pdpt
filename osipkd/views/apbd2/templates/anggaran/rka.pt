@@ -1,0 +1,310 @@
+<html metal:use-macro="load: ../anggaran/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default ">
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/anggaran/022/grid";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_s" class="btn btn btn-primary" type="button">Ringkasan</button>',
+          '	<button id="btn_1" class="btn btn btn-primary" type="button">RKA-1</button>',
+          '	<button id="btn_11" class="btn btn btn-danger" type="button">RKA-1.1</button>',
+          '	<button id="btn_2" class="btn btn btn-primary" type="button">RKA-2</button>',
+          '	<button id="btn_21" class="btn btn btn-success" type="button">RKA-2.1</button>',
+          '	<button id="btn_22" class="btn btn btn-primary" type="button">RKA-2.2</button>',
+          '	<button id="btn_221" class="btn btn btn-primary" type="button">RKA-2.2.1</button>',
+          '	<button id="btn_3" class="btn btn btn-primary" type="button">RKA-3</button>',
+          '	<button id="btn_31" class="btn btn btn-primary" type="button">RKA-3.1</button>',
+          '	<button id="btn_32" class="btn btn btn-primary" type="button">RKA-3.2</button>',
+          '	&nbsp;',
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource": oTableUrl,
+            "bServerSide": true,
+            "bProcessing": true,
+            
+            "sDom": '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort": true,
+            "bInfo": false,
+            "bFilter": true,
+            "bAutoWidth": false,
+            "bPaginate": true,
+            "sPaginationType": "full_numbers",
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false,
+                "bVisible": false,
+                "aTargets": [0]
+            }],
+            "aoColumns": [
+                null, {
+                    "sWidth": "75px"
+                }, null, null, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        $('#btn_s').click(function () {
+            window.location = '/anggaran/rka/0';
+        });
+
+        $('#btn_1').click(function () {
+            window.location = '/anggaran/rka/1';
+        });
+        
+        $('#btn_11').click(function () {
+            window.location = '/anggaran/rka/11';
+        });
+        
+        $('#btn_2').click(function () {
+            window.location = '/anggaran/rka/2';
+        });
+
+        $('#btn_21').click(function () {
+            window.location = '/anggaran/rka/21';
+        });
+
+        $('#btn_22').click(function () {
+            window.location = '/anggaran/rka/22';
+        });
+
+        $('#btn_221').click(function () {
+            if (mID) {
+                window.location = '/anggaran/rka/221?id='+mID;
+            } else {
+                window.location = '/anggaran/rka/221';
+            }
+        });
+
+        $('#btn_3').click(function () {
+            window.location = '/anggaran/rka/3';
+        });
+
+        $('#btn_31').click(function () {
+            window.location = '/anggaran/rka/31';
+        });
+        
+        $('#btn_32').click(function () {
+            window.location = '/anggaran/rka/32';
+        });
+
+      });
+    </script>
+    <div class="panel-heading">
+      <h3>LAPORAN RKA</h3>
+      <div class="row">
+        <label class="control-label col-xs-1">${datas.status_apbd_nm} Tahun </label>
+        <label class="control-label col-xs-1">${datas.tahun}</label>
+      </div>
+      <div class="row">
+        <label class="control-label col-xs-1">SKPD/SKPKD</label>
+        <div class="col-xs-5">
+              
+          <div class="input-group">
+            <span class="input-group-btn">
+                <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+            </span>
+            <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${datas.unit_nm}" readonly>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" id="btn_unit" 
+                tal:attributes="disabled 'disabled' if datas.all_unit==0 else None">...</button>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered table-hover table-condensed" id="table1">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Kode</th>
+                    <th>Kegiatan</th>
+                    <th>Program</th>
+                    <th>RKA</th>
+                    <th>DPA</th>
+                    <th>RPKA</th>
+                    <th>DPPA</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal Unit -->
+    <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/admin/unit/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource": tblUnitUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": false, "bVisible": true, "aTargets": [1,2,3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%",
+               "sClass": "center"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID = aData[0];
+                urusanKd = aData[1];
+                unitKd = aData[2];
+                unitNm = aData[3];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /* end datatable unit*/
+
+        $('#btn_pilih1').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $.ajax({
+              type: "POST",
+              url: "/admin/change/unit",
+              data: "unit_id="+unitID,
+              success: function (html) {
+                if (html.success == true) {
+                  $('#unit_nm').val(unitNm);
+                  $('#unit_kd').text(urusanKd+'.'+unitKd);
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Urusan</th>
+                  <th>Kd Unit</th>
+                  <th>Nama</th>
+                  <th>Singkatan</th>
+                  <th>Kategori</th>
+                  <th>Urusan</th>
+                  <th>Disabled</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>     <!-- End Modal -->
+  </div> <!--End Metal-->
+</html>

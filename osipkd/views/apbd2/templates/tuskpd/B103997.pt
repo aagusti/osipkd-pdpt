@@ -1,0 +1,189 @@
+<html metal:use-macro="load: ../tuskpd/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+    
+    <style>
+    .modalkegitem {
+        width: 900px;
+    }
+    </style>
+
+    <script>
+      var mod = "/b103/997"
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/b103/997/grid1";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          ' <button id="btn_tambah" class="btn btn btn-primary" type="button">Tambah</button>',
+          ' <button id="btn_edit" class="btn btn btn-primary" type="button">Edit</button>',
+          ' <button id="btn_simpan" class="btn btn btn-primary" type="button">Simpan</button>',
+          ' <button id="btn_delete" class="btn btn btn-danger" type="button">Hapus</button>',
+
+          ' &nbsp;',
+          '</div>'
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,
+            "dom"            : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false, "bVisible": false,"aTargets": [0]
+                }
+            ],
+
+            "aoColumns": [
+                null, 
+                {"sWidth": "30px"},   
+                {"sWidth": "20px"}, 
+                {"sWidth": "170px"}, 
+                {"sWidth": "50px"}, 
+                {"sWidth": "50px"}, 
+                {"sWidth": "50px"},  
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        $("div.toolbar").html(tb);
+
+        $('#btn_tambah').click(function () {
+            window.location = '/b103/997/frm/0';
+        });
+
+        $('#btn_edit').click(function () {
+            if (mID) {
+                window.location = mod+'/frm/' + mID;
+            } else {
+                alert('Silahkan pilih data yang akan diedit');
+            }
+        });
+
+        $('#btn_delete').click(function () {
+            if (mID) {
+                var hapus = confirm('Hapus data ini?');
+                if (hapus == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: mod+"/delete",
+                        data: "id=" + mID,
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                                var oTable = $('#table1').dataTable();
+                                oTable.fnDraw();
+                                //TODO: Redraw after delete
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                };
+            } else {
+                alert('Silahkan pilih data yang akan dihapus');
+            }
+        });
+
+        $("#btn_close").click(function () {
+            window.location = mod;
+            return false;
+        });
+      });                  
+    </script>
+		
+        <div class="panel-heading">
+            <h3 class="panel-title">Daftar Item Tagihan</h3>
+        </div>
+		<div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+               
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${datas.tahun}" />
+                    </div>
+                    <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+                    <div class="col-xs-6">
+                        <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                            <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                            </span>
+                            <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+				<label class="control-label col-xs-2" for="kegiatan_sub_id">SubKegiatan</label>
+                    <div class="col-xs-9">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                            <span class="form-control" type="hidden" name="no_urut" id="no_urut" readonly="True">${row and row.no_urut}</span>
+                            </span>
+                            <span class="form-control" type="text" name="nama" id="nama" readonly="True">${row and row.nama}</span>
+                        </div>
+                    </div>
+                </div>
+				<div class="form-group">
+				<label class="control-label col-xs-2" for="tahun_id">No. Invoice</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${row and row.id}" />
+                    </div>
+					</div>
+            <br>
+            </form>
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+						<th>Kd. Rekening</th>
+                        <th>No Urut</th>
+                        <th>Uraian</th>
+                        <th>Jumlah</th>
+                        <th>PPn Rp</th>
+                        <th>PPh Rp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>      
+            </table>
+        </div>
+  </div>
+</html>

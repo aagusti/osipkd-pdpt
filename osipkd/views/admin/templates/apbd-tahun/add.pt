@@ -1,0 +1,37 @@
+<html metal:use-macro="load: ../base.pt">
+<div metal:fill-slot="content">
+<h4>${request.title}</h4>
+<hr>
+<form id="deform" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+      class="form-horizontal">
+  <fieldset class="deformFormFieldset">
+    <input type="hidden" name="_charset_" />
+    <input type="hidden" name="__formid__" value="deform"/>
+    <div class="form-group">
+        <div class="col-md-6">
+          <div tal:repeat="field form">
+              <label class="control-label col-md-3">${field.title}</label>
+              <div class="col-md-8">
+                ${structure:field.serialize()}
+                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                   tal:repeat="error field.error.messages()">
+                   ${error}</p>
+              </div>
+          </div>
+        </div>
+    </div>  
+    <div class="form-group">
+      <div class="col-md-offset-2">
+            <button id="deformsave" name="simpan" type="submit" class="btn btn-primary "
+                  value="simpan">Simpan</button>
+            <button id="deformcancel" name="batal" type="submit" class="btn btn-default "
+                  value="batal">Batal</button>
+        
+        </div>
+    </div>
+
+  </fieldset>
+</form>
+
+</div>
+</html>

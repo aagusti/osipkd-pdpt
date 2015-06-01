@@ -1,0 +1,405 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_close").click(function () {
+                window.location = '/ap-sp2d';
+                return false;
+            });
+        });
+        $("#bud_nip").attr('readonly',true);
+        $("#bud_nama").attr('readonly',true);
+        $("#verified_nip").attr('readonly',true);
+        $("#verified_nama").attr('readonly',true);
+    </script>
+  <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">${request.title}</h3>
+    </div>
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+        <div tal:condition="'id' in form" style="display:none;">
+          <div tal:define="field form['id']">
+              ${structure:field.serialize()}
+          </div>
+        </div>
+        
+        <!--Kode-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['kode']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+          <div tal:define="field form['tanggal']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+          <div tal:define="field form['spm_n']"  id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                   tal:repeat="error field.error.messages()">
+                   ${error}</p>
+            </div>
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div tal:define="field form['ap_spm_id']" style="display: none;">
+              ${structure:field.serialize()}
+          </div>
+          <div tal:define="field form['spm_kd']"  id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                   tal:repeat="error field.error.messages()">
+                   ${error}</p>
+            </div>
+          </div>
+
+          <div class="col-md-6" tal:define="field form['spm_nm']" id="item-${field.oid}">
+               ${structure:field.serialize()}
+                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                   tal:repeat="error field.error.messages()">
+                   ${error}</p>
+          </div>
+          
+        </div>
+        <div class="form-group"> 
+          <div tal:define="field form['nama']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-8">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+        </div>
+
+          <script>
+            $('#spm_kd').typeahead({
+                 "hint"     : true,
+                 "highlight": true,
+                 "minLength": 1,
+                 "remote"   : "/ap-spm/act/headofkode?term=%QUERY",
+            },{
+                "name"      : 'spm_kd',
+                "displayKey": 'value',
+            });
+            $('#spm_nm').typeahead({
+                 "hint"     : true,
+                 "highlight": true,
+                 "minLength": 1,
+                 "remote"   : "/ap-spm/act/headofnama?term=%QUERY",
+            },{
+                "name"      : 'spm_nm',
+                "displayKey": 'value',
+            });
+                  
+            $('#spm_kd').bind('typeahead:selected', function(obj, datum, name) {      
+                  $('#ap_spm_id').val(datum.id);
+                  $('#spm_nm').val(datum.nama);
+                  $('#spm_n').val(datum.nilai);
+                  $('#sp2d_nm').val(datum.nama);
+            });
+            $('#spm_nm').bind('typeahead:selected', function(obj, datum, name) {      
+                  $('#ap_spm_id').val(datum.id);
+                  $('#spm_kd').val(datum.kode);
+                  $('#spm_n').val(datum.nilai);
+                  $('#sp2d_nm').val(datum.nama);
+            });
+            $("#spm_n").attr('readonly',true);
+            
+            function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+          </script>
+
+        <div class="form-group"> 
+          <div tal:define="field form['bud_uid']" style="display: none;">
+              ${structure:field.serialize()}
+          </div>
+          <div tal:define="field form['bud_nip']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+          <div tal:define="field form['bud_nama']" id="item-${field.oid}">
+            <div class="col-md-3">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+          <div tal:define="field form['no_validasi']"  id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                   tal:repeat="error field.error.messages()">
+                   ${error}</p>
+            </div>
+          </div>
+          <script>
+          $('#bud_nama').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/pejabat/act/headofnama6?term=%QUERY",
+            },
+            {
+              "name"      : 'bud_nama',
+              "displayKey": 'value',
+            });
+        
+
+        $('#bud_nama').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#bud_uid').val(datum.kode);
+              $('#bud_nip').val(datum.nip);
+              $('#pejabat_id').val(datum.id);
+        });
+
+        $("#bud_uid").attr('readonly',true);
+        $("#bud_nip").attr('readonly',true);
+        </script>
+        </div>
+        <div class="form-group"> 
+          <div tal:define="field form['verified_uid']" style="display: none;">
+              ${structure:field.serialize()}
+          </div>
+          <div tal:define="field form['verified_nip']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+          <div tal:define="field form['verified_nama']" id="item-${field.oid}">
+            <div class="col-md-3">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+          <div class="col-md-4"> 
+            <button type="submit" class="btn btn-primary" id="simpan" name="simpan" >Simpan</button>
+            <button type="submit" class="btn btn-warning" id="tutup" name="tutup">Tutup</button>
+          </div>
+        <script>
+           $('#verified_uid').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/pejabat/act/headofkode3?term=%QUERY",
+            },
+            {
+            "name"      : 'verified_uid',
+            "displayKey": 'value',
+          });
+          $('#verified_nip').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/pejabat/act/headofnip3?term=%QUERY",
+            },
+            {
+              "name"      : 'verified_nip',
+              "displayKey": 'value',
+            });
+          $('#verified_nama').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/pejabat/act/headofnama6?term=%QUERY",
+            },
+            {
+              "name"      : 'verified_nama',
+              "displayKey": 'value',
+            });
+        
+        $('#verified_uid').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#verified_nama').val(datum.nama);
+              $('#verified_nip').val(datum.nip);
+              $('#pejabat_id').val(datum.id);
+        });
+        $('#verified_nama').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#verified_uid').val(datum.kode);
+              $('#verified_nip').val(datum.nip);
+              $('#pejabat_id').val(datum.id);
+        });
+        $('#verified_nip').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#verified_nama').val(datum.nama);
+              $('#verified_uid').val(datum.kode);
+              $('#pejabat_id').val(datum.id);
+        });
+        $("#verified_uid").attr('readonly',true);
+        $("#verified_nip").attr('readonly',true);
+        $("#no_validasi").attr('readonly',true);
+        </script>
+        </div>              
+      </form>
+    </div>   
+   </div> 
+   <table class="table table-bordered table-hover table-condensed" id="table1">
+      <thead>
+        <tr>
+            <th>Index</th>
+            <th>No. SPM</th>
+            <th>Tanggal SPM</th>
+            <th>Jenis</th>
+            <th>Uraian</th>
+            <th>Nilai</th>
+            <th>Posting</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var ap_spm_id = $('#ap_spm_id').val();
+      var oTableUrl = "/ap-sp2d/act/grid2?ap_spm_id="+ap_spm_id;
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          /*'	<button id="btn_posting"  class="btn btn btn-success" type="button">Posting</button>',
+          '	<button id="btn_tambah"   class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit"     class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete"   class="btn btn btn-danger"  type="button">Hapus</button>',
+          '	<button id="btn_print"    class="btn btn btn-primary" type="button">Cetak</button>',
+          ' <button id="btn_close"    class="btn btn-warning"     type="button" >Tutup</button>',
+          '	&nbsp;',*/
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,           
+            "sDom"           : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : false,
+            "bInfo"          : false,
+            "bFilter"        : false,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false,
+                "bVisible"   : false,
+                "aTargets"   : [0]
+            },{
+                "sClass"   : "right",
+                "aTargets" : [5],
+                "mRender"  : function (data, type, full) {
+                return formatNumber(data);}
+            },{
+                "aTargets" : [3], // Untuk Jenis
+                "mRender"  : function (data, type, full) {
+                    if (data == "1") {
+                        return 'UP';
+                    } else if (data == "2") {
+                        return 'TU';
+                    } else if (data == "3") {
+                        return 'GU';
+                    } else if (data == "4") {
+                        return 'LS';
+                    }
+                }
+            },{
+                "aTargets" : [6], // Untuk Posting
+                "mRender"  : function (data, type, full) {
+                    if (data == "0") {
+                        return 'N';
+                    } else if (data == "1") {
+                        return 'Y';
+                    }
+                }
+            }],
+            "aoColumns": [
+                null, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "200px"}, 
+                {"sWidth": "100px"},
+                {"sWidth": "20px","class":"right"},
+            ],
+            
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /**********************************************************************/
+     });
+    </script>
+  </div>
+</html>

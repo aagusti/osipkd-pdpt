@@ -1,0 +1,21 @@
+<html metal:use-macro="load: base.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+<div class="well">
+<h1>os-Pendapatan</h1>
+<p><img src="/files/logo.png" class="img-float img-thumbnail"/>
+Selamat Datang di Aplikasi Penatausahaan dan Akuntansi Pendapatan
+
+<p>Aplikasi eAplikasi Penatausahaan dan Akuntansi Pendapatan adalah aplikasi 
+   yang digunakan untuk menatausahakan pendapatan daerah yang disertai dengan 
+   akuntansi pendapatan.
+<p> Module yang terdapata pada aplikasi ini adalah:
+<p><ul>
+     <li>Penatausahaan Penetapan Pendapatan</li>
+     <li>Penatausahaan Penerimaan Pendapatan</li>
+     <li>Jurnal Pendapatan</li>
+</div><!--well-->
+
+</div>
+</html>

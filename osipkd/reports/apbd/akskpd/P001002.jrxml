@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="P001002" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="742" leftMargin="50" rightMargin="50" topMargin="50" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[apbd/akuntansi]]>
+	</queryString>
+	<field name="rek_kd" class="java.lang.String">
+		<fieldDescription><![CDATA[rek_kd]]></fieldDescription>
+	</field>
+	<field name="rek_nm" class="java.lang.String">
+		<fieldDescription><![CDATA[rek_nm]]></fieldDescription>
+	</field>
+	<field name="level_id" class="java.lang.String">
+		<fieldDescription><![CDATA[level_id]]></fieldDescription>
+	</field>
+	<field name="defsign" class="java.lang.String">
+		<fieldDescription><![CDATA[defsign]]></fieldDescription>
+	</field>
+	<field name="tahun" class="java.lang.String">
+		<fieldDescription><![CDATA[tahun]]></fieldDescription>
+	</field>
+	<field name="lalu" class="java.lang.String">
+		<fieldDescription><![CDATA[lalu]]></fieldDescription>
+	</field>
+	<field name="kini" class="java.lang.String">
+		<fieldDescription><![CDATA[kini]]></fieldDescription>
+	</field>
+	<field name="customer" class="java.lang.String">
+		<fieldDescription><![CDATA[customer]]></fieldDescription>
+	</field>
+	<field name="mulai" class="java.lang.String">
+		<fieldDescription><![CDATA[mulai]]></fieldDescription>
+	</field>
+	<field name="selesai" class="java.lang.String">
+		<fieldDescription><![CDATA[selesai]]></fieldDescription>
+	</field>
+	<field name="tingkat" class="java.lang.String">
+		<fieldDescription><![CDATA[tingkat]]></fieldDescription>
+	</field>
+	<field name="anggaran" class="java.lang.String">
+		<fieldDescription><![CDATA[anggaran]]></fieldDescription>
+	</field>
+	<variable name="lalu" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{lalu})]]></variableExpression>
+	</variable>
+	<variable name="kini" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{kini})]]></variableExpression>
+	</variable>
+	<variable name="nm_bulan" class="java.lang.String">
+		<variableExpression><![CDATA[$F{mulai}.substring(5,7)=="01" ? "Januari" : $F{mulai}.substring(5,7)=="02" ? "Februari" : $F{mulai}.substring(5,7)=="03" ? "Maret" : $F{mulai}.substring(5,7)=="04" ? "April" : $F{mulai}.substring(5,7)=="05" ? "Mei" : $F{mulai}.substring(5,7)=="06" ? "Juni" : $F{mulai}.substring(5,7)=="07" ? "Juli" : $F{mulai}.substring(5,7)=="08" ? "Agustus" : $F{mulai}.substring(5,7)=="09" ? "September" : $F{mulai}.substring(5,7)=="10" ? "Oktober" : $F{mulai}.substring(5,7)=="11" ? "November" : $F{mulai}.substring(5,7)=="12" ? "Desember" : ""]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{mulai}.substring(5,7)=="01" ? "Januari" : $F{mulai}.substring(5,7)=="02" ? "Februari" : $F{mulai}.substring(5,7)=="03" ? "Maret" : $F{mulai}.substring(5,7)=="04" ? "April" : $F{mulai}.substring(5,7)=="05" ? "Mei" : $F{mulai}.substring(5,7)=="06" ? "Juni" : $F{mulai}.substring(5,7)=="07" ? "Juli" : $F{mulai}.substring(5,7)=="08" ? "Agustus" : $F{mulai}.substring(5,7)=="09" ? "September" : $F{mulai}.substring(5,7)=="10" ? "Oktober" : $F{mulai}.substring(5,7)=="11" ? "November" : $F{mulai}.substring(5,7)=="12" ? "Desember" : ""]]></initialValueExpression>
+	</variable>
+	<variable name="nm_bulan1" class="java.lang.String">
+		<variableExpression><![CDATA[$F{selesai}.substring(5,7)=="01" ? "Januari" : $F{selesai}.substring(5,7)=="02" ? "Februari" : $F{selesai}.substring(5,7)=="03" ? "Maret" : $F{selesai}.substring(5,7)=="04" ? "April" : $F{selesai}.substring(5,7)=="05" ? "Mei" : $F{selesai}.substring(5,7)=="06" ? "Juni" : $F{selesai}.substring(5,7)=="07" ? "Juli" : $F{selesai}.substring(5,7)=="08" ? "Agustus" : $F{selesai}.substring(5,7)=="09" ? "September" : $F{selesai}.substring(5,7)=="10" ? "Oktober" : $F{selesai}.substring(5,7)=="11" ? "November" : $F{selesai}.substring(5,7)=="12" ? "Desember" : ""]]></variableExpression>
+		<initialValueExpression><![CDATA[$F{selesai}.substring(5,7)=="01" ? "Januari" : $F{selesai}.substring(5,7)=="02" ? "Februari" : $F{selesai}.substring(5,7)=="03" ? "Maret" : $F{selesai}.substring(5,7)=="04" ? "April" : $F{selesai}.substring(5,7)=="05" ? "Mei" : $F{selesai}.substring(5,7)=="06" ? "Juni" : $F{selesai}.substring(5,7)=="07" ? "Juli" : $F{selesai}.substring(5,7)=="08" ? "Agustus" : $F{selesai}.substring(5,7)=="09" ? "September" : $F{selesai}.substring(5,7)=="10" ? "Oktober" : $F{selesai}.substring(5,7)=="11" ? "November" : $F{selesai}.substring(5,7)=="12" ? "Desember" : ""]]></initialValueExpression>
+	</variable>
+	<variable name="tot_lalu" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{level_id})==Integer.parseInt($F{tingkat})-1 ? Double.parseDouble($F{lalu}) : 0]]></variableExpression>
+	</variable>
+	<variable name="tot_kini" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{level_id})==Integer.parseInt($F{tingkat})-1 ? Double.parseDouble($F{kini}) : 0]]></variableExpression>
+	</variable>
+	<variable name="judul" class="java.lang.String">
+		<initialValueExpression><![CDATA[$F{tingkat}=="4" ? "JENIS" : $F{tingkat}=="5" ? "OBJEK" : $F{tingkat}=="6" ? "RINCIAN OBJEK" : ""]]></initialValueExpression>
+	</variable>
+	<variable name="detail" class="java.lang.String">
+		<variableExpression><![CDATA[Integer.parseInt($F{tingkat})-1]]></variableExpression>
+	</variable>
+	<variable name="anggaran" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{anggaran})]]></variableExpression>
+	</variable>
+	<variable name="tot_anggaran" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[Integer.parseInt($F{level_id})==Integer.parseInt($F{tingkat})-1 ? Double.parseDouble($F{anggaran}) : 0]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="661" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN LRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="47" width="44" height="20"/>
+				<textElement markup="none"/>
+				<text><![CDATA[Periode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="47" width="10" height="20"/>
+				<textElement textAlignment="Center" markup="none"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="54" y="47" width="607" height="20"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$F{mulai}.substring(8,10)+" "+$V{nm_bulan}+" "+$F{mulai}.substring(0,4)+" s.d "+$F{selesai}.substring(8,10)+" "+$V{nm_bulan1}+" "+$F{selesai}.substring(0,4)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="18" width="661" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SAMPAI DENGAN "+$V{judul}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="201" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Uraian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="0" width="80" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lalu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="0" width="80" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="501" y="0" width="80" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="0" width="80" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anggaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="581" y="0" width="80" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sisa]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="16"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rek_kd}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="60" y="0" width="201" height="16"/>
+				<box leftPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rek_nm}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="341" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{lalu})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="421" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{kini})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="501" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{lalu}+$V{kini})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="261" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{anggaran})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="581" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{anggaran}-$V{lalu}-$V{kini})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="#,##0">
+				<reportElement x="561" y="10" width="100" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="421" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{tot_kini})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="60" y="0" width="201" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Jumlah"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="501" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{tot_lalu}+$V{tot_kini})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="341" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{tot_lalu})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="16"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="261" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{tot_anggaran})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="581" y="0" width="80" height="16"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{anggaran}-$V{tot_lalu}-$V{tot_kini})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

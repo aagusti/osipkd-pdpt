@@ -1,0 +1,320 @@
+<html metal:use-macro="load: aset.pt">
+  <div metal:fill-slot="admin" class="panel panel-default">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_save").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/aset/kategori/save",
+                    data: $("#myform").serialize(),
+                    success: function (html) {
+                        if (html.success == true) {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                        } else {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                        }
+                    },
+                    beforeSend: function () {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                    }
+                });
+                return false;
+            });
+
+            $('#kib01').click(function () {
+              window.open('/aset/lap01/r001?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+
+            $('#kib02').click(function () {
+              window.open('/aset/lap01/r002?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+
+            $('#kib03').click(function () {
+              window.open('/aset/lap01/r003?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+
+            $('#kib04').click(function () {
+              window.open('/aset/lap01/r004?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+
+            $('#kib05').click(function () {
+              window.open('/aset/lap01/r005?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+            
+            $('#kib06').click(function () {
+              window.open('/aset/lap01/r006?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+
+            $('#kib08').click(function () {
+              window.open('/aset/lap01/r008?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+
+            $('#kib10').click(function () {
+              window.open('/aset/lap01/r010?tahun='+$('#tahun').val()+'&uid='+$('#unit_id').val());
+            });
+        });
+    </script>
+        
+      <div class="panel-heading">
+            <h3 class="panel-title">LAPORAN SKPD</h3>
+      </div>
+      <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-1">SKPD</div>
+            <div class="col-lg-1">
+                <input type="hidden" name="unit_id" id="unit_id" value="${rows and rows.id or '0'}">
+                <input type="text" class="form-control" name="unit_kd" id="unit_kd"  value="${rows and rows.kode or ''}" readonly>
+            </div>
+            <div class="col-lg-4">
+              <div class="input-group">
+                <input type="text" class="form-control" name="unit_nm" id="unit_nm"  value="${rows and rows.nama or ''}" readonly>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" name="btn_unit" id="btn_unit">...</button>
+                </span>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+
+          </div><!-- /.row -->
+
+          <div class="row">
+            <div class="col-lg-1">Tahun</div>
+            <div class="col-lg-1">
+              <input type="text" class="form-control" name="tahun" id="tahun" value="${datas and datas.tahun}" readonly>
+            </div><!-- /.col-lg-6 -->
+          </div><!-- /.row -->
+
+
+          <div class="row">
+            <div class="col-lg-1">PILIH REPORT</div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="radio" name="kib" id="kib01">
+                        </span>KIB A (TANAH)
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib02">
+                      </span>KIB B 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib03">
+                      </span>KIB C 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib04">
+                      </span>KIB D 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib05">
+                      </span>KIB E 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib06">
+                      </span>KIB F 
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib07">
+                      </span>RUSAK BERAT
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib08">
+                      </span>BUKU INVENTARIS
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib09">
+                      </span>PENGHAPUSAN
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="radio" name="kib" id="kib10">
+                      </span>NERACA
+                    </div><!-- /input-group -->
+                  </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.col-lg-4 -->
+          </div><!-- /.row -->
+
+          <div class="row">
+            <div class="col-lg-1">Proses</div>
+            <div class="col-lg-4">
+              <div class="input-group">
+                  <button class="btn btn-primary" type="button" name="btn_report" id="btn_report">Klik disini</button>
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+
+          </div><!-- /.row -->
+
+          
+        </div>
+
+    <script>    
+    
+ /* start datatable unit*/
+ $(document).ready(function () {
+    var unitID, unitNm;
+    var iPos1;
+    var tblUnit;
+    var tblUnitUrl = "/admin/unit/grid";
+    tblUnit = $('#tblUnit').dataTable({
+        "sAjaxSource": tblUnitUrl,
+        "bServerSide": true,
+        "bProcessing": true,
+        
+        "sDom": '<"toolbar">frtip',
+        "bScrollCollapse": true,
+        "bSort": true,
+        "bInfo": false,
+        "bFilter": true,
+        "bAutoWidth": false,
+        "bPaginate": true,
+        "sPaginationType": "full_numbers",
+        
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": false, "bVisible": true, "aTargets": [1,2,3] }, 
+        ],
+
+        "aoColumns": [
+            null, {
+                "sWidth": "10%"
+            }, {
+                "sWidth": "10%"
+            }, {
+                "sWidth": "25%"
+            }, {
+                "sWidth": "10%"
+            }, {
+                "sWidth": "10%"
+            }, {
+                "sWidth": "25%"
+            }, {
+                "sWidth": "10%",
+                "sClass": "center"
+            }
+        ],
+    });
+    
+    $('#tblUnit tbody').on('click', 'tr', function () {
+        if ($(this).hasClass('selected')) {
+            unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+            $(this).removeClass('selected');
+        } else {
+            iPos1 = tblUnit.fnGetPosition(this);
+            var aData = tblUnit.fnGetData(iPos1);
+            unitID = aData[0];
+            urusanKd = aData[1];
+    unitKd = aData[2];
+            unitNm = aData[3];
+            tblUnit.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+    });
+    /* end datatable unit*/
+   
+    $('#btn_unit').click(function() {
+        $('#dlgUnit').modal('show');
+    });
+
+    $('#btn_pilih1').click(function() {
+        if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $('#unit_id').val(unitID);
+            $('#unit_kd').val(unitKd);
+            $('#unit_nm').val(unitNm);
+        } else
+            alert ('Silahkan pilih salah satu atau batal!');
+    });
+  });
+  </script>
+
+        <!-- Modal Unit -->
+        <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+                            <thead>
+                                <tr>
+                                  <th>Index</th>
+                                  <th>Kd Urusan</th>
+                                  <th>Kd Unit</th>
+                                  <th>Nama</th>
+                                  <th>Singkatan</th>
+                                  <th>Kategori</th>
+                                  <th>Urusan</th>
+                                  <th>Disabled</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
+</html>

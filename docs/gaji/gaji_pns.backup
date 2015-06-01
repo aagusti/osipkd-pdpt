@@ -1,0 +1,1708 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.13
+-- Dumped by pg_dump version 9.1.3
+-- Started on 2014-11-26 20:48:06
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 7 (class 2615 OID 152112)
+-- Name: admin; Type: SCHEMA; Schema: -; Owner: aagusti
+--
+
+CREATE SCHEMA admin;
+
+
+ALTER SCHEMA admin OWNER TO aagusti;
+
+--
+-- TOC entry 192 (class 3079 OID 11645)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2048 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 204 (class 1255 OID 152362)
+-- Dependencies: 578 5
+-- Name: f_gaji_pegawai_biu(); Type: FUNCTION; Schema: public; Owner: aagusti
+--
+
+CREATE FUNCTION f_gaji_pegawai_biu() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+        new.gaji_kotor = new.gaji_pokok + new.tunj_istri + new.tunj_anak + new.tunj_beras + new.tunj_kerja +
+			 new.tunj_umum + new.tunj_umum_tamb + new.tunj_otsus + new.tunj_dt + new.tunj_askes +
+			 new.tunj_penghasilan + new.tunj_jab_fungsi + new.tunj_jab_struktur + new.pembulatan + new.pph;
+	new.potongan   = new.pot_iwp + new.pot_taperum + new.pot_sewa_rumah + new.pot_pangan + new.pot_korpri +
+			 new.pot_gaji_lebih + new.pot_hutang + new.pph;
+	new.gaji_bersih = new.gaji_kotor - new.potongan;
+        RETURN NEW;
+    END;
+    $$;
+
+
+ALTER FUNCTION public.f_gaji_pegawai_biu() OWNER TO aagusti;
+
+SET search_path = admin, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 176 (class 1259 OID 152201)
+-- Dependencies: 7
+-- Name: apps; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE apps (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    img character varying(64),
+    tahun integer
+);
+
+
+ALTER TABLE admin.apps OWNER TO aagusti;
+
+--
+-- TOC entry 175 (class 1259 OID 152199)
+-- Dependencies: 7 176
+-- Name: apps_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE apps_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.apps_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2049 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: apps_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE apps_id_seq OWNED BY apps.id;
+
+
+--
+-- TOC entry 2050 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: apps_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('apps_id_seq', 2, true);
+
+
+--
+-- TOC entry 168 (class 1259 OID 152161)
+-- Dependencies: 7
+-- Name: configs; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE configs (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL
+);
+
+
+ALTER TABLE admin.configs OWNER TO aagusti;
+
+--
+-- TOC entry 167 (class 1259 OID 152159)
+-- Dependencies: 7 168
+-- Name: configs_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE configs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.configs_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2051 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: configs_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE configs_id_seq OWNED BY configs.id;
+
+
+--
+-- TOC entry 2052 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: configs_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('configs_id_seq', 1, false);
+
+
+--
+-- TOC entry 184 (class 1259 OID 152256)
+-- Dependencies: 7
+-- Name: fungsi_urusans; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE fungsi_urusans (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    urusan_id integer,
+    fungsi_id integer
+);
+
+
+ALTER TABLE admin.fungsi_urusans OWNER TO aagusti;
+
+--
+-- TOC entry 183 (class 1259 OID 152254)
+-- Dependencies: 184 7
+-- Name: fungsi_urusans_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE fungsi_urusans_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.fungsi_urusans_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2053 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: fungsi_urusans_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE fungsi_urusans_id_seq OWNED BY fungsi_urusans.id;
+
+
+--
+-- TOC entry 2054 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: fungsi_urusans_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('fungsi_urusans_id_seq', 1, false);
+
+
+--
+-- TOC entry 166 (class 1259 OID 152151)
+-- Dependencies: 7
+-- Name: fungsis; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE fungsis (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL
+);
+
+
+ALTER TABLE admin.fungsis OWNER TO aagusti;
+
+--
+-- TOC entry 165 (class 1259 OID 152149)
+-- Dependencies: 166 7
+-- Name: fungsis_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE fungsis_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.fungsis_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2055 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: fungsis_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE fungsis_id_seq OWNED BY fungsis.id;
+
+
+--
+-- TOC entry 2056 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: fungsis_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('fungsis_id_seq', 1, false);
+
+
+--
+-- TOC entry 189 (class 1259 OID 152311)
+-- Dependencies: 7
+-- Name: group_modules; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE group_modules (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    group_id integer,
+    module_id integer,
+    reads integer,
+    writes integer,
+    inserts integer,
+    deletes integer
+);
+
+
+ALTER TABLE admin.group_modules OWNER TO aagusti;
+
+--
+-- TOC entry 188 (class 1259 OID 152309)
+-- Dependencies: 189 7
+-- Name: group_modules_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE group_modules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.group_modules_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2057 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: group_modules_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE group_modules_id_seq OWNED BY group_modules.id;
+
+
+--
+-- TOC entry 2058 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: group_modules_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('group_modules_id_seq', 1, false);
+
+
+--
+-- TOC entry 178 (class 1259 OID 152211)
+-- Dependencies: 7
+-- Name: groups; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE groups (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL
+);
+
+
+ALTER TABLE admin.groups OWNER TO aagusti;
+
+--
+-- TOC entry 177 (class 1259 OID 152209)
+-- Dependencies: 178 7
+-- Name: groups_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.groups_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2059 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
+
+
+--
+-- TOC entry 2060 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: groups_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('groups_id_seq', 2, true);
+
+
+--
+-- TOC entry 180 (class 1259 OID 152221)
+-- Dependencies: 7
+-- Name: modules; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE modules (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    img character varying(64),
+    app_id integer,
+    level_id integer NOT NULL
+);
+
+
+ALTER TABLE admin.modules OWNER TO aagusti;
+
+--
+-- TOC entry 179 (class 1259 OID 152219)
+-- Dependencies: 7 180
+-- Name: modules_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE modules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.modules_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2061 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: modules_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE modules_id_seq OWNED BY modules.id;
+
+
+--
+-- TOC entry 2062 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: modules_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('modules_id_seq', 2, true);
+
+
+--
+-- TOC entry 172 (class 1259 OID 152181)
+-- Dependencies: 7
+-- Name: pegawais; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE pegawais (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL
+);
+
+
+ALTER TABLE admin.pegawais OWNER TO aagusti;
+
+--
+-- TOC entry 171 (class 1259 OID 152179)
+-- Dependencies: 7 172
+-- Name: pegawais_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE pegawais_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.pegawais_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2063 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: pegawais_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE pegawais_id_seq OWNED BY pegawais.id;
+
+
+--
+-- TOC entry 2064 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: pegawais_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('pegawais_id_seq', 1, false);
+
+
+--
+-- TOC entry 186 (class 1259 OID 152276)
+-- Dependencies: 7
+-- Name: units; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE units (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    kategori character varying(25),
+    singkat character varying(50),
+    level_id integer,
+    header_id integer,
+    urusan_id integer
+);
+
+
+ALTER TABLE admin.units OWNER TO aagusti;
+
+--
+-- TOC entry 185 (class 1259 OID 152274)
+-- Dependencies: 7 186
+-- Name: units_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE units_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.units_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2065 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: units_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE units_id_seq OWNED BY units.id;
+
+
+--
+-- TOC entry 2066 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: units_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('units_id_seq', 714, true);
+
+
+--
+-- TOC entry 170 (class 1259 OID 152171)
+-- Dependencies: 7
+-- Name: urusans; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE urusans (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL
+);
+
+
+ALTER TABLE admin.urusans OWNER TO aagusti;
+
+--
+-- TOC entry 169 (class 1259 OID 152169)
+-- Dependencies: 170 7
+-- Name: urusans_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE urusans_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.urusans_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2067 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: urusans_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE urusans_id_seq OWNED BY urusans.id;
+
+
+--
+-- TOC entry 2068 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: urusans_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('urusans_id_seq', 3, true);
+
+
+--
+-- TOC entry 182 (class 1259 OID 152236)
+-- Dependencies: 7
+-- Name: user_groups; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE user_groups (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    user_id integer,
+    group_id integer
+);
+
+
+ALTER TABLE admin.user_groups OWNER TO aagusti;
+
+--
+-- TOC entry 181 (class 1259 OID 152234)
+-- Dependencies: 182 7
+-- Name: user_groups_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.user_groups_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2069 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE user_groups_id_seq OWNED BY user_groups.id;
+
+
+--
+-- TOC entry 2070 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: user_groups_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('user_groups_id_seq', 1, false);
+
+
+--
+-- TOC entry 187 (class 1259 OID 152289)
+-- Dependencies: 7
+-- Name: user_units; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE user_units (
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    id integer NOT NULL,
+    unit_id integer,
+    all_unit smallint,
+    pegawai_id integer
+);
+
+
+ALTER TABLE admin.user_units OWNER TO aagusti;
+
+--
+-- TOC entry 174 (class 1259 OID 152191)
+-- Dependencies: 7
+-- Name: users; Type: TABLE; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE users (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    kode character varying(50) NOT NULL,
+    nama character varying(250) NOT NULL,
+    disabled integer NOT NULL,
+    passwd character varying(64)
+);
+
+
+ALTER TABLE admin.users OWNER TO aagusti;
+
+--
+-- TOC entry 173 (class 1259 OID 152189)
+-- Dependencies: 7 174
+-- Name: users_id_seq; Type: SEQUENCE; Schema: admin; Owner: aagusti
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE admin.users_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2071 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: admin; Owner: aagusti
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- TOC entry 2072 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: admin; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('users_id_seq', 6, true);
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 164 (class 1259 OID 152125)
+-- Dependencies: 5
+-- Name: gaji_pegawai; Type: TABLE; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE gaji_pegawai (
+    tahun character varying(4) NOT NULL,
+    bulan character varying(2) NOT NULL,
+    jenis smallint NOT NULL,
+    urut smallint NOT NULL,
+    nip character varying(18) NOT NULL,
+    unitkd character varying(10),
+    sub smallint,
+    nama character varying(40),
+    tgl_lahir timestamp without time zone,
+    tmp_lahir character varying(40),
+    jns_kelamin character varying(1),
+    bank character varying(2),
+    rekening character varying(25),
+    npwp character varying(25),
+    no_pegawai character varying(5),
+    nojjp character varying(12),
+    alamat character varying(100),
+    namasi character varying(40),
+    sts_pegawaikd character varying(1),
+    tmt_pegawai timestamp without time zone,
+    sts_kwn character varying(1),
+    sts_sipil character varying(6),
+    agama character varying(15),
+    jml_si bigint,
+    jml_anak bigint,
+    golongankd character varying(5),
+    tmt_golongan timestamp without time zone,
+    masakerja bigint,
+    jbt_fungsikd character varying(5),
+    jbt_strukturkd character varying(5),
+    tmt_jabatan timestamp without time zone,
+    tunj_jab_fungsi bigint,
+    tunj_jab_struktur bigint,
+    gaji_pokok bigint,
+    tmt_gaji_pokok timestamp without time zone,
+    tunj_istri bigint,
+    tunj_anak bigint,
+    tunj_beras bigint,
+    gurukd character varying(2),
+    operator character varying(20),
+    tgl_ubah timestamp without time zone,
+    tunj_kerja bigint,
+    tdtkd character varying(1),
+    pend_terakhir character varying(100),
+    pend_jurusan character varying(100),
+    v_jab_struktur character varying(75),
+    pot_iwp bigint,
+    pot_taperum bigint,
+    pot_sewa_rumah bigint,
+    pot_pangan bigint,
+    pot_korpri bigint,
+    pot_gaji_lebih bigint,
+    pot_hutang bigint,
+    pembulatan bigint,
+    pph bigint,
+    tunj_umum bigint,
+    tunj_umum_tamb bigint,
+    tunj_otsus bigint,
+    tunj_dt bigint,
+    tunj_askes bigint,
+    tunj_penghasilan bigint,
+    biaya_jabatan bigint,
+    biaya_pensiun bigint,
+    persen_gaji bigint,
+    isttu smallint,
+    aktif_kd integer,
+    ptkp integer,
+    aktif_tgl timestamp without time zone,
+    tgl_gaji timestamp without time zone,
+    tmt_fungsi timestamp without time zone,
+    penerima_udwudt character varying(50),
+    tglbyr_udwudt timestamp without time zone,
+    gaji_kotor bigint,
+    potongan bigint,
+    gaji_bersih bigint
+);
+
+
+ALTER TABLE public.gaji_pegawai OWNER TO aagusti;
+
+--
+-- TOC entry 191 (class 1259 OID 152385)
+-- Dependencies: 5
+-- Name: gaji_potongan; Type: TABLE; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE gaji_potongan (
+    id bigint NOT NULL,
+    created timestamp without time zone NOT NULL,
+    updated timestamp without time zone NOT NULL,
+    update_uid integer,
+    create_uid integer,
+    tahun character varying(4) NOT NULL,
+    bulan character varying(2) NOT NULL,
+    jenis smallint NOT NULL,
+    urut smallint NOT NULL,
+    nip character varying(18) NOT NULL,
+    unitkd character varying(10),
+    potongan_1 bigint,
+    potongan_2 bigint,
+    potongan_3 bigint,
+    potongan_4 bigint,
+    potongan_5 bigint
+);
+
+
+ALTER TABLE public.gaji_potongan OWNER TO aagusti;
+
+--
+-- TOC entry 190 (class 1259 OID 152383)
+-- Dependencies: 191 5
+-- Name: gaji_potongan_id_seq; Type: SEQUENCE; Schema: public; Owner: aagusti
+--
+
+CREATE SEQUENCE gaji_potongan_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.gaji_potongan_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2073 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: gaji_potongan_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aagusti
+--
+
+ALTER SEQUENCE gaji_potongan_id_seq OWNED BY gaji_potongan.id;
+
+
+--
+-- TOC entry 2074 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: gaji_potongan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('gaji_potongan_id_seq', 3, true);
+
+
+--
+-- TOC entry 163 (class 1259 OID 152115)
+-- Dependencies: 5
+-- Name: models; Type: TABLE; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE models (
+    id integer NOT NULL,
+    name text,
+    value integer
+);
+
+
+ALTER TABLE public.models OWNER TO aagusti;
+
+--
+-- TOC entry 162 (class 1259 OID 152113)
+-- Dependencies: 163 5
+-- Name: models_id_seq; Type: SEQUENCE; Schema: public; Owner: aagusti
+--
+
+CREATE SEQUENCE models_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.models_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2075 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: models_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aagusti
+--
+
+ALTER SEQUENCE models_id_seq OWNED BY models.id;
+
+
+--
+-- TOC entry 2076 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: models_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('models_id_seq', 2, true);
+
+
+SET search_path = admin, pg_catalog;
+
+--
+-- TOC entry 1948 (class 2604 OID 152204)
+-- Dependencies: 175 176 176
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY apps ALTER COLUMN id SET DEFAULT nextval('apps_id_seq'::regclass);
+
+
+--
+-- TOC entry 1944 (class 2604 OID 152164)
+-- Dependencies: 168 167 168
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY configs ALTER COLUMN id SET DEFAULT nextval('configs_id_seq'::regclass);
+
+
+--
+-- TOC entry 1952 (class 2604 OID 152259)
+-- Dependencies: 183 184 184
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY fungsi_urusans ALTER COLUMN id SET DEFAULT nextval('fungsi_urusans_id_seq'::regclass);
+
+
+--
+-- TOC entry 1943 (class 2604 OID 152154)
+-- Dependencies: 165 166 166
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY fungsis ALTER COLUMN id SET DEFAULT nextval('fungsis_id_seq'::regclass);
+
+
+--
+-- TOC entry 1954 (class 2604 OID 152314)
+-- Dependencies: 188 189 189
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY group_modules ALTER COLUMN id SET DEFAULT nextval('group_modules_id_seq'::regclass);
+
+
+--
+-- TOC entry 1949 (class 2604 OID 152214)
+-- Dependencies: 178 177 178
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::regclass);
+
+
+--
+-- TOC entry 1950 (class 2604 OID 152224)
+-- Dependencies: 180 179 180
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY modules ALTER COLUMN id SET DEFAULT nextval('modules_id_seq'::regclass);
+
+
+--
+-- TOC entry 1946 (class 2604 OID 152184)
+-- Dependencies: 172 171 172
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY pegawais ALTER COLUMN id SET DEFAULT nextval('pegawais_id_seq'::regclass);
+
+
+--
+-- TOC entry 1953 (class 2604 OID 152279)
+-- Dependencies: 185 186 186
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY units ALTER COLUMN id SET DEFAULT nextval('units_id_seq'::regclass);
+
+
+--
+-- TOC entry 1945 (class 2604 OID 152174)
+-- Dependencies: 170 169 170
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY urusans ALTER COLUMN id SET DEFAULT nextval('urusans_id_seq'::regclass);
+
+
+--
+-- TOC entry 1951 (class 2604 OID 152239)
+-- Dependencies: 181 182 182
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY user_groups ALTER COLUMN id SET DEFAULT nextval('user_groups_id_seq'::regclass);
+
+
+--
+-- TOC entry 1947 (class 2604 OID 152194)
+-- Dependencies: 174 173 174
+-- Name: id; Type: DEFAULT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 1955 (class 2604 OID 152388)
+-- Dependencies: 191 190 191
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aagusti
+--
+
+ALTER TABLE ONLY gaji_potongan ALTER COLUMN id SET DEFAULT nextval('gaji_potongan_id_seq'::regclass);
+
+
+--
+-- TOC entry 1942 (class 2604 OID 152118)
+-- Dependencies: 163 162 163
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aagusti
+--
+
+ALTER TABLE ONLY models ALTER COLUMN id SET DEFAULT nextval('models_id_seq'::regclass);
+
+
+SET search_path = admin, pg_catalog;
+
+--
+-- TOC entry 2034 (class 0 OID 152201)
+-- Dependencies: 176
+-- Data for Name: apps; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY apps (id, created, updated, update_uid, create_uid, kode, nama, disabled, img, tahun) FROM stdin;
+1	2014-01-01 00:00:00	2014-01-01 00:00:00	\N	\N	admin	Administrator	0	\N	2014
+2	2014-11-24 01:13:24.266558	2014-11-24 01:13:24.266584	\N	\N	gaji	Gaji Pegawai dan Potongan	0		\N
+\.
+
+
+--
+-- TOC entry 2030 (class 0 OID 152161)
+-- Dependencies: 168
+-- Data for Name: configs; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY configs (id, created, updated, update_uid, create_uid, kode, nama, disabled) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2038 (class 0 OID 152256)
+-- Dependencies: 184
+-- Data for Name: fungsi_urusans; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY fungsi_urusans (id, created, updated, update_uid, create_uid, kode, nama, disabled, urusan_id, fungsi_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2029 (class 0 OID 152151)
+-- Dependencies: 166
+-- Data for Name: fungsis; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY fungsis (id, created, updated, update_uid, create_uid, kode, nama, disabled) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2041 (class 0 OID 152311)
+-- Dependencies: 189
+-- Data for Name: group_modules; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY group_modules (id, created, updated, update_uid, create_uid, kode, nama, disabled, group_id, module_id, reads, writes, inserts, deletes) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2035 (class 0 OID 152211)
+-- Dependencies: 178
+-- Data for Name: groups; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY groups (id, created, updated, update_uid, create_uid, kode, nama, disabled) FROM stdin;
+1	2014-11-24 01:17:20.586682	2014-11-24 01:17:20.58673	\N	\N	G0001	Admin Gaji	0
+2	2014-11-24 01:17:45.21806	2014-11-24 01:17:45.218092	\N	\N	G0002	Operator Potongan	0
+\.
+
+
+--
+-- TOC entry 2036 (class 0 OID 152221)
+-- Dependencies: 180
+-- Data for Name: modules; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY modules (id, created, updated, update_uid, create_uid, kode, nama, disabled, img, app_id, level_id) FROM stdin;
+1	2014-11-24 01:10:15.963037	2014-11-24 01:13:40.467681	\N	\N	G2001	Potongan Pegawai	0	\N	2	0
+2	2014-11-24 01:11:25.488114	2014-11-24 01:13:50.245343	\N	\N	G1001	Gaji Pegawai	0	\N	2	0
+\.
+
+
+--
+-- TOC entry 2032 (class 0 OID 152181)
+-- Dependencies: 172
+-- Data for Name: pegawais; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY pegawais (id, created, updated, update_uid, create_uid, kode, nama, disabled) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2039 (class 0 OID 152276)
+-- Dependencies: 186
+-- Data for Name: units; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY units (id, created, updated, update_uid, create_uid, kode, nama, disabled, kategori, singkat, level_id, header_id, urusan_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2031 (class 0 OID 152171)
+-- Dependencies: 170
+-- Data for Name: urusans; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY urusans (id, created, updated, update_uid, create_uid, kode, nama, disabled) FROM stdin;
+1	2014-01-01 00:00:00	2014-01-01 00:00:00	\N	\N	00	00	0
+\.
+
+
+--
+-- TOC entry 2037 (class 0 OID 152236)
+-- Dependencies: 182
+-- Data for Name: user_groups; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY user_groups (id, created, updated, update_uid, create_uid, kode, nama, disabled, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2040 (class 0 OID 152289)
+-- Dependencies: 187
+-- Data for Name: user_units; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY user_units (created, updated, update_uid, create_uid, id, unit_id, all_unit, pegawai_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2033 (class 0 OID 152191)
+-- Dependencies: 174
+-- Data for Name: users; Type: TABLE DATA; Schema: admin; Owner: aagusti
+--
+
+COPY users (id, created, updated, update_uid, create_uid, kode, nama, disabled, passwd) FROM stdin;
+2	2014-01-01 00:00:00	2014-01-01 00:00:00	\N	\N	sa	Sys Admin	0	a
+5	2014-11-24 01:35:47.854127	2014-11-24 01:35:47.854164	\N	\N	aagusti	Agus Gustiana	0	991004
+6	2014-11-26 19:07:22.456257	2014-11-26 19:07:22.45628	\N	\N	andi	andi	0	a
+\.
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 2028 (class 0 OID 152125)
+-- Dependencies: 164
+-- Data for Name: gaji_pegawai; Type: TABLE DATA; Schema: public; Owner: aagusti
+--
+
+COPY gaji_pegawai (tahun, bulan, jenis, urut, nip, unitkd, sub, nama, tgl_lahir, tmp_lahir, jns_kelamin, bank, rekening, npwp, no_pegawai, nojjp, alamat, namasi, sts_pegawaikd, tmt_pegawai, sts_kwn, sts_sipil, agama, jml_si, jml_anak, golongankd, tmt_golongan, masakerja, jbt_fungsikd, jbt_strukturkd, tmt_jabatan, tunj_jab_fungsi, tunj_jab_struktur, gaji_pokok, tmt_gaji_pokok, tunj_istri, tunj_anak, tunj_beras, gurukd, operator, tgl_ubah, tunj_kerja, tdtkd, pend_terakhir, pend_jurusan, v_jab_struktur, pot_iwp, pot_taperum, pot_sewa_rumah, pot_pangan, pot_korpri, pot_gaji_lebih, pot_hutang, pembulatan, pph, tunj_umum, tunj_umum_tamb, tunj_otsus, tunj_dt, tunj_askes, tunj_penghasilan, biaya_jabatan, biaya_pensiun, persen_gaji, isttu, aktif_kd, ptkp, aktif_tgl, tgl_gaji, tmt_fungsi, penerima_udwudt, tglbyr_udwudt, gaji_kotor, potongan, gaji_bersih) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2042 (class 0 OID 152385)
+-- Dependencies: 191
+-- Data for Name: gaji_potongan; Type: TABLE DATA; Schema: public; Owner: aagusti
+--
+
+COPY gaji_potongan (id, created, updated, update_uid, create_uid, tahun, bulan, jenis, urut, nip, unitkd, potongan_1, potongan_2, potongan_3, potongan_4, potongan_5) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2027 (class 0 OID 152115)
+-- Dependencies: 163
+-- Data for Name: models; Type: TABLE DATA; Schema: public; Owner: aagusti
+--
+
+COPY models (id, name, value) FROM stdin;
+1	one	1
+\.
+
+
+SET search_path = admin, pg_catalog;
+
+--
+-- TOC entry 1982 (class 2606 OID 152208)
+-- Dependencies: 176 176
+-- Name: apps_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY apps
+    ADD CONSTRAINT apps_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1984 (class 2606 OID 152206)
+-- Dependencies: 176 176
+-- Name: apps_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY apps
+    ADD CONSTRAINT apps_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1966 (class 2606 OID 152168)
+-- Dependencies: 168 168
+-- Name: configs_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY configs
+    ADD CONSTRAINT configs_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1968 (class 2606 OID 152166)
+-- Dependencies: 168 168
+-- Name: configs_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY configs
+    ADD CONSTRAINT configs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1998 (class 2606 OID 152263)
+-- Dependencies: 184 184
+-- Name: fungsi_urusans_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY fungsi_urusans
+    ADD CONSTRAINT fungsi_urusans_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 2000 (class 2606 OID 152261)
+-- Dependencies: 184 184
+-- Name: fungsi_urusans_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY fungsi_urusans
+    ADD CONSTRAINT fungsi_urusans_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1962 (class 2606 OID 152158)
+-- Dependencies: 166 166
+-- Name: fungsis_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY fungsis
+    ADD CONSTRAINT fungsis_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1964 (class 2606 OID 152156)
+-- Dependencies: 166 166
+-- Name: fungsis_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY fungsis
+    ADD CONSTRAINT fungsis_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2008 (class 2606 OID 152318)
+-- Dependencies: 189 189
+-- Name: group_modules_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY group_modules
+    ADD CONSTRAINT group_modules_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 2010 (class 2606 OID 152316)
+-- Dependencies: 189 189
+-- Name: group_modules_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY group_modules
+    ADD CONSTRAINT group_modules_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1986 (class 2606 OID 152218)
+-- Dependencies: 178 178
+-- Name: groups_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY groups
+    ADD CONSTRAINT groups_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1988 (class 2606 OID 152216)
+-- Dependencies: 178 178
+-- Name: groups_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY groups
+    ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1990 (class 2606 OID 152228)
+-- Dependencies: 180 180
+-- Name: modules_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY modules
+    ADD CONSTRAINT modules_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1992 (class 2606 OID 152226)
+-- Dependencies: 180 180
+-- Name: modules_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY modules
+    ADD CONSTRAINT modules_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1974 (class 2606 OID 152188)
+-- Dependencies: 172 172
+-- Name: pegawais_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY pegawais
+    ADD CONSTRAINT pegawais_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1976 (class 2606 OID 152186)
+-- Dependencies: 172 172
+-- Name: pegawais_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY pegawais
+    ADD CONSTRAINT pegawais_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2002 (class 2606 OID 152283)
+-- Dependencies: 186 186
+-- Name: units_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY units
+    ADD CONSTRAINT units_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 2004 (class 2606 OID 152281)
+-- Dependencies: 186 186
+-- Name: units_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY units
+    ADD CONSTRAINT units_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1970 (class 2606 OID 152178)
+-- Dependencies: 170 170
+-- Name: urusans_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY urusans
+    ADD CONSTRAINT urusans_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1972 (class 2606 OID 152176)
+-- Dependencies: 170 170
+-- Name: urusans_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY urusans
+    ADD CONSTRAINT urusans_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1994 (class 2606 OID 152243)
+-- Dependencies: 182 182
+-- Name: user_groups_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY user_groups
+    ADD CONSTRAINT user_groups_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1996 (class 2606 OID 152241)
+-- Dependencies: 182 182
+-- Name: user_groups_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY user_groups
+    ADD CONSTRAINT user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2006 (class 2606 OID 152293)
+-- Dependencies: 187 187
+-- Name: user_units_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY user_units
+    ADD CONSTRAINT user_units_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1978 (class 2606 OID 152198)
+-- Dependencies: 174 174
+-- Name: users_kode_key; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 1980 (class 2606 OID 152196)
+-- Dependencies: 174 174
+-- Name: users_pkey; Type: CONSTRAINT; Schema: admin; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 1960 (class 2606 OID 152132)
+-- Dependencies: 164 164 164 164 164 164
+-- Name: gaji_pegawai_pkey; Type: CONSTRAINT; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY gaji_pegawai
+    ADD CONSTRAINT gaji_pegawai_pkey PRIMARY KEY (tahun, bulan, jenis, urut, nip);
+
+
+--
+-- TOC entry 2012 (class 2606 OID 152392)
+-- Dependencies: 191 191 191 191
+-- Name: gaji_pot_ux1; Type: CONSTRAINT; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY gaji_potongan
+    ADD CONSTRAINT gaji_pot_ux1 UNIQUE (tahun, bulan, nip);
+
+
+--
+-- TOC entry 2014 (class 2606 OID 152390)
+-- Dependencies: 191 191
+-- Name: gaji_potongan_pkey; Type: CONSTRAINT; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY gaji_potongan
+    ADD CONSTRAINT gaji_potongan_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1957 (class 2606 OID 152123)
+-- Dependencies: 163 163
+-- Name: models_pkey; Type: CONSTRAINT; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY models
+    ADD CONSTRAINT models_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1958 (class 1259 OID 152124)
+-- Dependencies: 163
+-- Name: my_index; Type: INDEX; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+CREATE UNIQUE INDEX my_index ON models USING btree (name);
+
+
+--
+-- TOC entry 2026 (class 2620 OID 152363)
+-- Dependencies: 164 204
+-- Name: t_gaji_pegawai_biu; Type: TRIGGER; Schema: public; Owner: aagusti
+--
+
+CREATE TRIGGER t_gaji_pegawai_biu BEFORE INSERT OR UPDATE ON gaji_pegawai FOR EACH ROW EXECUTE PROCEDURE f_gaji_pegawai_biu();
+
+
+SET search_path = admin, pg_catalog;
+
+--
+-- TOC entry 2019 (class 2606 OID 152269)
+-- Dependencies: 1963 184 166
+-- Name: fungsi_urusans_fungsi_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY fungsi_urusans
+    ADD CONSTRAINT fungsi_urusans_fungsi_id_fkey FOREIGN KEY (fungsi_id) REFERENCES fungsis(id);
+
+
+--
+-- TOC entry 2018 (class 2606 OID 152264)
+-- Dependencies: 1971 184 170
+-- Name: fungsi_urusans_urusan_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY fungsi_urusans
+    ADD CONSTRAINT fungsi_urusans_urusan_id_fkey FOREIGN KEY (urusan_id) REFERENCES urusans(id);
+
+
+--
+-- TOC entry 2024 (class 2606 OID 152319)
+-- Dependencies: 178 189 1987
+-- Name: group_modules_group_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY group_modules
+    ADD CONSTRAINT group_modules_group_id_fkey FOREIGN KEY (group_id) REFERENCES groups(id);
+
+
+--
+-- TOC entry 2025 (class 2606 OID 152324)
+-- Dependencies: 180 189 1991
+-- Name: group_modules_module_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY group_modules
+    ADD CONSTRAINT group_modules_module_id_fkey FOREIGN KEY (module_id) REFERENCES modules(id);
+
+
+--
+-- TOC entry 2015 (class 2606 OID 152229)
+-- Dependencies: 176 1983 180
+-- Name: modules_app_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY modules
+    ADD CONSTRAINT modules_app_id_fkey FOREIGN KEY (app_id) REFERENCES apps(id);
+
+
+--
+-- TOC entry 2020 (class 2606 OID 152284)
+-- Dependencies: 186 170 1971
+-- Name: units_urusan_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY units
+    ADD CONSTRAINT units_urusan_id_fkey FOREIGN KEY (urusan_id) REFERENCES urusans(id);
+
+
+--
+-- TOC entry 2017 (class 2606 OID 152249)
+-- Dependencies: 178 182 1987
+-- Name: user_groups_group_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY user_groups
+    ADD CONSTRAINT user_groups_group_id_fkey FOREIGN KEY (group_id) REFERENCES groups(id);
+
+
+--
+-- TOC entry 2016 (class 2606 OID 152244)
+-- Dependencies: 174 182 1979
+-- Name: user_groups_user_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY user_groups
+    ADD CONSTRAINT user_groups_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- TOC entry 2021 (class 2606 OID 152294)
+-- Dependencies: 187 174 1979
+-- Name: user_units_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY user_units
+    ADD CONSTRAINT user_units_id_fkey FOREIGN KEY (id) REFERENCES users(id);
+
+
+--
+-- TOC entry 2023 (class 2606 OID 152304)
+-- Dependencies: 186 187 2003
+-- Name: user_units_pegawai_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY user_units
+    ADD CONSTRAINT user_units_pegawai_id_fkey FOREIGN KEY (pegawai_id) REFERENCES units(id);
+
+
+--
+-- TOC entry 2022 (class 2606 OID 152299)
+-- Dependencies: 187 186 2003
+-- Name: user_units_unit_id_fkey; Type: FK CONSTRAINT; Schema: admin; Owner: aagusti
+--
+
+ALTER TABLE ONLY user_units
+    ADD CONSTRAINT user_units_unit_id_fkey FOREIGN KEY (unit_id) REFERENCES units(id);
+
+
+--
+-- TOC entry 2047 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2014-11-26 20:48:06
+
+--
+-- PostgreSQL database dump complete
+--
+

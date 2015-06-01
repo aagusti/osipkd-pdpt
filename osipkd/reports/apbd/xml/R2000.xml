@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<apbd>
+  <unit>
+    <tahun>2014</tahun>
+    <urusan_kd>01</urusan_kd>
+    <urusan_nm>Urusan Nm</urusan_nm>
+    <unit_id>1</unit_id>
+    <unit_kd>01.01</unit_kd>
+    <unit_nm>Unit Nm</unit_nm>
+    <rekening>
+      <rek_kd>01</rek_kd>
+      <rek_nm>Rek Nm1</rek_nm>
+      <level_id>1</level_id>
+      <defsign>1</defsign>
+      <jumlah1>1000</jumlah1>
+      <jumlah2>2000</jumlah2>
+      <jumlah3>3000</jumlah3>
+      <jumlah4>4000</jumlah4>
+    </rekening>
+    <twl>
+      <kode>1</kode>
+      <trw1>1000</trw1>
+      <trw2>1000</trw2>
+      <trw3>1000</trw3>
+      <trw4>1000</trw4>
+    </twl>
+  </unit>
+</apbd>

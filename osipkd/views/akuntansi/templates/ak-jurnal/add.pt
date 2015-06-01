@@ -1,0 +1,596 @@
+<html metal:use-macro="load: ../base.pt">
+<div metal:fill-slot="content">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_close").click(function () {
+                window.location = '/ak-jurnal';
+                return false;
+            });
+        });
+    </script>
+  <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">${request.title}</h3>
+    </div>
+    <div class="panel-body">
+  <!--FORM HEADER-->
+  <form id="header" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+        class="form-horizontal">
+    <fieldset class="deformFormFieldset">
+      <input type="hidden" name="_charset_" />
+      <input type="hidden" name="__formid__" value="header"/>
+      <div tal:condition="'id' in form"> <!--ID-->
+        <div tal:define="field form['id']" style="display: none;">
+            ${structure:field.serialize()}
+        </div>
+      </div>
+      <div class="form-group">   
+        <div tal:define="field form['tahun_id']">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-1">
+             <input type="text" class="form-control" id="${field.oid}" 
+                    value="${request.session.tahun}" readonly name="${field.oid}">
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+        <!-- UNIT -------------------------------------------------------------------->
+        <div tal:define="field form['unit_id']" style="display: none;">
+             <input type="text" class="form-control" id="${field.oid}" 
+                    value="${request.session.unit_id}" readonly name="${field.oid}">
+        </div>
+        
+        <div id="item-unit_kd">
+          <label for="unit_kd" class="control-label col-md-1" id="req-unit_kd">
+                  SKPD</label>
+          <div class="col-md-2">
+           <input type="text" class="form-control" id="unit_kd" 
+                  name="unit_kd" value="${request.session.unit_kd}" readonly>
+          </div>
+        </div>
+        <div class="col-md-6" id="item-unit_nm">
+          <input type="text" class="form-control" id="unit_nm" 
+                 name="unit_nm" value="${request.session.unit_nm}" readonly>
+        </div>
+      </div>
+
+      
+      <!--Tanggal/JV Type-->
+      <div class="form-group">
+        <div tal:define="field form['tanggal']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                   tal:repeat="error field.error.messages()">
+                   ${error}</p>
+            </div>
+        </div>
+        <div tal:define="field form['jv_type']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}" >
+                  ${field.title}</label>
+          <div class="col-md-2">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+        </div>
+        <div tal:define="field form['is_skpd']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}" >
+                  ${field.title}</label>
+          <div class="col-md-2">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+        </div>    
+      </div>
+      <!--Jurnal Kode-->
+      <div class="form-group">
+        
+        <div tal:define="field form['kode']" >
+          <div id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+        </div>
+        <div tal:define="field form['nama']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-7">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+
+      <!--REFERECE-->
+      <div class="form-group">
+        <div tal:define="field form['source_no']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-2">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+        
+        <div tal:define="field form['tgl_source']" >
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+             ${structure:field.serialize()}
+            </div>
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+        </div>
+        <div class="col-md-2" tal:define="field form['source']" >
+           ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+        </div>
+        
+        
+      </div>
+      <!--CATATAN-->
+      <div class="form-group">
+        <div tal:define="field form['notes']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-5">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+        <!--BUTTON-->
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
+          <button type="submit" class="btn btn-warning" id="tutup"  name="tutup">Tutup</button>
+        </div>
+       </div> 
+    </fieldset>
+  </form>
+    </div>
+   </div>
+  
+  <!-- Grid Item --------------------------------------------------------->
+    <table id="table1" class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>SAP</th>
+                <th>Uraian SAP</th>
+                <th>Nilai</th>
+                <th>Catatan</th>
+                <th>Rekening</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table><br><br>
+  
+  <!-- Form Item --------------------------------------------------------->
+  <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title">Item Jurnal</h5>
+    </div>
+    <div class="panel-body">
+        <form id="detail" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+          class="form-horizontal" name="detail">
+          <input id="jurnal_item_id"  type="hidden" value="" name="jurnal_item_id">
+          <input id="kegiatan_sub_id" type="hidden" value="" name="kegiatan_sub_id">
+          <input id="jurnal_id"       type="hidden" value="" name="jurnal_id">
+          <input id="rekening_id"     type="hidden" value="" name="rekening_id">
+          <input id="sap_id"          type="hidden" value="" name="sap_id">
+          
+          <!--KEGIATAN SUB----------------------------------------------------------->
+          <div class="form-group">
+            <div class="col-md-3 box">
+              <div id="item-kegiatan_sub_kd">
+                <label for="kegiatan_sub_kd" class="control-label col-md-3" id="req-kegiatan_sub_kd">
+                        Kegiatan</label>
+                <div class="col-md-9">
+                   <input id="kegiatan_sub_kd" class=" form-control " type="text" value="" name="kegiatan_sub_kd" width="100%">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8" id="item-kegiatan_sub_nm">
+                 <input id="kegiatan_sub_nm" class=" form-control " type="text" value="" name="kegiatan_sub_nm">
+            </div>      
+          </div>
+
+          <!--REKENING -------------------------------------------------------------->  
+          <div class="form-group">
+            <div class="col-md-3 box">
+              <div id="item-rekening_kd">
+                <label for="rekening_kd" class="control-label col-md-3" id="req-rekening_kd">
+                        Rekening</label>
+                <div class="col-md-9">
+                   <input id="rekening_kd" class=" form-control " type="text" value="" name="rekening_kd" width="100%">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+               <input id="rekening_nm" class=" form-control " type="text" value="" name="rekening_nm">
+            </div>
+
+            <!--AMOUNT -------------------------------------------------------------->  
+            <div class="col-md-3">
+              <div class="form-group" id="item-amount-item">
+                <label for="amount" class="control-label col-md-2" id="req-amount-item" style="text-align:left;!important;">
+                        Nilai</label>
+                <div class="col-md-10">
+                   <input id="amount" class=" form-control " type="text" value="0" name="amount">
+                </div>
+              </div>
+            </div> 
+          </div>
+
+          <!--REKENING SAP -------------------------------------------------------------->  
+          <div class="form-group">
+            <div class="col-md-3 box">
+              <div id="item-sap_kd">
+                <label for="sap_kd" class="control-label col-md-3" id="req-sap_kd">
+                        SAP</label>
+                <div class="col-md-9">
+                   <input id="sap_kd" class=" form-control " type="text" value="" name="sap_kd" width="100%">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+               <input id="sap_nm" class=" form-control " type="text" value="" name="sap_nm">
+            </div>
+          </div>
+
+          <!--Referensi-------------------------------------------------------------->  
+          <div class="form-group">
+            <label for="notes" class="control-label col-md-1" id="req-notes">
+                     Catatan</label>
+            <div class="col-md-7">
+               <input id="notes" class=" form-control " type="text" value="" name="notes">
+            </div>
+            
+            <!--Button-------------------------------------------------------------->    
+            <div class="col-md-3">
+                <button id="item-baru" name="baru" type="button" class="btn btn-primary "
+                      value="simpan">Tambah</button>
+                <button id="item-save" name="simpan" type="submit" class="btn btn-primary "
+                      value="simpan">Update</button>
+                <button id="item_cancel" name="batal" type="reset" class="btn btn-danger "
+                    value="batal">Batal</button>
+            </div>
+          </div>
+
+        </form>
+    </div>    
+  </div>
+  
+  <!-- JavaScript to Grid ------------------------------------------------>
+  <script>
+    var mID;
+    var mThn;
+    var oTable;
+    var iPos;
+    var jurnal_id = $('#id').val();
+    var oTableUrl = "/ak-jurnal-item/"+jurnal_id+"/act/grid";
+    $(document).ready(function () {
+      oTable = $('#table1').dataTable({
+        "sDom"           : '<"toolbar">lfrtip',
+        "sAjaxSource"    : oTableUrl,
+        "bServerSide"    : true,
+        "bProcessing"    : true,
+        "bScrollCollapse": true,
+        "bSort"          : true,
+        "bInfo"          : false,
+        "bFilter"        : false,
+        "bAutoWidth"     : false,
+        "bPaginate"      : true,
+        "sPaginationType": "full_numbers",
+        
+        "lengthMenu": [
+            [10, 25, 50, 100],
+            [10, 25, 50, 100]
+        ],
+        "aoColumnDefs": [
+        {
+            "bSearchable": false,
+            "bVisible"   : false,
+            "aTargets"   : [0,6,7,8,9,10,11]
+        },{ 
+            "type"       : "numeric-comma", "aTargets": [3]
+        },{
+            "sClass"     : "right",
+            "aTargets"   : [3]
+        },{
+            "bSearchable": false,
+            "bSortable"  : false,
+            "aTargets"   : [1,2,5]
+        },{
+            "bSearchable": true,
+            "bSortable"  : false,
+            "aTargets"   : [3,4]
+        }
+        ],
+        "aoColumns": [
+            null,
+            {"width": "50px"},
+            {"width": "160px"},
+            {"width": "60px"},
+            {"width": "100px"},
+            {"width": "50px"},
+        ]
+      });
+        
+      var tb_array = [
+        '<div class="btn-group pull-left">',
+        '	<button id="btn_delete"  class="btn btn btn-danger"  type="button">Hapus</button>',
+        '	<!--button id="btn_close"class="btn btn btn-warning" type="button">Tutup</button>-->',
+        '	<!--button id="btn_edit" class="btn btn btn-primary" type="button">Edit</button-->',
+        '	<!--button id="btn_pdf"  class="btn btn btn-warning" type="button">PDF</button-->',
+        '	<!--button id="btn_csv"  class="btn btn btn-default" type="button">CSV</button-->',
+        '	&nbsp;',
+        '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+      $("div.toolbar").html(tb);
+      $("div.toolbar").attr('style', 'display:block; float: left; margin-bottom:6px; line-height:16px;');
+      $('#table1 tbody').on('click', 'tr', function () {
+          if ($(this).hasClass('selected')) {
+              $(this).removeClass('selected');
+          } else {
+              iPos = oTable.fnGetPosition(this);
+              var aData = oTable.fnGetData(iPos);
+              oTable.$('tr.selected').removeClass('selected');
+              $(this).addClass('selected');
+              mID = aData[0];
+              $("#jurnal_item_id").val(mID);
+              $("#kegiatan_sub_kd").val(aData[10]);
+              $("#kegiatan_sub_nm").val(aData[11]);
+              $("#rekening_kd").val(aData[5]);
+              $("#rekening_nm").val(aData[6]);
+              $("#sap_kd").val(aData[1]);
+              $("#sap_nm").val(aData[2]);
+              $("#amount").val(aData[3]);
+              $("#notes").val(aData[4]);
+              $("#jurnal_id").val(aData[9]);
+              $("#kegiatan_sub_id").val(aData[7]);
+              $("#rekening_id").val(aData[8]);
+              
+              oTable.$('tr.row_selected').removeClass('row_selected');
+              $(this).addClass('row_selected');
+          }
+      });
+      $('#btn_close').click(function () {
+          window.location = '/ak-jurnal';
+      });
+      $('#btn_add').click(function () {
+          window.location = '/ak-jurnal-item/add';
+      });
+
+      $('#btn_edit').click(function () {
+          if (mID) window.location = '/ak-jurnal-item/'+mID+'/edit';
+          else alert('Pilih Baris yang akan di edit');
+      });
+
+      $('#btn_delete').click(function () {
+      
+          if (mID) {
+            if (confirm('Yakin di hapus?')==true){
+              $.ajax({
+                type: "POST",
+                url: "/ak-jurnal-item/"+$("#id").val()+"/"+mID+"/delete",
+                success: function (html) {
+                  if (html.success == true) {
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $('#jurnal_item_id').val('');
+                    $('#jurnal_id').val('');
+                    $('#kegiatan_sub_id').val('');
+                    $('#rekening_id').val('');
+                    $('#kegiatan_sub_kd').val('');
+                    $('#kegiatan_sub_nm').val('');
+                    $('#rekening_kd').val('');
+                    $('#rekening_nm').val('');
+                    $('#sap_kd').val('');
+                    $('#sap_nm').val('');
+                    $('#amount').val(0);
+                    $('#notes').val('');
+                    oTable.fnReloadAjax(oTableUrl);
+                  } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  }
+                },
+                beforeSend: function () {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+              });
+            }}
+            else alert('Pilih Baris yang akan di hapus');
+      });        
+      })
+  </script>   
+  
+  <!-- JavaScript to Add Item for Grid ----------------------------------->
+  <script>
+    $('#item-baru').click(function () {
+          $('#jurnal_item_id').val('');
+          $('#detail').submit();
+    });
+    /* ********************************************************************
+    Save Jurnal Item
+    ******************************************************************** */
+    $( "#detail").submit(function( event ) {
+      var jurnal_id;
+      var is_success;
+      jurnal_id = $('#id').val();
+      is_success = true;
+      /* ********************************************************************
+      Cek header
+      ******************************************************************** */
+      if (! jurnal_id){
+          $("#errors").css('display', 'inline', 'important');
+          $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + 'Jurnal Belum Disimpan');
+          is_success = false;
+      }
+  
+      if (is_success){
+        $.ajax({
+          type: "POST",
+          url: "/ak-jurnal-item/"+jurnal_id+"/add",
+          data: $('#detail').serialize(),
+          success: function (html) {
+            if (html.success == true) {
+              $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+              $('#jurnal_item_id').val('');
+              $('#jurnal_id').val('');
+              $('#kegiatan_sub_id').val('');
+              $('#rekening_id').val('');
+              $('#kegiatan_sub_kd').val('');
+              $('#kegiatan_sub_nm').val('');
+              $('#rekening_kd').val('');
+              $('#rekening_nm').val('');
+              $('#sap_kd').val('');
+              $('#sap_nm').val('');
+              $('#amount').val(0);
+              $('#notes').val('');
+              
+              oTable.fnReloadAjax(oTableUrl);
+            } else {
+              $("#errors").css('display', 'inline', 'important');
+              $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+            }
+          },
+          
+          beforeSend: function () {
+            $("#errors").css('display', 'inline', 'important');
+            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+          }
+        });
+      }
+      event.preventDefault();
+    }); 
+  </script>    
+  
+  <!-- JavaScript to Typeahead for Kegiatan & Rekening ------------------->
+  <script>
+     // -- KEGIATAN SUB -- //
+     $(document).ready(function () {
+     $('#kegiatan_sub_kd').typeahead({
+         "hint"     : true,
+         "highlight": true,
+         "minLength": 1,
+         "remote"   : "/ag-kegiatan-sub/act/headofkode1?term=%QUERY", 
+     },{
+        "name"      : 'kegiatan_sub_kd',
+        "displayKey": 'value',
+     });      
+     $('#kegiatan_sub_nm').typeahead({
+         "hint"     : true,
+         "highlight": true,
+         "minLength": 1,
+         "remote"   : "/ag-kegiatan-sub/act/headofnama1?term=%QUERY", 
+     },{
+        "name"      : 'kegiatan_sub_nm',
+        "displayKey": 'value',
+     });        
+     
+     $('#kegiatan_sub_kd').bind('typeahead:selected', function(obj, datum, name) {      
+           $('#kegiatan_sub_id').val(datum.id);
+           $('#kegiatan_sub_nm').val(datum.nama);
+           
+           $('#rekening_kd').typeahead({
+               "hint"     : true,
+               "highlight": true,
+               "minLength": 1,
+               "remote"   : "/rekening/act/headofkode10?kegiatan_sub_id="+$("#kegiatan_sub_id").val()+"&term=%QUERY",
+           },{
+              "name"      : 'rekening_kd',
+              "displayKey": 'value',
+           });    
+           
+     });
+     $('#kegiatan_sub_nm').bind('typeahead:selected', function(obj, datum, name) {      
+           $('#kegiatan_sub_id').val(datum.id);
+           $('#kegiatan_sub_kd').val(datum.kode);
+     });     
+     $("#kegiatan_sub_nm").attr('readonly',true);           
+     
+     
+     // -- REKENING -- //
+     $('#rekening_nm').typeahead({
+         "hint"     : true,
+         "highlight": true,
+         "minLength": 1,
+         "remote"   : "/ag-kegiatan-sub/act/headofnama10?kegiatan_sub_id="+$("#kegiatan_sub_id").val()+"&term=%QUERY", 
+     },{
+        "name"      : 'rekening_nm',
+        "displayKey": 'value',
+     });    
+                     
+     $('#rekening_kd').bind('typeahead:selected', function(obj, datum, name) {  
+           $('#rekening_nm').val(datum.nama);
+           $('#rekening_id').val(datum.id);
+           
+           $('#sap_kd').typeahead({
+               "hint"     : true,
+               "highlight": true,
+               "minLength": 1,
+               "remote"   : "/sap/act/headofkode4?rekening_id="+$("#rekening_id").val()+"&term=%QUERY",
+           },{
+              "name"      : 'sap_kd',
+              "displayKey": 'value',
+           });    
+     });
+     $('#rekening_nm').bind('typeahead:selected', function(obj, datum, name) {      
+           $('#rekening_kd').val(datum.kode);
+           $('#rekening_id').val(datum.id);
+     });
+     $("#rekening_nm").attr('readonly',true); 
+     
+     // -- SAP -- //
+     $('#sap_nm').typeahead({
+         "hint"     : true,
+         "highlight": true,
+         "minLength": 1,
+         "remote"   : "/sap/act/headofnama4?rekening_id="+$("#rekening_id").val()+"&term=%QUERY",
+     },{
+        "name"      : 'sap_nm',
+        "displayKey": 'value',
+     });
+           
+     $('#sap_kd').bind('typeahead:selected', function(obj, datum, name) {  
+           $('#sap_nm').val(datum.nama);
+           $('#sap_id').val(datum.id);   
+     });
+     $('#sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+           $('#sap_kd').val(datum.kode);
+           $('#sap_id').val(datum.id);
+     });
+     $("#sap_nm").attr('readonly',true); 
+     });
+  </script>
+          
+  </div>      
+</html>

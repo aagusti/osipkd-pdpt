@@ -1,0 +1,131 @@
+<html metal:use-macro="load: aset.pt">
+    <div metal:fill-slot="admin">
+        <div metal:define-slot="unit">
+          <div class="container">
+            <div class="col-xs-6 col-md-8 col-md-offset-2 v-center">
+               <div class="row" style="text-align: center">
+                  <strong> ${datas and datas.custnm or ''}</strong>
+               </div>
+               <div class="row" style="text-align: center">
+                  <img src="${request.static_url('osipkd:static/images/custlogo.jpg')}" alt="logo">  
+               </div>
+               <div class="row" style="text-align: center">
+                    <strong>FORM With UnitKerja Filtering</strong>
+               </div>
+            </div>
+          </div>
+        </div>
+        <script>
+            $(document).ready(function () {                        
+                var unitID, unitNm;
+                var iPos1;
+                var tblUnit;
+                var tblUnitUrl = "/admin/unit/grid";
+                tblUnit = $('#tblUnit').dataTable({
+                    "sAjaxSource": tblUnitUrl,
+                    "bServerSide": true,
+                    "bProcessing": true,
+                    
+                    "sDom": '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort": true,
+                    "bInfo": false,
+                    "bFilter": true,
+                    "bAutoWidth": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible": false, "aTargets": [0,4,5,6,7] }, 
+                        {"bSearchable": false, "bVisible": true, "aTargets": [1,2,3] }, 
+                    ],
+
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "25%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "25%"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }
+                    ],
+                });
+                
+                $('#tblUnit tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblUnit.fnGetPosition(this);
+                        var aData = tblUnit.fnGetData(iPos1);
+                        unitID = aData[0];
+                        urusanKd = aData[1];
+                        unitKd = aData[2];
+                        unitNm = aData[3];
+                        tblUnit.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                /* end datatable unit*/
+                
+                $('#btn_pilih_unit').click(function() {
+                    if(unitID) {
+                        $('#dlgUnit').modal('hide');
+                        $('#unit_id').val(unitID);
+                        $('#unit_kd').val(unitKd);
+                        $('#unit_nm').val(unitNm);
+                        $('.units').change();
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+            });
+        </script>
+        <!-- Modal Unit -->
+        <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+                            <thead>
+                                <tr>
+                                    <th>Index</th>
+                                    <th>Kd Urusan</th>
+                                    <th>Kd Unit</th>
+                                    <th>Nama</th>
+                                    <th>Singkatan</th>
+                                    <th>Kategori</th>
+                                    <th>Urusan</th>
+                                    <th>Disabled</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pilih_unit" name="btn_pilih_unit">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
+</html>

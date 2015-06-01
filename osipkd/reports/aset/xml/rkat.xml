@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<aset>
+  <master>
+    <kat>
+      <kode>01104</kode>
+      <uraian>A</uraian>
+    </kat>
+    <kat>
+      <kode>76102</kode>
+      <uraian>B</uraian>
+    </kat>
+  </master>
+</aset>

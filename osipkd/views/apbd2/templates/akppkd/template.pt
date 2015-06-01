@@ -1,0 +1,31 @@
+<html metal:use-macro="load: ../../apptemplate.pt">
+    <div metal:fill-slot="nav">
+        <ul class="nav navbar-nav">
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Posting <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/c201/001">Posting STS</a></li>
+                    <li><a href="/c201/002">Posting SP2D</a></li>
+                    <li><a href="/c201/003">Posting Utang</a></li>
+                    <li><a href="/c201/004">Posting Piutang</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jurnal SKPD <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/c202/001">Jurnal Penerimaan</a></li>
+                    <li><a href="/c202/002">Jurnal Pengeluaran</a></li>
+                    <li><a href="/c202/003">Jurnal Umum</a></li>
+                    <li><a href="/c202/004">Jurnal Koreksi</a></li>
+                    <li><a href="/c202/005">Jurnal Penutup</a></li>
+                </ul>
+            </li>        
+        
+        </ul>
+    </div>
+    <div metal:fill-slot="content">
+        <div metal:define-slot="content2">
+        </div>
+    </div>
+</html>

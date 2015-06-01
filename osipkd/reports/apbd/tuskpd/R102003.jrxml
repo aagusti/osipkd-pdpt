@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="R103001" language="groovy" pageWidth="595" pageHeight="842" columnWidth="487" leftMargin="54" rightMargin="54" topMargin="72" bottomMargin="72">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="124"/>
+	<queryString language="xPath">
+		<![CDATA[/apbd/sts]]>
+	</queryString>
+	<field name="unit_nm" class="java.lang.String">
+		<fieldDescription><![CDATA[unit_nm]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="kode" class="java.lang.String">
+		<fieldDescription><![CDATA[kode]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[nama]]></fieldDescription>
+	</field>
+	<field name="jenis" class="java.lang.String">
+		<fieldDescription><![CDATA[jenis]]></fieldDescription>
+	</field>
+	<field name="tgl_sts" class="java.lang.String">
+		<fieldDescription><![CDATA[tgl_sts]]></fieldDescription>
+	</field>
+	<field name="tgl_validasi" class="java.lang.String">
+		<fieldDescription><![CDATA[tgl_validasi]]></fieldDescription>
+	</field>
+	<field name="nominal" class="java.lang.String">
+		<fieldDescription><![CDATA[nominal]]></fieldDescription>
+	</field>
+	<field name="bank_nama" class="java.lang.String">
+		<fieldDescription><![CDATA[bank_nama]]></fieldDescription>
+	</field>
+	<field name="bank_account" class="java.lang.String">
+		<fieldDescription><![CDATA[bank_account]]></fieldDescription>
+	</field>
+	<field name="tahun_id" class="java.lang.String">
+		<fieldDescription><![CDATA[tahun_id]]></fieldDescription>
+	</field>
+	<variable name="nominal" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{nominal})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="2" width="487" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="18" width="487" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[SURAT TANDA SETOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="34" width="487" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TAHUN ANGGARAN "+$F{tahun_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="169" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="11" width="52" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nomor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="27" width="52" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="11" width="10" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="27" width="10" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="94" width="52" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="65" width="183" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harap Diterima Uang Sebesar : Rp.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="11" width="176" height="16"/>
+				<textElement markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="27" width="176" height="16"/>
+				<textElement markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_sts}.substring(8,10)+"-"+$F{tgl_sts}.substring(5,7)+"-"+$F{tgl_sts}.substring(0,4)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="65" width="166" height="16"/>
+				<textElement markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{nominal})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="67" y="94" width="10" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="94" width="176" height="16"/>
+				<textElement markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bank_nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="110" width="176" height="16"/>
+				<textElement markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bank_account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="132" width="52" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Uraian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="132" width="10" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="78" y="132" width="410" height="27"/>
+				<textElement markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="262" splitType="Stretch">
+			<staticText>
+				<reportElement x="77" y="21" width="68" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Mengetahui]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="21" width="226" height="16"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kasir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="68" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tembusan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="196" width="243" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lembar 1: Kasir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="212" width="243" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lembar 2: Bendahara Penyetor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="228" width="243" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lembar 3: BUD/KAS Daerah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="244" width="243" height="16"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Lembar 4: Bagian Perhitungan/ Pembukuan KAS]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

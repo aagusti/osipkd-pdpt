@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="R1221_subreport1" language="groovy" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[/apbd/kegiatan/indikator]]>
+	</queryString>
+	<field name="tipe" class="java.lang.String">
+		<fieldDescription><![CDATA[tipe]]></fieldDescription>
+	</field>
+	<field name="no_urut" class="java.lang.String">
+		<fieldDescription><![CDATA[no_urut]]></fieldDescription>
+	</field>
+	<field name="tolok_ukur_1" class="java.lang.String">
+		<fieldDescription><![CDATA[tolok_ukur_1]]></fieldDescription>
+	</field>
+	<field name="volume_1" class="java.lang.String">
+		<fieldDescription><![CDATA[volume_1]]></fieldDescription>
+	</field>
+	<field name="satuan_1" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan_1]]></fieldDescription>
+	</field>
+	<field name="tolok_ukur_2" class="java.lang.String">
+		<fieldDescription><![CDATA[tolok_ukur_2]]></fieldDescription>
+	</field>
+	<field name="volume_2" class="java.lang.String">
+		<fieldDescription><![CDATA[volume_2]]></fieldDescription>
+	</field>
+	<field name="satuan_2" class="java.lang.String">
+		<fieldDescription><![CDATA[satuan_2]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="0" width="10" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_urut}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement isPrintRepeatedValues="false" x="2" y="0" width="76" height="14"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipe}=="1" ? "Capaian Program" : $F{tipe}=="2" ? "Masukan" : $F{tipe}=="3" ? "Keluaran" : $F{tipe}=="4" ? "Hasil" : ""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="89" y="0" width="108" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tolok_ukur_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="318" y="0" width="113" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format(Double.parseDouble($F{volume_1}))+" "+$F{satuan_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="207" y="0" width="111" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tolok_ukur_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="10" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_urut}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="431" y="0" width="113" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format(Double.parseDouble($F{volume_2}))+" "+$F{satuan_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

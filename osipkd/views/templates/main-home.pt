@@ -1,0 +1,19 @@
+<html metal:use-macro="load: main.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+<h1>Module</h1>
+<div class="col-md-2">
+  <p><img src="/files/logo.png" class="img-float img-thumbnail"/>
+</div>
+
+<div class="col-md-10">
+  <div tal:repeat="row rows" class="col-md-4 btn-toolbar" role="toolbar">
+    <div class="btn-group btn-group-lg btn-group-justified btn-group-fill-height">
+      <a href="${row.kode}" class="btn btn-success">${row.nama}</a>
+    </div>
+  </div>
+</div><!--well-->
+
+</div>
+</html>

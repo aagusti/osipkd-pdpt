@@ -1,0 +1,29 @@
+<html metal:use-macro="load: base.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+<div class="well">
+<h1>o-SIPKD</h1>
+<p><img src="/files/logo.png" class="img-float img-thumbnail"/>
+Selamat Datang di Aplikasi <code>${project}</code>
+
+<p>Aplikasi o-SIPKD adalah aplikasi yang didalamnya terdapat module-module 
+   yang dapat digunakan untuk melakukan proses otomasi pada pemerintahan daerah
+   
+<p>Aplikasi ini dibangun dengan berbasiskan opensource yang terdiri dari.
+<p>
+   <ul>
+      <li>Database Postgresql</li>
+      <li>Bahasa Pemrograman Python</li>
+      <li>Framwork:
+       <ol>
+          <li>Pyramid</li>
+          <li>CSS Bootsrap 3</li>
+          <li>jQuery</li>
+          <li>SQL Alchemy</li>
+       </ol>
+       </li>
+    </ul></div><!--well-->
+
+</div>
+</html>

@@ -1,0 +1,39 @@
+<html metal:use-macro="load: ../../templates/main.pt">
+<div metal:fill-slot="nav">
+    <ul class="nav navbar-nav">
+      <li tal:attributes="class request.path == '/anggaran' and 'active'">
+          <a href="/anggaran"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      <li tal:attributes="class request.path == '/ag-pendapatan' and 'active'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Entri<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/ag-pendapatan">Pendapatan</a></li>
+            <li><a href="/ag-btl">Belanja Tidak Langsung</a></li>
+            <li><a href="/ag-bl">Belanja Langsung</a></li>
+            <li><a href="/ag-penerimaan">Penerimaan</a></li>
+            <li><a href="/ag-pengeluaran">Pengeluaran</a></li>
+          </ul>
+      </li>    
+      <li tal:attributes="class request.path == '/laporan' and 'active'">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laporan<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="/ag-report/r100">RKA</a></li>
+            <li><a href="/ag-report/r200">DPA</a></li>
+            <li><a href="/ag-report/r300">RPKA</a></li>
+            <li><a href="/ag-report/r400">DPPA</a></li>
+            <li><a href="/ag-report/r500">APBD</a></li>
+            <li><a href="/ag-report/r600">Perubahan APBD</a></li>
+            <li><a href="/ag-report/r700">Kas Budget</a></li>
+          </ul>
+      </li>    
+      
+    </ul>
+</div>
+
+<div metal:fill-slot="content">
+    <div metal:define-slot="content"></div> 
+</div>
+<div metal:fill-slot="scripts">
+    <div metal:define-slot="scripts"></div> 
+</div>
+</html>
+

@@ -1,0 +1,63 @@
+<html metal:use-macro="load: ../../templates/main.pt">
+<div metal:fill-slot="nav">
+    <ul class="nav navbar-nav">
+      <li tal:attributes="class request.path == '/app' and 'active'">
+          <a href="/admin"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+      <li class="dropdown" tal:attributes="class request.matched_route.name in ['user', 'user-add', 'user-edit', 'user-delete'] and 'active'">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">EIS <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/carousel">Tabular</a></li>
+          <li><a href="/eis-chart">Chart</a></li>
+          <li><a href="/eis-slide">Slide</a></li>
+          <li><a href="/eis-item">Penerimaan</a></li>
+        </ul>
+      </li>  
+      <li class="dropdown" tal:attributes="class request.matched_route.name in ['ag-tahun'] and 'active'">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anggaran <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/apbd-tahun">Seting Tahun</a></li>
+          <li><a href="/program">Program</a></li>
+          <li><a href="/kegiatan">Kegiatan</a></li>
+          <li><a href="/fungsi">Fungsi</a></li>
+          <li><a href="/fungsiurusan">Fungsi Urusan</a></li>
+        </ul>
+      </li>
+      <li class="dropdown" tal:attributes="class request.matched_route.name in ['user', 'user-add', 'user-edit', 'user-delete'] and 'active'">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/rekening">Rekening</a></li>
+          <li><a href="/sap">Sap</a></li>
+          <li><a href="/rekening-sap">Rekening Sap</a></li>
+          <li><a href="/urusan">Urusan</a></li>
+          <li><a href="/unit">Unit</a></li>
+          <li><a href="/user/unit">User Unit</a></li>
+          <li><a href="/pegawai">Pegawai</a></li>
+          <li><a href="/jabatan">Jabatan</a></li>
+          <li><a href="/pejabat">Pejabat</a></li>
+          <li><a href="/dasarhukum">Dasar Hukum</a></li>
+        </ul>
+      </li>
+      
+      <li class="dropdown" tal:attributes="class request.matched_route.name in ['user', 'user-add', 'user-edit', 'user-delete'] and 'active'">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Umum <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/user">User</a></li>
+          <li><a href="/group">Group</a></li>
+          <!--li><a href="/resource">Resource</a></li-->
+          <li><a href="/user/group">User Group</a></li>
+          <li><a href="/app">Aplikasi</a></li>
+          <li><a href="/routes">Route</a></li>
+          <li><a href="/group/routes">Group Permission</a></li>
+        </ul>
+      </li>          
+    </ul>
+</div>
+
+<div metal:fill-slot="content">
+    <div metal:define-slot="content"></div> 
+</div>
+<div metal:fill-slot="scripts">
+    <div metal:define-slot="scripts"></div> 
+</div>
+</html>
+

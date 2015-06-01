@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpt_dpa" language="groovy" pageWidth="612" pageHeight="1008" whenNoDataType="AllSectionsNoDetail" columnWidth="540" leftMargin="54" rightMargin="18" topMargin="36" bottomMargin="72">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="167"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="R2000_subreport1" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="XML_FILE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="R2000_subreport2" class="java.lang.String" isForPrompting="false"/>
+	<queryString language="xPath">
+		<![CDATA[apbd/unit]]>
+	</queryString>
+	<field name="tahun" class="java.lang.String">
+		<fieldDescription><![CDATA[tahun]]></fieldDescription>
+	</field>
+	<field name="urusan_kd" class="java.lang.String">
+		<fieldDescription><![CDATA[urusan_kd]]></fieldDescription>
+	</field>
+	<field name="urusan_nm" class="java.lang.String">
+		<fieldDescription><![CDATA[urusan_nm]]></fieldDescription>
+	</field>
+	<field name="unit_id" class="java.lang.String">
+		<fieldDescription><![CDATA[unit_id]]></fieldDescription>
+	</field>
+	<field name="unit_kd" class="java.lang.String">
+		<fieldDescription><![CDATA[unit_kd]]></fieldDescription>
+	</field>
+	<field name="unit_nm" class="java.lang.String">
+		<fieldDescription><![CDATA[unit_nm]]></fieldDescription>
+	</field>
+	<field name="customer" class="java.lang.String">
+		<fieldDescription><![CDATA[customer]]></fieldDescription>
+	</field>
+	<group name="unit_kd" isStartNewPage="true" isResetPageNumber="true">
+		<groupExpression><![CDATA[$F{unit_kd}]]></groupExpression>
+		<groupHeader>
+			<band height="54">
+				<rectangle>
+					<reportElement x="0" y="27" width="478" height="27"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement x="460" y="0" width="80" height="54"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="0" y="0" width="460" height="27"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[RINGKASAN DOKUMEN PELAKSANAAN ANGGARAN
+SATUAN KERJA PERANGKAT DAERAH]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="27" width="460" height="14"/>
+					<textElement textAlignment="Center" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{customer}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="40" width="460" height="14"/>
+					<textElement textAlignment="Center" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TAHUN ANGGARAN "+$F{tahun}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="460" y="27" width="80" height="25"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DPA SKPD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="460" y="12" width="80" height="28"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Formulir]]></text>
+				</staticText>
+			</band>
+			<band height="38">
+				<rectangle>
+					<reportElement x="0" y="19" width="540" height="19"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<rectangle>
+					<reportElement x="0" y="0" width="540" height="19"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<textField isBlankWhenNull="true">
+					<reportElement x="125" y="3" width="53" height="14"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{urusan_kd}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="125" y="22" width="63" height="14"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[": "+$F{unit_kd}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="178" y="3" width="362" height="14"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{urusan_nm}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="178" y="22" width="362" height="14"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{unit_nm}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="5" y="3" width="120" height="14"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[URUSAN PEMERINTAHAN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="22" width="120" height="14"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+					<text><![CDATA[ORGANISASI]]></text>
+				</staticText>
+			</band>
+			<band height="26">
+				<staticText>
+					<reportElement x="0" y="0" width="63" height="26"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[KODE REKENING]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="447" y="0" width="93" height="26"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[JUMLAH]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="63" y="0" width="384" height="26"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[URAIAN]]></text>
+				</staticText>
+			</band>
+			<band height="14">
+				<staticText>
+					<reportElement x="447" y="0" width="93" height="14"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="63" y="0" width="384" height="14"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[2]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="63" height="14"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[1]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+			<band height="14" splitType="Stretch">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="540" height="14"/>
+					<box leftPadding="1">
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				</textField>
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="540" height="14"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRXmlDataSource($P{XML_FILE}, "/apbd/unit/twl")]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{R2000_subreport2}]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="109">
+				<textField isBlankWhenNull="true">
+					<reportElement x="357" y="76" width="183" height="16"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="357" y="5" width="183" height="16"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="357" y="21" width="183" height="16"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="357" y="92" width="183" height="16"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="14">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER}>1]]></printWhenExpression>
+			<staticText>
+				<reportElement x="447" y="0" width="93" height="14"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="63" y="0" width="384" height="14"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="63" height="14"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="63" height="14"/>
+				<box leftPadding="1">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="447" y="0" width="93" height="14"/>
+				<box leftPadding="0" rightPadding="1">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="63" y="0" width="384" height="14"/>
+				<box leftPadding="1">
+					<leftPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+			</textField>
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="540" height="14"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRXmlDataSource($P{XML_FILE}, "/apbd/unit/rekening")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{R2000_subreport1}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

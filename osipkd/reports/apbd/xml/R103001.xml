@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<apbd>
+  <invoice>
+    <tahun>2014</tahun>
+    <unit_nm>A</unit_nm>
+    <jenis>A</jenis>
+    <invoice_id>A</invoice_id>
+    <invoice_nm>A</invoice_nm>
+    <tgl_invoice>A</tgl_invoice>
+    <ap_nomor>A</ap_nomor>
+    <ap_nama>A</ap_nama>
+    <ap_rekening>A</ap_rekening>
+    <ap_npwp>A</ap_npwp>
+    <kegiatan_nm>A</kegiatan_nm>
+    <nilai>A</nilai>
+  </invoice>
+</apbd>

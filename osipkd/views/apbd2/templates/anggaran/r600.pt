@@ -1,0 +1,221 @@
+<html metal:use-macro="load: ../anggaran/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default ">
+    <script>
+      var mID;
+      $(document).ready(function () {
+        $('#btn_cetak').click(function () {
+            var jenis = $('input[name="jenis"]:checked').val();
+            if(jenis==undefined) {
+                alert('Sikahkan pilih laporan yang akan ditampilkan!');
+                return;
+            }
+                
+            if (jenis=='r613' || jenis=='r622') {
+                if(unitID)
+                    window.open('/anggaran/r600/'+jenis+'?id='+unitID);
+                else
+                    alert('Silahkan pilih Unit ID');
+            }
+            else
+                window.open('/anggaran/r600/'+jenis);
+        });
+        
+        $('input[name="jenis"]').click(function () {
+            var jenis = $(this).val();
+            if (jenis=='r613' || jenis=='r622')
+                $('#div_tblunit').show();
+            else
+                $('#div_tblunit').hide();
+        });
+        
+        $('#div_tblunit').hide();
+        $('input[name="jenis"]').prop('checked', false);
+      });
+    </script>
+    <div class="panel-heading">
+      <h3>LAPORAN PERUBAHAN APBD</h3>
+    </div>
+    
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>PERATURAN DAERAH TENTANG PERUBAHAN APBD</h3>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r611">
+                    Lampiran I Ringkasan APBD
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r6111">
+                    Lampiran IA Ringkasan APBD Rincian Objek
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r612">
+                    Lampiran II Ringkasan Rekapitulasi SKPD
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r613">
+                    Lampiran III Rincian APBD (Jenis Belanja)
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r614">
+                    Lampiran IV Program dan Kegiatan
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r615">
+                    Lampiran V Klasifikasi Urusan dan Fungsi
+                    </label>
+                </div>
+                
+                
+                <h3>PERATURAN KEPALA DAERAH TENTANG PERUBAHAN APBD</h3>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r621">
+                    Lampiran I Ringkasan APBD
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r6211">
+                    Lampiran IA Ringkasan APBD Rincian Objek
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="jenis" value="r622">
+                    Lampiran II Rincian APBD
+                    </label>
+                </div>
+                
+                <button type="button" class="btn-primary" id="btn_cetak">Cetak Laporan</button>
+            </div>
+            <!-- table -->
+            <div class="col-sm-6" id="div_tblunit">
+                <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Kd Urusan</th>
+                            <th>Kd Unit</th>
+                            <th>Nama</th>
+                            <th>Singkatan</th>
+                            <th>Kategori</th>
+                            <th>Urusan</th>
+                            <th>Disabled</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- row--> 
+    </div>
+    <!-- Modal Unit -->
+    <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/admin/unit/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource": tblUnitUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": false, "bVisible": true, "aTargets": [1,2,3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%",
+               "sClass": "center"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID = aData[0];
+                urusanKd = aData[1];
+                unitKd = aData[2];
+                unitNm = aData[3];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /* end datatable unit*/
+
+        $('#btn_plh_unit').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $.ajax({
+              type: "POST",
+              url: "/admin/change/unit",
+              data: "unit_id="+unitID,
+              success: function (html) {
+                if (html.success == true) {
+                  $('#unit_nm').val(unitNm);
+                  $('#unit_kd').text(urusanKd+'.'+unitKd);
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+  </div>
+</html>

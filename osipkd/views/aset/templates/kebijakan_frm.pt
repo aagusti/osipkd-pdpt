@@ -1,0 +1,95 @@
+<html metal:use-macro="load: aset.pt">
+    <div metal:fill-slot="admin" class="panel panel-default">
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/aset/kebijakan/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+
+                $("#btn_close").click(function () {
+                    window.location = '/aset/kebijakan';
+                    return false;
+                });
+            });
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Kebijakan</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <fieldset>
+                    <input type="hidden" name="id" id="id" value="${datas.id}">
+                    <div class="form-group">
+                        <label for="kode" class="control-label col-sm-2">Kode</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="uraian" class="control-label col-sm-2">Uraian</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="uraian" id="uraian" value="${rows and rows.uraian}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tahun" class="control-label col-sm-2">Tahun</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="tahun" id="tahun" value="${rows and rows.tahun}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="minimum" class="control-label col-sm-2">Minimum</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="minimum" id="minimum" value="${rows and rows.minimum}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori" class="control-label col-sm-2">Kategori</label>
+                        <div class="col-sm-4">
+                            <select id="kategori_id" name="kategori_id" class="form-control">
+                                <option value="">Pilih Kategori</option>
+                                <option tal:repeat="row kategoris" 
+                                    value="${row.id}"
+                                    tal:attributes="selected 'selected' if rows and rows.kategori_id==row.id else None">${row.uraian}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">&nbsp;</label>
+                        <label class="col-sm-2">
+                        <input type="checkbox" name="disabled" id="disabled" 
+                            tal:attributes="checked 'checked' if rows and rows.disabled==1 else None">&nbsp;Disable
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">&nbsp;</label>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                            <button type="reset" class="btn btn-info" id="btn_cancel">Batal</button>
+                            <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</html>

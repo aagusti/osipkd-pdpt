@@ -1,0 +1,392 @@
+<html metal:use-macro="load: ../akskpd/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+    
+    <style>
+    .modalkegitem {
+        width: 900px;
+    }
+    
+    </style>
+
+    <script type='text/javascript'>
+      var mod = "/c102/997/";
+      var mID;
+      var oTable;
+      var iPos;
+      
+      $(document).ready(function () {
+
+        $("#btn_close").click(function () {
+            window.location = "/c102/001/frm/" + ${rows and rows.jurnal_id or datas.jurnal_id or 0};
+            return false;
+        });
+
+        $("#btn_save").click(function () {
+            //var vol_1=document.getElementsByName('vol_1')[0].value;
+            //var vol_2=document.getElementsByName('vol_2')[0].value;
+            //var harga=document.getElementsByName('harga')[0].value;
+            //var ppn_prsn=document.getElementsByName('ppn_prsn')[0].value/100;
+            //var pph_prsn=document.getElementsByName('pph_prsn')[0].value/100;
+           
+            //var jumlah=parseFloat(vol_1) * parseFloat(vol_2) * parseFloat(harga);
+            //var jml_ppn=parseFloat(vol_1) * parseFloat(vol_2) * parseFloat(harga) * parseFloat(ppn_prsn);
+            //var jml_pph=parseFloat(vol_1) * parseFloat(vol_2) * parseFloat(harga) * parseFloat(pph_prsn);
+            
+            //document.getElementsByName('nilai')[0].value = jumlah;
+            //document.getElementsByName('ppn')[0].value = jml_ppn;
+            //document.getElementsByName('pph')[0].value = jml_pph;
+            
+            $.ajax({
+                type: "POST",
+                url: mod + "save",
+                data: $("#myform").serialize(),
+                success: function (html) {
+                    if (html.success == true) {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                },
+                beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+            });
+            return false;
+        });
+      });                  
+    </script>
+ 
+        <div class="panel-heading">
+            <h3 class="panel-title">Jurnal Item</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+                <input type="hidden" name="jurnal_id" id="jurnal_id" value="${rows and rows.jurnal_id or datas.jurnal_id or 0}"/>
+                <!--input type="hidden" name="kegiatan_sub_id" id="kegiatan_sub_id" value="${rows and rows.kegiatan_sub_id or datas.kegiatan_sub_id}"/-->
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+                    <div class="col-xs-1">
+                        <span class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True">${rows and rows.jurnals.tahun_id or datas.tahun} </span>
+                    </div>
+                    <label class="control-label col-xs-2" for="rekening_id">Rekening</label>
+                    <div class="col-xs-6">                       
+                        <div class="input-group">
+                            <input class="form-control" type="hidden" name="rekening_id" id="rekening_id" value="${rows and rows.rekening_id}" /> 
+                            <span class="form-control" type="text" name="kegiatan_sub_nm" id="kegiatan_sub_nm" readonly="True">${rows and rows.rekenings.nama}</span>
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btn_kegiatan_sub">...</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="jurnal_id">Id Jurnal</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="jurnal_id" id="jurnal_id" value="${rows and rows.jurnal_id or datas.jurnal_id or 0}" readonly required />
+                    </div>
+                    <label class="control-label col-xs-2" for="nama">Uraian</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama  or None}" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="debet">Debet</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="debet" id="debet" value="${rows and rows.debet or 0}" required />
+                    </div>
+                    <label class="control-label col-xs-1" for="kode">Kode</label>
+                    <div class="col-xs-3">
+                        <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode or None}" readonly required />
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="kredit">Kredit</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="kredit" id="kredit" value="${rows and rows.kredit or 0}" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="notes">Catatan</label>
+                    <div class="col-xs-3">
+                        <input class="form-control" type="text" name="notes" id="notes" value="${rows and rows.notes}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="kegiatan_sub_id"></label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="hidden" name="kegiatan_sub_id" id="kegiatan_sub_id" value="${rows and rows.kegiatan_sub_id or None}" readonly required />
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label class="control-label col-xs-2"></label>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                        <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+                        <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                    </div>
+                </div>
+              <br>
+            </form>
+        </div>
+        <!--panel-body-->
+
+        <script>
+            $(document).ready(function () {
+                $('#btn_kegiatan_sub').click(function() {
+                    $('#dlgKegiatanSub').modal('show');
+                });
+
+                var kegiatanSubID, kegiatanSubKd, kegiatanSubNm, kegiatanKd;
+                var mID;
+                var mID2;
+                var iPos;
+                var oTable;
+                var oTable2;
+
+                oTable = $('#table1').dataTable({
+                    "bScrollCollapse": true,
+                    "bJQueryUI"      : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    "sDom"           : '<"toolbar">lfrtip',
+                    
+                    "lengthMenu": [
+                        [5, 10, 15, -1],
+                        [5, 10, 15, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {
+                        "bSearchable": false,
+                        "bVisible"   : false,
+                        "aTargets"   : [0]
+                    }],
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "25%"
+                        }, {
+                            "sWidth": "75%"
+                        }
+                    ],
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                        $(nRow).on("click", function (event) {
+                            if ($(this).hasClass('row_selected')) {
+                                /* mID = '';
+                                $(this).removeClass('row_selected'); */
+                            } else {
+
+                                var data = oTable.fnGetData(this);
+                                mID = data[0];
+
+                                oTable.$('tr.row_selected').removeClass('row_selected');
+                                $(this).addClass('row_selected');
+
+                                oTable2.fnReloadAjax("/apbd/dlg/kegiatanitem5?kegiatan_sub_id=" + mID);
+                            }
+                        })
+                    },
+                    "fnInitComplete": function (oSettings, json) {
+                        if (!mID) selecttopRow();
+                    },
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bProcessing"    : true,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bServerSide"    : true,
+                    "sAjaxSource"    : "/apbd/dlg/kegiatansub5"
+                });
+                var tb_array = [];
+                var tb = tb_array.join(' ');
+                $("div.toolbar").html(tb);
+
+                $('#table1 tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos = oTable.fnGetPosition(this);
+                        var aData = oTable.fnGetData(iPos);
+                        mID = aData[0];
+                        oTable.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                })
+
+                function selecttopRow() {
+                    var nTop = $('#table1 tbody tr')[0];
+                    var iPos = oTable.fnGetPosition(nTop);
+
+                    /* Use iPos to select the row */
+                    var data = oTable.fnGetData(iPos);
+                    mID = data[0];
+                    dID = '';
+
+                    $('#table1 tbody tr:eq(0)').addClass('row_selected');
+
+                    oTable2.fnReloadAjax("/apbd/dlg/kegiatanitem5?kegiatan_sub_id=" + mID);
+                }
+
+                /**********************************************************************************************/
+
+                oTable2 = $('#table2').dataTable({
+                    "bScrollCollapse": true,
+                    "bJQueryUI"      : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    "sDom"           : '<"toolbar2">lfrtip',
+                    
+                    "lengthMenu": [
+                        [3, 10, 15, -1],
+                        [3, 10, 15, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {
+                        "bSearchable": false,
+                        "bVisible"   : false,
+                        "aTargets"   : [0,4,5,6]
+                    },{
+                        "sClass"   : "right",
+                        "aTargets" : [3],
+                        "mRender"  : function (data, type, full) {
+                        return formatNumber(data);}
+                    }],
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "65%"
+                        }, {
+                            "sWidth": "15%"
+                        }
+                    ],
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                        $(nRow).on("click", function (event) {
+                            if ($(this).hasClass('row_selected')) {
+                                /* mID = '';
+                                $(this).removeClass('row_selected'); */
+                            } else {
+
+                                var data = oTable2.fnGetData(this);
+                                mID2 = data[0];
+
+                                oTable2.$('tr.row_selected').removeClass('row_selected');
+                                $(this).addClass('row_selected');
+                            }
+                        })
+                    },
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bProcessing"    : true,
+                    "bFilter"        : false,
+                    "bAutoWidth"     : false,
+                    "bServerSide"    : true,
+                    "sAjaxSource"    : "/apbd/dlg/kegiatanitem5?id=0"
+                });
+
+                function formatNumber(n) {
+                    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+
+                var tb_array2 = [];
+                var tb2 = tb_array2.join(' ');
+                $("div.toolbar2").html(tb2);
+
+                $('#table2 tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kegiatanSubID = ''; kegiatanSubKd = ''; kegiatanSubNm=''; kegiatanKd=''; rekeningID=''; subID='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos2 = oTable2.fnGetPosition(this);
+                        var aData = oTable2.fnGetData(iPos2);
+
+                        kegiatanSubID = aData[0];
+                        kegiatanSubKd = aData[1];
+                        kegiatanSubNm = aData[2];
+                        kegiatanKd    = aData[6];
+                        rekeningID    = aData[4];
+                        subID         = aData[5];
+
+                        oTable2.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+                $('#btn_pil_keg_sub').click(function() {
+                    if(kegiatanSubID) {
+                        $('#dlgKegiatanSub').modal('hide');
+                        if ($('#rekening_id').val()=='') {
+                            $('#rekening_id').val(rekeningID);
+                        };
+                        if ($('#kegiatan_sub_id').val()=='') {
+                            $('#kegiatan_sub_id').val(subID);
+                        };
+                        if ($('#nama').val()=='') {
+                            $('#nama').val(kegiatanSubNm);
+                        };
+                        if ($('#kode').val()=='') {
+                            $('#kode').val(kegiatanKd+'.'+kegiatanSubKd);
+                        };
+                        $('#rekening_id').val(rekeningID);
+                        $('#kegiatan_sub_nm').text(rekeningID+' | '+kegiatanSubKd+' | '+kegiatanSubNm);
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+            });
+            function update_stat(id, a) {
+                var val = Number(a);
+                $.ajax({
+                    url: 'apbd/dlg/kegiatanitem5/?kegiatan_sub_id=' + id + '&val=' + val,
+                    success: function (data) {
+                        $('#kegiatan_sub_id').html(data);
+                    }
+                });
+            }
+        </script>
+
+        <div class="modal fade" id="dlgKegiatanSub" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKegiatanSubLabel">Pilih Kegiatan dan Rekening</h4>
+                    </div>
+
+                    <center><h3 class="panel-title">Kegiatan</h3></center>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover table-condensed" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>Index</th>
+                                    <th>Kode</th>
+                                    <th>Uraian Kegiatan</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <center><h3 class="panel-title">Rekening</h3></center>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover table-condensed" id="table2">
+                            <thead>
+                                <tr>
+                                    <th>Index</th>
+                                    <th>Kode</th>
+                                    <th>Uraian Rekening</th>
+                                    <th>DPPA</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_keg_sub" name="btn_pil_keg_sub">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+  </div>
+</html>

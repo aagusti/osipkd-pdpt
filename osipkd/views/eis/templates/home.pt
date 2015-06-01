@@ -1,0 +1,396 @@
+<html metal:use-macro="load: base.pt">
+    <div metal:fill-slot="content">
+         <script>
+            $(function(){
+                $('.carousel').carousel({
+                    interval: 5000
+                });
+            });
+            
+            var bar_chart_options = {
+                responsive:true
+            };
+        </script>
+        <style>
+            body {
+                background-image: url("static/img/bg1.jpg");
+            }
+            .judul {
+                margin-top: 10px;
+                color: #777;
+                font-size: 40px;
+                font-weight: normal;
+            }
+            .subjudul {
+                margin-bottom: 0px;
+                margin-bottom: 20px;
+                color: #777;
+                font-size: 30px;
+                font-weight: normal;
+            }
+            .alert {
+                border-radius: 0px !important;
+            }
+            .alert-judul {
+                color: #fff;
+                background-color: #6497C9;
+                border-color: #5580AA;
+            }
+            .alert-judul h3 {
+                margin-top: 4px !important;
+                margin-bottom: 4px !important;
+            }
+        </style>
+
+        <div class="well" style="background-color:rgb(255,255,255); padding-top:5px;">
+          <div class="judul">
+              <center>
+              <div class="row">
+                  <div class="col-md-2">
+                  <img class="" src="/static/img/logo.png" style="height:80px; width:80px;padding-bottom:5px;">
+                  </div>
+                  <div class="col-md-8">
+                  <h3 style="margin-top:5px;">SUMMARY EXECUTIVE PAJAK DAERAH</h3>
+                  <h4>Tahun ${request.session['tahun']}</h4>
+                  </div>
+              </div>
+              </center>
+          </div>
+          
+          <div id="myCarousel" class="carousel" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                  <li tal:repeat="dat datas" id="${dat.source_type}" data-target="#myCarousel" data-slide-to="${repeat.dat.index}"
+                       class="${dat.is_aktif and 'active' or ''}" style="background-color:rgb(0,0,0)"></li>
+              </ol>
+              <script>
+                $(function(){
+                    /*$('#myCarousel').on('slide.bs.carousel', 
+                      function () {
+                        var slideFrom = $(this).find('.active').index();
+                        var slideTo   = $(this).find('.active').attr('id');
+
+                      //var slideTo = $(e.relatedTarget).index();
+                      //var toID = $(e.relatedTarget).attr('id');
+                      //x = $('#myCarousel .active').index('#myCarousel .item')
+                      //ctx_{dat.id}
+                      console.log(slideFrom + '=>' + slideTo)
+                    });*/
+                });
+              </script>
+              <div class="carousel-inner" role="listbox">
+                <div tal:repeat="dat datas" class="item ${dat.is_aktif and 'active' or ''}">
+                    <div class="col-md-12" style="margin-bottom:50px;" tal:condition="dat.source_type=='grid'">
+                        <div class="row">
+                          <center>
+                            <div class="row"> <!--TITLE-->
+                                <div class="col-md-12">
+                                    <div class="alert alert-judul">
+                                        <h3>${dat.nama}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">  <!--hari minggu-->
+                                <div class="col-md-6">
+                                  <div class="alert alert-success">
+                                      <h4><u>Hari ini</u></h4>
+                                      <h2>Rp. <span id="hari_${dat.id}">...</span></h2>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="alert alert-info">
+                                        <h4><u>Minggu ini</u></h4>
+                                        <h2>Rp. <span id="minggu_${dat.id}">...</span></h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">   <!--bulan tahun-->
+                              <div class="col-md-6">
+                                  <div class="alert alert-warning">
+                                      <h4><u>Bulan ini</u></h4>
+                                      <h2>Rp. <span id="bulan_${dat.id}">...</span></h2>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="alert alert-danger">
+                                      <h4><u>Tahun ini</u></h4>
+                                      <h2>Rp. <span id="tahun_${dat.id}">...</span></h2>
+                                  </div>
+                              </div>
+                            </div>
+                          </center>
+                        </div>
+                        <!--SCRIPT-->
+                        <script>                
+                          $(function(){
+                              $.ajax({
+                                type: "POST",
+                                url: "/eis/act/grid",
+                                data: "id=${dat.source_id}",
+                                success: function (html) {
+                                  if (html.success == true) {
+                                    $("#hari_${dat.id}").html(html.hari);
+                                    $("#minggu_${dat.id}").html(html.minggu);
+                                    $("#bulan_${dat.id}").html(html.bulan);
+                                    $("#tahun_${dat.id}").html(html.tahun);
+                                  }
+                                },
+                                beforeSend: function () {
+                                }
+                              });
+                            })
+                        </script>                                               
+                    </div>
+                    
+                    <div class="col-md-12" style="margin-bottom:50px;" tal:condition="dat.source_type=='image'">
+                        <div class="row">
+                            <center>
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="alert alert-judul">
+                                          <h3>${dat.nama}</h3>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                    <img src="${dat.source_id}" height="500px">
+                              </div>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:50px;" tal:condition="dat.source_type=='chart-line'">
+                        <div class="row">
+                          <center>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <div class="alert alert-judul">
+                                      <h3>${dat.nama}</h3>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-10">
+                                   <canvas id="canvas_${dat.id}" height="400px" width="800px"></canvas>
+                              </div>
+                              <div class="col-md-2">
+                                <h5>Keterangan</h5>
+                                <div id="legend_${dat.id}"></div>                   
+
+                              </div>
+                            </div>
+                              
+                          </center>
+                        </div>
+                        <script>
+                            var lineChartData_${dat.id} = {
+                              labels : [],
+                              datasets : [
+                                {
+                                  label: "Target",
+                                  fillColor : "rgba(220,220,220,0.2)",
+                                  strokeColor : "rgba(220,220,220,1)",
+                                  pointColor : "rgba(220,220,220,1)",
+                                  pointStrokeColor : "#fff",
+                                  pointHighlightFill : "#fff",
+                                  pointHighlightStroke : "rgba(220,220,220,1)",
+                                  data : []
+                                },
+                                {
+                                  label: "Realisasi",
+                                  fillColor : "rgba(151,187,205,0.2)",
+                                  strokeColor : "rgba(151,187,205,1)",
+                                  pointColor : "rgba(151,187,205,1)",
+                                  pointStrokeColor : "#fff",
+                                  pointHighlightFill : "#fff",
+                                  pointHighlightStroke : "rgba(151,187,205,1)",
+                                  data : []
+                                }
+                              ]
+
+                            }
+                                                        
+                            $(function(){
+                              var ctx_${dat.id} = document.getElementById("canvas_${dat.id}").getContext("2d");
+                              //window.myLine_${dat.id} = new Chart(ctx_${dat.id}).Line(lineChartData_${dat.id}, {
+                                //responsive: true
+                              //});
+                              
+                              $.ajax({
+                                  type: "POST",
+                                  url: "/eis/act/linebar",
+                                  data: "id=${dat.source_id}",
+                                  success: function (html) {
+                                    if (html.success == true) {
+                                      for (i = 0; i < html.label.length; i++) { 
+                                        lineChartData_${dat.id}.labels.push(html.label[i]);
+                                        lineChartData_${dat.id}.datasets[0].data.push(html.target[i]);
+                                        lineChartData_${dat.id}.datasets[1].data.push(html.realisasi[i]);
+                                        
+                                      }
+                                      
+                                      window.myLine_${dat.id} = new Chart(ctx_${dat.id}).Line(lineChartData_${dat.id}, {
+                                        //responsive: true;
+                                      });
+                                      legend(document.getElementById('legend_${dat.id}'), lineChartData_${dat.id});
+                              
+                                    }
+                                  },
+                                  beforeSend: function () {
+                                  }
+                                });
+                                });
+    
+                          
+                        
+                        </script>
+                    </div>
+                    
+                    <div class="col-md-12" style="margin-bottom:50px;" tal:condition="dat.source_type=='chart-bar'">
+                        <div class="row">
+                          <center>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <div class="alert alert-judul">
+                                      <h3>${dat.nama}</h3>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-10">
+                                   <canvas id="canvas_${dat.id}" height="400px" width="800px"></canvas>
+                              </div>
+                              <div class="col-md-2">
+                                <h5>Keterangan</h5>
+                                <div id="legend_${dat.id}"></div>                   
+
+                              </div>
+                            </div>
+
+                              
+                          </center>
+                        </div>
+                        <script>
+                            var barChartData_${dat.id} = {
+                              labels : [],
+                              datasets : [
+                                {
+                                  label: "Target",
+                                  fillColor : "rgba(220,220,220,0.2)",
+                                  strokeColor : "rgba(220,220,220,1)",
+                                  pointColor : "rgba(220,220,220,1)",
+                                  pointStrokeColor : "#fff",
+                                  pointHighlightFill : "#fff",
+                                  pointHighlightStroke : "rgba(220,220,220,1)",
+                                  data : []
+                                },
+                                {
+                                  label: "Realisasi",
+                                  fillColor : "rgba(151,187,205,0.2)",
+                                  strokeColor : "rgba(151,187,205,1)",
+                                  pointColor : "rgba(151,187,205,1)",
+                                  pointStrokeColor : "#fff",
+                                  pointHighlightFill : "#fff",
+                                  pointHighlightStroke : "rgba(151,187,205,1)",
+                                  data : []
+                                }
+                              ]
+
+                            }
+                            
+                            var ctx_${dat.id} = $("#canvas_${dat.id}").get(0).getContext("2d");
+                              
+                            $(function(){
+                              //GET DATA FROM SERVER
+                              $.ajax({
+                                  type: "POST",
+                                  url: "/eis/act/linebar",
+                                  data: "id=${dat.source_id}",
+                                  success: function (html) {
+                                    if (html.success == true) {
+                                      for (i = 0; i < html.label.length; i++) { 
+                                        barChartData_${dat.id}.labels.push(html.label[i]);
+                                        barChartData_${dat.id}.datasets[0].data.push(html.target[i]);
+                                        barChartData_${dat.id}.datasets[1].data.push(html.realisasi[i]);
+                                        
+                                      }
+                                      
+                                      window.myBar_${dat.id} = new Chart(ctx_${dat.id}).Bar(barChartData_${dat.id}, 
+                                                                  {
+                                                                    //responsive: true;
+                                                                  });
+                                      legend(document.getElementById('legend_${dat.id}'), barChartData_${dat.id});
+                              
+                                    }
+                                  },
+                                  beforeSend: function () {
+                                  }
+                                });
+                            });
+                        </script>                              
+                    </div>
+                    <div class="col-md-12" style="margin-bottom:50px;" tal:condition="dat.source_type=='chart-pie'">
+                        <div class="row">
+                            <center>
+                              <div class="row">
+                                      <div class="alert alert-judul">
+                                          <h3>${dat.nama}</h3>
+                                      </div>
+                              </div>
+                              
+                              <div class="row">
+                                <div class="col-md-10">
+                                     <canvas id="chart-area_${dat.id}" height="400px" width="600px"></canvas>
+                                </div>
+                                <div class="col-md-2">
+                                  <h5>Keterangan</h5>
+                                  <div id="legend_${dat.id}"></div>                   
+ 
+                                </div>
+                              </div>
+                            </center>
+                        </div>
+                        <script>
+                          var pieData_${dat.id} = [];
+                          
+                          $(function(){
+                            /*GET DATA PIE*/
+                            var ctx_${dat.id} = document.getElementById("chart-area_${dat.id}").getContext("2d");
+                            //window.myPie_${dat.id} = new Chart(ctx_${dat.id}).Pie(pieData_${dat.id});
+                            var npie = 0 ;
+                            //GET DATA FROM SERVER
+                              $.ajax({
+                                  type: "POST",
+                                  url: "/eis/act/pie",
+                                  data: "id=${dat.source_id}",
+                                  success: function (html) {
+                                    if (html.success == true) {
+                                      jQuery.each(html.rows, function(i, val) {
+                                              x = { 
+                                                    "value": val.value,
+                                                    "color": "#"+val.color,
+                                                    //highlight: "#"+val.highlight,
+                                                    "label": val.nama}
+                                              npie = pieData_${dat.id}.push(x);
+                                              //alert(pieData_${dat.id}[npie].value());
+                                      });
+                                      window.myPie_${dat.id} = new Chart(ctx_${dat.id}).Pie(pieData_${dat.id},{
+                                      //responsive: true;
+                                      });
+                                      legend(document.getElementById('legend_${dat.id}'), pieData_${dat.id});
+                                    }
+                                  },
+                                  beforeSend: function () {
+                                  }
+                                });
+                              
+                          });
+                         
+                        </script>
+                    </div>
+                    
+                </div>
+              </div>
+          </div>
+        </div>       
+    </div>
+</html>

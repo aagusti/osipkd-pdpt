@@ -1,0 +1,330 @@
+<html metal:use-macro="load: ../tuppkd/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default ">
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/anggaran/022/grid";
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource": oTableUrl,
+            "bServerSide": true,
+            "bProcessing": true,
+            
+            "sDom": '<"toolbar">frtip',
+            "bScrollCollapse": true,
+            "bSort": true,
+            "bInfo": false,
+            "bFilter": true,
+            "bAutoWidth": false,
+            "bPaginate": true,
+            "sPaginationType": "full_numbers",
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [
+                {
+                    "bSearchable": false,
+                    "bVisible": false,
+                    "aTargets": [0,4,5,6,7]
+                },
+                {
+                    // The `data` parameter refers to the data for the cell (defined by the
+                    // `data` option, which defaults to the column being worked with, in
+                    // this case `data: 0`.
+                    "render": function ( data, type, row ) {
+                        return row[4]+'.'+row[5]+'.'+row[6]+'-'+row[7];
+                    },
+                    "targets": 1
+                },
+            ],
+            "aoColumns": [
+                null, {
+                    "sWidth": "75px"
+                }, null, null, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        //$("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+		
+        $('#btn_cetak').click(function () {
+            if($('#unit_nm').val()=='Pilih Unit') {
+                alert('Silahkan pilih Unit terlebih dahulu!');
+                return;
+            }
+            
+            var bulan = $('#bulan').val();
+
+            window.open('/b204/r300/1?bulan='+bulan);
+
+        });
+        
+        /*$('input[name="jenis"]').click(function () {
+            var jenis = $(this).val();
+            if (jenis=='3')
+                $('#div_tblkegiatan').show();
+            else
+                $('#div_tblkegiatan').hide();
+        });*/
+        
+        $("#mulai,#selesai").datepicker({dateFormat:'dd-mm-yy'});
+        
+        $('#div_tblkegiatan').hide();
+        $('input[name="jenis"]').prop('checked', false);
+        
+        $("#btn_close").click(function () {
+            window.location = "/b200";
+            return false;
+        });	
+      });
+    </script>
+    
+    <div class="panel-heading">
+        <div class="row">
+            <label class="control-label col-xs-2">Tahun </label>
+            <label class="control-label col-xs-1">${datas.tahun}</label>
+        </div>
+        <div class="row">
+            <label class="control-label col-xs-2">SKPD/SKPKD</label>
+            <div class="col-xs-7">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                    <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                    </span>
+                    <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${datas.unit_nm}" readonly>
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btn_unit" 
+                        tal:attributes="disabled 'disabled' if datas.all_unit==0 else None">...</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>REALISASI ANGGARAN/SKPD</h3>
+            </div>
+        </div>
+        <div class="form-group">
+        <div class="row">
+            <label class="control-label col-xs-2" for="mulai">Periode s.d Bulan</label>
+              <div class="col-xs-2">
+                  <select class="form-control" id="bulan" name="bulan">
+                      <option value="1" >Januari</option>
+                      <option value="2" >Februari</option>
+                      <option value="3" >Maret</option>
+                      <option value="4" >April</option>
+                      <option value="5" >Mei</option>
+                      <option value="6" >Juni</option>
+                      <option value="7" >Juli</option>
+                      <option value="8" >Agustus</option>
+                      <option value="9" >September</option>
+                      <option value="10" >Oktober</option>
+                      <option value="11" >Nopember</option>
+                      <option value="12" >Desember</option>
+                  </select>
+              </div>
+            </div>
+        </div>
+          
+
+            <!-- table -->
+            <div class="col-sm-10" id="div_tblkegiatan">
+                <table class="table table-bordered table-hover table-condensed" id="table1">
+                    <thead>
+                        <tr>
+                            <th>Index</th>
+                            <th>Kode</th>
+                            <th>Kegiatan</th>
+                            <th>Program</th>
+                            <th>RKA</th>
+                            <th>DPA</th>
+                            <th>RPKA</th>
+                            <th>DPPA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        
+    </div>
+    
+    <div class="form-group">
+        <div class="col-xs-3">
+            <button type="button" class="btn-primary" id="btn_cetak">Cetak Laporan</button>
+            <button type="button" class="btn-warning" id="btn_close">Tutup</button>
+        </div>  
+    </div>    
+    <br><br><br>
+    <!-- Modal Unit -->
+    <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/admin/unit/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource": tblUnitUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible" : true,  "aTargets": [1,2] },
+            {"bSearchable": false, "bVisible" : false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": true,  "bSortable": false, "aTargets": [3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%",
+               "sClass": "center"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID = aData[0];
+                urusanKd = aData[1];
+                unitKd = aData[2];
+                unitNm = aData[3];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /* end datatable unit*/
+
+        $('#btn_pilih1').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $.ajax({
+              type: "POST",
+              url: "/admin/change/unit",
+              data: "unit_id="+unitID,
+              success: function (html) {
+                if (html.success == true) {
+                  $('#unit_nm').val(unitNm);
+                  $('#unit_kd').text(urusanKd+'.'+unitKd);
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Urusan</th>
+                  <th>Kd Unit</th>
+                  <th>Nama</th>
+                  <th>Singkatan</th>
+                  <th>Kategori</th>
+                  <th>Urusan</th>
+                  <th>Disabled</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>     
+    <!-- End Modal -->
+  </div> 
+</html>

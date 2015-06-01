@@ -1,0 +1,167 @@
+<html metal:use-macro="load: aset.pt">
+    <div metal:fill-slot="admin" class="panel panel-default clearfix">
+        <script>
+            var mID;
+            var oTable;
+            var iPos;
+            var oTableUrl = "/aset/kategori/grid";
+            $(document).ready(function () {
+                oTable = $('#table1').dataTable({
+                    "sAjaxSource": oTableUrl,
+                    "bServerSide": true,
+                    "bProcessing": true,
+                    
+                    "sDom": '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort": true,
+                    "bInfo": false,
+                    "bFilter": true,
+                    "bAutoWidth": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    "order": [[ 1, "asc" ]],
+                    "lengthMenu": [
+                        [25, 50, 100, -1],
+                        [25, 50, 100, "All"]
+                    ],
+                    "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible": false,
+                        "aTargets": [0]
+                        },{
+                        "bSearchable": false,
+                        "aTargets": [3]
+                        },
+                        {
+                        "bSearchable": false,
+                        "aTargets": [4]
+                        }, {
+                        "aTargets": [5], // Column number which needs to be modified
+                        "mRender": function (data, type, full) {
+                            if (data == "1") {
+                                return '<input id=\"chk_disabled\" name=\"chk_disabled\" type=\"checkbox\" disabled checked value="' + data + '">';
+                            } else {
+                                return '<input id=\"chk_disabled\" name=\"chk_disabled\" type=\"checkbox\" disabled value="' + data + '">';
+                            }
+                        }
+                    }],
+
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "20%"
+                        },
+                        null, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }
+                    ],
+                });
+
+                var tb_array = [
+                    '<div class="btn-group pull-left">',
+                    '	<button id="btn_tambah" class="btn btn-primary" type="button">Tambah</button>',
+                    '	<button id="btn_edit" class="btn btn-primary" type="button">Edit</button>',
+                    '	<button id="btn_delete" class="btn btn-danger" type="button">Hapus</button>',
+                    '	<button id="btn_print" class="btn btn-primary" type="button">Print</button>',
+                    '   &nbsp;',
+                    '</div>',
+                ];
+
+                var tb = tb_array.join(' ');
+                $("div.toolbar").html(tb);
+
+                $('#table1 tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos = oTable.fnGetPosition(this);
+                        var aData = oTable.fnGetData(iPos);
+                        mID = aData[0];
+                        oTable.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+
+                $('#btn_tambah').click(function () {
+                    window.location = '/aset/kategori/frm/0';
+                });
+
+                $('#btn_edit').click(function () {
+                    if (mID) {
+                        window.location = '/aset/kategori/frm/' + mID;
+                    } else {
+                        alert('Silahkan pilih data yang akan diedit');
+                    }
+                });
+
+                $('#btn_delete').click(function () {
+                    alert(mID);
+                    if (mID) {
+                        var hapus = confirm('Hapus data ini?');
+                        if (hapus == true) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/aset/kategori/delete",
+                                data: "id=" + mID,
+                                success: function (html) {
+                                    if (html.success == true) {
+                                        $("#errors").css('display', 'inline', 'important');
+                                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                                        mID = "";
+                                        oTable.fnDeleteRow(iPos);
+                                    } else {
+                                        $("#errors").css('display', 'inline', 'important');
+                                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                                    }
+                                },
+                                beforeSend: function () {
+                                    $("#errors").css('display', 'inline', 'important');
+                                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                                }
+                            });
+                            return false;
+                        };
+                    } else {
+                        alert('Silahkan pilih data yang akan dihapus');
+                    }
+                });
+
+
+            });
+
+            function update_stat(id, a) {
+                var val = Number(a);
+                $.ajax({
+                    url: 'aset/kategori/act=upd&id=' + id + '&val=' + val,
+                    success: function (data) {
+                        $('#app_id').html(data);
+                    }
+                });
+            }
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Kategori</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Kode</th>
+                        <th>Uraian</th>
+                        <th>Header</th>
+                        <th>Level</th>
+                        <th>Disable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</html>

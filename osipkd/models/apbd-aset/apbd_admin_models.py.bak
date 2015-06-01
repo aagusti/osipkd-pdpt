@@ -1,0 +1,282 @@
+import sys
+from model_base import *
+from sqlalchemy import Column, Integer, String, SmallInteger, Date
+from sqlalchemy.orm import relationship
+
+class UrusanModel(BaseModelDB, Base):
+    __tablename__  = 'urusans'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+
+class UnitModel(BaseModelDB, Base):
+    __tablename__  = 'units'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    kategori  = Column(String(25))
+    singkat   = Column(String(50))
+    level_id  = Column(Integer)
+    header_id = Column(Integer)
+    urusan_id = Column(Integer, ForeignKey("apbd.urusans.id"))
+    urusans   = relationship("UrusanModel", backref="units")
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.kategori     = data['kategori'] 
+        self.singkat      = data['singkat'] 
+        self.level_id     = data['level_id'] 
+        self.header_id    = data['header_id'] 
+        self.urusan_id    = data['urusan_id'] 
+
+class UserApbdModel(BaseDB, Base):
+    __tablename__  = 'user_apbds'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    id       = Column(Integer,ForeignKey("admin.users.id"), primary_key=True)
+    users    = relationship("UserModel", backref="userapbds")
+    unit_id  = Column(Integer,ForeignKey("apbd.units.id"))
+    units    = relationship("UnitModel", backref="userunits")
+    all_unit = Column(SmallInteger, default=0)
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+
+class FungsiModel(BaseModelDB, Base):
+    __tablename__  = 'fungsis'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+
+class FungsiUrusanModel(BaseModelDB, Base):
+    __tablename__  = 'fungsi_urusans'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    urusan_id = Column(Integer, ForeignKey("apbd.urusans.id"))
+    fungsi_id = Column(Integer, ForeignKey("apbd.fungsis.id"))
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+
+class PegawaiModel(BaseModelDB, Base):
+    __tablename__  = 'pegawais'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+
+class JabatanModel(BaseModelDB, Base):
+    __tablename__  = 'jabatans'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    #kelompok = Column(SmallInteger)
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        #self.kelompok = data.kelompok
+        
+    #@classmethod
+    #def get_tapd(cls):
+        #return DBSession.query(cls).all() #.filter_by(cls.kelompok==3).all()
+        
+class PegawaiJabatanModel(BaseModelDB, Base):
+    __tablename__  = 'pegawai_jabatans'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    unit_id    = Column(Integer, ForeignKey("apbd.units.id"))
+    pegawai_id = Column(Integer, ForeignKey("apbd.pegawais.id"))
+    jabatan_id = Column(Integer, ForeignKey("apbd.jabatans.id"))
+    uraian     = Column(String(25))
+    mulai      = Column(Date)
+    selesai    = Column(Date)
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.unit_id    = data['unit_id']
+        self.pegawai_id = data['pegawai_id']
+        self.jabatan_id = data['jabatan_id']
+        self.mulai      = data['mulai']
+        self.selesai    = data['selesai']
+
+class TapdModel(BaseDB, Base):
+    __tablename__  = 'tapds'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    jabatans       = relationship("JabatanModel", backref="tapds")
+    pegawais       = relationship("PegawaiModel", backref="tapds")
+    jabatan_id     = Column(Integer, ForeignKey("apbd.jabatans.id"))
+    pegawai_id     = Column(Integer, ForeignKey("apbd.pegawais.id"))
+    mulai          = Column(Date)
+    selesai        = Column(Date)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data) 
+        self.jabatan_id  = data['jabatan_id'] 
+        self.pegawai_id  = data['pegawai_id'] 
+        self.mulai       = data['mulai'] 
+        self.selesai     = data['selesai'] 
+     
+    @classmethod
+    def update(cls, data):
+        data['updated'] = datetime.now()	 
+        data['mulai']   = data['mulai'] and datetime.strptime(data['mulai'],'%d-%m-%Y') or None
+        data['selesai'] = data['selesai'] and datetime.strptime(data['selesai'],'%d-%m-%Y') or None
+        return DBSession.query(cls).filter(cls.id==data['id']).update(data)
+    
+
+class TapdUnitModel(BaseModelDB, Base):
+    __tablename__  = 'pegawai_jabatans'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    unit_id = Column(Integer, ForeignKey("apbd.pegawais.id"))
+    tapd_id = Column(Integer, ForeignKey("apbd.jabatans.id"))
+    mulai   = Column(Date)
+    selesai = Column(Date)
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.unit_id   = data['unit_id']
+        self.tapd_id   = data['tapd_id']
+        self.mulai     = data['mulai']
+        self.selesai   = data['selesai']
+        
+class RekeningModel(BaseModelDB, Base):
+    __tablename__  = 'rekenings'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    level_id   = Column(Integer)
+    defsign    = Column(Integer)
+    header_id  = Column(Integer)
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        self.level_id     = data['level_id'] 
+        self.defsign      = data['defsign'] 
+        self.header_id    = data['header_id'] 
+          
+class DasarHukumModel(BaseModelDB, Base):
+    __tablename__  = 'dasar_hukums'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    rekenings   = relationship("RekeningModel", backref="dasar_hukums")
+
+    no_urut     = Column(Integer)
+    rekening_id = Column(Integer, ForeignKey("apbd.rekenings.id"))
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        no_urut     = data['no_urut'] 
+        rekening_id = data['rekening_id'] 
+
+class ProgramModel(BaseModelDB, Base):
+    __tablename__  = 'programs'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    sasaran    = Column(String(250))
+    agenda_id  = Column(Integer)
+    fungsi_id  = Column(Integer)
+    urusans    = relationship("UrusanModel", backref="programs")
+    urusan_id  = Column(Integer, ForeignKey("apbd.urusans.id"))
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        sasaran     = data['sasaran'] 
+        agenda_id   = data['agenda_id'] 
+        fungsi_id   = data['fungsi_id'] 
+        urusan_id   = data['urusan_id'] 
+           
+class KegiatanModel(BaseModelDB, Base):
+    __tablename__  = 'kegiatans'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    programs   = relationship("ProgramModel", backref="kegiatans")
+    tmt        = Column(Integer)
+    locked     = Column(Integer)
+    program_id = Column(Integer, ForeignKey("apbd.programs.id"))
+
+    def __init__(self, data):
+        BaseModelDB.__init__(self,data)
+        tmt          = data['tmt'] 
+        locked       = data['locked'] 
+        program_id   = data['program_id'] 
+
+    @classmethod
+    def get_by_kode(cls, programkd,kegiatankd):
+        return  DBSession.query(cls).\
+                filter(cls.kode==kegaitankd,cls.programs==programkd).first()
+    
+class TahunModel(BaseDB, Base):
+    __tablename__  = 'tahuns'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    disabled    = Column(Integer, nullable=False, default=0)
+    tahun       = Column(Integer)
+    status_apbd = Column(SmallInteger, nullable=False, default=1) #status apbd 1 RKA
+                                                           #2 DPA 3 RPKA 4 DPPA
+    tgl_entry      = Column(Date)
+    tgl_evaluasi   = Column(Date)
+    tanggal_1      = Column(Date) #Tgl. RKA
+    tanggal_2      = Column(Date) #Tgl. DPA
+    tanggal_3      = Column(Date) #Tgl. RPKA
+    tanggal_4      = Column(Date)  #Tgl. DPPA
+    no_perda       = Column(String(50))
+    tgl_perda      = Column(Date)
+    no_perkdh      = Column(String(50))
+    tgl_perkdh     = Column(Date)
+    no_perda_rev   = Column(String(50))
+    tgl_perda_rev  = Column(Date)
+    no_perkdh_rev  = Column(String(50))
+    tgl_perkdh_rev = Column(Date)
+    no_lpj         = Column(String(50))
+    tgl_lpj        = Column(Date)
+
+    
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.id             = data['tahun'] 
+        self.tahun          = data['tahun'] 
+        self.status_apbd    = data['status_apbd'] 
+        self.tgl_entry      = data['tgl_entry'] 
+        self.tgl_evaluasi   = data['tgl_evaluasi']
+        self.tanggal_1      = data['tanggal_1'] 
+        self.tanggal_2      = data['tanggal_2']    
+        self.tanggal_3      = data['tanggal_3']    
+        self.tanggal_4      = data['tanggal_4']    
+        self.no_perda       = data['no_perda']    
+        self.tgl_perda      = data['tgl_perda']     
+        self.no_perkdh      = data['no_perkdh']    
+        self.tgl_perkdh     = data['tgl_perkdh']       
+        self.no_perda_rev   = data['no_perda_rev']   
+        self.tgl_perda_rev  = data['tgl_perda_rev'] 
+        self.no_perkdh_rev  = data['no_perkdh_rev']
+        self.tgl_perkdh_rev = data['tgl_perkdh_rev']    
+        self.no_lpj         = data['no_lpj']
+        self.tgl_lpj        = data['tgl_lpj']
+        self.disabled       = data['disabled']        
+
+    @classmethod
+    def update(cls, data):
+        data['updated']        =  datetime.now()
+        data['tgl_entry']      =  data['tgl_entry']      and datetime.strptime(data['tgl_entry'],'%d-%m-%Y')      or None
+        data['tgl_evaluasi']   =  data['tgl_evaluasi']   and datetime.strptime(data['tgl_evaluasi'],'%d-%m-%Y')   or None
+        data['tanggal_1']      =  data['tanggal_1']      and datetime.strptime(data['tanggal_1'],'%d-%m-%Y')      or None
+        data['tanggal_2']      =  data['tanggal_2']      and datetime.strptime(data['tanggal_2'],'%d-%m-%Y')      or None
+        data['tanggal_3']      =  data['tanggal_3']      and datetime.strptime(data['tanggal_3'],'%d-%m-%Y')      or None
+        data['tanggal_4']      =  data['tanggal_4']      and datetime.strptime(data['tanggal_4'],'%d-%m-%Y')      or None
+        data['tgl_perda']      =  data['tgl_perda']      and datetime.strptime(data['tgl_perda'],'%d-%m-%Y')      or None
+        data['tgl_perda_rev']  =  data['tgl_perda_rev']  and datetime.strptime(data['tgl_perda_rev'],'%d-%m-%Y')  or None
+        data['tgl_perkdh']     =  data['tgl_perkdh']     and datetime.strptime(data['tgl_perkdh'],'%d-%m-%Y')     or None
+        data['tgl_perkdh_rev'] =  data['tgl_perkdh_rev'] and datetime.strptime(data['tgl_perkdh_rev'],'%d-%m-%Y') or None
+        data['tgl_lpj']        =  data['tgl_lpj']        and datetime.strptime(data['tgl_lpj'],'%d-%m-%Y')        or None
+        return DBSession.query(cls).filter(cls.id==data['id']).update(data)
+
+class PejabatModel(BaseDB, Base):
+    __tablename__  = 'pejabats'
+    __table_args__ = {'extend_existing':True,'schema' : 'apbd'}
+    units          = relationship("UnitModel", backref="pejabats")
+    jabatans       = relationship("JabatanModel", backref="pejabats")
+    pegawais       = relationship("PegawaiModel", backref="pejabats")
+    keterangan     = Column(String(250))
+    unit_id        = Column(Integer, ForeignKey("apbd.units.id"))
+    jabatan_id     = Column(Integer, ForeignKey("apbd.jabatans.id"))
+    pegawai_id     = Column(Integer, ForeignKey("apbd.pegawais.id"))
+    mulai          = Column(Date)
+    selesai        = Column(Date)
+    disabled       = Column(Integer, nullable=False, default=0)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.keterangan  = data['keterangan'] or None 
+        self.unit_id     = data['unit_id'] 
+        self.jabatan_id  = data['jabatan_id'] 
+        self.pegawai_id  = data['pegawai_id'] 
+        self.mulai       = data['mulai'] 
+        self.selesai     = data['selesai'] 
+     
+    @classmethod
+    def update(cls, data):
+        data['updated'] = datetime.now()
+        data['mulai']   = data['mulai'] and datetime.strptime(data['mulai'],'%d-%m-%Y') or None
+        data['selesai'] = data['selesai'] and datetime.strptime(data['selesai'],'%d-%m-%Y') or None
+        return DBSession.query(cls).filter(cls.id==data['id']).update(data)

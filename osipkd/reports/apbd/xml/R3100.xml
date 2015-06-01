@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<apbd>
+    <rekening>
+      <tahun>01</tahun>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan Nm</urusan_nm>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit Nm</unit_nm>
+      <kegiatan_kd>01.01</kegiatan_kd>
+      <kegiatan_nm>Unit Nm</kegiatan_nm>
+      <sdana>01.01</sdana>
+      <kegiatan_sub_id>Unit Nm</kegiatan_sub_id>
+      <rek_kd>01</rek_kd>
+      <rek_nm>Rek Nm1</rek_nm>
+      <no_urut>1</no_urut>
+      <item_nm>1</item_nm>
+      <tanggal>2014</tanggal>
+      <volume11>1</volume11>
+      <satuan11>1000</satuan11>
+      <volume12>1</volume12>
+      <satuan12>1000</satuan12>
+      <harga1>2014-10-10</harga1>
+      <anggaran1>1000</anggaran1>
+      <volume21>1000</volume21>
+      <satuan21>1000</satuan21>
+      <volume22>1000</volume22>
+      <satuan22>1000</satuan22>
+      <harga2>1000</harga2>
+      <anggaran2>1000</anggaran2>
+      <customer>1000</customer>
+    </rekening>
+</apbd>

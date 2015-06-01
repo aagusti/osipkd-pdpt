@@ -1,0 +1,528 @@
+<html metal:use-macro="load: ../tuskpd/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default">
+  
+  <style>
+  .modalkegitem {
+      width: 900px;
+  }
+  </style>
+
+  <script type='text/javascript'>
+  var mod ="/b103/003";
+   $(document).ready(function () {
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: mod+"/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+
+                $("#btn_close").click(function () {
+                    window.location = "/b103/003";
+                    return false;
+                }); 
+
+                $( "#tanggal,#ap_tgl_kontrak" ).datepicker({dateFormat:'dd-mm-yy'});
+        });
+  </script>
+  <div class="panel-heading">
+      <h3 class="panel-title">Surat Perintah Membayar (SPM)</h3>
+  </div>
+  <div class="panel-body">
+                
+    <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+          <div class="col-xs-1">
+              <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${datas.tahun}" />
+          </div>
+          <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+          <div class="col-xs-6">
+              <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+              <div class="input-group">
+                  <span class="input-group-btn">
+                  <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                  </span>
+                  <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+              </div>
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="kode">Kode</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}" />
+          </div>
+          <label class="control-label col-xs-1" for="tanggal">Tanggal</label>
+          <div class="col-xs-2">
+              <input class="form-control" type="text" name="tanggal" id="tanggal" value="${rows and rows.tanggal}" />
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="spp_id">Pilih SPP </label>
+      <div class="col-xs-5">
+           <div class="input-group">
+              <input class="form-control" type="hidden" name="spp_id" id="spp_id"  value="${rows and rows.spp_id}" />
+              <input class="form-control" type="text" name="sppkd" id="sppkd"  value="${rows and rows.spps.nama}" readonly />
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" id="btn_spp">...</button>
+              </span>
+           </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+          <label class="control-label col-xs-2" for="nama">Uraian</label>
+          <div class="col-xs-5">
+              <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama or None}" />
+          </div>
+      </div>
+      <div class="form-group">
+            <label class="control-label col-sm-2">&nbsp;</label>
+            <label class="col-sm-2">
+            <input type="checkbox" name="posted" id="posted" 
+                tal:attributes="checked 'checked' if rows and rows.posted==1 else None">&nbsp;Posted
+            </label>
+      </div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#pane" data-toggle="tab">TTD</a></li>
+        <li><a href="#pane1" data-toggle="tab">Verifikasi</a></li>
+      </ul>
+      
+      <div class="tab-content">
+   
+        <div id="pane" class="tab-pane active">
+          <div class="form-group">
+              <div class="col-xs-2">
+               <input class="form-control" type="hidden" name="ttd_uid" id="ttd_uid" value="${rows and rows.ttd_uid}" />
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-2" for="ttd_nip">NIP </label> 
+            <div class="col-xs-3">
+                 <div class="input-group">
+                    <input class="form-control" type="text" name="ttd_nip" id="ttd_nip"  value="${rows and rows.ttd_nip}" readonly />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" name="btn_bud_uid" id="btn_bud_uid">...</button>
+                    </span>
+                 </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="ttd_nama">Nama</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="ttd_nama" id="ttd_nama" value="${rows and rows.ttd_nama}" readonly />
+              </div>
+          </div>
+        </div>
+
+        <div id="pane1" class="tab-pane">
+          <div class="form-group">
+              <div class="col-xs-2">
+               <input class="form-control" type="hidden" name="verified_uid" id="verified_uid" value="${rows and rows.verified_uid}" />
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-xs-2" for="verified_nip">NIP </label> 
+            <div class="col-xs-3">
+                 <div class="input-group">
+                    <input class="form-control" type="text" name="verified_nip" id="verified_nip"  value="${rows and rows.verified_nip}" readonly />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" name="btn_verified_uid" id="btn_verified_uid">...</button>
+                    </span>
+                 </div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label class="control-label col-xs-2" for="verified_nama">Nama</label>
+              <div class="col-xs-3">
+                  <input class="form-control" type="text" name="verified_nama" id="verified_nama" value="${rows and rows.verified_nama}" readonly />
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <div class="col-xs-6"><br>
+              <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+              <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+              <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+          </div>
+      </div>
+    </form>
+    
+        </div>
+        <!--panel-body-->
+        
+        <!--Modal Spp -->
+        <script> 
+                var sppID, sppKd, sppNi, sppNm; 
+                var iPos1;
+                var tblspp;
+                var tblsppUrl = "/apbd/dlg/spp?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_spp').click(function() {
+                    
+                    /* Kondisi dimana data belum disimpan 
+                      if ($('#id').val()=="" || $('#id').val()=="0"){
+                      alert('Simpan Dulu Master Data');
+                      return;
+                    }*/
+                     
+                    var tblsppUrl = "/apbd/dlg/spp?pk_id="+$('#unit_id').val();
+                    tblspp.fnReloadAjax(tblsppUrl);
+                    $('#dlgSpp').modal('show');
+                });
+            
+                tblspp = $('#tblspp').dataTable({
+                    "sAjaxSource"    : tblsppUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible" : false, "aTargets": [1]}, 
+                        {"bSearchable": false, "bSortable": false, "bVisible": true, "aTargets": [0,4]},
+                        {"bSearchable": true,  "bVisible" : true,  "aTargets": [0,2,3,4,5]},{
+                         "sClass"   : "right",
+                         "aTargets" : [5],
+                         "mRender"  : function (data, type, full) {
+                         return formatNumber(data);}
+                      }
+                    ],
+
+                    "aoColumns": [
+                        {"sWidth": "40px"}, 
+                        null, 
+                        {"sWidth": "50px"},
+                        {"sWidth": "40px"},                        
+                        {"sWidth": "150px"},
+                        {"sWidth": "80px"}                     
+                    ],
+                });
+
+                function formatNumber(n) {
+                         return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                         }
+                $('#tblspp tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                       sppID = ''; sppKd=''; sppNi=''; sppNm=''; 
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblspp.fnGetPosition(this);
+                        var aData = tblspp.fnGetData(iPos1);
+                        sppID = aData[0];
+                        sppKd = aData[4];
+                        sppNi = aData[2];
+                        sppNm = aData[3];
+                        tblspp.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+             
+                $('#btn_pil_spp').click(function() {
+                    if(sppID) {
+                        $('#dlgSpp').modal('hide');
+                        if ($('#spp_id').val()=='') {
+                            $('#spp_id').val(spp_id);
+                        };
+                        $('#spp_id').val(sppID);
+                        $('#sppkd').val(sppKd);
+                        $('#spp_nm').val(sppNm);
+                        $('#spp_ni').val(sppNi);
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of spp*/     
+        </script>
+        <!-- Modal Spp -->
+        <div class="modal fade" id="dlgSpp" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgSppLabel">Pilih SPP</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblspp">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>Kode</th>
+                                   <th>Tanggal SPP</th>
+                                   <th>Jenis</th>
+                                   <th>Uraian</th>
+                                   <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_spp" name="btn_pil_spp">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <!--Modal Ttd Uid -->
+        <script> 
+                var ttdID1, ttdID2, ttdKd, ttdNi, ttdNm; 
+                var iPos1;
+                var tblttd;
+                var tblttdUrl = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_bud_uid').click(function() {
+                    var tblttdUrl = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                    tblttd.fnReloadAjax(tblttdUrl);
+                    $('#dlgTtd').modal('show');
+                });
+            
+                tblttd = $('#tblttd').dataTable({
+                    "sAjaxSource"    : tblttdUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {"bSearchable": false, "bVisible": false, "aTargets": [0,1] }, 
+                    {"bSearchable": false, "bVisible": true,  "aTargets": [2,3,4] },
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "15%",
+                        "sClass": "left"},
+                        {"sWidth": "25%",
+                        "sClass": "left"},
+                        {"sWidth": "25%",
+                        "sClass": "left"}
+                    ],
+                });
+                
+                $('#tblttd tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                       ttdID1 = ''; ttdID2 = ''; ttdKd=''; ttdNi=''; ttdNm=''; 
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblttd.fnGetPosition(this);
+                        var aData = tblttd.fnGetData(iPos1);
+                        ttdID1 = aData[1];
+                        ttdKd  = aData[2];
+                        ttdNm  = aData[3];
+                        tblttd.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+             
+                $('#btn_pil_bendaharasp2d').click(function() {
+                    if(ttdID1) {
+                         $('#dlgTtd').modal('hide');
+                        if ($('#ttd_nama').val()=='') {
+                            $('#ttd_nama').val(ttdNm);
+                        };
+                        if ($('#ttd_nip').val()=='') {
+                            $('#ttd_nip').val(ttdKd);
+                        };
+                            $('#ttd_uid').val(ttdID1);
+                            $('#ttd_nip').text(ttdKd);
+                            $('#ttd_nama').text(ttdNm);
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of Ttd Uid*/     
+        </script>
+        <!-- Modal Ttd Uid -->
+        <div class="modal fade" id="dlgTtd" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgTtdLabel">Pilih Pejabat Ttd</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblttd">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>Index</th>
+                                   <th>NIP</th>
+                                   <th>Nama</th>
+                                   <th>Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_bendaharasp2d" name="btn_pil_bendaharasp2d">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+ 
+         <!--Modal Verified Ttd -->
+        <script> 
+                var ttdID1, ttdID2, ttdKd, ttdNi, ttdNm; 
+                var iPos1;
+                var tblttd;
+                var tblverifiedttdUrl = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                 
+            $(document).ready(function () {
+                $('#btn_verified_uid').click(function() {
+                    var tblverifiedttdUrl = "/apbd/dlg/ttd?pk_id="+$('#unit_id').val();
+                    tblverifiedttd.fnReloadAjax(tblverifiedttdUrl);
+                    $('#dlgVerifiedttd').modal('show');
+                });
+            
+                tblverifiedttd = $('#tblverifiedttd').dataTable({
+                    "sAjaxSource"    : tblverifiedttdUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">lfrtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                    {"bSearchable": false, "bVisible": false, "aTargets": [0,1] }, 
+                    {"bSearchable": false, "bVisible": true,  "aTargets": [2,3,4] },
+                    ],
+
+                    "aoColumns": [
+                        null, 
+                        {"sWidth": "15%",
+                        "sClass": "left"},
+                        {"sWidth": "25%",
+                        "sClass": "left"},
+                        {"sWidth": "25%",
+                        "sClass": "left"}
+                    ],
+                });
+                
+                $('#tblverifiedttd tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                       verifiedttdID1 = ''; verifiedttdID2 = ''; verifiedttdKd=''; verifiedttdNi=''; verifiedttdNm=''; 
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblverifiedttd.fnGetPosition(this);
+                        var aData = tblverifiedttd.fnGetData(iPos1);
+                        verifiedttdID1 = aData[1];
+                        verifiedttdKd  = aData[2];
+                        verifiedttdNm  = aData[3];
+                        tblverifiedttd.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+             
+                $('#btn_pil_verifiedttd').click(function() {
+                    if(verifiedttdID1) {
+                          $('#dlgVerifiedttd').modal('hide');
+                        if ($('#verified_nama').val()=='') {
+                            $('#verified_nama').val(verifiedttdNm);
+                        };
+                        if ($('#verified_nip').val()=='') {
+                            $('#verified_nip').val(verifiedttdKd);
+                        };
+                            $('#verified_uid').val(verifiedttdID1);
+                            $('#verified_nip').text(verifiedttdKd);
+                            $('#verified_nama').text(verifiedttdNm);
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of Verified Ttd*/     
+        </script>
+        <!-- Modal Verified Ttd -->
+        <div class="modal fade" id="dlgVerifiedttd" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgVerifiedttdLabel">Pilih Pejabat Verified</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblverifiedttd">
+                            <thead>
+                                <tr>
+                                   <th>Index</th>
+                                   <th>Index</th>
+                                   <th>NIP</th>
+                                   <th>Nama</th>
+                                   <th>Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_verifiedttd" name="btn_pil_verifiedttd">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+  </div>
+</html>

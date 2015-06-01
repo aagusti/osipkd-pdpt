@@ -1,0 +1,65 @@
+<html metal:use-macro="load: base.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+    <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <div class="form-group">
+        <div tal:define="field form['cari']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1  col-xs-2" id="req-${field.oid}">
+                  ${field.title}</label>
+          
+          <div class="col-md-10 col-xs-8">
+            <input type="text" class="form-control" id="${field.oid}" 
+                  name="${field.oid}" value="" />
+          </div>
+          
+          <div class="col-md-1  col-xs-1">
+              <button class="btn btn-default" type="submit" id="cari" name="cari">Cari</button>
+          </div>
+        </div>
+      </div>
+      <div id="head-result" class="form-group" style="border-bottom:1px solid">
+        <label class="control-label col-md-8 col-xs-8" id="req-result" style="text-align:left;!important">
+                  Hasil Pencarian</label>
+        <label class="control-label col-md-4 col-xs-4" id="req-result" style="text-align:left;!important">
+                  File Terkait</label>                  
+      </div>
+      <div tal:repeat="row rows" class="form-group" style="border-bottom:1px solid">
+        <div class="form-group">
+          <div class="col-md-8 col-xs-8">
+            <div class="form-group">
+              <label class="control-label col-md-1 col-xs-4" id="req-JUDUL" style="text-align:left;!important">
+                        Judul:</label>
+              <label class="control-label col-md-2 col-xs-8" id="req-JUDUL" style="text-align:left;!important">
+                        ${row.nama}</label>
+                        
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1 col-xs-3" id="req-JUDUL"  style="text-align:left;!important">
+                      Tag :</label>
+              <label class="control-label col-md-2 col-xs-8" id="req-JUDUL" style="text-align:left;!important"  style="text-align:left;!important">
+                        ${row.tag}</label>
+            </div>
+          </div>
+          <div class="col-md-4  col-xs-4">
+            <a tal:repeat="f row.files" href="/static_files/${f.path}">${f.nama}</a>
+          </div>
+        </div>
+      </div>
+      <div class="row">Halaman 
+          <button class="btn btn-default" type="submit" id="prev" value="${page.current-1}" tal:condition="1!=page.current"  name="page">Prev</button>
+          <span tal:repeat="p range(page.count)" tal:define="midp round(page.count/2.0)">
+
+              <!--button tal:condition="(p+1==midp!=page.current)" class="btn btn-default" type="submit" id="pg-${p+1}" name="page" value="${p+1}">${p+1}</button-->
+
+              <button tal:condition="(p+1)!=page.current and (p==page.current-2 or p==page.current or p<2 or p>page.count-3)" class="btn btn-default" type="submit" id="pg-${p+1}" name="page" value="${p+1}">${p+1}</button>
+              <label tal:condition="p==page.current-3 and page.current>4 or p==page.count-4 and page.current<page.count-3" class="control-label" id="pg-${p+1}">.. ..</label>
+              <button tal:condition="(p+1)==page.current" class="btn btn-success" type="submit" id="pg-${p+1}" name="page" value="${p+1}">${p+1}</button>
+          </span>
+          <button class="btn btn-default" type="submit" id="cari" name="page" tal:condition="page.count!=page.current"  value="${page.current+1}">Next</button>
+      </div>
+    </form>
+</div>
+
+
+</html>

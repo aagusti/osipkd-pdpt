@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="R2033" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.3310000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="504"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEMERINTAH KOTA TANGERANG SELATAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DINAS PENDAPATAN PENGELOLAAN KEUANGAN DAN ASEP DAERAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="555" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.25" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jln Raya Winata Harja No.27 Komplek Sasmita Jaya Witana Harja Kota Tangerang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="69" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEJABAT PENGELOLAAN KEUANGAN DAERAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="86" width="555" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOMOR: ......./ THN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="102" width="555" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TENTANG
+SURAT PENYEDIAAN DANA ANGGARAN BELANJA DAERAH TAHUN ANGGARAN: 2014
+PPKD SELAKU BUD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="140" width="106" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Menimbang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="140" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="140" width="372" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[bahwa untuk melaksanakan anggaran Belanja Langsung dan Belanja Tidak Langsung tahun anggaran 2014 berdasarkan anggaran kas yang telah ditetapkan, perlu dipersiapkan penyediaan dana dengan menerbitkan Surat Penyediaan Dana (SPD);]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="177" width="106" height="13"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Mengingat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="177" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="177" width="372" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="214" width="372" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="251" width="372" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3. Pengesahan DPA/DPPA No. 900/001-SK.DPPKAD/2014 tanggal 5 Nopember 2014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="269" width="551" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Memutuskan;]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="286" width="551" height="28"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Berdasarkan Pengesahan DPA/DPPA No.900/001.SK-DPPKAD/2014 tanggal 5 Nopember 2014 menetapkan/ menyediakankredit anggaran sebagai berikut:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="325" width="179" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1. SKPD ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="325" width="270" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="325" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="362" width="179" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2. Bendahara Pengeluaran ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="362" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="362" width="270" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="399" width="179" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3. Jumlah Penyediaan Dana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="399" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="399" width="270" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="436" width="179" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4. Untuk Kebutuhan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="436" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="436" width="270" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="473" width="179" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5. Ikhtisar Penyediaan Dana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="473" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="491" width="270" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="491" width="10" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[a.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="491" width="158" height="37"/>
+				<textElement verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jumlah dana DPA SKPD/DPPA SKPD/DPAL SKPD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="473" width="270" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="491" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="528" width="10" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[b.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="528" width="158" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Akumulasi SPD sebelumnya]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="541" width="158" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sisa dana yang belum di SPD-kan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="541" width="10" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[c.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="528" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="541" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="528" width="270" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="541" width="270" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="554" width="158" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jumlah dana yang di-SPD-kan saat ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="554" width="10" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[d.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="554" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="554" width="270" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="567" width="10" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[e.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="567" width="158" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sisa jumlah dana DPA SKPD/DPPA SKPD/DPAL SKPD yang belum di-SPD-kan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="567" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="567" width="270" height="37"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="609" width="179" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[6. Ketentuan ketentuan lain]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="609" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="609" width="270" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="631" width="57" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ditetapkan di]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="644" width="57" height="13"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pada Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="631" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="644" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="349" y="660" width="194" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="349" y="665" width="194" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PEJABAT PENGELOLA KEUANGAN DAERAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="678" width="194" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[selaku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="691" width="194" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BENDAHARA UMUM DAERAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="749" width="194" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NIP:XXXXXXXXXXXX]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="46" splitType="Stretch"/>
+	</summary>
+</jasperReport>

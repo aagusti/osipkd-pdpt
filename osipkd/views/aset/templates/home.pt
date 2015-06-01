@@ -1,0 +1,22 @@
+<html metal:use-macro="load: base.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+<div class="well">
+<h1>os-Aset</h1>
+<p><img src="/files/logo.png" class="img-float img-thumbnail"/>
+Selamat Datang di Aplikasi <code>Manajemen Aset Daerah</code>
+
+<p>Aplikasi Manajemen Aset Daerah adalah aplikasi yang digunakan untuk mendata
+   aset-aset daerah baik yang berdasarkan dari APBD maupun dari hibah. 
+   <p>Module ini terdiri dari:
+<p><p><ul>
+   <li>Kategori Aset</li>
+   <li>Lokasi Aset Daerah</li>
+   <li>KIB A-F</li>
+   <li>Laporan Aset Daerah</li>
+   </ul>
+</div><!--well-->
+
+</div>
+</html>

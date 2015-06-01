@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<aset>
+  <lap01>
+	  <neraca>
+		<tahun>01104</tahun>
+		<unitkd>A</unitkd>
+		<unitnm>A</unitnm>
+		<kode>1</kode>
+		<uraian>A</uraian>
+		<nilai>A</nilai>
+	  </neraca>
+  </lap01>
+  <lap01>
+	  <neraca>
+		<tahun>01104</tahun>
+		<unitkd>A</unitkd>
+		<unitnm>A</unitnm>
+		<kode>1</kode>
+		<uraian>A</uraian>
+		<nilai>A</nilai>
+	  </neraca>
+  </lap01>
+</aset>

@@ -1,0 +1,362 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content" class="panel panel-default">
+    
+    
+    <div class="panel-heading">
+      INDIKATOR KEGIATAN
+    </div>
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <!--Tahun---------------------------------------------------------------->
+      <div class="form-group">
+        <div class="col-md-3">
+          <div id="item-tahun">
+            <label for="tahun" class="control-label col-md-3" id="req-tahun">
+                    Tahun</label>
+            <div class="col-md-9">
+               <input id="tahun" class=" form-control " type="text" 
+                      value="${request.session['tahun']}" 
+                      readonly name="tahun">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+           <input id="tahun_nm" class=" form-control " type="text" value="${request.session['ag_step_nm']}" name="tahun_nm" readonly>
+        </div>
+      </div>
+
+      <!----------------------------------------------------------------------->
+      <input id="unit_id" type="hidden" value="${request.session['unit_id']}" name="unit_id">
+      <div class="form-group"><!--SKPD-->
+        <div class="col-md-3">
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-3" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-9">
+               <input id="unit_kd" class="form-control typeahead" type="text" value="${request.session['unit_kd']}" name="unit_kd" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="unit_nm" class=" form-control " type="text" value="${request.session['unit_nm']}" name="unit_nm" readonly>
+        </div>
+      </div>
+      
+      <!----------------------------------------------------------------------->
+      <input id="kegiatan_sub_id" type="hidden" value="${row and row.id or 0}" name="kegiatan_sub_id">
+      <div class="form-group"><!--Kegiatan-->
+        <div class="col-md-3">
+          <div id="item-kegiatan_kd">
+            <label for="kegiatan_kd" class="control-label col-md-3" id="req-kegiatan_kd">
+                    Kegiatan</label>
+            <div class="col-md-9">
+               <input id="kegiatan_kd" class=" form-control " type="text" value="${row and row.kegiatans.kode or None}-${row and row.no_urut or None}" name="kegiatan_kd" readonly>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="kegiatan_nm" class=" form-control " type="text" value="${row and row.nama or None}" name="kegiatan_nm"  readonly>
+        </div>
+      </div>
+
+          <!--InternalKode Item-->
+          <div class="form-group">
+              <div class="col-md-3">
+                <div tal:define="field form['no_urut']">
+                  <label for="${field.oid}" class="control-label col-md-3" id="req-${field.oid}">
+                          ${field.title}</label>
+                  <div class="col-md-9">
+                      ${structure:field.serialize()}
+                    <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                       tal:repeat="error field.error.messages()">
+                       ${error}</p>
+                  </div>
+                </div>
+             </div>
+            
+             <div class="col-md-5" tal:define="field form['tipe']">
+                      ${structure:field.serialize()}
+                    <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                       tal:repeat="error field.error.messages()">
+                       ${error}</p>
+             </div>
+          </div><br>
+
+        <!-- Indikator -->
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">INDIKATOR</div>
+                    <div class="panel-body">
+                    <div class="form-group" tal:attributes="style request.session['ag_step_id']!=1 and  'display:readonly'">
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <div tal:define="field form['tolok_ukur_1']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-7">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['volume_1']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-5">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['satuan_1']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-8">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"  tal:attributes="style request.session['ag_step_id']!=2 and  'display:readonly' ">
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <div tal:define="field form['tolok_ukur_2']" >
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-7">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['volume_2']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-5">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['satuan_2']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-8">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" tal:attributes="style request.session['ag_step_id']!=3 and  'display:readonly'">
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <div tal:define="field form['tolok_ukur_3']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-7">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['volume_3']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-5">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['satuan_3']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-8">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" tal:attributes="style request.session['ag_step_id']!=3 and  'display:readonly'">
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <div tal:define="field form['tolok_ukur_4']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-7">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['volume_4']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-5">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div tal:define="field form['satuan_4']">
+                              <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                                      ${field.title}</label>
+                              <div class="col-md-8">
+                                  ${structure:field.serialize()}
+                                <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                                   tal:repeat="error field.error.messages()">
+                                   ${error}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <div class="form-group">
+        <div class="col-sm-3">
+          <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
+          <button type="submit" class="btn btn-danger"  id="batal"  name="batal">Batal</button>
+          <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+        </div>
+      </div>
+      <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_close").click(function () {
+                url = '/ag-indikator/'+$('#kegiatan_sub_id').val();
+                window.location = url;
+                //return false;
+            });
+
+        //Kondisi Readonly 
+        var a ="${request.session['ag_step_nm']}";
+        if (a == 'RKA'){
+        $('#tolok_ukur_2').attr('readonly', true)
+        $('#tolok_ukur_3').attr('readonly', true)
+        $('#tolok_ukur_4').attr('readonly', true)
+
+        $('#volume_2').attr('readonly', true)
+        $('#volume_3').attr('readonly', true)
+        $('#volume_4').attr('readonly', true)
+
+        $('#satuan_2').attr('readonly', true)
+        $('#satuan_3').attr('readonly', true)
+        $('#satuan_4').attr('readonly', true)
+        }
+        else if  (a == 'DPA'){
+        $('#tolok_ukur_1').attr('readonly', true)
+        $('#tolok_ukur_3').attr('readonly', true)
+        $('#tolok_ukur_4').attr('readonly', true)
+
+        $('#volume_1').attr('readonly', true)
+        $('#volume_3').attr('readonly', true)
+        $('#volume_4').attr('readonly', true)
+
+        $('#satuan_1').attr('readonly', true)
+        $('#satuan_3').attr('readonly', true)
+        $('#satuan_4').attr('readonly', true)
+        }
+        else if  (a == 'RPKA'){
+        $('#tolok_ukur_1').attr('readonly', true)
+        $('#tolok_ukur_2').attr('readonly', true)
+        $('#tolok_ukur_3').attr('readonly', true)
+
+        $('#volume_1').attr('readonly', true)
+        $('#volume_2').attr('readonly', true)
+        $('#volume_4').attr('readonly', true)
+
+        $('#satuan_1').attr('readonly', true)
+        $('#satuan_2').attr('readonly', true)
+        $('#satuan_4').attr('readonly', true)
+        }
+        else if  (a == 'DPPA'){
+        $('#tolok_ukur_1').attr('readonly', true)
+        $('#tolok_ukur_2').attr('readonly', true)
+        $('#tolok_ukur_3').attr('readonly', true)
+
+        $('#volume_1').attr('readonly', true)
+        $('#volume_2').attr('readonly', true)
+        $('#volume_3').attr('readonly', true)
+
+        $('#satuan_1').attr('readonly', true)
+        $('#satuan_2').attr('readonly', true)
+        $('#satuan_3').attr('readonly', true)
+        }
+        
+        });  
+    </script>
+      <br>
+    </form>
+    </div>
+  </div>
+</html>
+

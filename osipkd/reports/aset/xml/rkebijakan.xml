@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<aset>
+  <master>
+    <kebijakan>
+      <kode>01104</kode>
+      <uraian>A</uraian>
+    </kebijakan>
+    <kebijakan>
+      <kode>76102</kode>
+      <uraian>B</uraian>
+    </kebijakan>
+  </master>
+</aset>

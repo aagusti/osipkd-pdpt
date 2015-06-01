@@ -1,0 +1,29 @@
+<html metal:use-macro="load: ../base.pt">
+<div metal:fill-slot="content">
+<h4>${request.title}</h4>
+<hr>
+<div tal:content="structure form"/>
+<script>
+      $('#kategori_nm').bind('typeahead:selected', function(obj, datum, name) {      
+            $('#kategori_id').val(datum.id);
+            $('#kategori_kd').val(datum.kode);
+      });
+      $('#kategori_kd').bind('typeahead:selected', function(obj, datum, name) {      
+            $('#kategori_id').val(datum.id);
+            $('#kategori_nm').val(datum.uraian);
+      });
+      $('#pemilik_nm').bind('typeahead:selected', function(obj, datum, name) {      
+            $('#pemilik_id').val(datum.id);
+            $('#pemilik_kd').val(datum.kode);
+      });
+      $('#unit_nm').bind('typeahead:selected', function(obj, datum, name) {      
+            $('#unit_id').val(datum.id);
+            $('#unit_kd').val(datum.kode);
+      });
+      $('#unit_kd').bind('typeahead:selected', function(obj, datum, name) {      
+            $('#unit_id').val(datum.id);
+            $('#unit_nm').val(datum.nama);
+      });
+</script>
+</div>
+</html>

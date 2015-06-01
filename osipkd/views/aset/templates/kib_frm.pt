@@ -1,0 +1,889 @@
+<html metal:use-macro="load: aset_unit.pt">
+    <div metal:fill-slot="unit" class="panel panel-default">
+        <script type='text/javascript'>
+        
+            $(document).ready(function () {
+            
+                /* start datatable kategori*/
+                var katID, katNm;
+                var iPos;
+                var tblKategori;
+                var tblKategoriUrl = "/aset/kategori/grid";
+                tblKategori = $('#tblKategori').dataTable({
+                    "sAjaxSource": tblKategoriUrl,
+                    "bServerSide": true,
+                    "bProcessing": true,
+                    
+                    "sDom": '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort": true,
+                    "bInfo": false,
+                    "bFilter": true,
+                    "bAutoWidth": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible": false, "aTargets": [0,3,4,5] }, 
+                        {"bSearchable": true, "bVisible": true, "aTargets": [1,2] }, 
+                    ],
+
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "20%"
+                        },
+                        null, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }
+                    ],
+                });
+                
+                $('#tblKategori tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        katID = ''; katKd='';katNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos = tblKategori.fnGetPosition(this);
+                        var aData = tblKategori.fnGetData(iPos);
+                        katID = aData[0];
+                        katKd = aData[1];
+                        katNm = aData[2];
+                        tblKategori.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+                /* end datatable kategori */
+
+                
+                $( "#tgl_perolehan,#a_sertifikat_tanggal,#c_dokumen_tanggal,#d_dokumen_tanggal,#f_dokumen_tanggal" ).datepicker({
+                    dateFormat:'yy-mm-dd', 
+                    changeMonth:true, 
+                    changeYear:true
+                });
+                
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/aset/kib/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+                
+                $('.units').change(function() {
+                    //var url = "${datas.url}aset/kib?unit_id="+$("#unit_id").val();
+                    //$(location).attr('href',url);;
+                });
+                
+                $("#btn_close").click(function () {
+                    window.location = '/aset/kib';
+                    return false;
+                });
+                $('#oTabs a').click(function (e) {
+                    e.preventDefault()
+                    $(this).tab('show')
+                })
+
+                $('#btn_kategori').click(function() {
+                    $('#dlgKategori').modal('show');
+                });
+                
+                $('#btn_pilih').click(function() {
+                    if(katID) {
+                        $('#dlgKategori').modal('hide');
+                        $('#kategori_id').val(katID);
+                        $('#kategori_kd').val(katKd);
+                        $('#kategori_nm').val(katNm);
+                        if ($('#uraian').val()=='') $('#uraian').val(katNm);
+                        var kibindex = katKd.substring(0,2);
+                        if(kibindex == '01') {
+                          $('#kib').val('A');
+                        } else if(kibindex == '02') {
+                          $('#kib').val('B');
+                        } else if(kibindex == '03') {
+                          $('#kib').val('C');
+                        } else if(kibindex == '04') {
+                          $('#kib').val('D');
+                        } else if(kibindex == '05') {
+                          $('#kib').val('E');
+                        } else if(kibindex == '06') {
+                          $('#kib').val('F');
+                        } else {
+                          $('#kib').val('');
+                        } ;
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                    panelkib();    
+                });
+
+                $('#btn_unit').click(function() {
+                    $('#dlgUnit').modal('show');
+                });
+
+          $('.panelkib').hide();
+
+          function panelkib(){
+            $('.panelkib').hide();
+            var kibindex = $('#kib').val();
+            if(kibindex == 'A') {
+              $('#k01').show();
+            } else if(kibindex == 'B') {
+              $('#k02').show();
+            } else if(kibindex == 'C') {
+              $('#k03').show();
+            } else if(kibindex == 'D') {
+              $('#k04').show();
+            } else if(kibindex == 'E') {
+              $('#k05').show();
+            } else if(kibindex == 'F') {
+              $('#k06').show();
+            };
+            
+          };
+        panelkib();    
+
+        });
+        </script>
+        
+        <!-- Modal Kategori -->
+        <div class="modal fade" id="dlgKategori" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKategoriLabel">Pilih Kategori</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <table class="table table-bordered table-hover table-condensed" id="tblKategori">
+                            <thead>
+                                <tr>
+                                    <th>Index</th>
+                                    <th>Kode</th>
+                                    <th>Uraian</th>
+                                    <th>Header</th>
+                                    <th>Level</th>
+                                    <th>Disable</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pilih" name="btn_pilih">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+
+
+        <div class="panel-heading">
+            <h3 class="panel-title">KIBS</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data" role="form">
+                <input type="hidden" name="id" value="${rows and rows.id}"/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="unit_id">SKPD</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <input class="form-control" type="hidden" name="unit_id" id="unit_id" value="${rows and rows.unit_id or datas.units and datas.units.id}" />
+                                        <input class="form-control" readonly style="width:20%;" type="text" name="unit_kd" id="unit_kd" value="${rows and rows.units.kode or datas.units and datas.units.kode}" />
+                                        <input class="form-control" readonly style="width:80%;" type="text" name="unit_nm" id="unit_nm" value="${rows and rows.units.nama or datas.units and datas.units.nama}" />
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-info" id="btn_unit" name="btn_unit">...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="tahun">Tahun</label>
+                                <div class="col-sm-4">
+                                    <input class="form-control" type="text" name="tahun" id="tahun" value="${rows and rows.tahun or datas.tahun}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="kategori_id">Kategori</label>
+                                    <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <input class="form-control" type="hidden" name="kategori_id" id="kategori_id" value="${rows and rows.kategori_id}" />
+                                        <input class="form-control" readonly style="width:20%;" type="text" name="kategori_kd" id="kategori_kd" value="${rows and rows.kats.kode}" />
+                                        <input class="form-control" readonly style="width:80%;" type="text" name="kategori_nm" id="kategori_nm" value="${rows and rows.kats.uraian}" />
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-info" id="btn_kategori" name="btn_kategori">...</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="no_register">Register</label>
+                                <div class="col-sm-4">
+                                    <input class="form-control" type="text" readonly name="no_register" id="no_register" value="${rows and rows.no_register}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="uraian">Uraian</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="uraian" id="uraian" value="${rows and rows.uraian}" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="pemilik_id">Pemilik</label>
+                                <div class="col-sm-6">
+                                        <select class="form-control"  name="pemilik_id" id="pemilik_id">
+                                            <option tal:repeat="pemilik pemiliks"  value="${pemilik.id}">${pemilik.nama}</option>
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="tgl_perolehan">Tgl Perolehan</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" readonly name="tgl_perolehan" id="tgl_perolehan" value="${rows and rows.tgl_perolehan}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="cara_perolehan">Cara</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="cara_perolehan" id="cara_perolehan" value="${rows and rows.cara_perolehan}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="th_beli">Thn Beli</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="th_beli" id="th_beli" value="${rows and rows.th_beli}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="asal_usul">Asal Usul</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="asal_usul" id="asal_usul" value="${rows and rows.asal_usul}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="harga">Harga</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="harga" id="harga" value="${rows and rows.harga or 1}" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="jumlah">Jumlah</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="jumlah" id="jumlah" value="${rows and rows.jumlah or 1}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="satuan">Satuan</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="satuan" id="satuan" value="${rows and rows.satuan}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="kondisi">Kondisi</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="kondisi" id="kondisi" value="${rows and rows.kondisi or 'B'}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="masa_manfaat">Masa Manfaat</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="masa_manfaat" id="masa_manfaat" value="${rows and rows.masa_manfaat or 5}" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="nilai_sisa">Nilai Sisa</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="nilai_sisa" id="nilai_sisa" value="${rows and rows.nilai_sisa}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="no_sp2d">No SP2D</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" name="no_sp2d" id="no_sp2d" value="${rows and rows.no_sp2d}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="kib">KIB</label>
+                                <div class="col-sm-2">
+                            <!--select id="kib" name="kib" class="form-control">
+                                <option value="">Pilih KIB</option>
+                                <option value="A" tal:attributes="selected 'selected' if rows and rows.kib=='A' else None">KIB A</option>
+                                <option value="B" tal:attributes="selected 'selected' if rows and rows.kib=='B' else None">KIB B</option>
+                                <option value="C" tal:attributes="selected 'selected' if rows and rows.kib=='C' else None">KIB C</option>
+                                <option value="D" tal:attributes="selected 'selected' if rows and rows.kib=='D' else None">KIB D</option>
+                                <option value="E" tal:attributes="selected 'selected' if rows and rows.kib=='E' else None">KIB E</option>
+                                <option value="F" tal:attributes="selected 'selected' if rows and rows.kib=='F' else None">KIB F</option>
+                            </select-->
+                                    <input class="form-control" readonly type="text" name="kib" id="kib" value="${rows and rows.kib}" />
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="keterangan">Keterangan</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="keterangan" id="keterangan" value="${rows and rows.keterangan}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <p>&nbsp;</p>
+                    <!-- PANEL KIB -->
+                    <div class="panelkib panel panel-info" id="k01">
+                        <div class="panel-heading">KIB A</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="a_luas_m2">Luas (m2)</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="a_luas_m2" id="a_luas_m2" value="${rows and rows.a_luas_m2}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="a_alamat">Alamat</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="a_alamat" id="a_alamat" value="${rows and rows.a_alamat}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="a_hak_tanah">Hak Tanah</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="a_hak_tanah" id="a_hak_tanah" value="${rows and rows.a_hak_tanah}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="a_sertifikat_tanggal">Tgl Sertifikat</label>
+                                <div class="col-sm-2">
+                                    <input readonly class="form-control" type="text" name="a_sertifikat_tanggal" id="a_sertifikat_tanggal" value="${rows and rows.a_sertifikat_tanggal}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="a_sertifikat_nomor">No Sertifikat</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="a_sertifikat_nomor" id="a_sertifikat_nomor" value="${rows and rows.a_sertifikat_nomor}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="a_penggunaan">Penggunaan</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="a_penggunaan" id="a_penggunaan" value="${rows and rows.a_penggunaan}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelkib panel panel-info" id="k02">
+                        <div class="panel-heading">KIB B</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_kd_ruang">Kode Ruang</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_kd_ruang" id="b_kd_ruang" value="${rows and rows.b_kd_ruang}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_nomor_mesin">No Mesin</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_nomor_mesin" id="b_nomor_mesin" value="${rows and rows.b_nomor_mesin}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_merk">Merk</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_merk" id="b_merk" value="${rows and rows.b_merk}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_nomor_polisi">No Polisi</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_nomor_polisi" id="b_nomor_polisi" value="${rows and rows.b_nomor_polisi}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_type">Tipe</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_type" id="b_type" value="${rows and rows.b_type}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_nomor_bpkb">No BPKB</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_nomor_bpkb" id="b_nomor_bpkb" value="${rows and rows.b_nomor_bpkb}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_cc">CC</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_cc" id="b_cc" value="${rows and rows.b_cc}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_ukuran">Ukuran</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_ukuran" id="b_ukuran" value="${rows and rows.b_ukuran}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_bahan">Bahan</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_bahan" id="b_bahan" value="${rows and rows.b_bahan}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_warna">Warna</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_warna" id="b_warna" value="${rows and rows.b_warna}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_nomor_pabrik">No Pabrik</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_nomor_pabrik" id="b_nomor_pabrik" value="${rows and rows.b_nomor_pabrik}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_thbuat">Thn Buat</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_thbuat" id="b_thbuat" value="${rows and rows.b_thbuat}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="b_nomor_rangka">No Rangka</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="b_nomor_rangka" id="b_nomor_rangka" value="${rows and rows.b_nomor_rangka}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelkib panel panel-info" id="k03">
+                        <div class="panel-heading">KIB C</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_bertingkat_tidak">Bertingkat Tidak</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_bertingkat_tidak" id="c_bertingkat_tidak" value="${rows and rows.c_bertingkat_tidak}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_beton_tidak">Beton Tidak</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_beton_tidak" id="c_beton_tidak" value="${rows and rows.c_beton_tidak}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_luas_lantai">Luas Lantai</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_luas_lantai" id="c_luas_lantai" value="${rows and rows.c_luas_lantai}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_lokasi">Lokasi</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_lokasi" id="c_lokasi" value="${rows and rows.c_lokasi}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_dokumen_tanggal" >Tgl Dokumen</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" readonly name="c_dokumen_tanggal" id="c_dokumen_tanggal" value="${rows and rows.c_dokumen_tanggal}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_dokumen_nomor">No Dokumen</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_dokumen_nomor" id="c_dokumen_nomor" value="${rows and rows.c_dokumen_nomor}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_status_tanah">Status Tanah</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_status_tanah" id="c_status_tanah" value="${rows and rows.c_status_tanah}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_kode_tanah">Kode Tanah</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_kode_tanah" id="c_kode_tanah" value="${rows and rows.c_kode_tanah}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="c_luas_bangunan">Luas Bangunan</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="c_luas_bangunan" id="c_luas_bangunan" value="${rows and rows.c_luas_bangunan}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelkib panel panel-info" id="k04">
+                        <div class="panel-heading">KIB D</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_konstruksi">Konstruksi</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_konstruksi" id="d_konstruksi" value="${rows and rows.d_konstruksi}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_panjang">Panjang</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_panjang" id="d_panjang" value="${rows and rows.d_panjang}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_lebar">Lebar</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_lebar" id="d_lebar" value="${rows and rows.d_lebar}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_luas">Luas</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_luas" id="d_luas" value="${rows and rows.d_luas}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_lokasi">Lokasi</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_lokasi" id="d_lokasi" value="${rows and rows.d_lokasi}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_dokumen_tanggal">Tgl Dokumen</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_dokumen_tanggal" readonly id="d_dokumen_tanggal" value="${rows and rows.d_dokumen_tanggal}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_dokumen_nomor">No Dokumen</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_dokumen_nomor" id="d_dokumen_nomor" value="${rows and rows.d_dokumen_nomor}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_status_tanah">Status Tanah</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_status_tanah" id="d_status_tanah" value="${rows and rows.d_status_tanah}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="d_kode_tanah">Kode Tanah</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="d_kode_tanah" id="d_kode_tanah" value="${rows and rows.d_kode_tanah}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelkib panel panel-info" id="k05">
+                        <div class="panel-heading">KIB E</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_judul">Judul</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_judul" id="e_judul" value="${rows and rows.e_judul}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_pencipta">Pencipta</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_pencipta" id="e_pencipta" value="${rows and rows.e_pencipta}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_bahan">Bahan</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_bahan" id="e_bahan" value="${rows and rows.e_bahan}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_spek">Spek</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_spek" id="e_spek" value="${rows and rows.e_spek}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_asal">Asal</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_asal" id="e_asal" value="${rows and rows.e_asal}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_ukuran">Ukuran</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_ukuran" id="e_ukuran" value="${rows and rows.e_ukuran}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="e_jenis">Jenis</label>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="text" name="e_jenis" id="e_jenis" value="${rows and rows.e_jenis}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panelkib panel panel-info" id="k06">
+                        <div class="panel-heading">KIB F</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_bertingkat_tidak">Bertingkat Tidak</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_bertingkat_tidak" id="f_bertingkat_tidak" value="${rows and rows.f_bertingkat_tidak}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_dokumen_tanggal">Tgl Dokumen</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_dokumen_tanggal" readonly id="f_dokumen_tanggal" value="${rows and rows.f_dokumen_tanggal}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_beton_tidak">Beton Tidak</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_beton_tidak" id="f_beton_tidak" value="${rows and rows.f_beton_tidak}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_dokumen_nomor">No Dokumen</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_dokumen_nomor" id="f_dokumen_nomor" value="${rows and rows.f_dokumen_nomor}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_panjang">Panjang</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_panjang" id="f_panjang" value="${rows and rows.f_panjang}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_status_tanah">Status Tanah</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_status_tanah" id="f_status_tanah" value="${rows and rows.f_status_tanah}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_lebar">Lebar</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_lebar" id="f_lebar" value="${rows and rows.f_lebar}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_kode_tanah">Kode Tanah</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_kode_tanah" id="f_kode_tanah" value="${rows and rows.f_kode_tanah}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_luas_lantai">Luas Lantai</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_luas_lantai" id="f_luas_lantai" value="${rows and rows.f_luas_lantai}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_luas_bangunan">Luas Bangunan</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_luas_bangunan" id="f_luas_bangunan" value="${rows and rows.f_luas_bangunan}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-6" for="f_lokasi">Lokasi</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="f_lokasi" id="f_lokasi" value="${rows and rows.f_lokasi}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                </div>
+                            </div>  
+						</div>
+                    </div>
+                    
+                <div class="form-group">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                            <button type="reset" class="btn btn-info" id="btn_cancel">Batal</button>
+                            <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</html>

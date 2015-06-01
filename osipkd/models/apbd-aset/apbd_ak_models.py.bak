@@ -1,0 +1,138 @@
+import sys
+from model_base import *
+from sqlalchemy import Column, Integer, String, SmallInteger, UniqueConstraint
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql.functions import concat
+from osipkd.models.apbd_admin_models import *
+#    ProgramModel, UrusanModel)
+from osipkd.models.apbd_rka_models import * # (KegiatanSubModel, RekeningModel)  
+from tools import FixLength
+
+class JurnalModel(BaseDB, Base):
+    __tablename__   = 'jurnals'
+    __table_args__  = {'extend_existing':True, 'schema' : 'apbd',}
+                    
+    tahun_id        = Column(BigInteger,    ForeignKey("apbd.tahuns.id"), nullable=False)
+    unit_id         = Column(Integer,       ForeignKey("apbd.units.id"),  nullable=False)                     
+    periode         = Column(Integer,       nullable=False)
+    no_urut         = Column(Integer,       nullable=False)
+    kode            = Column(String(50),    nullable=False)
+    nama            = Column(String(225),   nullable=False)
+    jv_type         = Column(SmallInteger,  nullable=False, default=0)
+    tanggal         = Column(Date) 
+    isautoreverse   = Column(SmallInteger,  nullable=False)
+    source          = Column(String(10),    nullable=False)
+    sourceno        = Column(String(30),    nullable=False)
+    tgl_source      = Column(Date)
+    posted          = Column(SmallInteger,  nullable=False)
+    posted_by       = Column(Integer,       nullable=False) 
+    tgl_posted      = Column(Date) 
+    notes           = Column(String(225),   nullable=False)
+    is_skpd         = Column(SmallInteger,  nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.tahun_id      = 'tahun_id'      in data and data['tahun_id']      or self.tahun
+        self.unit_id       = 'unit_id'       in data and data['unit_id']       or None
+        self.periode       = 'periode'       in data and data['periode']       or 0
+        self.no_urut       = 'no_urut'       in data and data['no_urut']       or 0
+        self.kode          = 'kode'          in data and data['kode']          or None
+        self.nama          = 'nama'          in data and data['nama']          or None
+        self.jv_type       = 'jv_type'       in data and data['jv_type']       or 5
+        self.tanggal       = 'tanggal'       in data and data['tanggal']       or None
+        self.isautoreverse = 'isautoreverse' in data and data['isautoreverse'] or 0
+        self.source        = 'source'        in data and data['source']        or None
+        self.sourceno      = 'sourceno'      in data and data['sourceno']      or None
+        self.tgl_source    = 'tgl_source'    in data and data['tgl_source']    or None
+        self.posted        = 'posted'        in data and data['posted']        or 0
+        self.posted_by     = 'posted_by'     in data and data['posted_by']     or None
+        self.tgl_posted    = 'tgl_posted'    in data and data['tgl_posted']    or None
+        self.notes         = 'notes'         in data and data['notes']         or None
+        self.is_skpd       = 'is_skpd'       in data and data['is_skpd']       or 0
+
+    @classmethod
+    def get_header(cls, unit_id, sub_keg_id):
+        return DBSession.query(cls.id,
+            cls.nama).filter(cls.unit_id==unit_id,cls.id==sub_keg_id).first()
+
+    @classmethod
+    def get_no_urut(cls, p):
+        row = DBSession.query(func.max(cls.no_urut).label('no_urut'))\
+                .filter(cls.tahun_id==p['tahun_id'],
+                        cls.unit_id==p['unit_id']
+                ).first()
+        if row and row.no_urut:
+           return row.no_urut+1
+        else:
+           return 1
+
+    #@classmethod
+    #def get_kode(cls, p):
+    #    jurnal_kode = FixLength(JURNAL_KODE)
+        
+    #    rows = DBSession.query(func.max(cls.kode).label('kode'))
+    #    if "tahun_id" in JURNAL_KODE:
+    #        rows.filter(cls.tahun_id == p['tahun_id'])
+
+    #    if "is_skpd" in JURNAL_KODE:
+    #        jurnal_kode['is_skpd'] = p['is_skpd']
+    #        rows.filter(cls.is_skpd == p['is_skpd'])
+
+    #    if "unit_id" in JURNAL_KODE:
+    #        rows.filter(cls.unit_id == p['unit_id'])
+        
+    #    if "jv_type" in JURNAL_KODE:
+    #        jurnal_kode['jv_type'] = p['jv_type']
+    #        rows.filter(cls.jv_type == p['jv_type'])
+        
+    #    rows = rows.first()
+    #    if rows and rows.kode:
+    #        jurnal_kode.set_raw(rows.kode)
+    #        jurnal_kode.set('no_urut', int(jurnal_kode.get('no_urut'))+1)
+
+    #    return jurnal_kode.get_raw()
+
+class JurnalItemModel(BaseDB, Base):
+    __tablename__   ='jurnal_items'
+    __table_args__  = {'extend_existing':True,'schema' :'apbd'}
+
+    jurnals         = relationship("JurnalModel",      backref="jurnal_items")
+    kegiatan_subs   = relationship("KegiatanSubModel", backref="jurnal_items")
+    rekenings       = relationship("RekeningModel",    backref="jurnal_items")
+
+    jurnal_id       = Column(BigInteger,  ForeignKey("apbd.jurnals.id"),      nullable=False)
+    kegiatan_sub_id = Column(BigInteger,  ForeignKey("apbd.kegiatan_subs.id"), nullable=False)
+    rekening_id     = Column(BigInteger,  ForeignKey("apbd.rekenings.id"),     nullable=False)
+    kode            = Column(String(50),  nullable=False)
+    nama            = Column(String(225), nullable=False)
+    rate            = Column(BigInteger,  default=1)
+    items           = Column(BigInteger,  default=1) 
+    debet           = Column(BigInteger)
+    kredit          = Column(BigInteger)
+    amounttrans     = Column(BigInteger,  default=1) 
+    notes           = Column(String(225), nullable=False)
+
+    def __init__(self, data):
+        BaseDB.__init__(self,data)
+        self.jurnal_id       = 'jurnal_id'       in data and data['jurnal_id'] or None
+        self.kegiatan_sub_id = 'kegiatan_sub_id' in data and data['kegiatan_sub_id'] or None
+        self.rekening_id     = 'rekening_id'     in data and data['rekening_id'] or None
+        self.kode            = 'kode'            in data and data['kode'] or None
+        self.nama            = 'nama'            in data and data['nama'] or None        
+        self.rate            = 'rate'            in data and data['rate'] or 1
+        self.items           = 'items'           in data and data['items'] or 1
+        self.debet           = 'debet'           in data and data['debet'] or None
+        self.kredit          = 'kredit'          in data and data['kredit'] or None
+        self.amounttrans     = 'amounttrans'     in data and data['amounttrans'] or 1
+        self.notes           = 'notes'           in data and data['notes'] or None
+
+    @classmethod
+    def get_jurnal_item_id(cls, p):
+        row = DBSession.query(func.max(cls.id).label('jurnal_item_id'))\
+                .filter(cls.jurnal_id==p['jurnal_id']
+                ).first()
+        if row and row.jurnal_item_id:
+           return row.jurnal_item_id+1
+        else:
+           return 1 
+

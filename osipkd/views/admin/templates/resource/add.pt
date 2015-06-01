@@ -1,0 +1,7 @@
+<html metal:use-macro="load: ../base-app.pt">
+<div metal:fill-slot="content">
+<h4>Tambah Group</h4>
+<hr>
+<div tal:content="structure form"/>
+</div>
+</html>

@@ -1,0 +1,36 @@
+<html metal:use-macro="load: ../../apptemplate.pt">
+    <div metal:fill-slot="nav">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seting <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b201/001">Parameter NO.</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Belanja <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b203/003">SPD</a></li>
+                    <li><a href="/b203/001">SP2D</a></li>
+                    <li><a href="/b203/002">Giro</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pelaporan <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/b204/r000">Register SP2D</a></li>
+                    <li><a href="/b204/r100">Realisasi Anggaran</a></li>
+                    <li><a href="/b204/r300">Realisasi Anggaran/SKPD</a></li>
+                    <li><a href="/b204/r200">Realisasi Anggaran/SKPD/Kegiatan</a></li>
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+    <div metal:fill-slot="content">
+        <div metal:define-slot="content2">
+        </div>
+    </div>
+</html>

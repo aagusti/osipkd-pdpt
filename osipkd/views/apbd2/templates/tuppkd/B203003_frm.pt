@@ -1,0 +1,520 @@
+<html metal:use-macro="load: ../tuppkd/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+    
+    <style>
+    .modalkegitem {
+        width: 900px;
+    }
+    </style>
+
+      <script type='text/javascript'>
+      var smod = "/b203/003"
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = smod+"/grid2?spd_id="+${rows and rows.id or 0}; 
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          ' <button id="btn_tambah" class="btn btn btn-primary" type="button">Tambah</button>',
+          ' <button id="btn_hapus"  class="btn btn btn-danger"  type="button">Hapus</button>',
+          ' &nbsp;',
+          '</div>'
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,
+            /*"sDom": '<"toolbar">lfrtip',*/
+            "dom"            : '<"top"ilf>rt<"bottom"<"toolbar">p><"clear">',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+            "bUseRendered"   : true,
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [
+                {
+                   "bSearchable": false, 
+                   "bVisible"   : false,
+                   "aTargets"   : [0]
+                },{ 
+                   "type": "numeric-comma", "aTargets": [3,4,5]
+                },{
+                   "sClass"   : "right",
+                   "aTargets" : [3,4,5,6,7],
+                   "mRender"  : function (data, type, full) {
+                   return formatNumber(data);}
+                }
+            ],
+
+            "aoColumns": [
+                null, 
+                {"sWidth": "50px"},   
+                {"sWidth": "300px"}, 
+                {"sWidth": "100px"}, 
+                {"sWidth": "100px"}, 
+                {"sWidth": "100px"}, 
+                {"sWidth": "100px"}, 
+                {"sWidth": "100px"}, 
+ 
+            ],
+            "formatNumber": function ( toFormat ) {
+                 return toFormat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "'");
+            }
+        });
+ 
+        function formatNumber(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                mID = ''; ;
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos1);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        $('#btn_hapus').click(function () {
+          if (mID) {
+              var hapus = confirm('Hapus data ini?');
+              if (hapus == true) {
+                  $.ajax({
+                      type: "POST",
+                      url: smod+"/delitem",
+                      data: "id=" + mID,
+                      success: function (html) {
+                          if (html.success == true) {
+                              $("#errors").css('display', 'inline', 'important');
+                              $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                              var oTable = $('#table1').dataTable();
+                              oTable.fnReloadAjax();
+                          } else {
+                              $("#errors").css('display', 'inline', 'important');
+                              $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                          }
+                      },
+                      beforeSend: function () {
+                          $("#errors").css('display', 'inline', 'important');
+                          $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                      }
+                  });
+                  return false;
+              };
+          } else {
+              alert('Silahkan pilih data yang akan dihapus');
+          }
+        });
+  
+        /*FORM --------------------------*/
+                
+        $("#btn_save").click(function () {
+            $.ajax({
+                type: "POST",
+                url: smod+"/save",
+                data: $("#myform").serialize(),
+                success: function (html) {
+                    if (html.success == true) {
+                        $("#id").val(html.id);
+                        $("#kode").val(html.kode);
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                },
+                beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+            });
+            return false;
+        });
+
+        $("#btn_close").click(function () {
+            window.location = smod;
+            return false;
+        });
+
+        $( "#tanggal").datepicker({dateFormat:'yy-mm-dd'});
+  
+      });
+          
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Surat Penyediaan Dana (SPD) </h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${rows and rows.tahun_id or datas.tahun}" />
+                    </div>
+                    <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+                    <div class="col-xs-6">
+                        <input type="hidden" name="unit_id" id="unit_id" readonly="True" 
+                                value="${rows and rows.units and rows.units.id or datas.unit_id}" />
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                            <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">
+                                  ${rows and rows.units and rows.units.kode or datas.unit_kd}</span>
+                            </span>
+                            <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">
+                                  ${rows and rows.units and rows.units.nama or datas.unit_nm}</span>
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="button" id="btn_unit" 
+                                tal:attributes="disabled 'disabled' if datas.all_unit==0 else None">...</button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="form-group">    
+                    <label class="control-label col-xs-2" for="kode">Kode</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="kode" id="kode" 
+                              value="${rows and rows.kode or None}"/>
+                    </div>
+                    <label class="control-label col-xs-1" for="tanggal">Tanggal</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="tanggal" id="tanggal" 
+                               value="${rows and rows.tanggal or None}"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="nama">Uraian</label>
+                    <div class="col-xs-5">
+                        <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama  or None}" required />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="triwulan_id">Triwulan</label>
+                    <div class="col-xs-2">
+                        <select class="form-control" id="triwulan_id" name="triwulan_id">
+                            <option value="">Pilih Triwulan</option>
+                            <option tal:attributes="selected 'selected' if rows and rows.triwulan_id==1 else None" 
+                                    value="1">Triwulan I</option>
+                            <option tal:attributes="selected 'selected' if rows and rows.triwulan_id==2 else None" 
+                                    value="2">Triwulan II</option>
+                            <option tal:attributes="selected 'selected' if rows and rows.triwulan_id==3 else None" 
+                                    value="3">Triwulan III</option>
+                            <option tal:attributes="selected 'selected' if rows and rows.triwulan_id==4 else None" 
+                                    value="4">Triwulan IV</option>
+                        </select>
+                    </div>
+                    
+                    <div class="checkbox col-xs-2">
+                      <label>
+                        <input type="checkbox" id="is_bl" name="is_bl"> Belanja Langsung
+                      </label>
+                    </div>
+  
+                </div>
+                    
+                <div class="form-group">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                        <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+                        <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                      <th>Index</th>
+                      <th>Kode</th>
+                      <th>Uraian</th>
+                      <th>Anggaran</th>
+                      <th>Lalu</th>
+                      <th>Kini</th>
+                      <th>Jumlah</th>
+                      <th>Sisa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <!--panel-body-->
+        
+        <script>
+            <!--Modal Kegiatan -->
+            var kegiatanSubID, kegiatanSubKd, kegiatanSubNm;
+            var iPos1;
+            var tblkegiatansub;
+            var tblkegiatansubUrl = "/apbd/dlg/kegiatansub?pk_id="+$("#unit_id").val();
+
+                 
+                 
+            $(document).ready(function () {
+                $('#btn_tambah').click(function() {
+                    if ($('#id').val()=="" || $('#id').val()=="0"){
+                      alert('Simpan Dulu Master Data');
+                      return;
+                    }
+                    tblkegiatansubUrl = "/apbd/dlg/kegiatansub?pk_id="+$("#unit_id").val();
+                    tblkegiatansub.fnReloadAjax(tblkegiatansubUrl);
+                    $('#dlgKegiatanSub').modal('show');
+                });    
+
+                tblkegiatansub = $('#tblkegiatansub').dataTable({
+                    "sAjaxSource"    : tblkegiatansubUrl,
+                    "bServerSide"    : true,
+                    "bProcessing"    : true,
+                    "sDom"           : '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort"          : true,
+                    "bInfo"          : false,
+                    "bFilter"        : true,
+                    "bAutoWidth"     : false,
+                    "bPaginate"      : true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible": false, "aTargets": [0]}, 
+                        {"bSearchable": true,  "bVisible": true,  "aTargets": [1,2]}
+                    ],
+
+                    "aoColumns": [
+                        null, {"sWidth": "50px"}, 
+                        {"sWidth": "50px"}, null
+                    ],
+                });
+                
+                $('#tblkegiatansub tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kegiatanSubID = ''; kegiatanSubKd = ''; kegiatanKd='';kegiatanSubNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos1 = tblkegiatansub.fnGetPosition(this);
+                        var aData = tblkegiatansub.fnGetData(iPos1);
+                        kegiatanSubID = aData[0];
+                        //kegiatanSubKd = aData[1];
+                        //kegiatanSubNm = aData[3];
+                        //tblkegiatansub.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                /* end datatable unit*/
+
+                $('#btn_pil_keg_sub').click(function() {
+                    
+                    if(kegiatanSubID) {
+                        $('#dlgKegiatanSub').modal('hide');
+                        if ($("#id").val()=="" || $("#id").val()==0){
+                          alert('Simpan Dulu Master Data');
+                        }else{
+                          var anSelected = tblkegiatansub.$('tr.selected');
+                          for (var i = 0; i < anSelected.length; i++) {
+                              var aData = tblkegiatansub.fnGetData(anSelected[i]);
+                              //alert(aData[0]);
+                              var dataitem = 'kegiatan_sub_id=' + aData[0] +
+                                  '&spd_id=' + $('#id').val();
+                              $.ajax({
+                                  type: "POST",
+                                  url: smod+"/saveitem",
+                                  data: dataitem,
+                                  success: function (html) {
+                                      oTable.fnReloadAjax();
+                                  },
+                              });
+                          };
+                        }
+                        
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+           }); 
+           /*end of kegiatan*/     
+        </script>
+        <!-- Modal Kegiatan -->
+        <div class="modal fade" id="dlgKegiatanSub" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKegiatanSubLabel">Pilih Kegiatan</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-bordered table-hover table-condensed" id="tblkegiatansub">
+                            <thead>
+                                <tr>
+                                  <th>Index</th>
+                                  <th>Kode</th>
+                                  <th>No</th>
+                                  <th>Uraian</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pil_keg_sub" name="btn_pil_keg_sub">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+   <!-- Modal Unit -->
+    <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/admin/unit/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource"    : tblUnitUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,  
+          "sDom"           : '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : true,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": false, "bVisible": true,  "aTargets": [1,2,3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%",
+               "sClass": "center"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID = aData[0];
+                urusanKd = aData[1];
+                unitKd = aData[2];
+                unitNm = aData[3];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /* end datatable unit*/
+
+        $('#btn_pilih1').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $.ajax({
+              type: "POST",
+              url: "/admin/change/unit",
+              data: "unit_id="+unitID,
+              success: function (html) {
+                if (html.success == true) {
+                  $('#unit_id').val(unitID);
+                  $('#unit_nm').text(unitNm);
+                  $('#unit_kd').text(urusanKd+'.'+unitKd);
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  tblkegiatansub.fnReloadAjax();
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Urusan</th>
+                  <th>Kd Unit</th>
+                  <th>Nama</th>
+                  <th>Singkatan</th>
+                  <th>Kategori</th>
+                  <th>Urusan</th>
+                  <th>Disabled</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>     <!-- End Modal -->
+    
+  </div>
+</html>

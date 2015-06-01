@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<apbd>
+  <master>
+    <unit>
+	  <urusankd>1</urusankd>
+      <kode>01104</kode>
+      <uraian>A</uraian>
+	  <kategori>SKPD</kategori>
+	  <singkat>A</singkat>
+    </unit>
+    <unit>
+	  <urusankd>2</urusankd>
+      <kode>76102</kode>
+      <uraian>B</uraian>
+	  <kategori>SKPD</kategori>
+	  <singkat>B</singkat>
+    </unit>
+  </master>
+</apbd>

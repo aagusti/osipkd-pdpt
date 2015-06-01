@@ -1,0 +1,20 @@
+<html metal:use-macro="load: base.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+<div class="well">
+<h1>${request.title}</h1>
+<p><img src="/files/logo.png" class="img-float img-thumbnail"/>
+Selamat Datang di Aplikasi ${request.title}
+
+<p>Aplikasi ${request.title} adalah aplikasi 
+   yang digunakan untuk menatausahakan pendapatan dan belanja di SKPD
+<p> Module yang terdapata pada aplikasi ini adalah:
+<p><ul>
+     <li>Penatausahaan Pendapatan</li>
+     <li>Penatausahaan Belanja</li>
+     <li>Akuntansi</li>
+</div><!--well-->
+
+</div>
+</html>

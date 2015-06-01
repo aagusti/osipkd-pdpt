@@ -1,0 +1,375 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+  <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">${request.title}</h3>
+    </div>
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+        <div tal:condition="'id' in form" style="display:none;">
+          <div tal:define="field form['id']">
+              ${structure:field.serialize()}
+          </div>
+        </div>
+
+          <!-- TAHUN  -------------------------------------------------------------------->
+        <div class="form-group"> 
+
+          <!-- UNIT -------------------------------------------------------------------->
+          <div tal:define="field form['unit_id']" style="display: none;">
+               <input type="text" class="form-control" id="${field.oid}" 
+                      value="${request.session.unit_id}" readonly name="${field.oid}">
+          </div>
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-1" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-2">
+             <input type="text" class="form-control" id="unit_kd" 
+                    name="unit_kd" value="${request.session.unit_kd}" readonly>
+            </div>
+          </div>
+          <div class="col-md-7" id="item-unit_nm">
+            <input type="text" class="form-control" id="unit_nm" 
+                   name="unit_nm" value="${request.session.unit_nm}" readonly>
+          </div>
+        </div>
+
+        <!--Kode-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['kode']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+
+        <!--Tanggal-------------------------------------------------------------------->
+          <div tal:define="field form['tanggal']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+
+        <!--Alasan-------------------------------------------------------------------->
+          <div tal:define="field form['alasan']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-3">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Uraian-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['uraian']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-9">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Nominal-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <label class="control-label col-md-1"></label>
+          <!--Button-------------------------------------------------------------------->
+          <div class="col-md-4"> 
+            <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
+            <!--button type="submit" class="btn btn-danger"  id="batal"  name="batal">Batal</button-->
+            <button type="submit" class="btn btn-warning" id="tutup"  name="tutup">Tutup</button>
+          </div>
+        </div>
+
+      </form>
+    </div>  
+  </div>  
+        <table class="table table-bordered table-hover table-condensed" id="table1">
+          <thead>
+              <tr>
+                  <th>Index</th>
+                  <th>ID Kibdel</th>
+                  <th>ID Kib</th>
+                  <th>Kode Kategori</th>
+                  <th>Nama Kategori</th>
+                  <th>Register</th>
+                  <th>Tgl. KIB</th>
+                  <th>Asal Usul</th>
+                  <th>Uraian</th>
+                  <th>Harga</th>
+                  <th>Catatan</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table><br><br>
+      <div  class="panel panel-default">
+          <div class="panel-heading">
+              <h5 class="panel-title">Tambah Item Penghapusan</h5>
+          </div>
+      <div class="panel-body">
+          <form method="post" id="detail" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+            <fieldset class="deformFormFieldset">
+              <!--REKENING------------------------------------------------------------->
+              <input id="kibdel_item_id" type="hidden" value="" name="kibdel_item_id">
+              <input id="delete_id"      type="hidden" value="" name="delete_id">
+              <input id="kib_id"         type="hidden" value="" name="kib_id">
+              
+              <div class="form-group">
+                <label for="kode1" class="control-label col-md-1" id="req-kode1">
+                    KIB </label>
+                <div class="col-md-4">
+                   <input id="kode1" class=" form-control " type="text" value="" name="kode1">
+                </div>
+                <div class="col-md-4">
+                   <input id="nama1" class=" form-control " readonly type="text" value="" name="nama1">
+                </div>
+                <div class="col-md-2">
+                   <input id="tanggal" class=" form-control " readonly type="text" value="" name="tanggal">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="alasan" class="control-label col-md-1" id="req-alasan">
+                    Catatan</label>
+                <div class="col-md-8">
+                   <input id="alasan" class=" form-control " type="text" value="" name="alasan">
+                </div>
+                <!--Button----------------------------------------------------------->
+                <div class="col-md-2">
+                    <button id="kib_add" name="baru" type="button" class="btn btn-primary "
+                        value="baru">Tambah</button>
+                    <button id="kib_cancel" name="batal" type="reset" class="btn btn-danger "
+                        value="batal">Batal</button>
+                </div> 
+                
+              </div>
+        <script>
+           $('#kib_add').click(function () {
+                  $('#kibdel_item_id').val('');
+                  $('#detail').submit();
+             })
+            $('#kode1').typeahead({
+                "hint"     : true,
+                "highlight": true,
+                "minLength": 1,
+                "remote"   : "/aset/kiba/headofkode/act?term=%QUERY", 
+            },{
+               "name"      : 'kode1',
+               "displayKey": 'value',
+            });           
+          
+            $('#kode1').bind('typeahead:selected', function(obj, datum, name) {  
+                  $('#kib_id').val(datum.id);
+                  $('#nama1').val(datum.uraian);  
+                  $('#tanggal').val(datum.tanggal);                
+            });
+              
+            $( "#detail" ).submit(function( event ) {
+              var delete_id;
+              var is_success;
+              is_success = true;
+              delete_id = $('#id').val();
+              if (!delete_id) {
+                  is_success = false;
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + 'Simpan Dulu Headernya');
+              }
+          
+              if (is_success){
+                $.ajax({
+                  type: "POST",
+                  url : "/aset/kibdel/item/"+delete_id+"/add",
+                  data: $('#detail').serialize(),
+                  success: function (html) {
+                    if (html.success == true) {
+                      $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                      $('#kibdel_item_id').val('');
+                      $('#kib_id').val('');
+                      $('#kode1').val('');
+                      $('#nama1').val('');
+                      $('#tanggal').val('');
+                      $('#alasan').val('');
+                      oTable.fnReloadAjax(oTableUrl);
+                    } else {
+                      $("#errors").css('display', 'inline', 'important');
+                      $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                  },
+                  beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                  }
+                });
+              }
+              event.preventDefault();
+            });
+        </script>
+       </fieldset>
+     </form>
+    </div>     
+   </div> <!--panel-body-->
+
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var delete_id = $('#id').val();
+      var oTableUrl = "/aset/kibdel/item/"+delete_id+"/act/grid";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          //'<button id="btn_print"  class="btn btn btn-primary" type="button">Print</button>',
+          //'<button id="btn_close"  class="btn btn-warning"     type="button">Tutup</button>',
+          '	&nbsp;',
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+      
+      function formatNumber(n) {
+               return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+               }
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,           
+            "sDom"           : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+
+            "lengthMenu": [
+                [5, 10, 15, 25, 50, -1],
+                [5, 10, 15, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false,
+                "bVisible"   : false,
+                "aTargets"   : [0,1,2,10]
+            },{
+                "bSearchable": true,
+                "bSortable"  : false,
+                "aTargets"   : [6,10]
+            },{
+                "bSearchable": false,
+                "bSortable"  : false,
+                "aTargets"   : [1,2,3,4,5,7,8,9]
+            }            
+            ],
+            "aoColumns": [
+                null, 
+                {"sWidth": "10px"},
+                {"sWidth": "10px"},
+                {"sWidth": "50px"},
+                {"sWidth": "60px"}, 
+                {"sWidth": "10px"}, 
+                {"sWidth": "20px"}, 
+                {"sWidth": "80px"},
+                {"sWidth": "150px"},
+                {"sWidth": "40px", "sClass": "right"},
+                {"sWidth": "10px"},
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+                        $("#kibdel_item_id").val(data[0]);
+                        $("#delete_id").val(data[1]);
+                        $("#kib_id").val(data[2]);
+                        $("#kode1").val(data[3]+'-'+data[5]);
+                        $("#nama1").val(data[8]);
+                        $("#tanggal").val(data[6]);    
+                        $("#alasan").val(data[10]);    
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /**********************************************************************/
+        $('#btn_delete').click(function () { 
+            if (mID) {
+              if (confirm('Yakin dihapus?')==true){
+                $.ajax({
+                type: "POST",
+                url: "/aset/kibdel/item/"+$("#id").val()+"/"+mID+"/delete",
+                success: function (html) {
+                  if (html.success == true) {
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $('#kibdel_item_id').val('');
+                    $('#kib_id').val('');
+                    $('#kode1').val('');
+                    $('#nama1').val('');
+                    $('#tanggal').val('');
+                    $('#alasan').val('');
+                      
+                    oTable.fnReloadAjax(oTableUrl);
+                  } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  }
+                },
+                beforeSend: function () {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+                });
+              } else {
+                  alert('Silahkan pilih data yang akan di hapus');
+              }
+            }
+        });
+        
+        $('#btn_print').click(function () {
+            alert('Masih Proses Bung!');
+        });
+
+        $("#btn_close").click(function () {
+            window.location = '/aset/kibdel';
+            return false;
+        });
+     });
+    </script>
+  </div>
+</html>

@@ -1,0 +1,540 @@
+<html metal:use-macro="load: ../anggaran/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_save").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/anggaran/999/save",
+                    data: $("#myform").serialize(),
+                    success: function (html) {
+                        if (html.success == true) {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                        } else {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                        }
+                    },
+                    beforeSend: function () {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                    }
+                });
+                return false;
+            });
+
+            $("#btn_close").click(function () {
+                window.location = '/anggaran/${datas.mod}';
+                return false;
+            });
+            
+            $('#panel1').hide();
+            $('#panel2').hide();
+            $('#panel3').hide();
+            $('#panel4').hide();
+            $('#panel${datas.status_apbd}').show();
+        });
+        
+    </script>
+    <div class="panel-heading">
+      <h3>ITEM KEGIATAN</h3>
+      <div class="row">
+        <label class="control-label col-sm-2">${datas.status_apbd_nm} Tahun </label>
+        <label class="control-label col-sm-1">${datas.tahun}</label>
+      </div>
+      
+      <div class="row">
+        <label class="control-label col-sm-2">SKPD/SKPKD</label>
+        <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+              </span>
+              <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${datas.unit_nm}" readonly>
+            </div>
+        </div>
+      </div>
+
+      <div class="row">
+          <label class="control-label col-sm-2" for="kegiatan_kd">Kegiatan</label>
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <span class="form-control" type="text" name="kegiatan_kd" id="kegiatan_kd" readonly="True">${heads and heads.kegiatans.programs.urusans.kode}.${heads and heads.kegiatans.programs.kode}.${heads and heads.kegiatans and heads.kegiatans.kode}</span>
+              </span>
+              <span class="form-control" type="text" name="kegiatan_nm" id="kegiatan_nm" readonly="True">${heads and heads.kegiatans and heads.kegiatans.nama}</span>
+            </div>
+          </div>
+      </div>
+      
+      <div class="row">
+          <label class="control-label col-sm-2" for="kegiatan_id">Sub Kegiatan</label>
+          <div class="col-sm-7">
+            <div class="input-group">
+              <span class="input-group-btn">
+                  <span class="form-control" type="text" name="sub_kegiatan_no" id="sub_kegiatan_no" readonly="True">${heads and heads.no_urut}</span>
+              </span>
+              <span class="form-control" type="text" name="kegiatan_nm" id="kegiatan_nm" readonly="True">${heads and heads.nama}</span>
+            </div>
+          </div>
+      </div>
+
+    </div>
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="${rows and rows.id}"/>
+        <input type="hidden" name="kegiatan_sub_id" id="kegiatan_sub_id" value="${heads and heads.id}" />
+    
+        <div class="form-group">
+            <input type="hidden" name="rekening_id" id="rekening_id" value="${rows and rows.rekening_id}" />
+            <label class="control-label col-sm-2" for="rekening_id">Rekening</label>
+            <div class="col-sm-6">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                      <span name="rekening_kd" id="rekening_kd" readonly="True">${rows and rows.rekenings.kode}</span>
+                  </span>
+                  <span class="form-control" type="text" name="rekening_nm" id="rekening_nm" readonly="True">${rows and rows.rekenings.nama}</span>
+                  <span class="input-group-btn">
+                      <button class="btn btn-primary" type="button" name="btn_rekening" id="btn_rekening">...</button>
+                  </span>
+                </div>
+            </div>
+            
+            <div class="col-sm-1">
+                <div class="input-group">
+                  <span class="input-group-addon">No.Urut</span>
+                  <input class="form-control" type="text" name="no_urut" id="no_urut" value="${rows and rows.no_urut}" />
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="kode">Kode/Uraian</label>
+            <div class="col-sm-1">
+                <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}" />
+            </div>
+            <div class="col-sm-6">
+                <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama}" />
+            </div>
+        </div>
+
+        <!-- Komponen Biaya -->
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="panel panel-default" id="panel1">
+                    <div class="panel-heading">RKA</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_1_1">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_1_1" id="vol_1_1" readonly="${datas.status_apbd!=1}" value="${rows and rows.vol_1_1}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_1_1" id="sat_1_1" readonly="${datas.status_apbd!=1}" value="${rows and rows.sat_1_1}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_1_2">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_1_2" id="vol_1_2" readonly="${datas.status_apbd!=1}" value="${rows and rows.vol_1_2}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_1_2" id="sat_1_2" readonly="${datas.status_apbd!=1}" value="${rows and rows.sat_1_2}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="hsat_1">Harga</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="hsat_1" id="hsat_1" readonly="${datas.status_apbd!=1}" value="${rows and rows.hsat_1}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" for="jml_1">Jumlah</span>
+                                    <span class="form-control" type="text" name="jml_1" id="jml_1" readonly="true"> ${rows and rows.vol_1_1*rows.vol_1_2*rows.hsat_1}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="panel panel-default" id="panel2">
+                    <div class="panel-heading">DPA</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_2_1">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_2_1" id="vol_2_1" readonly="${datas.status_apbd!=2}" value="${rows and rows.vol_2_1}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_2_1" id="sat_2_1" readonly="${datas.status_apbd!=2}" value="${rows and rows.sat_2_1}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_2_2">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_2_2" id="vol_2_2" readonly="${datas.status_apbd!=2}" value="${rows and rows.vol_2_2}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_2_2" id="sat_2_2" readonly="${datas.status_apbd!=2}" value="${rows and rows.sat_2_2}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="hsat_2">Harga</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="hsat_2" id="hsat_2" readonly="${datas.status_apbd!=2}" value="${rows and rows.hsat_2}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" for="jml_2">Jumlah</span>
+                                    <span class="form-control" type="text" name="jml_2" id="jml_2" readonly="true"> ${rows and rows.vol_2_1*rows.vol_2_2*rows.hsat_2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="panel panel-default" id="panel3">
+                    <div class="panel-heading">RPKA</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_3_1">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_3_1" id="vol_3_1" readonly="${datas.status_apbd!=3}" value="${rows and rows.vol_3_1}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_3_1" id="sat_3_1" readonly="${datas.status_apbd!=3}" value="${rows and rows.sat_3_1}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_3_2">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_3_2" id="vol_3_2" readonly="${datas.status_apbd!=3}" value="${rows and rows.vol_3_2}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_3_2" id="sat_3_2" readonly="${datas.status_apbd!=3}" value="${rows and rows.sat_3_2}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="hsat_3">Harga</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="hsat_3" id="hsat_3" readonly="${datas.status_apbd!=3}" value="${rows and rows.hsat_3}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" for="jml_3">Jumlah</span>
+                                    <span class="form-control" type="text" name="jml_3" id="jml_3" readonly="true"> ${rows and rows.vol_3_1*rows.vol_3_2*rows.hsat_3}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="panel panel-default" id="panel4">
+                    <div class="panel-heading">DPPA</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_4_1">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_4_1" id="vol_4_1" readonly="${datas.status_apbd!=4}" value="${rows and rows.vol_4_1}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_4_1" id="sat_4_1" readonly="${datas.status_apbd!=4}"value="${rows and rows.sat_4_1}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="vol_4_2">Vol/Satuan</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="vol_4_2" id="vol_4_2" readonly="${datas.status_apbd!=4}" value="${rows and rows.vol_4_2}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sat_4_2" id="sat_4_2" readonly="${datas.status_apbd!=4}" value="${rows and rows.sat_4_2}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="hsat_4">Harga</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="hsat_4" id="hsat_4" readonly="${datas.status_apbd!=4}" value="${rows and rows.hsat_4}" />
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon" for="jml_4">Jumlah</span>
+                                    <span class="form-control" type="text" name="jml_4" id="jml_4" readonly="true"> ${rows and rows.vol_4_1*rows.vol_4_2*rows.hsat_4}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                <button type="button" class="btn btn-danger" id="btn_cancel">Batal</button>
+                <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="mulai">Mulai</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="mulai" id="mulai" value="${rows and rows.mulai}" />
+            </div>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <span class="input-group-addon">s.d</span>
+                <input class="form-control" type="text" name="selesai" id="selesai" value="${rows and rows.selesai}" />
+              </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pelaksana">Pelaksana</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" name="pelaksana" id="pelaksana" value="${rows and rows.pelaksana}" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="keterangan">Keterangan</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="keterangan" id="keterangan" value="${rows and rows.keterangan}" />
+            </div>
+        </div>
+                
+        <!-- Rencana Biaya -->
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Rencana Biaya</div>
+                    <div class="panel-body">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln01">Jan</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln01" id="bln01" value="${rows and rows.bln01}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln02">Feb</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln02" id="bln02" value="${rows and rows.bln02}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln03">Mar</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln03" id="bln03" value="${rows and rows.bln03}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln04">Apr</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln04" id="bln04" value="${rows and rows.bln04}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln05">Mei</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln05" id="bln05" value="${rows and rows.bln05}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln06">Jun</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln06" id="bln06" value="${rows and rows.bln06}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln07">Jul</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln07" id="bln07" value="${rows and rows.bln07}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln08">Agu</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln08" id="bln08" value="${rows and rows.bln08}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln09">Sep</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln09" id="bln09" value="${rows and rows.bln09}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln10">Okt</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln10" id="bln10" value="${rows and rows.bln10}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln11">Nop</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln11" id="bln11" value="${rows and rows.bln11}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" for="bln12">Des</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" name="bln12" id="bln12" value="${rows and rows.bln12}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Of RB -->
+          
+        <!--
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="aset_id">aset_id</label>
+            <div class="col-sm-2">
+                <input class="form-control" type="text" name="aset_id" id="aset_id" value="{rows and rows.aset_id}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="is_summary">is_summary</label>
+            <div class="col-sm-2">
+                <input class="form-control" type="text" name="is_summary" id="is_summary" value="{rows and rows.is_summary}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="is_apbd">is_apbd</label>
+            <div class="col-sm-2">
+                <input class="form-control" type="text" name="is_apbd" id="is_apbd" value="{rows and rows.is_apbd}" />
+            </div>
+        </div>
+        -->
+        
+        <!--Button area-->
+      </form>
+    </div>
+ 
+    <!--Modal Rekening -->
+    <script>
+       $(document).ready(function () {
+            $('#btn_rekening').click(function() {
+                $('#dlgRekening').modal('show');
+            });          
+            
+            var rekeningID, rekeningNm;
+            var iPos1;
+            var tblrekening;
+            var tblrekeningUrl = "/apbd/dlg/rekening";
+ 
+            tblrekening = $('#tblrekening').dataTable({
+                "sAjaxSource"    : tblrekeningUrl,
+                "bServerSide"    : true,
+                "bProcessing"    : true,
+                "sDom"           : '<"toolbar">frtip',
+                "bScrollCollapse": true,
+                "bSort"          : true,
+                "bInfo"          : false,
+                "bFilter"        : true,
+                "bAutoWidth"     : false,
+                "bPaginate"      : true,
+                "sPaginationType": "full_numbers",
+
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                "aoColumnDefs": [
+                    {"bSearchable": false, "bVisible": false, "aTargets": [0]}, 
+                    {"bSearchable": true,  "bVisible": true,  "aTargets": [1,2]}
+                ],
+
+                "aoColumns": [
+                    null, {
+                        "sWidth": "10%"
+                    }, null
+                ],
+            });
+            
+            $('#tblrekening tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    rekeningID = ''; urusanKd = ''; rekeningKd='';rekeningNm='';
+                    $(this).removeClass('selected');
+                } else {
+                    iPos1     = tblrekening.fnGetPosition(this);
+                    var aData = tblrekening.fnGetData(iPos1);
+
+                    rekeningID = aData[0];
+                    rekeningKd = aData[1];
+                    rekeningNm = aData[2];
+
+                    tblrekening.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+            /* end datatable unit*/
+            
+            $('#btn_pil_rek').click(function() {
+                if(rekeningID) {
+                    $('#dlgRekening').modal('hide');
+                    $('#rekening_id').val(rekeningID);
+                    $('#rekening_kd').text(rekeningKd);
+                    $('#rekening_nm').text(rekeningNm);
+
+                    if ($('#nama').val()==null || $('#nama').val()==""){
+                        $('#nama').val(rekeningNm);
+                    };
+                    if ($('#kode').val()==null || $('#kode').val()==""){
+                        $('#kode').val('-');
+                    };  
+                } else
+                    alert ('Silahkan pilih salah satu atau batal!');
+            });
+       }); /*end of rekening*/     
+    </script>
+    <div class="modal fade" id="dlgRekening" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="dlgRekeningLabel">Pilih Rekening</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-hover table-condensed" id="tblrekening">
+                        <thead>
+                            <tr>
+                              <th>Index</th>
+                              <th>Kode</th>
+                              <th>Uraian</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="btn_pil_rek" name="btn_pil_rek">Pilih</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal -->
+  </div>
+</html>
+

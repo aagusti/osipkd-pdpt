@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<apbd>
+  <rka>
+    <rekening>
+      <rek_kd>01</rek_kd>
+      <rek_nm>Rek Nm1</rek_nm>
+      <level_id>1</level_id>
+      <defsign>1</defsign>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan Nm</urusan_nm>
+      <rek_kd1>01</rek_kd1>
+      <rek_kd2>01.01</rek_kd2>
+      <rek_kd3>01.01.01</rek_kd3>
+      <rek_kd4>01.01.01.01</rek_kd4>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit Nm</unit_nm>
+      <tahun>2014</tahun>
+      <item_kd>-</item_kd>
+      <item_nm>Item Nama</item_nm>
+      <volume1>1000</volume1>
+      <sat_1_1>1000</sat_1_1>
+      <sat_1_2>1000</sat_1_2>
+      <harga1>1000</harga1>
+      <volume2>1000</volume2>
+      <sat_2_1>1000</sat_2_1>
+      <sat_2_2>1000</sat_2_2>
+      <harga2>1000</harga2>
+      <volume3>1000</volume3>
+      <sat_3_1>1000</sat_3_1>
+      <sat_3_2>1000</sat_3_2>
+      <harga3>1000</harga3>
+      <volume4>1000</volume4>
+      <sat_4_1>1000</sat_4_1>
+      <sat_4_2>1000</sat_4_2>
+      <harga4>1000</harga4>
+      <jumlah1>1000</jumlah1>
+      <jumlah2>2000</jumlah2>
+      <jumlah3>3000</jumlah3>
+      <jumlah4>4000</jumlah4>
+    </rekening>
+  </rka>
+</apbd>

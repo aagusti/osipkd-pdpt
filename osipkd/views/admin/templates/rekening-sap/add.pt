@@ -1,0 +1,249 @@
+<html metal:use-macro="load: ../base.pt">
+<div metal:fill-slot="content">
+<h4>${request.title}</h4>
+<hr>
+<form id="deform" method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+    <div tal:condition="'id' in form"> <!--ID-->
+      <div tal:define="field form['id']" style="display: none;">
+          ${structure:field.serialize()}
+      </div>
+    </div>
+ 
+    <div class="form-group"><!--Rekening-->
+      <div tal:define="field form['rekening_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['rekening_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['rekening_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+    </div>     
+
+    <div class="form-group"><!--Rekening LO Debet-->
+      <div tal:define="field form['db_lo_sap_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['db_lo_sap_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['db_lo_sap_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+    </div>
+
+    <div class="form-group"><!--Rekening LO Kredit-->
+      <div tal:define="field form['kr_lo_sap_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['kr_lo_sap_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['kr_lo_sap_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+    </div>
+    
+    <div class="form-group"><!--Rekening LRA Debet-->
+      <div tal:define="field form['db_lra_sap_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['db_lra_sap_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['db_lra_sap_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+    </div>
+
+    <div class="form-group"><!--Rekening LRA Kredit-->
+      <div tal:define="field form['kr_lra_sap_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['kr_lra_sap_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['kr_lra_sap_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+    </div>
+
+    <div class="form-group"><!--Rekening Neraca-->
+      <div tal:define="field form['neraca_sap_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['neraca_sap_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['neraca_sap_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+    </div>
+    
+    <div class="form-group"> <!--Sumber PPH-->
+      <div class="col-md-4" tal:define="field form['pph_id']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+      </div>
+      <div class="col-xs-3">
+          <button id="save" name="simpan" type="submit" class="btn btn-primary "
+                value="simpan">Simpan</button>
+          <button id="cancel" name="batal" type="submit" class="btn btn-danger "
+                value="batal">Batal</button>
+      </div>
+    </div>
+    
+<script>
+  //Untuk Rekening APBD
+  $('#rekening_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#rekening_id').val(datum.id);
+        $('#rekening_nm').val(datum.nama);
+  });
+  $('#rekening_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#rekening_id').val(datum.id);
+        $('#rekening_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening LO Debet
+  $('#db_lo_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#db_lo_sap_id').val(datum.id);
+        $('#db_lo_sap_nm').val(datum.nama);
+  });
+  $('#db_lo_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#db_lo_sap_id').val(datum.id);
+        $('#db_lo_sap_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening LO Kredit
+  $('#kr_lo_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#kr_lo_sap_id').val(datum.id);
+        $('#kr_lo_sap_nm').val(datum.nama);
+  });
+  $('#kr_lo_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#kr_lo_sap_id').val(datum.id);
+        $('#kr_lo_sap_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening LRA Debet
+  $('#db_lra_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#db_lra_sap_id').val(datum.id);
+        $('#db_lra_sap_nm').val(datum.nama);
+  });
+  $('#db_lra_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#db_lra_sap_id').val(datum.id);
+        $('#db_lra_sap_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening LRA Kredit
+  $('#kr_lra_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#kr_lra_sap_id').val(datum.id);
+        $('#kr_lra_sap_nm').val(datum.nama);
+  });
+  $('#kr_lra_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#kr_lra_sap_id').val(datum.id);
+        $('#kr_lra_sap_kd').val(datum.kode);
+  });
+  //Untuk Rekening Neraca
+  $('#neraca_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#neraca_sap_id').val(datum.id);
+        $('#neraca_sap_nm').val(datum.nama);
+  });
+  $('#neraca_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#neraca_sap_id').val(datum.id);
+        $('#neraca_sap_kd').val(datum.kode);
+  });
+</script>
+</form>
+</div>
+</html>

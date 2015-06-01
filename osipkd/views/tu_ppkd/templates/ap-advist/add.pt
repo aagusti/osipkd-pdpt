@@ -1,0 +1,407 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_close").click(function () {
+                window.location = '/ap-advist';
+                return false;
+            });
+        });
+    </script>
+  <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">${request.title}</h3>
+    </div>
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+        <div tal:condition="'id' in form" style="display:none;">
+          <div tal:define="field form['id']">
+              ${structure:field.serialize()}
+          </div>
+        </div>
+
+          <!-- TAHUN  -------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['tahun_id']">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-1">
+               <input type="text" readonly class="form-control" id="${field.oid}" 
+                      value="${request.session.tahun}" name="${field.oid}">
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+
+          <!-- UNIT -------------------------------------------------------------------->
+          <div tal:define="field form['unit_id']" style="display: none;">
+               <input type="text" class="form-control" id="${field.oid}" 
+                      value="${request.session.unit_id}" readonly name="${field.oid}">
+          </div>
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-1" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-2">
+             <input type="text" class="form-control" id="unit_kd" 
+                    name="unit_kd" value="${request.session.unit_kd}" readonly>
+            </div>
+          </div>
+          <div class="col-md-7" id="item-unit_nm">
+            <input type="text" class="form-control" id="unit_nm" 
+                   name="unit_nm" value="${request.session.unit_nm}" readonly>
+          </div>
+        </div>
+
+        <!--Kode-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['kode']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+
+        <!--Tanggal-------------------------------------------------------------------->
+          <div tal:define="field form['tanggal']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-3" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Uraian-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['nama']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-7">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Nominal-------------------------------------------------------------------->
+        <div class="form-group"> 
+          <div tal:define="field form['nominal']" id="item-${field.oid}">
+            <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                    ${field.title}</label>
+            <div class="col-md-2">
+               ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+            </div>
+          </div>
+
+          <!--Button-------------------------------------------------------------------->
+          <div class="col-md-4"> 
+            <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
+            <button type="submit" class="btn btn-warning" id="tutup"  name="tutup">Tutup</button>
+          </div>
+        </div>
+
+      </form>
+    </div>  
+  </div>  
+      <div class="row">
+        <table class="table table-bordered table-hover table-condensed" id="table1">
+          <thead>
+              <tr>
+                  <th>Index</th>
+                  <th>No. SP2D</th>
+                  <th>No. SP2D</th>
+                  <th>Tanggal</th>
+                  <th>Uraian</th>
+                  <th>Nilai</th>
+                  <th>No. Validasi</th>
+              </tr>
+          </thead>
+          <tbody>
+          </tbody>
+      </table>
+      </div>
+      <div  class="panel panel-default">
+          <div class="panel-heading">
+              <h5 class="panel-title">Tambah SP2D</h5>
+          </div>
+      <div class="panel-body">
+          <form method="post" id="detail" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+            <fieldset class="deformFormFieldset">
+              <!--REKENING------------------------------------------------------------->
+              <input id="ap_advist_item_id" type="hidden" value="" name="ap_advist_item_id">
+              <input id="ap_sp2d_id"        type="hidden" value="" name="ap_sp2d_id">
+              <div class="form-group">
+                <label for="kode1" class="control-label col-md-1" id="req-kode1">
+                    SP2D </label>
+                <div class="col-md-2">
+                   <input id="kode1" class=" form-control " type="text" value="" name="kode1">
+                </div>
+                <div class="col-md-5">
+                   <input id="nama1" class=" form-control " readonly type="text" value="" name="nama1">
+                </div>
+                <div class="col-md-2">
+                   <input id="amount1" class=" form-control " readonly type="text" value="0" name="amount1">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="no_validasi" class="control-label col-md-1" id="req-no_validasi">
+                    No.Validasi</label>
+                <div class="col-md-2">
+                   <input id="no_validasi" class=" form-control " readonly type="text" value="" name="no_validasi">
+                </div>
+                <!--Button----------------------------------------------------------->
+                <div class="col-md-2">
+                    <button id="rekening_add" name="baru" type="button" class="btn btn-primary "
+                        value="baru">Tambah</button>
+                    <button id="rekening_cancel" name="batal" type="reset" class="btn btn-danger "
+                        value="batal">Batal</button>
+                </div> 
+              </div>
+        <script>
+           $('#rekening_add').click(function () {
+                  $('#ap_advist_item_id').val('');
+                  $('#detail').submit();
+             })
+            $('#kode1').typeahead({
+                "hint"     : true,
+                "highlight": true,
+                "minLength": 1,
+                "remote"   : "/ap-sp2d/act/headofkode2?term=%QUERY", 
+            },{
+               "name"      : 'kode1',
+               "displayKey": 'value',
+            });           
+          
+            $('#kode1').bind('typeahead:selected', function(obj, datum, name) {  
+                  $('#ap_sp2d_id').val(datum.id);
+                  $('#nama1').val(datum.nama);
+                  $('#amount1').val(datum.amount);    
+                  $('#no_validasi').val(datum.validasi);                
+            });
+              
+            $( "#detail" ).submit(function( event ) {
+              var ap_advist_id;
+              var is_success;
+              is_success = true;
+              ap_advist_id = $('#id').val();
+              if (!ap_advist_id) {
+                  is_success = false;
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + 'Simpan Dulu Headernya');
+              }
+          
+              if (is_success){
+                $.ajax({
+                  type: "POST",
+                  url: "/ap-advist/item/"+ap_advist_id+"/add",
+                  data: $('#detail').serialize(),
+                  success: function (html) {
+                    if (html.success == true) {
+                      $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                      $('#kode1').val('');
+                      $('#nama1').val('');
+                      $('#no_validasi').val('');
+                      $('#amount1').val(0);
+                      $('#jml_total').val(formatNumber(html.jml_total));
+                      oTable.fnReloadAjax(oTableUrl);
+                    } else {
+                      $("#errors").css('display', 'inline', 'important');
+                      $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                  },
+                  beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                  }
+                });
+              }
+              event.preventDefault();
+            });
+        </script>
+       </fieldset>
+     </form>
+    </div>     
+   </div> <!--panel-body-->
+
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var ap_advist_id = $('#id').val();
+      var oTableUrl = "/ap-advist/item/"+ap_advist_id+"/act/grid";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          //'<button id="btn_print"  class="btn btn btn-primary" type="button">Print</button>',
+          //'<button id="btn_close"  class="btn btn-warning"     type="button">Tutup</button>',
+          '	&nbsp;',
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+      
+      function formatNumber(n) {
+               return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+               }
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,           
+            "sDom"           : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+
+            "lengthMenu": [
+                [5, 10, 15, 25, 50, -1],
+                [5, 10, 15, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false,
+                "bVisible"   : false,
+                "aTargets"   : [0,1]
+            },{
+                "bSearchable": true,
+                "bSortable"  : false,
+                "aTargets"   : [2,4]
+            },{
+                "bSearchable": false,
+                "bSortable"  : false,
+                "aTargets"   : [3,5,6]
+            }            
+            ],
+            "aoColumns": [
+                null, 
+                {"sWidth": "50px"}, 
+                {"sWidth": "50px"}, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "120px"},
+                {"sWidth": "50px", "sClass": "right"},
+                {"sWidth": "50px", "sClass": "right"},
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+                        $("#ap_advist_item_id").val(data[0]);
+                        $("#ap_sp2d_id").val(data[1]);
+                        $("#kode1").val(data[2]);
+                        $("#nama1").val(data[4]);
+                        $("#amount1").val(data[5]);    
+                        $('#no_validasi').val(data[6]);  
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        // Pencarian Kondisi, ketika data yang dicari itu bukan dari data table
+        $('#table1_filter input').unbind();
+        $('#table1_filter input').bind('keyup', function(e) {
+            if(e.keyCode == 13) {
+                oTable.fnFilter(this.value);   
+            }else{
+                var ap_advist_id1 = $('#id').val();
+                var existingString = $("#table1_filter input").val();
+                if (existingString.length > 1) {
+                    var oTableUrl1 = "/ap-advist/item/"+ap_advist_id1+"/act/grid1?cari="+existingString;
+                    oTable.fnReloadAjax(oTableUrl1);
+                }else{
+                    oTable.fnReloadAjax(oTableUrl);
+                }
+            }
+        }); 
+        
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /**********************************************************************/
+        $('#btn_delete').click(function () { 
+            if (mID) {
+              if (confirm('Yakin dihapus?')==true){
+                $.ajax({
+                type: "POST",
+                url: "/ap-advist/item/"+$("#id").val()+"/"+mID+"/delete",
+                success: function (html) {
+                  if (html.success == true) {
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $('#kode1').val('');
+                    $('#nama1').val('');
+                    $('#no_validasi').val('');
+                    $('#amount1').val(0);
+                    
+                    if(html.jml_total=="None"){
+                      $('#jml_total').val(0);}
+                    else{
+                      $('#jml_total').val(formatNumber(html.jml_total));}
+                      
+                    oTable.fnReloadAjax(oTableUrl);
+                  } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  }
+                },
+                beforeSend: function () {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+                });
+              } else {
+                  alert('Silahkan pilih data yang akan di hapus');
+              }
+            }
+        });
+        
+        $('#btn_print').click(function () {
+            alert('Masih Proses Bung!');
+        });
+
+        $("#btn_close").click(function () {
+            window.location = '/ap-advist';
+            return false;
+        });
+        
+        $("#jml_total").attr('readonly',true);
+        jml_total=$("#jml_total").val();
+        $("#jml_total").val(formatNumber(jml_total));
+     });
+    </script>
+  
+  </div>
+
+</html>

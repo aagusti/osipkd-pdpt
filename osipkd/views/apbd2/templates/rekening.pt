@@ -1,0 +1,357 @@
+<html metal:use-macro="load: ../admin/admin.pt">
+    <div metal:fill-slot="admin" class="panel panel-default">
+        <script>
+            var mID;
+            var mID2;
+            var iPos;
+            var oTable;
+            var oTable2;
+
+            $(document).ready(function () {
+                oTable = $('#table1').dataTable({
+                    "bScrollCollapse": true,
+                    "bJQueryUI": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    "sDom": '<"toolbar">lfrtip',
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible": false,
+                        "aTargets": [0]
+                    }, {
+                        "aTargets": [6], // Column number which needs to be modified
+                        "mRender": function (data, type, full) {
+                            if (data == "1") {
+                                return '<input id=\"chk_disabled\" name=\"chk_disabled\" type=\"checkbox\" disabled checked value="' + data + '">';
+                            } else {
+                                return '<input id=\"chk_disabled\" name=\"chk_disabled\" type=\"checkbox\" disabled value="' + data + '">';
+                            }
+                        }
+                    }],
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }
+                    ],
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                        $(nRow).on("click", function (event) {
+                            if ($(this).hasClass('row_selected')) {
+                                /* mID = '';
+                                $(this).removeClass('row_selected'); */
+                            } else {
+
+                                var data = oTable.fnGetData(this);
+                                mID = data[0];
+
+                                oTable.$('tr.row_selected').removeClass('row_selected');
+                                $(this).addClass('row_selected');
+
+                                oTable2.fnReloadAjax("dasarhukum/grid?id=" + mID);
+                            }
+                        })
+                    },
+                    "fnInitComplete": function (oSettings, json) {
+                        if (!mID) selecttopRow();
+                    },
+                    "bSort": true,
+                    "bInfo": false,
+                    "bProcessing": true,
+                    "bFilter": true,
+                    "bAutoWidth": false,
+                    "bServerSide": true,
+                    "sAjaxSource": "/admin/rekening/grid"
+                });
+
+                var tb_array = [
+                    '<div class="btn-group pull-left">',
+                    '	<button id="btn_tambah" class="btn btn-primary" type="button">Tambah</button>',
+                    '	<button id="btn_edit" class="btn btn-primary" type="button">Edit</button>',
+                    '	<button id="btn_delete" class="btn btn-danger" type="button">Hapus</button>',
+                    '	<button id="btn_print" class="btn btn-primary" type="button">Print</button>',
+                    '	<button id="btn_close"  class="btn btn btn-warning" type="button">Tutup</button>',
+                    '	&nbsp;',
+                    '</div>',
+                ];
+
+
+                var tb = tb_array.join(' ');
+                $("div.toolbar").html(tb);
+
+                $('#table1 tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos = oTable.fnGetPosition(this);
+                        var aData = oTable.fnGetData(iPos);
+                        mID = aData[0];
+                        oTable.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+
+                $('#btn_tambah').click(function () {
+                    window.location = '/admin/rekening/frm/0';
+                });
+
+                $('#btn_edit').click(function () {
+                    if (mID) {
+                        window.location = '/admin/rekening/frm/' + mID;
+                    } else {
+                        alert('Silahkan pilih data yang akan diedit');
+                    }
+                });
+
+                $('#btn_delete').click(function () {
+                    if (mID) {
+                        var hapus = confirm('Hapus data ini?');
+                        if (hapus == true) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/admin/rekening/delete",
+                                data: "id=" + mID,
+                                success: function (html) {
+                                    if (html.success == true) {
+                                        $("#errors").css('display', 'inline', 'important');
+                                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                                        var oTable = $('#table1').dataTable();
+                                        oTable.fnDraw();
+                                        //TODO: Redraw after delete
+                                    } else {
+                                        $("#errors").css('display', 'inline', 'important');
+                                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                                    }
+                                },
+                                beforeSend: function () {
+                                    $("#errors").css('display', 'inline', 'important');
+                                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                                }
+                            });
+                            return false;
+                        };
+                    } else {
+                        alert('Silahkan pilih data yang akan dihapus');
+                    }
+                });
+
+                $("#btn_close").click(function () {
+                    window.location = "/admin";
+                    return false;
+                });
+
+                $('#btn_print').click(function () {
+                    window.open('/anggaran/r000/r041');
+                });
+                
+                function selecttopRow() {
+                    var nTop = $('#table1 tbody tr')[0];
+                    var iPos = oTable.fnGetPosition(nTop);
+
+                    /* Use iPos to select the row */
+                    var data = oTable.fnGetData(iPos);
+                    mID = data[0];
+                    dID = '';
+
+                    $('#table1 tbody tr:eq(0)').addClass('row_selected');
+
+                    oTable2.fnReloadAjax("/admin/dasarhukum/grid?id=" + mID);
+                }
+
+                /**********************************************************************************************/
+                oTable2 = $('#table2').dataTable({
+                    "bScrollCollapse": true,
+                    "bJQueryUI": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    "sDom": '<"toolbar2">lfrtip',
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible": false,
+                        "aTargets": [0]
+                    }, {
+                        "aTargets": [5], // Column number which needs to be modified
+                        "mRender": function (data, type, full) {
+                            if (data == "1") {
+                                return '<input id=\"chk_disabled\" name=\"chk_disabled\" type=\"checkbox\" disabled checked value="' + data + '">';
+                            } else {
+                                return '<input id=\"chk_disabled\" name=\"chk_disabled\" type=\"checkbox\" disabled value="' + data + '">';
+                            }
+                        }
+                    }],
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "10%"
+                        }, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }
+                    ],
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                        $(nRow).on("click", function (event) {
+                            if ($(this).hasClass('row_selected')) {
+                                /* mID = '';
+                                $(this).removeClass('row_selected'); */
+                            } else {
+
+                                var data = oTable2.fnGetData(this);
+                                mID = data[0];
+
+                                oTable2.$('tr.row_selected').removeClass('row_selected');
+                                $(this).addClass('row_selected');
+                            }
+                        })
+                    },
+                    "bSort": true,
+                    "bInfo": false,
+                    "bProcessing": true,
+                    "bFilter": false,
+                    "bAutoWidth": false,
+                    "bServerSide": true,
+                    "sAjaxSource": "/admin/dasarhukum/grid?id=0"
+                });
+
+                var tb_array2 = [
+                    '<div class="btn-group pull-left">',
+                    '	<button id="btn_tambah2" class="btn btn-primary" type="button">Tambah</button>',
+                    '	<button id="btn_edit2" class="btn btn-primary" type="button">Edit</button>',
+                    '	<button id="btn_delete2" class="btn btn-danger" type="button">Hapus</button>',
+                    '	<button id="btn_print2" class="btn btn-primary" type="button">Print</button>',
+                    '	&nbsp;',
+                    '</div>',
+                ];
+
+                var tb2 = tb_array2.join(' ');
+                $("div.toolbar2").html(tb2);
+
+                $('#table2 tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos = oTable.fnGetPosition(this);
+                        var aData = oTable.fnGetData(iPos);
+                        mID = aData[0];
+                        oTable.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+
+                $('#btn_tambah2').click(function () {
+                    window.location = '/admin/dasarhukum/frm/0';
+                });
+
+                $('#btn_edit2').click(function () {
+                    if (mID) {
+                        window.location = '/admin/dasarhukum/frm/' + mID;
+                    } else {
+                        alert('Silahkan pilih data yang akan diedit');
+                    }
+                });
+
+                $('#btn_delete2').click(function () {
+                    if (mID2) {
+                        var hapus = confirm('Hapus data ini?');
+                        if (hapus == true) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/admin/dasarhukum/delete",
+                                data: "id=" + mID,
+                                success: function (html) {
+                                    if (html.success == true) {
+                                        $("#errors").css('display', 'inline', 'important');
+                                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                                        var oTable = $('#table1').dataTable();
+                                        oTable.fnDraw();
+                                        //TODO: Redraw after delete
+                                    } else {
+                                        $("#errors").css('display', 'inline', 'important');
+                                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                                    }
+                                },
+                                beforeSend: function () {
+                                    $("#errors").css('display', 'inline', 'important');
+                                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                                }
+                            });
+                            return false;
+                        };
+                    } else {
+                        alert('Silahkan pilih data yang akan dihapus');
+                    }
+                });
+            });
+
+            function update_stat(id, a) {
+                var val = Number(a);
+                $.ajax({
+                    url: 'admin/dasarhukum/act=upd&id=' + id + '&val=' + val,
+                    success: function (data) {
+                        $('#rekening_id').html(data);
+                    }
+                });
+            }
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Rekening</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Kode</th>
+                        <th>Uraian</th>
+                        <th>Level Id</th>
+                        <th>Defsign</th>
+                        <th>Header Id</th>
+                        <th>In-Aktif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Dasar Hukum</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-condensed" id="table2">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Kode</th>
+                        <th>No urut</th>
+                        <th>Uraian</th>
+                        <th>Rekening</th>
+                        <th>In-Aktif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</html>

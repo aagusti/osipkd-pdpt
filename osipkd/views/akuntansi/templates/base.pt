@@ -1,0 +1,38 @@
+<html metal:use-macro="load: ../../templates/main.pt">
+<div metal:fill-slot="nav">
+    <ul class="nav navbar-nav">
+      <li tal:attributes="class request.path == '/app' and 'active'">
+          <a href="/skpd"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+
+      <li class="dropdown" tal:attributes="class request.path in ['/password'] and 'active'">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pendapatan<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/ag-pendapatan">Anggaran</a></li>
+          <li><a href="/ar-invoice-item">Ketetapan / Tagihan</a></li>
+          <li><a href="/ar-payment-item">Realisasi / TBP</a></li>
+          <li><a href="/ar/payment/sts">STS</a></li>
+          <li><a href="/ar/report/item/skpd">Laporan SKPD</a></li>
+          <li><a href="/ar-report-item">Laporan Pemda</a></li>
+        </ul>
+      </li>
+      
+      <li class="dropdown" tal:attributes="class request.path in ['/password'] and 'active'">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Akuntansi<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="/ak-jurnal">Jurnal</a></li>
+          <li><a href="/ak-report">Laporan</a></li>
+          <!--li><a href="/ak-report-lkpj">LK-PJ</a></li-->
+          
+        </ul>
+      </li>          
+    </ul>
+</div>
+
+<div metal:fill-slot="content">
+    <div metal:define-slot="content"></div> 
+</div>
+<div metal:fill-slot="scripts">
+    <div metal:define-slot="scripts"></div> 
+</div>
+</html>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<apbd>
+  <master>
+    <program>
+      <kode>01104</kode>
+      <uraian>A</uraian>
+      <kegiatankd>A</kegiatankd>
+      <kegiatannm>A</kegiatannm>
+    </program>
+    <program>
+      <kode>76102</kode>
+      <uraian>B</uraian>
+      <kegiatankd>A</kegiatankd>
+      <kegiatannm>A</kegiatannm>
+    </program>
+  </master>
+</apbd>

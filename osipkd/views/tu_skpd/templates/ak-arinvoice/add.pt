@@ -1,0 +1,528 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $("#btn_close").click(function () {
+                window.location = '/ar-invoice-skpd';
+                return false;
+            });
+        });
+    </script>
+   <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">${request.title}</h3>
+    </div>
+    <div class="panel-body">
+      <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+      <div tal:condition="'id' in form">
+        <div tal:define="field form['id']" style="display: none;">
+            ${structure:field.serialize()}
+        </div>
+      </div>
+         
+      <div class="form-group">   
+        <div tal:define="field form['tahun_id']">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-1">
+             <input type="text" class="form-control" id="${field.oid}" 
+                    value="${request.session.tahun}" readonly name="${field.oid}">
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+        <!-- UNIT -------------------------------------------------------------------->
+        <div tal:define="field form['unit_id']" style="display: none;">
+             <input type="text" class="form-control" id="${field.oid}" 
+                    value="${request.session.unit_id}" readonly name="${field.oid}">
+        </div>
+        
+        <div id="item-unit_kd">
+          <label for="unit_kd" class="control-label col-md-1" id="req-unit_kd">
+                  SKPD</label>
+          <div class="col-md-2">
+           <input type="text" class="form-control" id="unit_kd" 
+                  name="unit_kd" value="${request.session.unit_kd}" readonly>
+          </div>
+        </div>
+        <div class="col-md-6" id="item-unit_nm">
+          <input type="text" class="form-control" id="unit_nm" 
+                 name="unit_nm" value="${request.session.unit_nm}" readonly>
+        </div>
+      </div>
+
+      <!--Kegiatans-------------------------------------------------------------------->
+      <div class="form-group"> 
+        <div tal:define="field form['kegiatan_sub_id']" style="display: none;">
+            ${structure:field.serialize()}
+        </div>
+        <div tal:define="field form['kegiatan_kd']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-2">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>   
+        <div class="col-md-8" tal:define="field form['kegiatan_nm']" id="item-${field.oid}">
+          ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+        </div>
+        <script>
+           $('#kegiatan_kd').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/ag-kegiatan-sub/act/headofkode2?term=%QUERY",
+            },
+            {
+            "name"      : 'kegiatan_kd',
+            "displayKey": 'value',
+          });
+          $('#kegiatan_nm').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/ag-kegiatan-sub/act/headofnama2?term=%QUERY",
+            },
+            {
+              "name"      : 'kegiatan_nm',
+              "displayKey": 'value',
+            });
+
+        
+            $('#kegiatan_kd').bind('typeahead:selected', function(obj, datum, name) {  
+                  $('#kegiatan_nm').val(datum.nama);
+                  $('#kegiatan_sub_id').val(datum.id);
+            });
+            $('#kegiatan_nm').bind('typeahead:selected', function(obj, datum, name) {  
+                  $('#kegiatan_kd').val(datum.kode);
+                  $('#kegiatan_sub_id').val(datum.id);
+            });
+        </script>
+      </div>
+      <!--kode-------------------------------------------------------------------->
+      <div class="form-group"> 
+        <div tal:define="field form['kode']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-2">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      <!--Jenis-------------------------------------------------------------------->
+
+      <!--Tanggal Terima/ Ketetapan--------------------------------------------------------->
+        <div tal:define="field form['tgl_terima']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-2" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-2">
+              ${structure:field.serialize()}
+          </div>
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+        </div>
+      <!--Tanggal Validasi------------------------------------------------------------------->
+        <div tal:define="field form['tgl_validasi']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-2">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!--Uraian--------------------------------------------------------------------> 
+      <div class="form-group"> 
+        <div tal:define="field form['nama']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-6">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+
+      <!--Nilai-------------------------------------------------------------------->
+        <div tal:define="field form['nilai']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-1" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-2">
+            ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <!--Button--------------------------------------------------------------------> 
+      <div class="form-group"> 
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary" id="simpan" name="simpan">Simpan</button>
+          <!--button type="submit" class="btn btn-danger"  id="batal"  name="batal">Batal</button-->
+          <button type="submit" class="btn btn-warning" id="tutup" name="tutup">Tutup</button>
+        </div>
+      </div>
+      </form>
+      </div>
+     </div>
+
+    <div class="row">
+      <table class="table table-bordered table-hover table-condensed" id="table1">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>No. Urut</th>
+                <th>Uraian</th>
+                <th>Rekening</th>
+                <th>Jumlah</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+  </div>
+  <div  class="panel panel-default">
+    <div class="panel-heading">
+        <h5 class="panel-title">Item Piutang</h5>
+    </div>
+  <div class="panel-body">
+      <form method="post" id="detail" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+        <fieldset class="deformFormFieldset">
+          <!--REKENING------------------------------------------------------------->
+          <input id="ar_invoice_item_id" type="hidden" value="" name="ar_invoice_item_id">
+          <input id="kegiatan_item_id" type="hidden" value="" name="kegiatan_item_id">
+          <input id="nilai1" type="hidden" value="" name="nilai1">
+          <div class="form-group">
+            <label for="no_urut" class="control-label col-md-1" id="req-no_urut">
+                    Item </label>
+            <div class="col-md-1">
+               <input id="no_urut" class=" form-control " type="text" value="" name="no_urut">
+            </div>
+        
+            <div class="col-md-4">
+               <input id="item_nm" class=" form-control " type="text" value="" name="item_nm">
+            </div>
+          
+            <div class="col-md-2">
+                <label for="vol_1" class="control-label col-md-3" id="req-vol_1">
+                       Vol.1</label>
+                <div class="col-md-9">
+                   <input id="vol_1" class=" form-control " type="text" value="1" name="vol_1">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label for="vol_2" class="control-label col-md-3" id="req-vol_2">
+                       Vol.2</label>
+                <div class="col-md-9">
+                   <input id="vol_2" class=" form-control " type="text" value="1" name="vol_2">
+                </div>
+            </div>
+            
+            <div class="col-md-2">
+                <label for="harga" class="control-label col-md-3" id="req-harga">
+                       Harga</label>
+                <div class="col-md-9">
+                   <input id="harga" class=" form-control " type="text" value="0" name="harga">
+                </div>
+            </div>
+          </div>
+          
+          <!--Internal Kode Item-->
+          <div class="form-group">
+              <label for="nilai" class="control-label col-md-1" id="req-nilai">
+                       Uraian</label>
+              <div class="col-md-5">
+                 <input id="nama" class=" form-control " type="text" value="" name="nama">
+              </div>
+            <!--Button----------------------------------------------------------->
+            <div class="col-md-3">
+                  <button id="rekening_add" name="baru" type="button" class="btn btn-primary "
+                        value="baru">Baru</button>
+                  <button id="rekening_save" name="simpan" type="button" class="btn btn-primary "
+                        value="simpan">Update</button>
+                  <button id="rekening_cancel" name="batal" type="reset" class="btn btn-danger "
+                        value="batal">Batal</button>
+            </div>
+          </div>            
+          <script>
+           
+          $('#rekening_add').click(function () {
+            var kegiatan_item_id;
+            var nilai1 = parseInt($('#nilai1').val());
+            var harga  = parseInt($('#harga').val());
+            kegiatan_item_id = $('#kegiatan_item_id').val();
+            
+            if (kegiatan_item_id==''){
+                alert('data untuk entry masih kosong');
+            }
+            else{
+            if(harga>nilai1){
+                alert('Harga tidak boleh besar dari anggaran');
+            }
+            else{
+                $('#ar_invoice_item_id').val('');
+                $('#detail').submit();
+            }
+            }
+           })
+// save update
+          $('#rekening_save').click(function () {
+            var kegiatan_item_id;
+            var nilai1 = parseInt($('#nilai1').val());
+                    var harga  = parseInt($('#harga').val());
+            kegiatan_item_id = $('#kegiatan_item_id').val();
+            
+            if (kegiatan_item_id==''){
+                alert('data harus dipilih terlebih dahulu');
+            }
+            else{
+            if(harga>nilai1){
+                alert('harga tidak boleh besar dari anggaran');
+            }
+            else{
+                $('#ar_invoice_item_id').val();
+                $('#detail').submit();
+            }
+            }
+           })
+//
+          $('#item_nm').typeahead({
+              "hint"     : true,
+              "highlight": true,
+              "minLength": 1,
+              "remote"   : "/ag-kegiatan-item/act/headofnama?kegiatan_sub_id="+$("#kegiatan_sub_id").val()+"&term=%QUERY", 
+          },{
+             "name"      : 'item_nm',
+             "displayKey": 'value',
+          }); 
+        
+          $('#item_nm').bind('typeahead:selected', function(obj, datum, name) {  
+                $('#kegiatan_item_id').val(datum.id);
+                $('#nama').val(datum.nama);
+                $('#nilai1').val(datum.amount);
+          });
+            
+          $( "#detail" ).submit(function( event ) {
+            var ar_invoice_id;
+            var is_success;
+            is_success = true;
+            ar_invoice_id = $('#id').val();
+            if (!ar_invoice_id) {
+                is_success = false;
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + 'Simpan Dulu Headernya');
+            }
+
+            if (is_success){
+              $.ajax({
+                type: "POST",
+                url : "/ar-invoice-skpd/item/"+ar_invoice_id+"/add",
+                data: $('#detail').serialize(),
+                success: function (html) {
+                  if (html.success == true) {
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $('#no_urut').val('');
+                    $('#item_nm').val('');
+                    $('#vol_1').val(1);
+                    $('#vol_2').val(1);
+                    $('#nilai').val(0);
+                    $('#harga').val(0);
+                    $('#nama').val('');
+                    $('#jml_total').val(formatNumber(html.jml_total)); 
+                    oTable.fnReloadAjax(oTableUrl);
+                  } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  }
+                },
+                beforeSend: function () {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+              });
+            }
+            event.preventDefault();
+          });
+          </script>
+        </fieldset>
+      </form>  
+    </div> <!--panel-body-->     
+  </div>
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var ar_invoice_id = $('#id').val();
+      var oTableUrl = "/ar-invoice-skpd/item/"+ar_invoice_id+"/act/grid";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          '<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          '<!--button id="btn_print"  class="btn btn btn-primary" type="button">Print</button-->',
+          '<!--button id="btn_close"  class="btn btn-warning"     type="button">Tutup</button-->',
+          '&nbsp;',
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+        function formatNumber(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,           
+            "sDom"           : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+
+            "lengthMenu": [
+                [5, 10, 15, 50, -1],
+                [5, 10, 15, 50, "All"]
+            ],
+            "aoColumnDefs": [
+            {
+                "bSearchable": false,
+                "bVisible"   : false,
+                "aTargets"   : [0]
+            },{
+                "bSearchable": false,
+                "bSortable"  : false,
+                "aTargets"   : [1,3,4]
+            },{
+                "bSearchable": true,
+                "bSortable"  : false,
+                "aTargets"   : [2]
+            },{ 
+                "sClass"     : "right",
+                "aTargets"   : [4],
+                "mRender"    : function (data, type, full) {
+                               return formatNumber(data);}
+            }
+            ],
+            "aoColumns": [
+                null, 
+                {"sWidth": "20px" }, 
+                {"sWidth": "100px"},
+                {"sWidth": "50px" }, 
+                {"sWidth": "60px", "sClass": "right"},
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        $("#ar_invoice_item_id").val(data[0]);
+                        $("#no_urut").val(data[1]);
+                        $("#nama").val(data[2]);
+                        $("#item_nm").val(data[3]+'-'+data[8]);                       
+                        $("#vol_1").val(data[5]);
+                        $("#vol_2").val(data[6]);
+                        $("#harga").val(data[7]);
+                        $("#kegiatan_item_id").val(data[9]);
+                        $("#nilai1").val(data[10]);
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                mID = ''; ;
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /**********************************************************************/
+        $('#btn_delete').click(function () {
+            if (mID) {
+              if (confirm('Yakin dihapus?')==true){
+                $.ajax({
+                type: "POST",
+                url: "/ar-invoice-skpd/item/"+$("#id").val()+"/"+mID+"/delete",
+                success: function (html) {
+                  if (html.success == true) {
+                    $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    $('#no_urut').val('');
+                    $('#item_nm').val('');
+                    $('#vol_1').val(1);
+                    $('#vol_2').val(1);
+                    $('#nilai').val(0);
+                    $('#harga').val(0);
+                    $('#nama').val('');
+                    
+                    if(html.jml_total=="None"){
+                      $('#jml_total').val(0);}
+                    else{
+                      $('#jml_total').val(formatNumber(html.jml_total));} 
+                      
+                    oTable.fnReloadAjax(oTableUrl);
+                  } else {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  }
+                },
+                beforeSend: function () {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+                });
+              } else {
+                  alert('Silahkan pilih data yang akan di hapus');
+              }
+            }
+        });
+        
+        $('#btn_print').click(function () {
+            alert('not implemented');
+        });
+
+        $("#btn_close").click(function () {
+            window.location = '/ar-invoice-skpd';
+            return false;
+        });
+
+        $("#jml_total").attr('readonly',true);
+        $("#kegiatan_kd").attr('readonly',true);
+        jml_total=$("#jml_total").val();
+        $("#jml_total").val(formatNumber(jml_total));
+     });
+    </script>
+  </div>
+</html>

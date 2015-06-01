@@ -1,0 +1,3858 @@
+kode	nama
+1	 ASET
+1.1	 ASET LANCAR
+1.1.1	 Kas dan Setara Kas
+1.1.1.01	 Kas di Kas Daerah
+1.1.1.01.01	 Kas di Kas Daerah
+1.1.1.02	 Kas di Bendahara Penerimaan
+1.1.1.02.01	 Kas di Bendahara Penerimaan
+1.1.1.03	 Kas di Bendahara Pengeluaran
+1.1.1.03.01	 Kas di Bendahara Pengeluaran
+1.1.1.04	 Kas di BLUD
+1.1.1.04.01	 Kas di BLUD
+1.1.1.05	 Kas Lainnya
+1.1.1.05.01	 Kas Lainnya
+1.1.1.06	 Setara Kas
+1.1.1.06.01	 Setara Kas    
+1.1.1.06.02	 Dst                      
+1.1.1.3.02	 Piutang Retribusi
+1.1.2	 Investasi Jangka Pendek
+1.1.2.01	 Investasi dalam Saham
+1.1.2.01.01	 Investasi dalam Saham ....
+1.1.2.01.02	 Dst ............
+1.1.2.02	 Investasi dalam Deposito
+1.1.2.02.01	 Deposito Jangka Pendek
+1.1.2.03	 Investasi dalam SUN
+1.1.2.03.01	 Investasi dalam SUN
+1.1.2.04	 Investasi dalam SBI
+1.1.2.04.01	 Investasi dalam SBI
+1.1.2.05	 Investasi dalam SPN
+1.1.2.05.01	 Investasi dalam SPN
+1.1.2.06	 Investasi Jangka Pendek BLUD
+1.1.2.06.01	 Investasi Jangka Pendek BLUD
+1.1.2.07	 Investasi Jangka Pendek Lainnya
+1.1.2.07.01	 Investasi Jangka Pendek Lainnya
+1.1.3	 Piutang Pendapatan
+1.1.3.01	 Piutang Pajak Daerah
+1.1.3.01.01	 Piutang Pajak Kendaraan Bermotor
+1.1.3.01.02	 Piutang Bea Balik Nama Kendaraan Bermotor
+1.1.3.01.03	 Piutang Pajak Bahan Bakar Kendaraan Bermotor
+1.1.3.01.04	 Piutang Pajak Air Permukaan
+1.1.3.01.05	 Piutang Pajak Rokok
+1.1.3.01.06	 Piutang Pajak Hotel
+1.1.3.01.07	 Piutang Pajak Restoran
+1.1.3.01.08	 Piutang Pajak Hiburan
+1.1.3.01.09	 Piutang Pajak Reklame
+1.1.3.01.10	 Piutang Pajak Penerangan Jalan
+1.1.3.01.11	 Piutang Pajak Parkir
+1.1.3.01.12	 Piutang Pajak Air Tanah
+1.1.3.01.13	 Piutang Pajak Sarang Burung Walet
+1.1.3.01.14	 Piutang Pajak Mineral Bukan Logam dan Batuan
+1.1.3.01.15	 Piutang Pajak Bumi dan Bangunan Pedesaan dan Perkotaan
+1.1.3.01.16	 Piutang Bea Perolehan Hak Atas Tanah dan Bangunan Kode Akun BAGAN AKUN STANDAR PEMERINTAH DAERAH
+1.1.3.02.01	 Piutang Retribusi Pelayanan Kesehatan
+1.1.3.02.02	 Piutang Retribusi Pelayanan Persampahan/Kebersihan
+1.1.3.02.03	 Piutang Retribusi Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil
+1.1.3.02.04	 Piutang Retribusi Pelayanan Pemakaman dan Pengabuan Mayat
+1.1.3.02.05	 Piutang Retribusi Pelayanan Parkir di Tepi Jalan Umum
+1.1.3.02.06	 Piutang Retribusi Pelayanan Pasar
+1.1.3.02.07	 Piutang Retribusi Pengujian Kendaraan Bermotor
+1.1.3.02.08	 Piutang Retribusi Pemeriksaan Alat Pemadam Kebakaran
+1.1.3.02.09	 Piutang Retribusi Penggantian Biaya Cetak Peta
+1.1.3.02.10	 Piutang Retribusi Penyediaan dan/atau Penyedotan Kakus
+1.1.3.02.11	 Piutang Retribusi Pengolahan Limbah Cair
+1.1.3.02.12	 Piutang Retribusi Pelayanan Tera/Tera Ulang
+1.1.3.02.13	 Piutang Retribusi Pelayanan Pendidikan
+1.1.3.02.14	 Piutang Retribusi Pengendalian Menara Telekomunikasi
+1.1.3.02.15	 Piutang Retribusi Pemakaian Kekayaan Daerah
+1.1.3.02.16	 Piutang Retribusi Pasar Grosir dan/atau Pertokoan
+1.1.3.02.17	 Piutang Retribusi Tempat Pelelangan
+1.1.3.02.18	 Piutang Retribusi Terminal
+1.1.3.02.19	 Piutang Retribusi Tempat Khusus Parkir
+1.1.3.02.20	 Piutang Retribusi Tempat Penginapan/ Pesanggrahan/ Villa
+1.1.3.02.21	 Piutang Retribusi Rumah Potong Hewan
+1.1.3.02.22	 Piutang Retribusi Pelayanan Kepelabuhan
+1.1.3.02.23	 Piutang Retribusi Tempat Rekreasi dan Olah raga
+1.1.3.02.24	 Piutang Retribusi Penyebrangan Air
+1.1.3.02.25	 Piutang Retribusi Penjualan Produksi Usaha Daerah
+1.1.3.02.26	 Piutang Retribusi Izin Mendirikan Bangunan
+1.1.3.02.27	 Piutang Retribusi Izin Tempat Penjualan Minuman Beralkohol
+1.1.3.02.28	 Piutang Retribusi Izin Gangguan
+1.1.3.02.29	 Piutang Retribusi Izin Trayek
+1.1.3.02.30	 Piutang Retribusi Izin Perikanan
+1.1.3.02.31	 Piutang Retribusi Pengendalian Lalu Lintas
+1.1.3.02.32	 Piutang Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA)
+1.1.3.03	 Piutang Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan
+1.1.3.03.01	 Piutang Bagian Laba atas penyertaan modal pada Perusahaan Milik Daerah/BUMD
+1.1.3.03.02	 Piutang Bagian Laba atas penyertaan modal pada Perusahaan Milik Pemerintah/BUMN
+1.1.3.03.03	 Piutang Bagian Laba atas penyertaan modal pada Perusahaan Milik Swasta
+1.1.3.03.04	 Dst         ..
+1.1.3.04	 Piutang Lain-lain PAD yang Sah
+1.1.3.04.01	 Piutang Jasa Giro
+1.1.3.04.02	 Piutang Bunga deposito
+1.1.3.04.03	 Piutang Tuntutan Ganti Kerugian Daerah
+1.1.3.04.04	 Piutang Komisi
+1.1.3.04.05	 Piutang Denda atas Keterlambatan Pelaksanaan Pekerjaan
+1.1.3.04.06	 Piutang Denda Pajak
+1.1.3.04.07	 Piutang Denda Retribusi
+1.1.3.04.08	 Piutang Hasil Eksekusi atas Jaminan
+1.1.3.04.09	 Piutang dari Pengembalian
+1.1.3.04.10	 Piutang dari Penyelenggaraan Pendidikan dan Pelatihan
+1.1.3.04.11	 Piutang dari Angsuran/Cicilan Penjualan
+1.1.3.04.12	 Piutang Zakat *
+1.1.3.04.13	 Piutang Hasil dari Pemanfaatan Kekayaan Daerah
+1.1.3.04.14	 Piutang BLUD
+1.1.3.04.15	 Piutang Hasil Penjualan Aset Daerah Yang Tidak Dipisahkan
+1.1.3.04.16	 Piutang Hasil dari pengelolaan dana bergulir
+1.1.3.04.17	 Dst         ..
+1.1.3.05	 Piutang Transfer Pemerintah Pusat-Dana Perimbangan
+1.1.3.05.01	 Piutang Bagi Hasil Pajak
+1.1.3.05.02	 Piutang Bagi Hasil Bukan Pajak/Sumber Daya Alam
+1.1.3.05.03	 Dst.............
+1.1.3.06	 Piutang Transfer Pemerintah Lainnya
+1.1.3.06.01	 Piutang Transfer Dana BOS Kurang Salur
+1.1.3.06.02	 Dst.............
+1.1.3.07	 Piutang Transfer Pemerintah Daerah Lainnya
+1.1.3.07.01	 Piutang Transfer Bagi Hasil Pajak Daerah
+1.1.3.07.02	 Piutang Transfer Lainnya .......
+1.1.3.07.03	 Dst         ..
+1.1.3.08	 Piutang Pendapatan Lainnya
+1.1.3.08.01	 Piutang Pendapatan Lainnya .......
+1.1.3.08.02	 Dst         ..
+1.1.4	 Piutang Lainnya
+1.1.4.01	 Bagian Lancar Tagihan Jangka Panjang
+1.1.4.01.01	 Bagian Lancar Tagihan Jangka Panjang .......
+1.1.4.01.02	 Dst         ..
+1.1.4.02	 Bagian Lancar Tagihan Pinjaman Jangka Panjang kepada Entitas Lainnya
+1.1.4.02.01	 Bagian Lancar Tagihan Pinjaman kepada Badan Usaha Milik Negara
+1.1.4.02.02	 Bagian Lancar Tagihan Pinjaman kepada Badan Usaha Milik Daerah
+1.1.4.02.03	 Bagian Lancar Tagihan Pinjaman kepada Pemerintah
+1.1.4.02.04	 Bagian Lancar Tagihan Pinjaman kepada Pemerintah Daerah Lainnya
+1.1.4.02.05	 Dst         ..
+1.1.4.03.01	 Bagian Lancar Tagihan Penjualan Angsuran Penjualan Rumah Dinas Daerah Golongan III
+1.1.4.03.02	 Bagian Lancar Tagihan Penjualan Angsuran Penjualan Kendaraan Perorangan Dinas
+1.1.4.03.03	 Dst...........
+1.1.4.04	 Bagian lancar Tuntutan Ganti Kerugian Daerah
+1.1.4.04.01	 Bagian lancar Tuntutan Ganti Kerugian Daerah Terhadap Bendahara
+1.1.4.04.02	 Bagian lancar Tuntutan Ganti Kerugian Daerah Terhadap Pegawai Negeri Bukan Bendahara
+1.1.4.05	 Uang Muka
+1.1.4.05.01	 Uang Muka Pengadaan Barang/Jasa
+1.1.4.05.02	 Dst         ..
+1.1.5	 Penyisihan Piutang
+1.1.5.01	 Penyisihan Piutang Pendapatan
+1.1.5.01.01	 Penyisihan Piutang Pajak Daerah
+1.1.5.01.02	 Penyisihan Piutang Retribusi
+1.1.5.01.03	 Penyisihan Piutang Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan
+1.1.5.01.04	 Penyisihan Piutang Lain-lain PAD yang Sah
+1.1.5.01.05	 Penyisihan Piutang Transfer Pemerintah Pusat - Dana Perimbangan
+1.1.5.01.06	 Penyisihan Piutang Transfer Pemerintah Daerah Lainnya
+1.1.5.01.07	 Penyisihan Piutang Pendapatan Lainnya
+1.1.5.01.08	 Dst         ..
+1.1.5.02	 Penyisihan Piutang Lainnya
+1.1.5.02.01	 Penyisihan Bagian Lancar Tagihan Jangka Panjang
+1.1.5.02.02	 Penyisihan Bagian Lancar Tagihan Pinjaman Jangka Panjang kepada Entitas Lainnya
+1.1.5.02.03	 Penyisihan Bagian Lancar Tagihan Penjualan Angsuran
+1.1.5.02.04	 Penyisihan Bagian lancar Tuntutan Ganti Kerugian
+1.1.5.02.05	 Penyisihan Uang Muka
+1.1.5.02.06	 Dst         ..
+1.1.6	 Beban Dibayar Dimuka
+1.1.6.01	 Beban Pegawai Dibayar Dimuka
+1.1.6.01.01	 Beban Gaji dan Tunjangan Dibayar Dimuka
+1.1.6.01.02	 Beban Tambahan Penghasilan PNS Dibayar Dimuka
+1.1.6.01.03	 Dst         ..
+1.1.6.02	 Beban Barang Dibayar Dimuka
+1.1.6.02.01	 Beban Barang Dibayar Dimuka
+1.1.6.02.02	 Dst         ..
+1.1.6.03	 Beban Jasa Dibayar Dimuka
+1.1.6.03.01	 Beban Jasa Dibayar Dimuka
+1.1.6.03.02	 Beban Sewa Dibayar Dimuka
+1.1.6.03.03	 Dst         ..
+1.1.6.04	 Beban Pemeliharaan Dibayar Dimuka
+1.1.6.04.01	 Beban Pemeliharaan Dibayar Dimuka
+1.1.6.04.02	 Dst         ..
+1.1.6.05	 Beban Lainnya
+1.1.6.05.01	 Beban Lainnya ......
+1.1.6.05.02	 Dst ......
+1.1.7	 Persediaan
+1.1.7.01	 Persediaan Bahan Pakai Habis
+1.1.7.01.01	 Persediaan Alat Tulis Kantor
+1.1.7.01.02	 Persediaan Dokumen/Administrasi Tender
+1.1.7.01.03	 Persediaan Alat Listrik dan elektronik ( lampu pijar
+1.1.7.01.04	 Persediaan Perangko
+1.1.7.01.05	 Persediaan Peralatan kebersihan dan bahan pembersih
+1.1.7.01.06	 Persediaan Bahan Bakar Minyak/Gas
+1.1.7.01.07	 Persediaan Isi tabung pemadam kebakaran
+1.1.7.01.08	 Persediaan Isi tabung gas
+1.1.7.01.09	 Dst         ..
+1.1.7.02	 Persediaan Bahan/Material
+1.1.7.02.01	 Persediaan Bahan baku bangunan
+1.1.7.02.02	 Persediaan Bahan/bibit tanaman
+1.1.7.02.03	 Persediaan Bibit ternak
+1.1.7.02.04	 Persediaan Bahan obat-obatan
+1.1.7.02.05	 Persediaan Bahan kimia
+1.1.7.02.06	 Persediaan Bahan Makanan Pokok
+1.1.7.02.07	 Dst         ..
+1.1.7.03	 Persediaan Barang Lainnya
+1.1.7.03.01	 Persediaan Barang Yang Akan di Berikan Kepada Pihak Ketiga
+1.1.7.03.02	 Dst         ..
+1.1.8	 Aset Untuk Dikonsolidasikan
+1.1.8.01	 RK SKPD
+1.1.8.01.01	 RK SKPD            .
+1.1.8.01.02	 Dst         ..
+1.2.1	 Investasi Jangka Panjang Non Permanen
+1.2.1.01	 Investasi Jangka Panjang kepada Entitas Lainnya
+1.2.1.01.01	 Investasi kepada Badan Usaha Milik Negara
+1.2.1.01.02	 Investasi kepada Badan Usaha Milik Daerah
+1.2.1.01.03	 Investasi kepada Badan Usaha Milik Swasta
+1.2.1.01.04	 Dst         ..
+1.2.1.02	 Investasi dalam Obligasi
+1.2.1.02.01	 Investasi dalam Obligasi ......
+1.2.1.02.02	 Dst         ..
+1.2.1.03	 Investasi dalam Proyek Pembangunan
+1.2.1.03.01	 Investasi dalam Proyek Pembangunan ......
+1.2.1.03.02	 Dst         ..
+1.2.1.04	 Dana Bergulir
+1.2.1.04.01	 Dana Bergulir ......
+1.2.1.04.02	 Dst         ..
+1.2.1.05	 Deposito Jangka Panjang
+1.2.1.05.01	 Deposito Jangka Panjang ......
+1.2.1.05.02	 Dst         ..
+1.2.1.06	 Investasi Non Permanen Lainnya
+1.2.1.06.01	 Investasi Non Permanen Lainnya ......
+1.2.1.06.02	 Dst         ..
+1.2.2	 Investasi Jangka Panjang Permanen
+1.2.2.01	 Penyertaan Modal Pemerintah Daerah
+1.2.2.01.01	 Penyertaan Modal Kepada BUMN
+1.2.2.01.02	 Penyertaan Modal Kepada BUMD
+1.2.2.01.03	 Penyertaan Modal Kepada Badan Usaha Milik Swasta
+1.2.2.01.04	 Dst         ..
+1.2.2.02	 Investasi Permanen Lainnya
+1.2.2.02.01	 Investasi Permanen Lainnya .......
+1.2.2.02.02	 Dst         ..
+1.3	 ASET TETAP
+1.3.1	 Tanah
+1.3.1.01	 Tanah Perkampungan
+1.3.1.01.01	 Tanah Kampung
+1.3.1.01.02	 Tanah Emplasmen
+1.3.1.01.03	 Tanah Kuburan
+1.3.1.01.04	 Dst.......
+1.3.1.02	 Tanah Pertanian
+1.3.1.02.01	 Tanah Sawah Satu Tahun Ditanami
+1.3.1.02.02	 Tanah Tegalan
+1.3.1.02.03	 Tanah Ladang
+1.3.1.02.04	 Dst.......
+1.3.1.03	 Tanah Perkebunan
+1.3.1.03.01	 Tanah Perkebunan .......
+1.3.1.03.02	 Dst.......
+1.3.1.04	 Kebun Campuran
+1.3.1.04.01	 Bidang Tanah Yang Tidak Ada Jaringan Pengairan
+1.3.1.04.02	 Tumbuh Liar Bercampur Jenis Lain
+1.3.1.04.03	 Dst.......
+1.3.1.05	 Hutan
+1.3.1.05.01	 Hutan Lebat
+1.3.1.05.02	 Hutan Belukar
+1.3.1.05.03	 Hutan Tanaman Jenis
+1.3.1.05.04	 Hutan Alam Sejenis/Hutan Rawa
+1.3.1.05.05	 Hutan Untuk Penggunaan Khusus
+1.3.1.05.06	 Dst.......
+1.3.1.06	 Kolam Ikan
+1.3.1.06.01	 Tambak
+1.3.1.06.02	 Air Tawar
+1.3.1.06.03	 Dst.......
+1.3.1.07	 Danau/Rawa
+1.3.1.07.01	 Danau
+1.3.1.07.02	 Rawa
+1.3.1.08	 Tanah Tandus/Rusak
+1.3.1.08.01	 Tanah Tandus
+1.3.1.08.02	 Tanah Rusak
+1.3.1.09.01	 Alang-alang
+1.3.1.09.02	 Padang Rumput
+1.3.1.10	 Tanah Pengguna Lain
+1.3.1.10.01	 Tanah Pengguna Lain.....
+1.3.1.10.02	 Dst.......
+1.3.1.11	 Tanah Untuk Bangunan Gedung
+1.3.1.11.01	 Tanah Bangunan Perumahan/Gedung Tempat Tinggal
+1.3.1.11.02	 Tanah Untuk Bangunan Gedung Perdagangan/Perusahaan
+1.3.1.11.03	 Tanah Untuk Bangunan Industri
+1.3.1.11.04	 Tanah Untuk Bangunan Tempat Kerja/Jasa
+1.3.1.11.05	 Tanah Kosong
+1.3.1.11.06	 Tanah Peternakan
+1.3.1.11.07	 Tanah Bangunan Pengairan
+1.3.1.11.08	 Tanah Bangunan Jalan dan Jembatan
+1.3.1.11.09	 Tanah Lembiran/Bantaran/Lepe-lepe/Setren dst
+1.3.1.11.10	 Dst.......
+1.3.1.12	 Tanah Pertambangan
+1.3.1.12.01	 Pertambangan ......
+1.3.1.12.02	 Dst.......
+1.3.1.13	 Tanah Untuk Bangunan Bukan Gedung
+1.3.1.13.01	 Tanah Lapangan Olah Raga
+1.3.1.13.02	 Tanah Lapangan Parkir
+1.3.1.13.03	 Tanah Lapangan Penimbun Barang
+1.3.1.13.04	 Tanah Lapangan Pemancar dan Studio Alam
+1.3.1.13.05	 Tanah Lapangan Pengujian/Pengolahan
+1.3.1.13.06	 Tanah Lapangan Terbang
+1.3.1.13.07	 Tanah Untuk Bangunan Jalan
+1.3.1.13.08	 Tanah Untuk Bangunan Air
+1.3.1.13.09	 Tanah Untuk Bangunan Instalasi
+1.3.1.13.10	 Tanah Untuk Bangunan Jaringan
+1.3.1.13.11	 Tanah Untuk Bangunan Bersejarah
+1.3.1.13.12	 Tanah Untuk Bangunan Gedung Olah Raga
+1.3.1.13.13	 Tanah Untuk Bangunan Tempat Ibadah
+1.3.1.13.14	 Dst.......
+1.3.2	 Peralatan dan Mesin
+1.3.2.01	 Alat-Alat Besar Darat
+1.3.2.01.01	 Tractor
+1.3.2.01.02	 Grader
+1.3.2.01.03	 Excavator
+1.3.2.01.04	 Pile Driver
+1.3.2.01.05	 Hauler
+1.3.2.01.06	 Asphal Equipment
+1.3.2.01.07	 Compacting Equipment
+1.3.2.01.08	 Aggregate $ Concrete Equipment
+1.3.2.01.09	 Loader
+1.3.2.01.10	 Alat Pengangkat
+1.3.2.01.11	 Mesin Proses
+1.3.2.01.12	 Dst.......
+1.3.2.02	 Alat-Alat Besar Apung
+1.3.2.02.01	 Dredger
+1.3.2.02.02	 Floating Excavator
+1.3.2.02.03	 Amphibi Dredger
+1.3.2.02.04	 Kapal Tarik
+1.3.2.02.05	 Mesin Proses Apung
+1.3.2.02.06	 Dst.......
+1.3.2.03	 Alat-alat Bantu
+1.3.2.03.01	 Alat Penarik
+1.3.2.03.02	 Feeder
+1.3.2.03.03	 Compressor
+1.3.2.03.04	 Electric Generating Set
+1.3.2.03.05	 Pompa
+1.3.2.03.06	 Mesin Bor
+1.3.2.03.07	 Unit Pemeliharaan Lapangan
+1.3.2.03.08	 Alat Pengolahan Air Kotor
+1.3.2.03.09	 Pembangkit Uap Air Panas/Sistem Generator
+1.3.2.03.10	 Dst.......
+1.3.2.04	 Alat Angkutan Darat Bermotor
+1.3.2.04.01	 Kendaraan Dinas Bermotor Perorangan
+1.3.2.04.02	 Kendaraan Bermotor Penumpang
+1.3.2.04.03	 Kendaraan Bermotor Angkutan Barang
+1.3.2.04.04	 Kendaraan Bermotor Khusus
+1.3.2.04.05	 Kendaraan Bermotor Beroda Dua
+1.3.2.04.06	 Kendaraan Bermotor Beroda Tiga
+1.3.2.04.07	 Dst.......
+1.3.2.05	 Alat Angkutan Berat Tak Bermotor
+1.3.2.05.01	 Kendaraan Bermotor Angkutan Barang
+1.3.2.05.02	 Kendaraan Tak Bermotor Berpenumpang
+1.3.2.05.03	 Kendaraan Tak Bermotor Khusus
+1.3.2.06.01	 Alat Angkut Apung Bermotor Barang
+1.3.2.06.02	 Alat Angkut Apung Bermotor Penumpang
+1.3.2.06.03	 Alat Angkut Apung Bermotor Khusus
+1.3.2.07	 Alat Angkut Apung Tak Bermotor
+1.3.2.07.01	 Alat Angkut Apung Tak Bermotor Untuk Barang
+1.3.2.07.02	 Alat Angkut Apung Tak Bermotor Penumpang
+1.3.2.07.03	 Alat Angkut Apung Tak Bermotor Khusus
+1.3.2.08	 Alat Angkut Bermotor Udara
+1.3.2.08.01	 Pesawat Terbang
+1.3.2.08.02	 Dst         
+1.3.2.09	 Alat Bengkel Bermesin
+1.3.2.09.01	 Perkakas Konstruksi Logam Terpasang pada Pondasi
+1.3.2.09.02	 Perkakas Konstruksi Logam yang Berpindah
+1.3.2.09.03	 Perkakas Bengkel Listrik
+1.3.2.09.04	 Perkakas Bengkel Service
+1.3.2.09.05	 Perkakas Pengangkat Bermesin
+1.3.2.09.06	 Perkakas Bengkel Kayu
+1.3.2.09.07	 Perkakas Bengkel Khusus
+1.3.2.09.08	 Peralatan Las
+1.3.2.09.09	 Perkakas Pabrik Es
+1.3.2.09.10	 Dst         
+1.3.2.10	 Alat Bengkel Tak Bermesin
+1.3.2.10.01	 Perkakas Bengkel Konstruksi Logam
+1.3.2.10.02	 Perkakas Bengkel Listrik
+1.3.2.10.03	 Perkakas Bengkel Service
+1.3.2.10.04	 Perkakas Pengangkat
+1.3.2.10.05	 Perkakas Standar (Standart Tool)
+1.3.2.10.06	 Perkakas Khusus (Special Tool)
+1.3.2.10.07	 Perkakas Bengkel Kerja
+1.3.2.10.08	 Peralatan Tukang-tukang Besi
+1.3.2.10.09	 Peralatan Tukang Kayu
+1.3.2.10.10	 Peralatan Tukang Kulit
+1.3.2.10.11	 Peralatan Ukur
+1.3.2.10.12	 Dst         
+1.3.2.11	 Alat Ukur
+1.3.2.11.01	 Alat Ukur universal
+1.3.2.11.02	 Alat Ukur/Test Intelegensia
+1.3.2.11.03	 Alat Ukur/Test Alat Kepribadian
+1.3.2.11.04	 Alat Ukur /Test Klinis Lain
+1.3.2.11.05	 Alat Calibrasi
+1.3.2.11.06	 Oscilloscope
+1.3.2.11.07	 Universal Tester
+1.3.2.11.08	 Alat Ukur/Pembanding
+1.3.2.11.09	 Alat Ukur Lainnya
+1.3.2.11.10	 Alat Timbangan/Blora
+1.3.2.11.11	 Anak Timbangan/Biasa
+1.3.2.11.12	 Takaran Kering
+1.3.2.11.13	 Takaran Bahan Bangunan
+1.3.2.11.14	 Takaran Latex/Getah Susu
+1.3.2.11.15	 Gelas Takar Berbagai Capasitas
+1.3.2.11.16	 Dst         
+1.3.2.12	 Alat Pengolahan
+1.3.2.12.01	 Alat Pengolahan Tanah dan Tanaman
+1.3.2.12.02	 Alat Panen/Pengolahan
+1.3.2.12.03	 Alat-Alat Peternakan
+1.3.2.12.04	 Alat Penyimpanan Hasil Percobaan Pertanian
+1.3.2.12.05	 Alat Laboratorium Pertanian
+1.3.2.12.06	 Alat Processing
+1.3.2.12.07	 Alat Pasca Panen
+1.3.2.12.08	 Alat Produksi Perikanan
+1.3.2.12.09	 Dst         
+1.3.2.13	 Alat Pemeliharaan Tanaman/Alat Penyimpan
+1.3.2.13.01	 Alat Pemeliharaan Tanaman
+1.3.2.13.02	 Alat Panen
+1.3.2.13.03	 Alat Penyimpanan
+1.3.2.13.04	 Alat Laboratorium
+1.3.2.13.05	 Alat Penangkap Ikan
+1.3.2.13.06	 Dst         
+1.3.2.14	 Alat Kantor
+1.3.2.14.01	 Mesin Tik
+1.3.2.14.02	 Mesin Hitung/Jumlah
+1.3.2.14.03	 Alat Reproduksi (Pengganda)
+1.3.2.14.04	 Alat Penyimpanan Perlengkapan Kantor
+1.3.2.14.05	 Alat Kantor Lainnya
+1.3.2.14.06	 Dst         
+1.3.2.15.01	 Meubelair
+1.3.2.15.02	 Alat Pengukur Waktu
+1.3.2.15.03	 Alat Pembersih
+1.3.2.15.04	 Alat Pendingin
+1.3.2.15.05	 Alat Dapur
+1.3.2.15.06	 Alat Rumah Tangga Lainnya (Home Use)
+1.3.2.15.07	 Alat Pemadam Kebakaran
+1.3.2.15.08	 Dst         
+1.3.2.16	 Komputer
+1.3.2.16.01	 Komputer Unit/Jaringan
+1.3.2.16.02	 Personal Komputer
+1.3.2.16.03	 Peralatan Komputer Mainframe
+1.3.2.16.04	 Peralatan Mini Komputer
+1.3.2.16.05	 Peralatan Personal Komputer
+1.3.2.16.06	 Perlatan Jaringan
+1.3.2.16.07	 Dst         
+1.3.2.17	 Meja Dan Kursi Kerja/Rapat Pejabat
+1.3.2.17.01	 Meja Kerja Pejabat
+1.3.2.17.02	 Meja Rapat Pejabat
+1.3.2.17.03	 Kursi Kerja Pejabat
+1.3.2.17.04	 Kursi Rapat Pejabat
+1.3.2.17.05	 Kursi Hadap Depan Meja Kerja Pejabat
+1.3.2.17.06	 Kursi Tamu di Ruangan Pejabat
+1.3.2.17.07	 Lemari dan Arsip Pejabat
+1.3.2.17.08	 Dst         
+1.3.2.18	 Alat Studio
+1.3.2.18.01	 Peralatan Studio Visual
+1.3.2.18.02	 Peralatan Studio Video dan Film
+1.3.2.18.03	 Peralatan Studio Video dan Film A
+1.3.2.18.04	 Peralatan Cetak
+1.3.2.18.05	 Peralatan Computing
+1.3.2.18.06	 Peralatan Pemetaan Ukur
+1.3.2.18.07	 Dst         
+1.3.2.19	 Alat Komunikasi
+1.3.2.19.01	 Alat Komunikasi Telephone
+1.3.2.19.02	 Alat Komunikasi Radio SSB
+1.3.2.19.03	 Alat Komunikasi Radio HF/FM
+1.3.2.19.04	 Alat Komunikasi Radio VHF
+1.3.2.19.05	 Alat Komunikasi Radio UHF
+1.3.2.19.06	 Alat Komunikasi Sosial
+1.3.2.19.07	 Alat-alat Sandi
+1.3.2.19.08	 Dst         
+1.3.2.20	 Peralatan Pemancar
+1.3.2.20.01	 Peralatan Pemancar MF/MW
+1.3.2.20.02	 Peralatan Pemancar HF/SW
+1.3.2.20.03	 Peralatan Pemancar VHF/FM
+1.3.2.20.04	 Peralatan Pemancar UHF
+1.3.2.20.05	 Peralatan Pemancar SHF
+1.3.2.20.06	 Peralatan Antena MF/MW
+1.3.2.20.07	 Peralatan Antena HF/SW
+1.3.2.20.08	 Peralatan Antena VHF/FM
+1.3.2.20.09	 Peralatan Antena UHF
+1.3.2.20.10	 Peralatan Antena SHF/Parabola
+1.3.2.20.11	 Peralatan Translator VHF/VHF
+1.3.2.20.12	 Peralatan Translator UHF/UHF
+1.3.2.20.13	 Peralatan Translator VHF/UHF
+1.3.2.20.14	 Peralatan Translator UHF/VHF
+1.3.2.20.15	 Peralatan Microvawe FPU
+1.3.2.20.16	 Peralatan Microvawe Terestrial
+1.3.2.20.17	 Peralatan Microvawe TVRO
+1.3.2.20.18	 Peralatan Dummy Load
+1.3.2.20.19	 Switcher Antena
+1.3.2.20.20	 Switcher/Menara Antena
+1.3.2.20.21	 Feeder
+1.3.2.20.22	 Humitity Control
+1.3.2.20.23	 Program Input Equipment
+1.3.2.20.24	 Peralatan Antena Penerima VHF
+1.3.2.20.25	 Dst         
+1.3.2.21	 Alat Kedokteran
+1.3.2.21.01	 Alat Kedokteran Umum
+1.3.2.21.02	 Alat Kedokteran Gigi
+1.3.2.21.03	 Alat Kedokteran Keluarga Berencana
+1.3.2.21.04	 Alat Kedokteran Mata
+1.3.2.21.05	 Alat Kedokteran T.H.T
+1.3.2.21.06	 Alat Rotgen
+1.3.2.21.07	 Alat Farmasi
+1.3.2.21.08	 Alat Kedokteran Bedah
+1.3.2.21.09	 Alat Kesehatan Kebidanan dan Penyakit Kandungan
+1.3.2.21.10	 Alat Kedokteran Bagian Penyakit Dalam
+1.3.2.21.11	 Mortuary
+1.3.2.21.12	 Alat Kesehatan Anak
+1.3.2.21.13	 Poliklinik Set
+1.3.2.21.14	 Penderita Cacat Tubuh
+1.3.2.21.16	 Alat Kedokteran Jantung
+1.3.2.21.17	 Alat Kedokteran Nuklir
+1.3.2.21.18	 Alat Kedokteran Radiologi
+1.3.2.21.19	 Alat Kedokteran Kulit dan Kelamin
+1.3.2.21.20	 Alat Kedokteran Gawat Darurat
+1.3.2.21.21	 Alat Kedokteran Jiwa
+1.3.2.21.22	 Alat Kedokteran Hewan
+1.3.2.21.23	 Dst         
+1.3.2.22	 Alat Kesehatan
+1.3.2.22.01	 Alat Kesehatan Perawatan
+1.3.2.22.02	 Alat Kesehatan Rehabilitasi Medis
+1.3.2.22.03	 Alat Kesehatan Matra Laut
+1.3.2.22.04	 Alat Kesehatan Matra Udara
+1.3.2.22.05	 Alat Kesehatan Kedokteran Kepolisian
+1.3.2.22.06	 Alat Kesehatan Olahraga
+1.3.2.22.07	 Dst         
+1.3.2.23	 Unit-Unit Laboratorium
+1.3.2.23.01	 Alat Laboratorium Kimia Air
+1.3.2.23.02	 Alat Laboratorium Microbiologi
+1.3.2.23.03	 Alat Laboratorium Hidro Kimia
+1.3.2.23.04	 Alat Laboratorium Model/Hidrolika
+1.3.2.23.05	 Alat Laboratorium Buatan/Geologi
+1.3.2.23.06	 Alat Laboratorium Bahan Bangunan Konstruksi
+1.3.2.23.07	 Alat Laboratorium Aspal Cat & Kimia
+1.3.2.23.08	 Alat Laboratorium Mekanik Tanah & Batuan
+1.3.2.23.09	 Alat Laboratorium Cocok Tanam
+1.3.2.23.10	 Alat Laboratorium Logam		 Listrik	
+1.3.2.23.11	 Alat Laboratorium Logam
+1.3.2.23.12	 Alat Laboratorium Umum
+1.3.2.23.13	 Alat Laboratorium Umum A
+1.3.2.23.14	 Alat Laboratorium Kedokteran
+1.3.2.23.15	 Alat Laboratorium Microbiologi
+1.3.2.23.16	 Alat Laboratorium Kimia
+1.3.2.23.17	 Alat Laboratorium Microbiologi A
+1.3.2.23.18	 Alat Laboratorium Patologi
+1.3.2.23.19	 Alat Laboratorium Immunologi
+1.3.2.23.20	 Alat Laboratorium Hematologi
+1.3.2.23.21	 Alat Laboratorium Film
+1.3.2.23.22	 Alat Laboratorium Makanan
+1.3.2.23.23	 Alat Laboratorium Standarisasi
+1.3.2.23.24	 Alat Laboratorium Farmasi
+1.3.2.23.25	 Alat Laboratorium Fisika
+1.3.2.23.26	 Alat Laboratorium Hidrodinamika
+1.3.2.23.27	 Alat Laboratorium Klimatologi
+1.3.2.23.28	 Alat Laboratorium Proses Peleburan
+1.3.2.23.29	 Alat Laboratorium Pasir
+1.3.2.23.30	 Alat Laboratorium Proses Pembuatan Cetakan
+1.3.2.23.31	 Alat Laboratorium Proses Pembuatan Pola
+1.3.2.23.32	 Alat Laboratorium Metalography
+1.3.2.23.33	 Alat Laboratorium Proses Pengelasan
+1.3.2.23.34	 Alat Laboratorium Uji Proses Pengelasan
+1.3.2.23.35	 Alat Laboratorium Proses Pembuatan Logam
+1.3.2.23.36	 Alat Laboratorium Matrologie
+1.3.2.23.37	 Alat Laboratorium Proses Pelapisan Logam
+1.3.2.23.38	 Alat Laboratorium Proses Pengolahan Panas
+1.3.2.23.39	 Alat Laboratorium Proses Teknologi Textil
+1.3.2.23.40	 Alat Laboratorium Uji Tekstel
+1.3.2.23.41	 Alat Laboratorium Proses Teknologi Keramik
+1.3.2.23.42	 Alat Laboratorium Proses Teknologi Kulit Karet
+1.3.2.23.43	 Alat Laboratorium Uji Kulit
+1.3.2.23.44	 Alat Laboratorium Uji Keramik
+1.3.2.23.45	 Alat Laboratorium Proses Teknologi Selulosa
+1.3.2.23.46	 Alat Laboratorium Pertanian
+1.3.2.23.47	 Alat Laboratorium Pertanian A
+1.3.2.23.48	 Alat Laboratorium Pertanian B
+1.3.2.23.49	 Alat Laboratorium Elektronika dan Daya
+1.3.2.23.50	 Alat Laboratorium Energi Surya
+1.3.2.23.51	 Alat Laboratorium Konversi Batubara dan Biomas
+1.3.2.23.52	 Alat Laboratorium Oceanografi
+1.3.2.23.53	 Alat Laboratorium Lingkungan Perairan
+1.3.2.23.54	 Alat Laboratorium Biologi Peralatan
+1.3.2.23.55	 Alat Laboratorium Biologi
+1.3.2.23.56	 Alat Laboratorium Geofisika
+1.3.2.23.57	 Alat Laboratorium Tambang
+1.3.2.23.58	 Alat Laboratorium Proses/Teknik Kimia
+1.3.2.23.59	 Alat Laboratorium Proses Industri
+1.3.2.23.60	 Alat Laboratorium Kesehatan Kerja
+1.3.2.23.61	 Laboratorium Kearsipan
+1.3.2.23.62	 Laboratorium Hematologi & Urinalisis
+1.3.2.23.63	 Laboratorium Hematologi & Urinalisis A
+1.3.2.23.64	 Alat Laboratorium Lainnya
+1.3.2.23.65	 Dst         
+1.3.2.24.01	 Bidang Studi : Bahasa Indonesia
+1.3.2.24.02	 Bidang Studi : Matematika
+1.3.2.24.03	 Bidang Studi : IPA Dasar
+1.3.2.24.04	 Bidang Studi : IPA Lanjutan
+1.3.2.24.05	 Bidang Studi : IPA Menengah
+1.3.2.24.06	 Bidang Studi : IPA Atas
+1.3.2.24.07	 Bidang Studi : IPS
+1.3.2.24.08	 Bidang Studi : Agama Islam
+1.3.2.24.09	 Bidang Studi : Ketrampilan
+1.3.2.24.10	 Bidang Studi : Kesenian
+1.3.2.24.11	 Bidang Studi : Olah Raga
+1.3.2.24.12	 Bidang Studi : PMP
+1.3.2.24.13	 Alat Peraga/Praktek Sekolah Bidang Pendidikan/Ketrampilan Lain-lain
+1.3.2.24.14	 Dst         
+1.3.2.25	 Unit Alat Laboratorium Kimia Nuklir
+1.3.2.25.01	 Analytical instrument
+1.3.2.25.02	 Instrument Probe/Sensor
+1.3.2.25.03	 General Laboratory Tool
+1.3.2.25.04	 Instrument Probe/Sensor A
+1.3.2.25.05	 Glassware Plastic/Utensils
+1.3.2.25.06	 Laboratory Safety Equipment
+1.3.2.25.07	 Dst         
+1.3.2.26	 Alat Laboratorium Fisika Nuklir / Elektronika
+1.3.2.26.01	 Radiation Detector
+1.3.2.26.02	 Modular Counting and Scentific
+1.3.2.26.03	 Assembly/Accounting System
+1.3.2.26.04	 Recorder Display
+1.3.2.26.05	 System/Power Supply
+1.3.2.26.06	 Measuring / Testing Device
+1.3.2.26.07	 Opto Electronics
+1.3.2.26.08	 Accelator
+1.3.2.26.09	 Reactor Expermental System
+1.3.2.26.10	 Dst         
+1.3.2.27	 Alat Proteksi Radiasi / Proteksi Lingkungan
+1.3.2.27.01	 Alat Ukur Fisika Kesehatan
+1.3.2.27.02	 Alat Kesehatan Kerja
+1.3.2.27.03	 Proteksi Lingkungan
+1.3.2.27.04	 Meteorological Equipment
+1.3.2.27.05	 Sumber Radiasi
+1.3.2.27.06	 Dst         
+1.3.2.28	 Radiation Aplication and Non Destructive Testing Laboratory (BATAM)
+1.3.2.28.01	 Radiation Application Equipment
+1.3.2.28.02	 Non Destructive Test (NDT) Device
+1.3.2.28.03	 Peralatan Umum Kedoteran /Klinik Nuklir
+1.3.2.28.04	 Peralatan Hidrologi
+1.3.2.28.05	 Dst         
+1.3.2.29	 Alat Laboratorium Lingkungan Hidup
+1.3.2.29.01	 Alat laboratorium Kualitas Air dan tanah
+1.3.2.29.02	 Alat Laboratorium Kualitas Udara
+1.3.2.29.03	 Alat Laboratorium Kebisingan dan Getaran
+1.3.2.29.04	 Laboratorium Lingkungan
+1.3.2.29.05	 Alat Laboratorium Penunjang
+1.3.2.29.06	 Dst         
+1.3.2.30	 Peralatan Laboratorium Hidrodinamika
+1.3.2.30.01	 Towing Carriage
+1.3.2.30.02	 Wave Generator and Absorber
+1.3.2.30.03	 Data Aqquistion and Analyzing System
+1.3.2.30.04	 Cavitation Tunnel
+1.3.2.30.05	 Overhead Cranes
+1.3.2.30.06	 Peralatan umum
+1.3.2.30.07	 Pemesinan : Model Ship Workshop
+1.3.2.30.08	 Pemesinan : Propeller Model Workshop
+1.3.2.30.09	 Pemesinan : Mechanical Workshop
+1.3.2.30.10	 Pemesinan : Precision Mechanical Workshop
+1.3.2.30.11	 Pemesinan Painting Shop
+1.3.2.30.12	 Pemesinan : Ship Model Preparation Shop
+1.3.2.30.13	 Pemesinan : Electrical Workshop
+1.3.2.30.14	 MOB
+1.3.2.30.15	 Photo and Film Equipment
+1.3.2.30.16	 Dst         
+1.3.2.31.01	 Senjata Genggam
+1.3.2.31.02	 Senjata Pinggang
+1.3.2.31.03	 Senjata Bahu/Senjata Laras Panjang
+1.3.2.31.04	 Senapan Mesin
+1.3.2.31.05	 Mortir
+1.3.2.31.06	 Anti Lapis Baja
+1.3.2.31.07	 Artileri Medan (Armed)
+1.3.2.31.08	 Artileri Pertahanan Udara (Arhanud)
+1.3.2.31.09	 Peluru Kendali/Rudal
+1.3.2.31.10	 Kavaleri
+1.3.2.31.11	 Senjata Lain-lain
+1.3.2.32	 Persenjataan Non Senjata Api
+1.3.2.32.01	 Alat Keamanan
+1.3.2.32.02	 Non Senjata Api
+1.3.2.33	 Amunisi
+1.3.2.33.01	 Amunisi Umum
+1.3.2.33.02	 Amunisi Darat
+1.3.2.33.03	 Dst......
+1.3.2.34	 Senjata Sinar
+1.3.2.34.01	 Laser
+1.3.2.34.02	 Dst........
+1.3.2.35	 Alat Keamanan dan Perlindungan
+1.3.2.35.01	 Alat Bantu Keamanan
+1.3.2.35.02	 Alat Perlindungan
+1.3.2.35.03	 Alat Bantu Lalu Lintas Darat dan Air
+1.3.2.35.04	 Dst........
+1.3.3	 Gedung dan Bangunan
+1.3.3.01	 Bangunan Gedung Tempat Kerja
+1.3.3.01.01	 Bangunan Gedung Kantor
+1.3.3.01.02	 Bangunan Gudang
+1.3.3.01.03	 Bangunan Gudang Untuk Bengkel
+1.3.3.01.04	 Bangunan Gedung Instalasi
+1.3.3.01.05	 Bangunan Gedung Laboratorium
+1.3.3.01.06	 Bangunan Kesehatan
+1.3.3.01.07	 Bangunan Oceanarium/Opservatorium
+1.3.3.01.08	 Bangunan Gedung Tempat Ibadah
+1.3.3.01.09	 Bangunan Gedung Tempat Pertemuan
+1.3.3.01.10	 Bangunan Gedung Tempat Pendidikan
+1.3.3.01.11	 Bangunan Gedung Tempat Olah Raga
+1.3.3.01.12	 Bangunan Gedung Pertokoan/Koperasi/Pasar
+1.3.3.01.13	 Bangunan Gedung Untuk Pos Jaga
+1.3.3.01.14	 Bangunan Gedung Garasi/Pool
+1.3.3.01.15	 Bangunan Gedung Pemotongan Hewan
+1.3.3.01.16	 Bangunan Gedung Pabrik
+1.3.3.01.17	 Bangunan Stasiun Bus
+1.3.3.01.18	 Bangunan Kandang Hewan/Ternak
+1.3.3.01.19	 Bangunan Gedung Perpustakaan
+1.3.3.01.20	 Bangunan Gedung Museum
+1.3.3.01.21	 Bangunan Gedung Terminal/Pelabuhan/Bandar
+1.3.3.01.22	 Bangunan Pengujian Kelaikan
+1.3.3.01.23	 Bangunan Lembaga Pemasyarakatan
+1.3.3.01.24	 Bangunan Rumah Tahanan
+1.3.3.01.25	 Bangunan Gedung Kramatorium
+1.3.3.01.26	 Bangunan Pembakaran Bangkai Hewan
+1.3.3.01.27	 Bangunan Gedung Tempat Kerja Lainnya
+1.3.3.02	 Bangunan Gedung Tempat Tinggal
+1.3.3.02.01	 Rumah Negara Golongan I
+1.3.3.02.02	 Rumah Negara Golongan II
+1.3.3.02.03	 Rumah Negara Golongan III
+1.3.3.02.04	 Mess/Wisma/Bungalow/Tempat Peristirahatan
+1.3.3.02.05	 Asrama
+1.3.3.02.06	 Hotel
+1.3.3.02.07	 Motel
+1.3.3.02.08	 Flat/Rumah Susun
+1.3.3.02.09	 Dst........
+1.3.3.03	 Bangunan Menara
+1.3.3.03.01	 Bangunan Menara Perambuan Penerang Pantai
+1.3.3.03.02	 Bangunan Perambut Penerangan Pantai Tidak Bermenara
+1.3.3.03.03	 Bangunan Menara Telekomunikasi
+1.3.3.03.04	 Dst........
+1.3.3.04	 Bangunan Bersejarah
+1.3.3.04.01	 Istana Peringatan
+1.3.3.04.02	 Rumah Adat
+1.3.3.04.03	 Rumah Peninggalan Sejarah
+1.3.3.04.04	 Makam Sejarah
+1.3.3.04.05	 Bangunan Tempat Ibadah Bersejarah
+1.3.3.04.06	 Dst........
+1.3.3.05.01	 Tugu Kemerdekaan
+1.3.3.05.02	 Tugu Pembangunan
+1.3.3.05.03	 Tugu Peringatan Lainnya
+1.3.3.06	 Candi
+1.3.3.06.01	 Candi Hindhu
+1.3.3.06.02	 Candi Budha
+1.3.3.06.03	 Candi Lainnya
+1.3.3.07	 Monumen/Bangunan Bersejarah
+1.3.3.07.01	 Bangunan Bersejarah Lainnya
+1.3.3.08	 Tugu Titik Kontrol/Pasti
+1.3.3.08.01	 Tugu/Tanda Batas
+1.3.3.08.02	 Dst......
+1.3.3.09	 Rambu-Rambu
+1.3.3.09.01	 Rambu Bersuar Lalu Lintas Darat
+1.3.3.09.02	 Rambu Tidak Bersuar
+1.3.3.09.03	 Dst......
+1.3.3.10	 Rambu-Rambu Lalu Lintas Udara
+1.3.3.10.01	 Rumwey/Threshold Light
+1.3.3.10.02	 Visual Approach Slope Indicator (VASI)
+1.3.3.10.03	 Approach Light
+1.3.3.10.04	 Rumwey Identification Light (Rells)
+1.3.3.10.05	 Signal
+1.3.3.10.06	 Flood Light
+1.3.3.10.07	 Dst......
+1.3.4	 Jalan		 dan Jaringan	
+1.3.4.01	 Jalan
+1.3.4.01.01	 Jalan Negara/Nasional
+1.3.4.01.02	 Jalan Propinsi
+1.3.4.01.03	 Jalan Kabupaten/Kota
+1.3.4.01.04	 Jalan Desa
+1.3.4.01.05	 Jalan Khusus
+1.3.4.01.06	 Jalan Tol
+1.3.4.01.07	 Jalan Kereta
+1.3.4.01.08	 Landasan Pacu Pesawat Terbang
+1.3.4.01.09	 Dst......
+1.3.4.02	 Jembatan
+1.3.4.02.01	 Jembatan Negara/Nasional
+1.3.4.02.02	 Jembatan Propinsi
+1.3.4.02.03	 Jembatan Kabupaten/Kota
+1.3.4.02.04	 Jembatan Desa
+1.3.4.02.05	 Jembatan Khusus
+1.3.4.02.06	 Jembatan Pada Jalan Tol
+1.3.4.02.07	 Jembatan Pada Jalan Kereta Api
+1.3.4.02.08	 Jembatan Pada Landasan Pacu Pesawat Terbang
+1.3.4.02.09	 Jembatan Penyeberangan
+1.3.4.02.10	 Dst......
+1.3.4.03	 Bangunan Air Irigasi
+1.3.4.03.01	 Bangunan Waduk
+1.3.4.03.02	 Bangunan Pengambilan Irigasi
+1.3.4.03.03	 Bangunan Pembawa Irigasi
+1.3.4.03.04	 Bangunan Pembuang Irigasi
+1.3.4.03.05	 Bangunan Pengaman Irigasi
+1.3.4.03.06	 Bangunan Pelengkap Irigasi
+1.3.4.03.07	 Dst......
+1.3.4.04	 Bangunan Air Pasang Surut
+1.3.4.04.01	 Bangunan Waduk
+1.3.4.04.02	 Bangunan Pengambilan Pasang Surut
+1.3.4.04.03	 Bangunan Pembawa Pasang Surut
+1.3.4.04.04	 Bangunan Pembuang Pasang Surut
+1.3.4.04.05	 Bangunan Pengaman Pasang Surut
+1.3.4.04.06	 Bangunan Pelengkap Pasang Surut
+1.3.4.04.07	 Bangunan Sawah Pasang Surut
+1.3.4.04.08	 Dst......
+1.3.4.05	 Bangunan Air Rawa
+1.3.4.05.01	 Bangunan Air Pengembang Rawa dan Poder
+1.3.4.05.02	 Bangunan Pengembalian Pasang Rawa
+1.3.4.05.03	 Bangunan Pembawa Pasang Rawa
+1.3.4.05.04	 Bangunan Pembuang Pasang Rawa
+1.3.4.05.05	 Bangunan Pengamanan Pasang Surut
+1.3.4.05.06	 Bangunan Pelengkap Pasang Rawa
+1.3.4.05.07	 Bangunan Sawah Pengembangan Rawa
+1.3.4.05.08	 Dst......
+1.3.4.06.01	 Bangunan Waduk Penanggulangan Sungai
+1.3.4.06.02	 Bangunan Pengambilan Pengamanan Sungai
+1.3.4.06.03	 Bangunan Pembuang Pengaman
+1.3.4.06.04	 Bangunan Pembuang Pengaman Sungai
+1.3.4.06.05	 Bangunan Pengaman Pengamanan Sungai
+1.3.4.06.06	 Bangunan Pelengkap Pengamanan Sungai
+1.3.4.06.07	 Dst......
+1.3.4.07	 Bangunan Pengembangan Sumber Air dan Air Tanah
+1.3.4.07.01	 Bangunan Waduk Pengembangan Sumber Air
+1.3.4.07.02	 Bangunan Pengambilan Pengembangan Sumber Air
+1.3.4.07.03	 Bangunan Pembawa Pengembangan Sumber Air
+1.3.4.07.04	 Bangunan Pembuang Pengembangan Sumber Air
+1.3.4.07.05	 Bangunan Pengamanan Pengembangan Sumber Air
+1.3.4.07.06	 Bangunan Pelengkap Pengembangan Sumber Air
+1.3.4.07.07	 Dst......
+1.3.4.08	 Bangunan Air Bersih/Baku
+1.3.4.08.01	 Waduk Air Bersih/Air Baku
+1.3.4.08.02	 Bangunan Pengambilan Air Bersih/Baku
+1.3.4.08.03	 Bangunan Pembawa Air Bersih
+1.3.4.08.04	 Bangunan Pembuang Air Bersih/Air Baku
+1.3.4.08.05	 Bangunan Pelengkap Air Bersih/Air Baku
+1.3.4.08.06	 Dst......
+1.3.4.09	 Bangunan Air Kotor
+1.3.4.09.01	 Bangunan Pembawa Air Kotor
+1.3.4.09.02	 Bangunan Waduk Air Kotor
+1.3.4.09.03	 Bangunan Pembuangan Air Kotor
+1.3.4.09.04	 Bangunan Pengaman Air Kotor
+1.3.4.09.05	 Bangunan Pelengkap Air Kotor
+1.3.4.09.06	 Dst......
+1.3.4.10	 Bangunan Air
+1.3.4.10.01	 Bangunan Air Laut
+1.3.4.10.02	 Bangunan Air Tawar
+1.3.4.10.03	 Dst......
+1.3.4.11	 Instalasi Air Minum Bersih
+1.3.4.11.01	 Air Muka Tanah
+1.3.4.11.02	 Air Sumber /Mata Air
+1.3.4.11.03	 Air Tanah Dalam
+1.3.4.11.04	 Air Tanah Dangkal
+1.3.4.11.05	 Air Bersih/Air Baku Lainnya
+1.3.4.11.06	 Dst......
+1.3.4.12	 Instalasi Air Kotor
+1.3.4.12.01	 Instalasi Air Kotor
+1.3.4.12.02	 Instalasi Air Buangan Industri
+1.3.4.12.03	 Instalasi Air Buangan Pertanian
+1.3.4.12.04	 Dst......
+1.3.4.13	 Instalasi Pengolahan Sampah Organik dan Non Organik
+1.3.4.13.01	 Instalasi Pengolahan Sampah Organik
+1.3.4.13.02	 Instalasi Pengolahan Sampah Non Organik
+1.3.4.14	 Instalasi Pengolahan Bahan Bangunan
+1.3.4.14.01	 Instalasi Pengolahan Bahan Bangunan ......
+1.3.4.14.02	 Dst......
+1.3.4.15	 Instalasi Pembangkit Listrik
+1.3.4.15.01	 Pembangkit Listrik Tenaga Air (PLTA)
+1.3.4.15.02	 Pembangkit Listrik Tenaga Diesel (PLTD)
+1.3.4.15.03	 Pembangkit Liatrik Tenaga Mikro (Hidro)
+1.3.4.15.04	 Pembangkit Listrik Tenaga Angin (PLTAN)
+1.3.4.15.05	 Pembangkit Listrik Tenaga Uap (PLTU)
+1.3.4.15.06	 Pembangkit Listrik Tenaga Nuklir (PLTN)
+1.3.4.15.07	 Pembangkit Listrik Tenaga Gas (PLTG)
+1.3.4.15.08	 Pembangkit Listrik Tenaga Panas Bumi (PLTP)
+1.3.4.15.09	 Pembangkit Listrik Tenaga Tenaga Surya (PLTS)
+1.3.4.15.10	 Pembangkit Listrik Tenaga Biogas (PLTB)
+1.3.4.15.11	 Pembangkit Listrik Tenaga Samudra/Gelombang Samudra (PLTSm)
+1.3.4.15.12	 Dst......
+1.3.4.16	 Instalasi Gardu Listrik
+1.3.4.16.01	 Instalasi Gardu Listrik Induk
+1.3.4.16.02	 Instalasi Gardu Listrik Distribusi
+1.3.4.16.03	 Instalasi Pusat Pengatur Listrik
+1.3.4.16.04	 Dst......
+1.3.4.17	 Instalasi Pertahanan
+1.3.4.17.01	 Instalasi Pertahanan Di Darat
+1.3.4.17.02	 Dst......
+1.3.4.18.01	 Instalasi Gardu Gas
+1.3.4.18.02	 Instalasi Jaringan Pipa Gas
+1.3.4.19	 Instalasi Pengaman
+1.3.4.19.01	 Instalasi Pengaman Penangkal Petir
+1.3.4.19.02	 Dst......
+1.3.4.20	 Jaringan Air Minum
+1.3.4.20.01	 Jaringan Pembawa
+1.3.4.20.02	 Jaringan Induk Distribusi
+1.3.4.20.03	 Jaringan Cabang Distribusi
+1.3.4.20.04	 Jaringan Sambungan ke rumah
+1.3.4.20.05	 Dst......
+1.3.4.21	 Jaringan Listrik
+1.3.4.21.01	 Jaringan Transmisi
+1.3.4.21.02	 Jaringan Distribusi
+1.3.4.22	 Jaringan Telepon
+1.3.4.22.01	 Jaringan Telepon Di atas Tanah
+1.3.4.22.02	 Jaringan Telepon Di bawah Tanah
+1.3.4.22.03	 Jaringan Telepon Didalam Air
+1.3.4.23	 Jaringan Gas
+1.3.4.23.01	 Jaringan Pipa Gas Transmisi
+1.3.4.23.02	 Jaringan Pipa Distribusi
+1.3.4.23.03	 Jaringan Pipa Dinas
+1.3.4.23.04	 Jaringan BBM
+1.3.4.23.05	 Dst......
+1.3.5	 Aset Tetap Lainnya
+1.3.5.01	 Buku
+1.3.5.01.01	 Umum
+1.3.5.01.02	 Filsafat
+1.3.5.01.03	 Agama
+1.3.5.01.04	 Ilmu Sosial
+1.3.5.01.05	 Ilmu Bahasa
+1.3.5.01.06	 Matematika & Pengetahuan alam
+1.3.5.01.07	 Ilmu Pengetahuan Praktis
+1.3.5.01.08	 Arsitektur		 Olah raga	
+1.3.5.01.09	 Geografi		 Sejarah	
+1.3.5.01.10	 Dst.......
+1.3.5.02	 Terbitan
+1.3.5.02.01	 Terbitan Berkala
+1.3.5.02.02	 Buku Laporan
+1.3.5.02.03	 Dst.......
+1.3.5.03	 Barang-Barang Perpustakaan
+1.3.5.03.01	 Peta
+1.3.5.03.02	 Naskah (Manuskrip)
+1.3.5.03.03	 Musik
+1.3.5.03.04	 Karya Grafika (Graphic Material)
+1.3.5.03.05	 Three Dimensional Artetacs and Realita
+1.3.5.03.06	 Bentuk Micro (Microform)
+1.3.5.03.07	 Rekaman Suara (Sound Recording)
+1.3.5.03.08	 Berkas Komputer (Computer Files)
+1.3.5.03.09	 Film Bergerak dan Rekaman Video
+1.3.5.03.10	 Tarscalt
+1.3.5.03.11	 Dst.......
+1.3.5.04	 Barang Bercorak Kebudayaan
+1.3.5.04.01	 Pahatan
+1.3.5.04.02	 Lukisan
+1.3.5.04.03	 Alat Kesenian
+1.3.5.04.04	 Alat Olah Raga
+1.3.5.04.05	 Tanda Penghargaan
+1.3.5.04.06	 Maket dan Foto Dokumen
+1.3.5.04.07	 Benda-benda Bersejarah
+1.3.5.04.08	 Barang Kerajinan
+1.3.5.04.09	 Dst.......
+1.3.5.05	 Alat Olah Raga Lainnya
+1.3.5.05.01	 Senam
+1.3.5.05.02	 Alat Olah Raga Air
+1.3.5.05.03	 Alat Olah Raga Udara
+1.3.5.05.04	 Dst.......
+1.3.5.06	 Hewan
+1.3.5.06.01	 Binatang Ternak
+1.3.5.06.02	 Binatang Unggas
+1.3.5.06.03	 Binatang Melata
+1.3.5.06.04	 Binatang Ikan
+1.3.5.06.05	 Hewan Kebun Binatang
+1.3.5.06.06	 Hewan Pengamanan
+1.3.5.06.07	 Dst.......
+1.3.5.07	 Tanaman
+1.3.5.07.02	 Tanaman Holtikultura
+1.3.5.07.03	 Tanaman Kehutanan
+1.3.5.07.04	 Tanaman Hias
+1.3.5.07.05	 Tanaman Obat dan Kosmetika
+1.3.5.07.06	 Dst.......
+1.3.5.08	 Aset Tetap Renovasi
+1.3.5.08.01	 Aset Tetap Renovasi .....
+1.3.5.08.02	 Dst......
+1.3.6	 Konstruksi Dalam Pengerjaan
+1.3.6.01	 Konstruksi Dalam Pengerjaan
+1.3.6.01.01	 Konstruksi Dalam Pengerjaan .......
+1.3.6.01.02	 Dst......
+1.3.7	 Akumulasi Penyusutan
+1.3.7.01	 Akumulasi Penyusutan Peralatan dan Mesin
+1.3.7.01.01	 Akumulasi Penyusutan Alat-Alat Besar Darat
+1.3.7.01.02	 Akumulasi Penyusutan Alat-Alat Besar Apung
+1.3.7.01.03	 Akumulasi Penyusutan Alat-alat Bantu
+1.3.7.01.04	 Akumulasi Penyusutan Alat Angkutan Darat Bermotor
+1.3.7.01.05	 Akumulasi Penyusutan Alat Angkutan Berat Tak Bermotor
+1.3.7.01.06	 Akumulasi Penyusutan Alat Angkut Apung Bermotor
+1.3.7.01.07	 Akumulasi Penyusutan Alat Angkut Apung Tak Bermotor
+1.3.7.01.08	 Akumulasi Penyusutan Alat Angkut Bermotor Udara
+1.3.7.01.09	 Akumulasi Penyusutan Alat Bengkel Bermesin
+1.3.7.01.10	 Akumulasi Penyusutan Alat Bengkel Tak Bermesin
+1.3.7.01.11	 Akumulasi Penyusutan Alat Ukur
+1.3.7.01.12	 Akumulasi Penyusutan Alat Pengolahan Pertanian
+1.3.7.01.13	 Akumulasi Penyusutan Alat Pemeliharaan Tanaman/Alat Penyimpan Pertanian
+1.3.7.01.14	 Akumulasi Penyusutan Alat Kantor
+1.3.7.01.15	 Akumulasi Penyusutan Alat Rumah Tangga
+1.3.7.01.16	 Akumulasi Penyusutan Peralatan Komputer
+1.3.7.01.17	 Akumulasi Penyusutan Meja Dan Kursi Kerja/Rapat Pejabat
+1.3.7.01.18	 Akumulasi Penyusutan Alat Studio
+1.3.7.01.19	 Akumulasi Penyusutan Alat Komunikasi
+1.3.7.01.20	 Akumulasi Penyusutan Peralatan Pemancar
+1.3.7.01.21	 Akumulasi Penyusutan Alat Kedokteran
+1.3.7.01.22	 Akumulasi Penyusutan Alat Kesehatan
+1.3.7.01.23	 Akumulasi Penyusutan Unit-Unit Laboratorium
+1.3.7.01.24	 Akumulasi Penyusutan Alat Peraga/Praktek Sekolah
+1.3.7.01.25	 Akumulasi Penyusutan Unit Alat Laboratorium Kimia Nuklir
+1.3.7.01.26	 Akumulasi Penyusutan Alat Laboratorium Fisika Nuklir / Elektronika
+1.3.7.01.27	 Akumulasi Penyusutan Alat Proteksi Radiasi / Proteksi Lingkungan
+1.3.7.01.28	 Akumulasi Penyusutan Radiation Aplication and Non Destructive Testing Laboratory (BATAM)
+1.3.7.01.29	 Akumulasi Penyusutan Alat Laboratorium Lingkungan Hidup
+1.3.7.01.30	 Akumulasi Penyusutan Peralatan Laboratorium Hidrodinamika
+1.3.7.01.31	 Akumulasi Penyusutan Senjata Api
+1.3.7.01.32	 Akumulasi Penyusutan Persenjataan Non Senjata Api
+1.3.7.01.33	 Akumulasi Penyusutan Alat Keamanan dan Perlindungan
+1.3.7.02	 Akumulasi Penyusutan Gedung dan Bangunan
+1.3.7.02.01	 Akumulasi Penyusutan Bangunan Gedung Tempat Kerja
+1.3.7.02.02	 Akumulasi Penyusutan Bangunan Gedung Tempat Tinggal
+1.3.7.02.03	 Akumulasi Penyusutan Bangunan Menara
+1.3.7.02.04	 Akumulasi Penyusutan Bangunan Bersejarah
+1.3.7.02.05	 Akumulasi Penyusutan Tugu Peringatan
+1.3.7.02.06	 Akumulasi Penyusutan Candi
+1.3.7.02.07	 Akumulasi Penyusutan Monumen/Bangunan Bersejarah
+1.3.7.02.08	 Akumulasi Penyusutan Tugu Titik Kontrol/Pasti
+1.3.7.02.09	 Akumulasi Penyusutan Bangunan Rambu-Rambu
+1.3.7.02.10	 Akumulasi Penyusutan Bangunan Rambu-Rambu Lalu Lintas Udara
+1.3.7.03	 Akumulasi Penyusutan Jalan		 dan jaringan	
+1.3.7.03.01	 Akumulasi Penyusutan Jalan
+1.3.7.03.02	 Akumulasi Penyusutan Jembatan
+1.3.7.03.03	 Akumulasi Penyusutan Bangunan Air Irigasi
+1.3.7.03.04	 Akumulasi Penyusutan Bangunan Air Pasang Surut
+1.3.7.03.05	 Akumulasi Penyusutan Bangunan Air Rawa
+1.3.7.03.06	 Akumulasi Penyusutan Bangunan Pengaman Sungai dan Penanggulangan Bencana Alam
+1.3.7.03.07	 Akumulasi Penyusutan Bangunan Pengembangan Sumber Air dan Air Tanah
+1.3.7.03.08	 Akumulasi Penyusutan Bangunan Air Bersih/Baku
+1.3.7.03.09	 Akumulasi Penyusutan Bangunan Air Kotor
+1.3.7.03.10	 Akumulasi Penyusutan Bangunan Air
+1.3.7.03.11	 Akumulasi Penyusutan Instalasi Air Minum/Air Bersih
+1.3.7.03.12	 Akumulasi Penyusutan Instalasi Air Kotor
+1.3.7.03.13	 Akumulasi Penyusutan Instalasi Pengolahan Sampah
+1.3.7.03.14	 Akumulasi Penyusutan Instalasi Pengolahan Bahan Bangunan
+1.3.7.03.15	 Akumulasi Penyusutan Instalasi Pembangkit Listrik
+1.3.7.03.16	 Akumulasi Penyusutan Instalasi Gardu Listrik
+1.3.7.03.17	 Akumulasi Penyusutan Instalasi Pertahanan
+1.3.7.03.18	 Akumulasi Penyusutan Instalasi Gas
+1.3.7.03.19	 Akumulasi Penyusutan Instalasi Pengaman
+1.3.7.03.20	 Akumulasi Penyusutan Jaringan Air Minum
+1.3.7.03.21	 Akumulasi Penyusutan Jaringan Listrik
+1.3.7.03.22	 Akumulasi Penyusutan Jaringan Telepon
+1.3.7.03.23	 Akumulasi Penyusutan Jaringan Gas
+1.4.1	 Dana Cadangan
+1.4.1.01	 Dana Cadangan
+1.4.1.01.01	 Dana Cadangan ......
+1.4.1.01.02	 Dst.......
+1.5	 ASET LAINNYA
+1.5.1	 Tagihan Jangka Panjang
+1.5.1.01	 Tagihan Penjualan Angsuran
+1.5.1.01.01	 Tagihan Angsuran Penjualan Rumah Dinas Daerah Golongan III
+1.5.1.01.02	 Tagihan Angsuran Penjualan Kendaraan Perorangan Dinas
+1.5.1.01.03	 Dst.......
+1.5.2	 Kemitraan dengan Pihak Ketiga
+1.5.2.01	 Sewa
+1.5.2.01.01	 Sewa ......
+1.5.2.01.02	 Dst......
+1.5.2.02	 Kerjasama Pemanfaatan
+1.5.2.02.01	 Kerjasama Pemanfaatan .....
+1.5.2.02.02	 Dst......
+1.5.2.03	 Bangun guna serah
+1.5.2.03.01	 Bangun guna serah ........
+1.5.2.03.02	 Dst......
+1.5.2.04	 Bangun serah guna
+1.5.2.04.01	 Bangun serah guna .......
+1.5.2.04.02	 Dst......
+1.5.3	 Aset Tidak Berwujud
+1.5.3.01	 Goodwill
+1.5.3.01.01	 Goodwill ......
+1.5.3.01.02	 Dst...................
+1.5.3.02	 Lisensi dan frenchise
+1.5.3.02.01	 Lisensi dan frenchise ....
+1.5.3.02.02	 Dst...................
+1.5.3.03	 Hak Cipta
+1.5.3.03.01	 Hak Cipta ....
+1.5.3.03.02	 Dst...................
+1.5.3.04	 Paten
+1.5.3.04.01	 Paten ....
+1.5.3.04.02	 Dst...................
+1.5.3.05	 Aset Tidat Berwujud Lainnya
+1.5.3.05.01	 Software
+1.5.3.05.02	 Kajian
+1.5.3.05.03	 Dst...................
+1.5.3.06	 Akumulasi Amortisasi Aset Tidak Berwujud
+1.5.3.06.01	 Akumulasi Amortisasi Goodwill
+1.5.3.06.02	 Akumulasi Amortisasi Lisensi dan frenchise
+1.5.3.06.03	 Akumulasi Amortisasi Hak Cipta
+1.5.3.06.04	 Akumulasi Amortisasi Paten
+1.5.3.06.05	 Akumulasi Amortisasi Aset Tidak Berwujud Lainnya
+1.5.4	 Aset Lain-lain
+1.5.4.01	 Aset Lain-lain
+1.5.4.01.01	 Aset Lain-lain            
+1.5.4.01.02	 Dst...................
+10	 (sepuluh) - LO
+10.1.3.3.05	 Tugu Peringatan
+11.1.3.4.06	 Bangunan Pengaman Sungai dan Penanggulangan Bencana Alam
+12.1.3.4.18	 Instalasi Gas
+13.1.3.5.07.01	 Tanaman Perkebunan
+14.1.4	 DANA CADANGAN
+16.2.1.5.01.01	 Utang Belanja Gaji dan Tunjangan .......
+17.3	 EKUITAS
+18.4.1.1.06.05	 Wisma Pariwisata - LRA
+19.4.1.1.14.35	 Basal - LRA
+2	 - LO
+2.1	 KEWAJIBAN JANGKA PENDEK
+2.1.1	 Utang Perhitungan Pihak Ketiga (PFK)
+2.1.1.01	 Utang Taspen
+2.1.1.01.01	 Utang Taspen
+2.1.1.02	 Utang Iuran Jaminan Kesehatan
+2.1.1.02.01	 Utang Iuran Jaminan Kesehatan
+2.1.1.03	 Utang PPh Pusat
+2.1.1.03.01	 Utang PPh
+2.1.1.04	 Utang PPN Pusat
+2.1.1.04.01	 Utang PPN Pusat
+2.1.1.05	 Utang Taperum
+2.1.1.05.01	 Utang Taperum
+2.1.1.06	 Utang Iuran Wajib Pegawai
+2.1.1.06.01	 Utang Iuran Wajib Pegawai
+2.1.1.07	 Utang Perhitungan Pihak Ketiga Lainnya
+2.1.1.07.01	 Utang Perhitungan Pihak Ketiga Lainnya ........
+2.1.1.07.02	 Dst...................
+2.1.1.08	 Utang Jaminan
+2.1.1.08.01	 Utang Jaminan .......
+2.1.1.08.02	 Dst...................
+2.1.1.4.03	 Bagian Lancar Tagihan Penjualan Angsuran
+2.1.2	 Utang Bunga
+2.1.2.01	 Utang Bunga kepada Pemerintah
+2.1.2.01.01	 Utang Bunga kepada Pemerintah
+2.1.2.02	 Utang Bunga kepada Pemerintah Daerah Lainnya
+2.1.2.02.01	 Utang Bunga kepada Pemerintah Daerah Lainnya .......
+2.1.2.02.02	 Dst...................
+2.1.2.03	 Utang Bunga Kepada BUMN/BUMD
+2.1.2.03.01	 Utang Bunga Kepada BUMN
+2.1.2.03.02	 Utang Bunga Kepada BUMD
+2.1.2.04	 Utang Bunga kepada Bank/Lembaga Keuangan Bukan Bank
+2.1.2.04.01	 Utang Bunga kepada Bank
+2.1.2.04.02	 Utang Bunga kepada Lembaga Keuangan Bukan Bank
+2.1.2.05	 Utang Bunga Dalam Negeri Lainnya
+2.1.2.05.01	 Utang Bunga Dalam Negeri Lainnya .......
+2.1.2.05.02	 Dst...................
+2.1.2.06	 Utang Bunga Luar Negeri
+2.1.2.06.01	 Utang Bunga Luar Negeri                        
+2.1.2.06.02	 Dst...................
+2.1.3	 Bagian Lancar Utang Jangka Panjang
+2.1.3.01	 Bagian Lancar Utang Dalam Negeri Sektor Perbankan
+2.1.3.01.01	 Bagian Lancar Utang Dalam Negeri Sektor Perbankan .......
+2.1.3.01.02	 Dst...................
+2.1.3.02	 Bagian Lancar Utang dari Lembaga Keuangan Bukan Bank
+2.1.3.02.01	 Bagian Lancar Utang dari Lembaga Keuangan Bukan Bank .......
+2.1.3.02.02	 Dst...................
+2.1.3.03	 Bagian Lancar Utang Pemerintah Pusat
+2.1.3.03.01	 Bagian Lancar Utang Pemerintah Pusat ......
+2.1.3.03.02	 Dst...................
+2.1.3.04	 Bagian Lancar Utang Pemerintah Provinsi Lainnya
+2.1.3.04.01	 Bagian Lancar Utang Pemerintah Provinsi Lainnya ......
+2.1.3.04.02	 Dst...................
+2.1.3.05	 Bagian Lancar Utang Pemerintah Kabupaten/Kota
+2.1.3.05.01	 Bagian Lancar Utang Pemerintah Kabupaten/Kota ........
+2.1.3.05.02	 Dst...................
+2.1.4	 Pendapatan Diterima Dimuka
+2.1.4.01	 Setoran Kelebihan Pembayaran Dari Pihak III
+2.1.4.01.01	 Setoran Kelebihan Pembayaran Dari Pihak III .......
+2.1.4.01.02	 Dst...................
+2.1.4.02	 Uang Muka Penjualan Produk Pemda Dari Pihak III
+2.1.4.02.01	 Uang Muka Penjualan Produk Pemda Dari Pihak III .......
+2.1.4.02.02	 Dst...................
+2.1.4.03	 Uang Muka Lelang Penjualan Aset Daerah
+2.1.4.03.01	 Uang Muka Lelang Penjualan Aset Daerah .......
+2.1.4.03.02	 Dst...................
+2.1.4.04	 Pendapatan Diterima Dimuka lainnya
+2.1.4.04.01	 Pendapatan Diterima Dimuka lainnya .......
+2.1.4.04.02	 Dst...................
+2.1.5	 Utang Belanja
+2.1.5.01	 Utang Belanja Pegawai
+2.1.5.01.02	 Dst...................
+2.1.5.02	 Utang Belanja Barang dan Jasa
+2.1.5.02.01	 Utang Belanja Jasa
+2.1.5.02.02	 Utang Belanja Pemeliharaan
+2.1.5.02.03	 Utang Belanja Perjalanan Dinas
+2.1.5.02.04	 Utang Belanja Beasiswa Pendidikan PNS
+2.1.5.02.05	 Utang Belanja kursus		 sosialisasi dan bimbingan teknis PNS	
+2.1.5.02.06	 Dst...................
+2.1.5.03	 Utang Belanja Modal
+2.1.5.03.01	 Utang Belanja Modal Tanah
+2.1.5.03.02	 Utang Belanja Modal Peralatan dan Mesin
+2.1.5.03.03	 Utang Belanja Modal Gedung dan Bangunan
+2.1.5.03.04	 Utang Belanja Modal Jalan
+2.1.5.03.05	 Utang Belanja Modal Aset Tetap Lainnya
+2.1.5.04	 Utang Belanja Subsidi
+2.1.5.04.01	 Utang Belanja Subsidi kepada BUMN
+2.1.5.04.02	 Utang Belanja Subsidi kepada BUMD
+2.1.5.04.03	 Utang Belanja Subsidi kepada Pihak Ketiga Lainnya
+2.1.5.04.04	 Dst...................
+2.1.5.05	 Utang Transfer Pemerintah Daerah Lainnya
+2.1.5.05.01	 Utang Transfer Bagi Hasil Pajak Daerah
+2.1.5.05.02	 Utang Transfer Lainnya .......
+2.1.5.05.03	 Dst .......
+2.1.5.06	 Utang Belanja Lain-lain
+2.1.5.06.01	 Utang Belanja Lain-lain .......
+2.1.5.06.02	 Dst...................
+2.1.6	 Utang Jangka Pendek Lainnya
+2.1.6.01	 Utang Kelebihan Pembayaran PAD
+2.1.6.01.01	 Utang Kelebihan Pembayaran Pajak
+2.1.6.01.02	 Utang Kelebihan Pembayaran Retribusi
+2.1.6.01.03	 Utang Kelebihan Pembayaran Hasil Pengelolaan Kekayaan daerah yang dipisahkan
+2.1.6.01.04	 Utang Kelebihan Pembayaran Lain-lain PAD yang sah
+2.1.6.02	 Utang Kelebihan Pembayaran Transfer
+2.1.6.02.01	 Utang Kelebihan Pembayaran Transfer Pemerintah Pusat - Dana Perimbangan
+2.1.6.02.02	 Utang Kelebihan Pembayaran Transfer Pemerintah Pusat Lainnya
+2.1.6.02.03	 Utang Kelebihan Pembayaran Transfer Pemerintah Daerah Lainnya
+2.1.6.02.04	 Utang Kelebihan Pembayaran Transfer Bantuan Keuangan dari Provinsi dan Pemerintah Daerah Lainnya
+2.1.6.03	 Utang Kelebihan Pembayaran Lain-Lain Pendapatan yang Sah
+2.1.6.03.01	 Utang Kelebihan Pembayaran Hibah
+2.1.6.03.02	 Utang Kelebihan Pembayaran Pendapatan Lainnya
+2.1.6.04	 Utang Transfer
+2.1.6.04.01	 Utang Transfer Bagi Hasil Pajak
+2.1.6.04.02	 Utang Transfer Bagi Hasil Pendapatan Lainnya
+2.1.6.04.03	 Utang Transfer Bantuan Keuangan ke Pemerintah Daerah Lainnya
+2.1.6.04.04	 Utang Transfer Bantuan Keuangan ke Desa
+2.1.6.04.05	 Utang Transfer Bantuan Kepada Partai Politik
+2.1.6.04.06	 Dst...................
+2.1.6.05	 Utang Jangka Pendek Lainnya
+2.1.6.05.01	 Utang Jangka Pendek Lainnya .........
+2.1.6.05.02	 Dst...................
+2.2	 KEWAJIBAN JANGKA PANJANG
+2.2.1	 Utang Dalam Negeri
+2.2.1.01	 Utang Dalam Negeri Sektor Perbankan
+2.2.1.01.01	 Utang Dalam Negeri Sektor Perbankan
+2.2.1.02	 Utang Dari Lembaga Keuangan Bukan Bank
+2.2.1.02.01	 Utang Dari Lembaga Keuangan Bukan Bank
+2.2.1.03	 Utang Dalam Negeri-Obligasi
+2.2.1.03.01	 Utang Dalam Negeri-Obligasi
+2.2.1.04	 Utang Pemerintah Pusat
+2.2.1.04.01	 Utang Pemerintah Pusat
+2.2.1.05	 Utang Pemerintah Daerah Lainnya
+2.2.1.05.01	 Utang Pemerintah Daerah Lainnya
+2.2.1.06	 Utang Dalam Negeri Lainnya
+2.2.1.06.01	 Utang Dalam Negeri Lainnya
+2.2.2	 Utang Jangka Panjang Lainnya
+2.2.2.01	 Utang Jangka Panjang Lainnya
+2.2.2.01.01	 Utang Jangka Panjang Lainnya
+20.4.1.2.14	 Retribusi Pengendalian Menara Telekomunikasi - LRA
+21	 - LO
+21.15.2.1.1.03.02	 Utang PPh
+21.4.1.3	 Pendapatan Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan - LRA
+22.2.1.1.03.03	 Utang PPh
+22.4.1.4.09.16	 Pendapatan Denda Retribusi Pasar Grosir dan/ atau Pertokoan - LRA
+23.2.1.1.03.04	 Utang PPh
+23.4.2.1.02.10	 Bagi Hasil dari Pertambangan Panas Bumi - LRA
+24.4.3.2.01.02	 Dst ..............
+25	 dan Pasal
+25.2.1.1.03.05	 Dst...................
+25.5.1.1.06.18	 Insentif Pemungutan Retribusi Daerah - Terminal - LRA
+26.5.1.2.08	 Belanja Sewa Sarana Mobilitas
+27.5.1.2.23	 Belanja kursus		 sosialisasi dan bimbingan teknis PNS	
+28.5.2.1.02	 Belanja modal PengadaanTanah Pertanian
+29	 Wajib Pajak Orang Pribadi Dalam Negeri dan PPh Pasal
+29.5.2.2.01.12	 Dst.......
+3	 - LO
+3.1	 EKUITAS
+3.1.1	 Ekuitas
+3.1.1.01	 Ekuitas
+3.1.1.01.01	 Ekuitas
+3.1.1.02	 Surplus/Defisit - LO
+3.1.1.02.01	 Surplus/Defisit - LO
+3.1.2	 Ekuitas SAL
+3.1.2.01	 Estimasi Pendapatan
+3.1.2.01.01	 Estimasi Pendapatan
+3.1.2.02	 Estimasi Penerimaan Pembiayaan
+3.1.2.02.01	 Estimasi Penerimaan Pembiayaan
+3.1.2.03	 Apropriasi Belanja
+3.1.2.03.01	 Apropriasi Belanja
+3.1.2.04	 Apropriasi Pengeluaran Pembiayaan
+3.1.2.04.01	 Apropriasi Pengeluaran Pembiayaan
+3.1.2.05	 Estimasi Perubahan SAL
+3.1.2.05.01	 Estimasi Perubahan SAL
+3.1.2.06	 Surplus/Defisit - LRA
+3.1.2.06.01	 Surplus/Defisit - LRA
+3.1.3	 Ekuitas untuk Dikonsolidasikan
+3.1.3.01	 RK PPKD
+3.1.3.01.01	 RK PPKD
+30.5.2.2.12	 Belanja modal Pengadaan Alat Pengolahan
+31.5.2.2.20.15	 Belanja modal Pengadaan Peralatan Microvawe FPU
+32.5.2.2.23.44	 Belanja modal Pengadaan Alat Laboratorium Uji Keramik
+33.5.2.2.30	 Belanja modal Pengadaan Peralatan Laboratorium Hidrodinamika
+34.5.2.3.02	 Belanja modal Pengadaan Bangunan Gedung Tempat Tinggal
+35.5.2.4.03	 Belanja modal Pengadaan Bangunan Air Irigasi
+36.5.2.4.15.01	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Air
+37.5.2.5.04	 Belanja modal Pengadaan Barang Bercorak Kebudayaan
+38.7	 PEMBIAYAAN
+39.7.2	 PENGELUARAN PEMBIAYAAN
+4	 PENDAPATAN - LRA
+4.1	 PENDAPATAN ASLI DAERAH (PAD) - LRA
+4.1.1	 Pendapatan Pajak Daerah - LRA
+4.1.1.01	 Pajak Kendaraan Bermotor (PKB) - LRA
+4.1.1.01.01	 PKB - Mobil Penumpang - Sedan - LRA
+4.1.1.01.02	 PKB - Mobil Penumpang - Jeep - LRA
+4.1.1.01.03	 PKB - Mobil Penumpang - Minibus - LRA
+4.1.1.01.04	 PKB - Mobil Bus - Microbus - LRA
+4.1.1.01.05	 PKB - Mobil Bus - Bus - LRA
+4.1.1.01.06	 PKB - Mobil Barang/ Beban - Pick Up - LRA
+4.1.1.01.07	 PKB - Mobil Barang/ Beban - Light Truck - LRA
+4.1.1.01.08	 PKB - Mobil Barang/ Beban - Truck - LRA
+4.1.1.01.09	 PKB - Sepeda Motor - Sepeda Motor Roda
+4.1.1.01.10	 PKB - Sepeda Motor - Sepeda Motor Roda
+4.1.1.01.11	 PKB - Kendaraan Bermotor yang Dioperasikan di Air - LRA
+4.1.1.01.12	 Dst.......
+4.1.1.02	 Bea Balik Nama Kendaraan Bermotor (BBNKB) - LRA
+4.1.1.02.01	 BBNKB -Mobil Penumpang - Sedan - LRA
+4.1.1.02.02	 BBNKB -Mobil Penumpang - Jeep - LRA
+4.1.1.02.03	 BBNKB -Mobil Penumpang - Minibus - LRA
+4.1.1.02.04	 BBNKB -Mobil Bus - Microbus - LRA
+4.1.1.02.05	 BBNKB -Mobil Bus - Bus - LRA
+4.1.1.02.06	 BBNKB -Mobil Barang/ Beban - Pick Up - LRA
+4.1.1.02.07	 BBNKB -Mobil Barang/ Beban - Light Truck - LRA
+4.1.1.02.08	 BBNKB -Mobil Barang/ Beban - Truck - LRA
+4.1.1.02.09	 BBNKB -Sepeda Motor - Sepeda Motor Roda
+4.1.1.02.10	 BBNKB -Sepeda Motor - Sepeda Motor Roda
+4.1.1.02.11	 BBNKB -Kendaraan Bermotor yang Dioperasikan di Air - LRA
+4.1.1.02.12	 Dst.......
+4.1.1.03	 Pajak Bahan Bakar Kendaraan Bermotor - LRA
+4.1.1.03.01	 Pajak Bahan Bakar Premium - LRA
+4.1.1.03.02	 Pajak Bahan Bakar Pertamax - LRA
+4.1.1.03.03	 Pajak Bahan Bakar Pertamax Plus - LRA
+4.1.1.03.04	 Pajak Bahan Bakar Solar - LRA
+4.1.1.03.05	 Pajak Bahan Bakar Gas - LRA
+4.1.1.03.06	 Dst ..............
+4.1.1.04	 Pajak Air Permukaan - LRA
+4.1.1.04.01	 Pajak Air Permukaan - LRA
+4.1.1.05	 Pajak Rokok - LRA
+4.1.1.05.01	 Pajak Rokok - LRA
+4.1.1.06	 Pajak Hotel - LRA
+4.1.1.06.01	 Hotel - LRA
+4.1.1.06.02	 Motel - LRA
+4.1.1.06.03	 Losmen - LRA
+4.1.1.06.04	 Gubuk Pariwisata - LRA
+4.1.1.06.06	 Pesanggrahan - LRA
+4.1.1.06.07	 Rumah Penginapan dan sejenisnya - LRA
+4.1.1.06.08	 Rumah Kos dengan jumlah kamar lebih dari
+4.1.1.06.09	 Dst ..............
+4.1.1.07	 Pajak Restoran - LRA
+4.1.1.07.01	 Restoran - LRA
+4.1.1.07.02	 Rumah Makan - LRA
+4.1.1.07.03	 Kafetaria - LRA
+4.1.1.07.04	 Kantin - LRA
+4.1.1.07.05	 Warung - LRA
+4.1.1.07.06	 Bar - LRA
+4.1.1.07.07	 Jasa Boga/ Katering - LRA
+4.1.1.07.08	 Dst ..............
+4.1.1.08	 Pajak Hiburan - LRA
+4.1.1.08.01	 Tontonan Film/Bioskop - LRA
+4.1.1.08.02	 Pagelaran Kesenian/Musik/Tari/Busana - LRA
+4.1.1.08.03	 Kontes Kecantikan		 dan sejenisnya - LRA	
+4.1.1.08.04	 Pameran - LRA
+4.1.1.08.05	 Diskotik		 Klab Malam dan sejenisnya - LRA	
+4.1.1.08.06	 Sirkus/Akrobat/Sulap - LRA
+4.1.1.08.07	 Permainan Bilyar		 Bowling - LRA	
+4.1.1.08.08	 Pacuan Kuda		 Permainan Ketangkasan - LRA	
+4.1.1.08.09	 Panti Pijat		 Mandi Uap/ Spa dan Pusat Kebugaran (fitnes center) - LRA	
+4.1.1.08.10	 Pertandingan Olahraga - LRA
+4.1.1.08.11	 Dst ..............
+4.1.1.09	 Pajak Reklame - LRA
+4.1.1.09.01	 Reklame Papan/Billboard/Videotron/Megatron - LRA
+4.1.1.09.02	 Reklame Kain - LRA
+4.1.1.09.03	 Reklame Melekat/Stiker - LRA
+4.1.1.09.04	 Reklame Selebaran - LRA
+4.1.1.09.05	 Reklame Berjalan - LRA
+4.1.1.09.06	 Reklame Udara - LRA
+4.1.1.09.07	 Reklame Apung - LRA
+4.1.1.09.08	 Reklame Suara - LRA
+4.1.1.09.09	 Reklame Film/Slide - LRA
+4.1.1.09.10	 Reklame Peragaan - LRA
+4.1.1.09.11	 Dst ..............
+4.1.1.10	 Pajak Penerangan Jalan - LRA
+4.1.1.10.01	 Pajak Penerangan Jalan dihasilkan sendiri - LRA
+4.1.1.10.02	 Pajak Penerangan Jalan sumber lain - LRA
+4.1.1.11	 Pajak Parkir - LRA
+4.1.1.11.01	 Pajak Parkir - LRA
+4.1.1.12	 Pajak Air Tanah - LRA
+4.1.1.12.01	 Pajak Air Tanah - LRA
+4.1.1.13	 Pajak Sarang Burung Walet - LRA
+4.1.1.13.01	 Pajak Sarang Burung Walet - LRA
+4.1.1.14	 Pajak Mineral Bukan Logam dan Batuan - LRA
+4.1.1.14.01	 Asbes - LRA
+4.1.1.14.02	 Batu Tulis - LRA
+4.1.1.14.03	 Batu setengah permata - LRA
+4.1.1.14.04	 Batu Kapur - LRA
+4.1.1.14.05	 Batu Apung - LRA
+4.1.1.14.06	 Batu Permata - LRA
+4.1.1.14.07	 Bentonit - LRA
+4.1.1.14.08	 Dolomit - LRA
+4.1.1.14.09	 Feldspar - LRA
+4.1.1.14.10	 Garam Batu (Halite) - LRA
+4.1.1.14.11	 Grafit - LRA
+4.1.1.14.12	 Granit/Andesit - LRA
+4.1.1.14.13	 Gips - LRA
+4.1.1.14.14	 Kalsit - LRA
+4.1.1.14.15	 Kaolin - LRA
+4.1.1.14.16	 Leusit - LRA
+4.1.1.14.17	 Magnesit - LRA
+4.1.1.14.18	 Mika - LRA
+4.1.1.14.19	 Marmer - LRA
+4.1.1.14.20	 Nitrat - LRA
+4.1.1.14.21	 Opsidien - LRA
+4.1.1.14.22	 Oker - LRA
+4.1.1.14.23	 Pasir dan kerikil - LRA
+4.1.1.14.24	 Pasir Kuarsa - LRA
+4.1.1.14.25	 Perlit - LRA
+4.1.1.14.26	 Phospat - LRA
+4.1.1.14.27	 Talk - LRA
+4.1.1.14.28	 Tanah Serap (Fullers earth) - LRA
+4.1.1.14.29	 Tanah Diatome - LRA
+4.1.1.14.30	 Tanah Liat - LRA
+4.1.1.14.31	 Tawas (Alum) - LRA
+4.1.1.14.32	 Tras - LRA
+4.1.1.14.33	 Yarosif - LRA
+4.1.1.14.34	 Zeolit - LRA
+4.1.1.14.36	 Trakit - LRA
+4.1.1.14.37	 Mineral bukan logam dan lainnya - LRA
+4.1.1.15	 Pajak Bumi dan Bangunan Pedesaan dan Perkotaan - LRA
+4.1.1.15.01	 Pajak Bumi dan Bangunan Pedesaan dan Perkotaan - LRA
+4.1.1.16	 Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB) - LRA
+4.1.1.16.01	 BPHTB - Pemindahan Hak - LRA
+4.1.1.16.02	 BPHTB - Pemberian Hak Baru - LRA
+4.1.2	 Pendapatan Retribusi Daerah - LRA
+4.1.2.01	 Retribusi Pelayanan Kesehatan - LRA
+4.1.2.01.01	 Pelayanan kesehatan di Puskesmas - LRA
+4.1.2.01.02	 Puskesmas keliling - LRA
+4.1.2.01.03	 Puskesmas pembantu - LRA
+4.1.2.01.04	 Balai Pengobatan - LRA
+4.1.2.01.05	 Rumah Sakit Umum Daerah - LRA
+4.1.2.01.06	 Tempat pelayanan kesehatan lainnya yang sejenis yang dimiliki dan/atau dikelola oleh pemda - LRA
+4.1.2.02	 Retribusi Pelayanan Persampahan/ Kebersihan - LRA
+4.1.2.02.01	 Pengambilan/Pengumpulan Sampah dari sumbernya ke lokasi pembuangan sementara - LRA
+4.1.2.02.02	 Pengangkutan Sampah dari Sumbernya dan/atau lokasi pembuangan sementara ke lokasi pembuangan/pembuangan akhir sampah - LRA
+4.1.2.02.03	 Penyediaan Lokasi Pembuangan/Pemusnahan Akhir Sampah - LRA
+4.1.2.03	 Retribusi Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil - LRA
+4.1.2.03.01	 Kartu Tanda Penduduk - LRA
+4.1.2.03.02	 Kartu Keterangan Bertempat Tinggal - LRA
+4.1.2.03.03	 Kartu Identitas Kerja - LRA
+4.1.2.03.04	 Kartu Penduduk Sementara - LRA
+4.1.2.03.05	 Kartu Identitas Penduduk Musiman - LRA
+4.1.2.03.06	 Kartu Keluarga - LRA
+4.1.2.03.07	 Akta Catatan Sipil - LRA
+4.1.2.04	 Retribusi Pelayanan Pemakaman dan Pengabuan Mayat - LRA
+4.1.2.04.01	 Pelayanan Penguburan/Pemakaman - LRA
+4.1.2.04.02	 Sewa Tempat Pemakaman atau Pembakaran/Pengabuan Mayat - LRA
+4.1.2.05	 Retribusi Pelayanan Parkir di Tepi Jalan Umum - LRA
+4.1.2.05.01	 Penyediaan Pelayanan Parkir di Tepi Jalan Umum - LRA
+4.1.2.06	 Retribusi Pelayanan Pasar - LRA
+4.1.2.06.01	 Pelataran - LRA
+4.1.2.06.02	 Los - LRA
+4.1.2.06.03	 Kios - LRA
+4.1.2.07	 Retribusi Pengujian Kendaraan Bermotor - LRA
+4.1.2.07.01	 Retribusi PKB - Mobil Penumpang - Sedan - LRA
+4.1.2.07.02	 Retribusi PKB - Mobil Penumpang - Jeep - LRA
+4.1.2.07.03	 Retribusi PKB - Mobil Penumpang - Minibus - LRA
+4.1.2.07.04	 Retribusi PKB - Mobil Bus - Microbus - LRA
+4.1.2.07.05	 Retribusi PKB - Mobil Bus - Bus - LRA
+4.1.2.07.06	 Retribusi PKB - Mobil Barang/ Beban - Pick Up - LRA
+4.1.2.07.07	 Retribusi PKB - Mobil Barang/ Beban - Light Truck - LRA
+4.1.2.07.08	 Retribusi PKB - Mobil Barang/ Beban - Truck - LRA
+4.1.2.07.09	 Retribusi PKB - Sepeda Motor - Sepeda Motor Roda
+4.1.2.07.10	 Retribusi PKB - Sepeda Motor - Sepeda Motor Roda
+4.1.2.07.11	 Retribusi PKB - Kendaraan Bermotor yang Dioperasikan di Air - LRA
+4.1.2.07.12	 Dst........
+4.1.2.08	 Retribusi Pemeriksaan Alat Pemadam Kebakaran - LRA
+4.1.2.08.01	 Pelayanan Pemeriksaan dan/atau Pengujian Alat Pemadam Kebakaran - LRA
+4.1.2.08.02	 Alat Penanggulangan Kebakaran - LRA
+4.1.2.08.03	 Alat Penyelamatan Jiwa - LRA
+4.1.2.08.04	 Dst........
+4.1.2.09	 Retribusi Penggantian Biaya Cetak Peta - LRA
+4.1.2.09.01	 Penyediaan Peta Dasar (Garis) - LRA
+4.1.2.09.02	 Penyediaan Peta Foto - LRA
+4.1.2.09.03	 Penyediaan Peta Digital - LRA
+4.1.2.09.04	 Penyediaan Peta Tematik - LRA
+4.1.2.09.05	 Penyediaan Peta Teknis (Struktur) - LRA
+4.1.2.10	 Retribusi Penyediaan dan/atau Penyedotan Kakus - LRA
+4.1.2.10.01	 Penyediaan dan/atau Penyedotan Kakus - LRA
+4.1.2.11	 Retribusi Pengolahan Limbah Cair - LRA
+4.1.2.11.01	 Rumah Tangga - LRA
+4.1.2.11.02	 Perkantoran - LRA
+4.1.2.11.03	 Industri - LRA
+4.1.2.12	 Retribusi Pelayanan Tera/Tera Ulang - LRA
+4.1.2.12.01	 Pengujian Alat-alat ukur		 timbang	 dan perlengkapannya - LRA
+4.1.2.12.02	 Pengujian dalam keadaan terbungkus - LRA
+4.1.2.13	 Retribusi Pelayanan Pendidikan - LRA
+4.1.2.13.01	 Pelayanan Penyelenggaraan Pendidikan - LRA
+4.1.2.13.02	 Pelatihan Teknis - LRA
+4.1.2.14.01	 Pemanfaatan ruang untuk menara telekomunikasi - LRA
+4.1.2.15	 Retribusi Pemakaian Kekayaan Daerah - LRA
+4.1.2.15.01	 Penyewaan Tanah dan Bangunan - LRA
+4.1.2.15.02	 Laboratorium - LRA
+4.1.2.15.03	 Ruangan -LRA
+4.1.2.15.04	 Kendaraan Bermotor - LRA
+4.1.2.16	 Retribusi Pasar Grosir dan/ atau Pertokoan - LRA
+4.1.2.16.01	 Penyediaan Fasilitas Pasar Grosir berbagai Jenis Barang - LRA
+4.1.2.16.02	 Fasilitas Pasar/Pertokoan yang Dikontrakkan - LRA
+4.1.2.16.03	 Fasilitas Pasar atau Pertokoan yang disediakan/diselenggarakan oleh Pemerintah Daerah - LRA
+4.1.2.17	 Retribusi Tempat Pelelangan - LRA
+4.1.2.17.01	 Pelelangan Ikan - LRA
+4.1.2.17.02	 Pelelangan Ternak - LRA
+4.1.2.17.03	 Pelelangan Hasil Bumi - LRA
+4.1.2.17.04	 Pelelangan Hasil Hutan - LRA
+4.1.2.17.05	 Jasa Pelelangan serta Fasilitas Lainnya yang disediakan di Tempat Pelelangan - LRA
+4.1.2.18	 Retribusi Terminal - LRA
+4.1.2.18.01	 Pelayanan Penyediaan Tempat Parkir untuk Kendaraan Penumpang dan Bis Umum - LRA
+4.1.2.18.02	 Tempat Kegiatan Usaha - LRA
+4.1.2.18.03	 Fasilitas Lainnya di Lingkungan Terminal - LRA
+4.1.2.19	 Retribusi Tempat Khusus Parkir - LRA
+4.1.2.19.01	 Pelayanan Tempat Khusus Parkir - LRA
+4.1.2.20	 Retribusi Tempat Penginapan/ Pesanggrahan/ Villa - LRA
+4.1.2.20.01	 Pelayanan Tempat Penginapan/Pesanggrahan/Vila - LRA
+4.1.2.21	 Retribusi Rumah Potong Hewan - LRA
+4.1.2.21.01	 Pelayanan Pemeriksaan Kesehatan Hewan sebelum dipotong - LRA
+4.1.2.21.02	 Pelayanan Pemeriksaan Kesehatan Hewan sesudah dipotong - LRA
+4.1.2.22	 Retribusi Pelayanan Kepelabuhan - LRA
+4.1.2.22.01	 Pelayanan Jasa ke Pelabuhan - LRA
+4.1.2.23	 Retribusi Tempat Rekreasi dan Olah raga- LRA
+4.1.2.23.01	 Pelayanan Tempat Rekreasi - LRA
+4.1.2.23.02	 Pelayanan Tempat Pariwisata - LRA
+4.1.2.23.03	 Pelayanan Tempat Olahraga - LRA
+4.1.2.24	 Retribusi Penyeberangan Air - LRA
+4.1.2.24.01	 Pelayanan Penyeberangan Orang - LRA
+4.1.2.24.02	 Pelayanan Penyeberangan Barang - LRA
+4.1.2.25	 Retribusi Penjualan Produksi Usaha Daerah - LRA
+4.1.2.25.01	 Penjualan Hasil Produksi Usaha Daerah - LRA
+4.1.2.26	 Retribusi Izin Mendirikan Bangunan - LRA
+4.1.2.26.01	 Pemberian Izin Mendirikan Bangunan - LRA
+4.1.2.27	 Retribusi Izin Tempat Penjualan Minuman Beralkohol - LRA
+4.1.2.27.01	 Pemberian Izin Tempat Penjualan Minuman Beralkohol - LRA
+4.1.2.28	 Retribusi Izin Gangguan - LRA
+4.1.2.28.01	 Pemberian Izin Gangguan tempat Usaha/Kegiatan kepada Orang Pribadi - LRA
+4.1.2.28.02	 Pemberian Izin Gangguan tempat Usaha/Kegiatan kepada Badan - LRA
+4.1.2.29	 Retribusi Izin Trayek - LRA
+4.1.2.29.01	 Pemberian Izin Trayek kepada Orang Pribadi - LRA
+4.1.2.29.02	 Pemberian Izin Trayek kepada Badan - LRA
+4.1.2.30	 Retribusi Izin Perikanan - LRA
+4.1.2.30.01	 Pemberian Izin usaha Perikanan kepada Orang Pribadi - LRA
+4.1.2.30.02	 Pemberian Izin usaha Perikanan kepada Badan - LRA
+4.1.2.31	 Retribusi Pengendalian Lalu Lintas - LRA
+4.1.2.31.01	 Penggunaan ruas jalan tertentu - LRA
+4.1.2.31.02	 Penggunaan koridor tertentu -LRA
+4.1.2.31.03	 Penggunaan kawasan tertentu pada waktu tertentu oleh kendaraan bermotor perseorangan dan barang - LRA
+4.1.2.32	 Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA) - LRA
+4.1.2.32.01	 Pemberian Perpanjangan IMTA kepada Pemberi Kerja Tenaga Kerja Asing - LRA
+4.1.3.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Daerah/BUMD - LRA
+4.1.3.01.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Daerah/BUMD ........ - LRA
+4.1.3.01.02	 Dst ..............
+4.1.3.02	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Negara/BUMN - LRA
+4.1.3.02.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada BUMN .............. - LRA
+4.1.3.02.02	 Dst ..............
+4.1.3.03	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Swasta - LRA
+4.1.3.03.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Swasta ........ - LRA
+4.1.3.03.02	 Dst ..............
+4.1.3.1.09	 Alang-alang dan Padang Rumput
+4.1.4	 Lain-lain PAD Yang Sah - LRA
+4.1.4.01	 Hasil Penjualan Aset Daerah Yang Tidak Dipisahkan - LRA
+4.1.4.01.01	 Hasil Penjualan Tanah - LRA
+4.1.4.01.02	 Hasil Penjualan Peralatan dan Mesin - LRA
+4.1.4.01.03	 Hasil Penjualan Gedung dan Bangunan - LRA
+4.1.4.01.04	 Hasil Penjualan Jalan
+4.1.4.01.05	 Hasil Penjualan Aset Tetap Lainnya - LRA
+4.1.4.02	 Hasil Penjualan Aset Lainnya - LRA
+4.1.4.02.01	 Hasil Penjualan Aset Lainnya - LRA
+4.1.4.03	 Penerimaan Jasa Giro - LRA
+4.1.4.03.01	 Jasa Giro Kas Daerah - LRA
+4.1.4.03.02	 Jasa Giro Bendahara - LRA
+4.1.4.03.03	 Jasa Giro Dana Cadangan - LRA
+4.1.4.03.04	 Dst ..............
+4.1.4.04	 Pendapatan Bunga - LRA
+4.1.4.04.01	 Pendapatan Bunga Deposito   ... - LRA
+4.1.4.04.02	 Pendapatan Bunga Dana Bergulir .............. - LRA
+4.1.4.04.03	 Dst ..............
+4.1.4.05	 Tuntutan Ganti Kerugian Daerah - LRA
+4.1.4.05.01	 Tuntutan Ganti Kerugian Daerah Terhadap Bendahara - LRA
+4.1.4.05.02	 Tuntutan Ganti Kerugian Daerah Terhadap Pegawai Negeri Bukan Bendahara - LRA
+4.1.4.06	 Komisi
+4.1.4.06.01	 Penerimaan Komisi dari Penempatan Kas Daerah - LRA
+4.1.4.06.02	 Penerimaan Potongan dari .............. - LRA
+4.1.4.06.03	 Penerimaan Keuntungan Selisih Nilai Tukar Rupiah dari .............. - LRA
+4.1.4.06.04	 Dst ..............
+4.1.4.07	 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan - LRA
+4.1.4.07.01	 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan ......... - LRA
+4.1.4.07.02	 Dst ..............
+4.1.4.08	 Pendapatan Denda Pajak - LRA
+4.1.4.08.01	 Pendapatan Denda Pajak Kendaraan Bermotor - LRA
+4.1.4.08.02	 Pendapatan Denda Bea Balik Nama Kendaraan Bermotor - LRA
+4.1.4.08.03	 Pendapatan Denda Pajak Bahan Bakar Kendaraan Bermotor - LRA
+4.1.4.08.04	 Pendapatan Denda Pajak Air Permukaan - LRA
+4.1.4.08.05	 Pendapatan Denda Pajak Rokok - LRA
+4.1.4.08.06	 Pendapatan Denda Pajak Hotel - LRA
+4.1.4.08.07	 Pendapatan Denda Pajak Restoran - LRA
+4.1.4.08.08	 Pendapatan Denda Pajak Hiburan - LRA
+4.1.4.08.09	 Pendapatan Denda Pajak Reklame - LRA
+4.1.4.08.10	 Pendapatan Denda Pajak Penerangan Jalan - LRA
+4.1.4.08.11	 Pendapatan Denda Pajak Parkir - LRA
+4.1.4.08.12	 Pendapatan Denda Pajak Air Tanah - LRA
+4.1.4.08.13	 Pendapatan Denda Pajak Sarang Burung Walet - LRA
+4.1.4.08.14	 Pendapatan Denda Pajak Mineral Bukan Logam dan Batuan - LRA
+4.1.4.08.15	 Pendapatan Denda Pajak Bumi dan Bangunan Pedesaan dan Perkotaan - LRA
+4.1.4.08.16	 Pendapatan Denda Bea Perolehan Hak Atas Tanah dan Bangunan - LRA
+4.1.4.09	 Pendapatan Denda Retribusi - LRA
+4.1.4.09.01	 Pendapatan Denda Retribusi Pelayanan Kesehatan - LRA
+4.1.4.09.02	 Pendapatan Denda Retribusi Pelayanan Persampahan/ Kebersihan - LRA
+4.1.4.09.03	 Pendapatan Denda Retribusi Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil - LRA
+4.1.4.09.04	 Pendapatan Denda Retribusi Pelayanan Pemakaman dan Pengabuan Mayat - LRA
+4.1.4.09.05	 Pendapatan Denda Retribusi Pelayanan Parkir di Tepi Jalan Umum - LRA
+4.1.4.09.06	 Pendapatan Denda Retribusi Pelayanan Pasar - LRA
+4.1.4.09.07	 Pendapatan Denda Retribusi Pengujian Kendaraan Bermotor - LRA
+4.1.4.09.08	 Pendapatan Denda Retribusi Pemeriksaan Alat Pemadam Kebakaran - LRA
+4.1.4.09.09	 Pendapatan Denda Retribusi Penggantian Biaya Cetak Peta - LRA
+4.1.4.09.10	 Pendapatan Denda Retribusi Penyediaan dan/atau Penyedotan Kakus - LRA
+4.1.4.09.11	 Pendapatan Denda Retribusi Pengolahan Limbah Cair - LRA
+4.1.4.09.12	 Pendapatan Denda Retribusi Pelayanan Tera/Tera Ulang - LRA
+4.1.4.09.13	 Pendapatan Denda Retribusi Pelayanan Pendidikan - LRA
+4.1.4.09.14	 Pendapatan Denda Retribusi Pengendalian Menara Telekomunikasi - LRA
+4.1.4.09.15	 Pendapatan Denda Retribusi Pemakaian Kekayaan Daerah - LRA
+4.1.4.09.17	 Pendapatan Denda Retribusi Tempat Pelelangan - LRA
+4.1.4.09.18	 Pendapatan Denda Retribusi Terminal - LRA
+4.1.4.09.19	 Pendapatan Denda Retribusi Tempat Khusus Parkir - LRA
+4.1.4.09.20	 Pendapatan Denda Retribusi Tempat Penginapan/ Pesanggrahan/ Villa - LRA
+4.1.4.09.21	 Pendapatan Denda Retribusi Rumah Potong Hewan - LRA
+4.1.4.09.22	 Pendapatan Denda Retribusi Pelayanan Kepelabuhan - LRA
+4.1.4.09.23	 Pendapatan Denda Retribusi Tempat Rekreasi dan Olah raga- LRA
+4.1.4.09.24	 Pendapatan Denda Retribusi Penyeberangan Air - LRA
+4.1.4.09.25	 Pendapatan Denda Retribusi Penjualan Produksi Usaha Daerah - LRA
+4.1.4.09.26	 Pendapatan Denda Retribusi Izin Mendirikan Bangunan - LRA
+4.1.4.09.27	 Pendapatan Denda Retribusi Izin Tempat Penjualan Minuman Beralkohol - LRA
+4.1.4.09.28	 Pendapatan Denda Retribusi Izin Gangguan - LRA
+4.1.4.09.29	 Pendapatan Denda Retribusi Izin Trayek - LRA
+4.1.4.09.30	 Pendapatan Denda Retribusi Izin Perikanan - LRA
+4.1.4.09.31	 Pendapatan Denda Retribusi Pengendalian Lalu Lintas - LRA
+4.1.4.09.32	 Pendapatan Denda Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA) - LRA
+4.1.4.10	 Pendapatan Denda Pemanfaatan Aset Daerah - LRA
+4.1.4.10.01	 Pendapatan Denda Sewa Aset Daerah - LRA
+4.1.4.10.02	 Pendapatan Denda Kerjasama Pemanfaatan Aset Daerah - LRA
+4.1.4.10.03	 Pendapatan Denda Bangun Guna Serah - LRA
+4.1.4.10.04	 Pendapatan Denda Bangun Serah Guna - LRA
+4.1.4.11	 Pendapatan Denda Atas Pelanggaran Perda - LRA
+4.1.4.11.01	 Pendapatan Denda Atas Pelanggaran Perda ........... - LRA
+4.1.4.11.02	 Dst ........................
+4.1.4.12	 Pendapatan Hasil Eksekusi atas Jaminan - LRA
+4.1.4.12.01	 Hasil Eksekusi Atas Jaminan atas Pengadaan Barang/Jasa - LRA
+4.1.4.12.02	 Hasil Eksekusi Atas Jaminan atas Pembongkaran Reklame - LRA
+4.1.4.12.03	 Dst ..............
+4.1.4.13	 Pendapatan dari Pengembalian
+4.1.4.13.01	 Pendapatan dari Pengembalian Kelebihan Pajak Penghasilan Pasal
+4.1.4.13.02	 Pendapatan Dari Pengembalian Kelebihan Pembayaran Asuransi Kesehatan - LRA
+4.1.4.13.03	 Pendapatan Dari Pengembalian Kelebihan Pembayaran Gaji dan Tunjangan - LRA
+4.1.4.13.04	 Pendapatan Dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas - LRA
+4.1.4.13.05	 Dst ..............
+4.1.4.14	 Pendapatan Penyelenggaraan Sekolah dan Diklat - LRA
+4.1.4.14.01	 Pendapatan Penyelenggaraan Sekolah - LRA
+4.1.4.14.02	 Pendapatan Penyelenggaraan Diklat - LRA
+4.1.4.14.03	 Dst ..............
+4.1.4.15	 Pendapatan dari Angsuran/Cicilan Penjualan - LRA
+4.1.4.15.01	 Angsuran/Cicilan Penjualan Rumah Dinas Daerah Golongan III - LRA
+4.1.4.15.02	 Angsuran/Cicilan Penjualan Kendaraan Perorangan Dinas - LRA
+4.1.4.15.03	 Dst ..............
+4.1.4.16	 Hasil dari Pemanfaatan Kekayaan Daerah - LRA
+4.1.4.16.01	 Hasil dari Pemanfaatan Kekayaan Daerah Sewa - LRA
+4.1.4.16.02	 Hasil dari Pemanfaatan Kekayaan Daerah Kerjasama Pemanfaatan- LRA
+4.1.4.16.03	 Hasil dari Pemanfaatan Kekayaan Daerah Bangun Guna Serah - LRA
+4.1.4.16.04	 Hasil dari Pemanfaatan Kekayaan Daerah Bangun Serah Guna - LRA
+4.1.4.17	 Pendapatan Zakat* - LRA
+4.1.4.17.01	 Pendapatan Zakat* .......... - LRA
+4.1.4.18	 Pendapatan BLUD - LRA
+4.1.4.18.01	 Pendapatan Jasa Layanan Umum BLUD - LRA
+4.1.4.18.02	 Pendapatan Hibah BLUD - LRA
+4.1.4.18.03	 Pendapatan Hasil Kerjasama BLUD - LRA
+4.1.4.18.04	 Dst .................
+4.1.4.19	 Lain-lain PAD yang Sah Lainnya - LRA
+4.1.4.19.01	 Lain-lain PAD yang Sah Lainnya - LRA
+4.2	 PENDAPATAN TRANSFER - LRA
+4.2.1	 Pendapatan Transfer Pemerintah Pusat-Dana Perimbangan - LRA
+4.2.1.01	 Bagi Hasil Pajak - LRA
+4.2.1.01.01	 Bagi Hasil dari Pajak Bumi dan Bangunan sektor Pertambangan - LRA
+4.2.1.01.02	 Bagi Hasil dari Pajak Bumi dan Bangunan sektor Perkebunan - LRA
+4.2.1.01.03	 Bagi Hasil dari Pajak Bumi dan Bangunan sektor Perhutanan - LRA
+4.2.1.01.04	 Bagi Hasil dari Pajak Penghasilan (PPh) Pasal
+4.2.1.01.05	 Bagi hasil Cukai Hasil Tembakau - LRA
+4.2.1.02	 Bagi Hasil Bukan Pajak/Sumber Daya Alam - LRA
+4.2.1.02.01	 Bagi Hasil dari Iuran Hak Pengusahaan Hutan - LRA
+4.2.1.02.02	 Bagi Hasil dari Provisi Sumber Daya Hutan - LRA
+4.2.1.02.03	 Bagi Hasil dari Dana Reboisasi - LRA
+4.2.1.02.04	 Bagi Hasil dari Iuran Tetap (Land-Rent) - LRA
+4.2.1.02.05	 Bagi Hasil dari Iuran Eksplorasi dan Iuran Eksploitasi (Royalti) - LRA
+4.2.1.02.06	 Bagi Hasil dari Pungutan Pengusahaan Perikanan - LRA
+4.2.1.02.07	 Bagi Hasil dari Pungutan Hasil Perikanan - LRA
+4.2.1.02.08	 Bagi Hasil dari Pertambangan Minyak Bumi - LRA
+4.2.1.02.09	 Bagi Hasil dari Pertambangan Gas Bumi - LRA
+4.2.1.03	 Dana Alokasi Umum (DAU) - LRA
+4.2.1.03.01	 Dana Alokasi Umum - LRA
+4.2.1.04	 Dana Alokasi Khusus (DAK) - LRA
+4.2.1.04.01	 DAK Bidang Infrastruktur Jalan - LRA
+4.2.1.04.02	 DAK Bidang Infrastruktur Irigasi - LRA
+4.2.1.04.03	 DAK Bidang Infrastruktur Air Minum - LRA
+4.2.1.04.04	 DAK Bidang Infrastruktur Sanitasi- LRA
+4.2.1.04.05	 DAK Bidang Keluarga Berencana - LRA
+4.2.1.04.06	 DAK Bidang Kehutanan - LRA
+4.2.1.04.07	 DAK Bidang Perumahan dan Kawasan Pemukiman - LRA
+4.2.1.04.08	 DAK Bidang Kesehatan - LRA
+4.2.1.04.09	 DAK Bidang Kelautan dan Perikanan - LRA
+4.2.1.04.10	 DAK Bidang Prasarana Pemerintahan - LRA
+4.2.1.04.11	 DAK Bidang Transportasi Perdesaan - LRA
+4.2.1.04.12	 DAK Bidang Perdagangan - LRA
+4.2.1.04.13	 DAK Bidang Lingkungan Hidup - LRA
+4.2.1.04.14	 DAK Bidang Sarana dan Prasarana Daerah Tertinggal (SPDT) - LRA
+4.2.1.04.15	 DAK Bidang Pertanian - LRA
+4.2.1.04.16	 DAK Bidang Energi Pedesaan - LRA
+4.2.1.04.17	 DAK Bidang Sarana dan Prasarana Kawasan Perbatasan - LRA
+4.2.1.04.18	 DAK Bidang Pendidikan - LRA
+4.2.1.04.19	 DAK Bidang Keselamatan Transportasi Darat - LRA
+4.2.1.04.20	 Dst ................
+4.2.2	 Pendapatan Transfer Pemerintah Pusat - Lainnya - LRA
+4.2.2.01	 Dana Otonomi Khusus - LRA
+4.2.2.01.01	 Dana Otonomi Khusus - LRA
+4.2.2.01.02	 Dana Tambahan Infrastruktur- LRA
+4.2.2.02	 Dana Keistimewaan - LRA
+4.2.2.02.01	 Dana Keistimewaan - LRA**
+4.2.2.03	 Dana Penyesuaian - LRA
+4.2.2.03.01	 Tunjangan Profesi Guru PNSD - LRA
+4.2.2.03.02	 Dana Tambahan Penghasilan Guru PNSD - LRA
+4.2.2.03.03	 Dana Insentif Daerah - LRA
+4.2.2.03.04	 Dana Proyek Pemerintah Daerah dan Desentralisasi Provinsi - LRA
+4.2.2.03.05	 Bantuan Operasional Sekolah - LRA***
+4.2.2.03.06	 Dst ..............
+4.2.3	 Pendapatan Transfer Pemerintah Daerah Lainnya - LRA
+4.2.3.01	 Pendapatan Bagi Hasil Pajak - LRA
+4.2.3.01.01	 Pendapatan Bagi Hasil Pajak .......... - LRA
+4.2.3.01.02	 Dst ..............
+4.2.3.02	 Pendapatan Bagi hasil Lainnya - LRA
+4.2.3.02.01	 Pendapatan Bagi hasil Lainnya .......... - LRA
+4.2.3.02.02	 Dst ..............
+4.2.3.03	 Pendapatan Dana Otonomi Khusus - LRA
+4.2.3.03.01	 Pendapatan Dana Otonomi Khusus - LRA
+4.2.4	 Bantuan Keuangan - LRA
+4.2.4.01	 Bantuan Keuangan dari Pemerintah Daerah Provinsi Lainnya - LRA
+4.2.4.01.01	 Bantuan Keuangan dari Pemerintah Daerah Provinsi    ... - LRA
+4.2.4.01.02	 Dst ..............
+4.2.4.02	 Bantuan Keuangan dari Pemerintah Daerah Kabupaten - LRA
+4.2.4.02.01	 Bantuan Keuangan dari Pemerintah Daerah Kabupaten       ..   . - LRA
+4.2.4.02.02	 Dst ..............
+4.2.4.03	 Bantuan Keuangan dari Pemerintah Daerah Kota - LRA
+4.2.4.03.01	 Bantuan Keuangan dari Pemerintah Daerah Kota              - LRA
+4.2.4.03.02	 Dst ..............
+4.3	 LAIN-LAIN PENDAPATAN DAERAH YANG SAH - LRA
+4.3.1	 Pendapatan Hibah - LRA
+4.3.1.01	 Pendapatan Hibah dari Pemerintah - LRA
+4.3.1.01.01	 Pendapatan Hibah dari Pemerintah
+4.3.1.02	 Pendapatan Hibah dari Pemerintah Daerah Lainnya - LRA
+4.3.1.02.01	 Pendapatan Hibah dari Pemerintah Daerah Lainnya - LRA
+4.3.1.03	 Pendapatan Hibah dari Badan/Lembaga/Organisasi Swasta dalam Negeri - LRA
+4.3.1.03.01	 Pendapatan Hibah dari Badan/Lembaga/Organisasi Swasta dalam Negeri .......... - LRA
+4.3.1.03.02	 Dst ..............
+4.3.1.04	 Pendapatan Hibah dari kelompok masyarakat/perorangan - LRA
+4.3.1.04.01	 Pendapatan Hibah dari kelompok masyarakat - LRA
+4.3.1.04.02	 Pendapatan Hibah dari perorangan - LRA
+4.3.2	 Dana Darurat - LRA
+4.3.2.01	 Dana Darurat - LRA
+4.3.2.01.01	 Korban/Kerusakan Akibat Bencana Alam - LRA
+4.3.3	 Pendapatan Lainnya - LRA
+4.3.3.01	 Pendapatan Lainnya - LRA
+4.3.3.01.01	 Pendapatan Sumbangan Pihak Ketiga - LRA
+4.3.3.01.02	 Dst ..............
+40.8.1.1.01.09	 PKB - Sepeda Motor - Sepeda Motor Roda
+41.8.1.1.12	 Pajak Air Tanah - LO
+42.8.1.2.07	 Retribusi Pengujian Kendaraan Bermotor - LO
+43.8.1.2.24	 Retribusi Penyebrangan Air - LO
+44.8.1.4.08	 Pendapatan Denda Pajak - LO
+45.8.1.4.17.01	 Angsuran/Cicilan Penjualan Rumah Dinas Daerah Golongan III - LO
+46.8.2.2.03	 Dana Penyesuaian - LO
+47.8.4.3.01	 Surplus dari Kegiatan Non Operasional Lainnya - LO
+48.9.1.1.06.12	 Insentif Pemungutan Retribusi Daerah - Pelayanan Tera/Tera Ulang - LO
+49.9.1.2.08	 Beban Sewa Sarana Mobilitas
+5	 BELANJA
+5.1	 BELANJA OPERASI
+5.1.1	 Belanja Pegawai
+5.1.1.01	 Belanja Gaji dan Tunjangan
+5.1.1.01.01	 Gaji Pokok PNS/ Uang Representasi
+5.1.1.01.02	 Tunjangan Keluarga
+5.1.1.01.03	 Tunjangan Jabatan
+5.1.1.01.04	 Tunjangan Fungsional
+5.1.1.01.05	 Tunjangan Fungsional Umum
+5.1.1.01.06	 Tunjangan Beras
+5.1.1.01.07	 Tunjangan PPh/Tunjangan Khusus
+5.1.1.01.08	 Pembulatan Gaji
+5.1.1.01.09	 Iuran Jaminan Kesehatan
+5.1.1.01.10	 Uang Paket
+5.1.1.01.11	 Tunjangan Badan Musyawarah
+5.1.1.01.12	 Tunjangan Komisi
+5.1.1.01.13	 Tunjangan Badan Anggaran
+5.1.1.01.14	 Tunjangan Badan Kehormatan
+5.1.1.01.15	 Tunjangan Alat Kelengkapan Lainnya
+5.1.1.01.16	 Tunjangan Perumahan
+5.1.1.01.17	 Uang Duka Wafat/Tewas
+5.1.1.01.18	 Uang Jasa Pengabdian
+5.1.1.01.19	 Belanja Penunjang Operasional Pimpinan DPRD
+5.1.1.01.20	 Tunjangan Kesehatan DPRD
+5.1.1.01.21	 Dst ...................
+5.1.1.02	 Belanja Tambahan Penghasilan PNS
+5.1.1.02.01	 Tambahan Penghasilan berdasarkan beban kerja
+5.1.1.02.02	 Tambahan Penghasilan berdasarkan tempat bertugas
+5.1.1.02.03	 Tambahan Penghasilan berdasarkan kondisi kerja
+5.1.1.02.04	 Tambahan Penghasilan berdasarkan kelangkaan profesi
+5.1.1.02.05	 Dst ...................
+5.1.1.03	 Belanja Penerimaan lainnya Pimpinan dan anggota DPRD serta KDH/WKDH
+5.1.1.03.01	 Tunjangan Komunikasi Intensif Pimpinan dan Anggota DPRD
+5.1.1.03.02	 Belanja Penunjang Operasional KDH/WKDH
+5.1.1.03.03	 Dst ...............
+5.1.1.04	 Biaya Pemungutan Pajak Bumi dan Bangunan
+5.1.1.04.01	 Biaya Pemungutan Pajak Bumi dan Bangunan Pertambangan
+5.1.1.04.02	 Biaya Pemungutan Pajak Bumi dan Bangunan Perkebunan
+5.1.1.04.03	 Biaya Pemungutan Pajak Bumi dan Bangunan Perhutanan
+5.1.1.05	 Insentif Pemungutan Pajak Daerah
+5.1.1.05.01	 Insentif Pemungutan Pajak Daerah - Pajak Kendaraan Bermotor - LRA
+5.1.1.05.02	 Insentif Pemungutan Pajak Daerah - Bea Balik Nama Kendaraan Bermotor - LRA
+5.1.1.05.03	 Insentif Pemungutan Pajak Daerah - Pajak Bahan Bakar Kendaraan Bermotor - LRA
+5.1.1.05.04	 Insentif Pemungutan Pajak Daerah - Pajak Air Permukaan - LRA
+5.1.1.05.05	 Insentif Pemungutan Pajak Daerah - Pajak Rokok - LRA
+5.1.1.05.06	 Insentif Pemungutan Pajak Daerah - Pajak Hotel - LRA
+5.1.1.05.07	 Insentif Pemungutan Pajak Daerah - Pajak Restoran - LRA
+5.1.1.05.08	 Insentif Pemungutan Pajak Daerah - Pajak Hiburan - LRA
+5.1.1.05.09	 Insentif Pemungutan Pajak Daerah - Pajak Reklame - LRA
+5.1.1.05.10	 Insentif Pemungutan Pajak Daerah - Pajak Penerangan Jalan - LRA
+5.1.1.05.11	 Insentif Pemungutan Pajak Daerah - Pajak Parkir - LRA
+5.1.1.05.12	 Insentif Pemungutan Pajak Daerah - Pajak Air Tanah - LRA
+5.1.1.05.13	 Insentif Pemungutan Pajak Daerah - Pajak Sarang Burung Walet - LRA
+5.1.1.05.14	 Insentif Pemungutan Pajak Daerah - Pajak Mineral Bukan Logam dan Batuan - LRA
+5.1.1.05.15	 Insentif Pemungutan Pajak Daerah - Pajak Bumi dan Bangunan Pedesaan dan Perkotaan - LRA
+5.1.1.05.16	 Insentif Pemungutan Pajak Daerah - Bea Perolehan Hak Atas Tanah dan Bangunan - LRA
+5.1.1.06	 Insentif Pemungutan Retribusi Daerah
+5.1.1.06.01	 Insentif Pemungutan Retribusi Daerah - Pelayanan Kesehatan - LRA
+5.1.1.06.02	 Insentif Pemungutan Retribusi Daerah - Pelayanan Persampahan/ Kebersihan - LRA
+5.1.1.06.03	 Insentif Pemungutan Retribusi Daerah - Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil - LRA
+5.1.1.06.04	 Insentif Pemungutan Retribusi Daerah - Pelayanan Pemakaman dan Pengabuan Mayat - LRA
+5.1.1.06.05	 Insentif Pemungutan Retribusi Daerah - Pelayanan Parkir di Tepi Jalan Umum - LRA
+5.1.1.06.06	 Insentif Pemungutan Retribusi Daerah - Pelayanan Pasar - LRA
+5.1.1.06.07	 Insentif Pemungutan Retribusi Daerah - Pengujian Kendaraan Bermotor - LRA
+5.1.1.06.08	 Insentif Pemungutan Retribusi Daerah - Pemeriksaan Alat Pemadam Kebakaran - LRA
+5.1.1.06.09	 Insentif Pemungutan Retribusi Daerah - Penggantian Biaya Cetak Peta - LRA
+5.1.1.06.10	 Insentif Pemungutan Retribusi Daerah - Penyediaan dan/atau Penyedotan Kakus - LRA
+5.1.1.06.11	 Insentif Pemungutan Retribusi Daerah - Pengolahan Limbah Cair - LRA
+5.1.1.06.12	 Insentif Pemungutan Retribusi Daerah - Pelayanan Tera/Tera Ulang - LRA
+5.1.1.06.13	 Insentif Pemungutan Retribusi Daerah - Pelayanan Pendidikan - LRA
+5.1.1.06.14	 Insentif Pemungutan Retribusi Daerah - Pengendalian Menara Telekomunikasi - LRA
+5.1.1.06.15	 Insentif Pemungutan Retribusi Daerah - Pemakaian Kekayaan Daerah - LRA
+5.1.1.06.16	 Insentif Pemungutan Retribusi Daerah - Pasar Grosir dan/ atau Pertokoan - LRA
+5.1.1.06.17	 Insentif Pemungutan Retribusi Daerah - Tempat Pelelangan - LRA
+5.1.1.06.19	 Insentif Pemungutan Retribusi Daerah - Tempat Khusus Parkir - LRA
+5.1.1.06.20	 Insentif Pemungutan Retribusi Daerah - Tempat Penginapan/ Pesanggrahan/ Villa - LRA
+5.1.1.06.21	 Insentif Pemungutan Retribusi Daerah - Rumah Potong Hewan - LRA
+5.1.1.06.22	 Insentif Pemungutan Retribusi Daerah - Pelayanan Kepelabuhan - LRA
+5.1.1.06.23	 Insentif Pemungutan Retribusi Daerah - Tempat Rekreasi dan Olah raga- LRA
+5.1.1.06.24	 Insentif Pemungutan Retribusi Daerah - Penyeberangan Air - LRA
+5.1.1.06.25	 Insentif Pemungutan Retribusi Daerah - Penjualan Produksi Usaha Daerah - LRA
+5.1.1.06.26	 Insentif Pemungutan Retribusi Daerah - Izin Mendirikan Bangunan - LRA
+5.1.1.06.27	 Insentif Pemungutan Retribusi Daerah - Izin Tempat Penjualan Minuman Beralkohol - LRA
+5.1.1.06.28	 Insentif Pemungutan Retribusi Daerah - Izin Gangguan - LRA
+5.1.1.06.29	 Insentif Pemungutan Retribusi Daerah - Izin Trayek - LRA
+5.1.1.06.30	 Insentif Pemungutan Retribusi Daerah - Izin Perikanan - LRA
+5.1.1.06.31	 Insentif Pemungutan Retribusi Daerah - Pengendalian Lalu Lintas - LRA
+5.1.1.06.32	 Insentif Pemungutan Retribusi Daerah - Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA) - LRA
+5.1.1.07	 Uang Lembur
+5.1.1.07.01	 Uang Lembur PNS
+5.1.1.07.02	 Uang Lembur Non PNS
+5.1.2	 Belanja Barang dan Jasa
+5.1.2.01	 Belanja Bahan Pakai Habis
+5.1.2.01.01	 Belanja alat tulis kantor
+5.1.2.01.02	 Belanja dokumen/administrasi tender
+5.1.2.01.03	 Belanja alat listrik dan elektronik ( lampu pijar
+5.1.2.01.04	 Belanja perangko
+5.1.2.01.05	 Belanja peralatan kebersihan dan bahan pembersih
+5.1.2.01.06	 Belanja Bahan Bakar Minyak/Gas
+5.1.2.01.07	 Belanja pengisian tabung pemadam kebakaran
+5.1.2.01.08	 Belanja pengisian tabung gas
+5.1.2.01.09	 Dst                                       
+5.1.2.02	 Belanja Bahan/Material
+5.1.2.02.01	 Belanja bahan baku bangunan
+5.1.2.02.02	 Belanja bahan/bibit tanaman
+5.1.2.02.03	 Belanja bibit ternak
+5.1.2.02.04	 Belanja bahan obat-obatan
+5.1.2.02.05	 Belanja bahan kimia
+5.1.2.02.06	 Belanja Persediaan Makanan Pokok
+5.1.2.02.07	 Dst                                       
+5.1.2.03	 Belanja Jasa Kantor
+5.1.2.03.01	 Belanja telepon
+5.1.2.03.02	 Belanja air
+5.1.2.03.03	 Belanja listrik
+5.1.2.03.04	 Belanja Jasa pengumuman lelang/ pemenang lelang
+5.1.2.03.05	 Belanja surat kabar/majalah
+5.1.2.03.06	 Belanja kawat/faksimili/internet
+5.1.2.03.07	 Belanja paket/pengiriman
+5.1.2.03.08	 Belanja Sertifikasi
+5.1.2.03.09	 Belanja Jasa Transaksi Keuangan
+5.1.2.03.10	 Belanja jasa administrasi pungutan Pajak Penerangan Jalan Umum
+5.1.2.03.11	 Belanja jasa administrasi pungutan Pajak Bahan Bakar Kendaraan Bermotor
+5.1.2.03.12	 Dst                                       
+5.1.2.04	 Belanja Premi Asuransi
+5.1.2.04.01	 Belanja Premi Asuransi Kesehatan
+5.1.2.04.02	 Belanja Premi Asuransi Barang Milik Daerah
+5.1.2.04.03	 Dst                                       
+5.1.2.05	 Belanja Perawatan Kendaraan Bermotor
+5.1.2.05.01	 Belanja Jasa Service
+5.1.2.05.02	 Belanja Penggantian Suku Cadang
+5.1.2.05.03	 Belanja Bahan Bakar Minyak/Gas dan pelumas
+5.1.2.05.04	 Belanja Jasa KIR
+5.1.2.05.05	 Belanja Pajak Kendaraan Bermotor
+5.1.2.05.06	 Belanja Bea Balik Nama Kendaraan Bermotor
+5.1.2.06	 Belanja Cetak dan Penggandaan
+5.1.2.06.01	 Belanja cetak
+5.1.2.06.02	 Belanja Penggandaan
+5.1.2.07	 Belanja Sewa Rumah/Gedung/Gudang/Parkir
+5.1.2.07.01	 Belanja sewa rumah jabatan/rumah dinas
+5.1.2.07.02	 Belanja sewa gedung/ kantor/tempat
+5.1.2.07.03	 Belanja sewa ruang rapat/pertemuan
+5.1.2.07.04	 Belanja sewa tempat parkir/uang tambat/hanggar sarana mobilitas
+5.1.2.07.05	 Dst                                       
+5.1.2.08.01	 Belanja sewa Sarana Mobilitas Darat
+5.1.2.08.02	 Belanja sewa Sarana Mobilitas Air
+5.1.2.08.03	 Belanja sewa Sarana Mobilitas Udara
+5.1.2.08.04	 Dst    
+5.1.2.09	 Belanja Sewa Alat Berat
+5.1.2.09.01	 Belanja sewa Eskavator
+5.1.2.09.02	 Belanja sewa Buldoser
+5.1.2.09.03	 Dst    
+5.1.2.10	 Belanja Sewa Perlengkapan dan Peralatan Kantor
+5.1.2.10.01	 Belanja sewa meja kursi
+5.1.2.10.02	 Belanja sewa komputer dan printer
+5.1.2.10.03	 Belanja sewa proyektor
+5.1.2.10.04	 Belanja sewa generator
+5.1.2.10.05	 Belanja sewa tenda
+5.1.2.10.06	 Belanja sewa pakaian adat/tradisional
+5.1.2.10.07	 Dst                                       
+5.1.2.11	 Belanja Makanan dan Minuman
+5.1.2.11.01	 Belanja makanan dan minuman harian pegawai
+5.1.2.11.02	 Belanja makanan dan minuman rapat
+5.1.2.11.03	 Belanja makanan dan minuman tamu
+5.1.2.11.04	 Belanja makanan dan minuman pelatihan
+5.1.2.11.05	 Dst                                       
+5.1.2.12	 Belanja Pakaian Dinas dan Atributnya
+5.1.2.12.01	 Belanja pakaian Dinas KDH dan WKDH
+5.1.2.12.02	 Belanja Pakaian Sipil Harian (PSH)
+5.1.2.12.03	 Belanja Pakaian Sipil Lengkap (PSL)
+5.1.2.12.04	 Belanja Pakaian Dinas Harian (PDH)
+5.1.2.12.05	 Belanja Pakaian Dinas Upacara (PDU)
+5.1.2.12.06	 Dst                                       
+5.1.2.13	 Belanja Pakaian Kerja
+5.1.2.13.01	 Belanja pakaian kerja lapangan
+5.1.2.13.02	 Dst                                       
+5.1.2.14	 Belanja Pakaian khusus dan hari-hari tertentu
+5.1.2.14.01	 Belanja pakaian KORPRI
+5.1.2.14.02	 Belanja pakaian adat daerah
+5.1.2.14.03	 Belanja pakaian batik tradisional
+5.1.2.14.04	 Belanja pakaian olahraga
+5.1.2.14.05	 Dst                        ..
+5.1.2.15	 Belanja Perjalanan Dinas
+5.1.2.15.01	 Belanja perjalanan dinas dalam daerah
+5.1.2.15.02	 Belanja perjalanan dinas luar daerah
+5.1.2.15.03	 Belanja perjalanan dinas luar negeri
+5.1.2.16	 Belanja Perjalanan Pindah Tugas
+5.1.2.16.01	 Belanja perjalanan pindah tugas dalam daerah
+5.1.2.16.02	 Belanja perjalanan pindah tugas luar daerah
+5.1.2.17	 Belanja Pemulangan Pegawai
+5.1.2.17.01	 Belanja pemulangan pegawai yang pensiun dalam daerah
+5.1.2.17.02	 Belanja pemulangan pegawai yang pensiun luar daerah
+5.1.2.18	 Belanja Pemeliharaan
+5.1.2.18.01	 Belanja Pemeliharan Tanah
+5.1.2.18.02	 Belanja Pemeliharan Peralatan dan Mesin
+5.1.2.18.03	 Belanja Pemeliharan Gedung dan Bangunan
+5.1.2.18.04	 Belanja Pemeliharan Jalan		 dan Jaringan	
+5.1.2.18.05	 Belanja Pemeliharan Aset Tetap Lainnya
+5.1.2.18.06	 Dst                                       
+5.1.2.19	 Belanja Jasa Konsultansi
+5.1.2.19.01	 Belanja Jasa Konsultansi Penelitian
+5.1.2.19.02	 Belanja Jasa Konsultansi Perencanaan
+5.1.2.19.03	 Belanja Jasa Konsultansi Pengawasan
+5.1.2.19.04	 Dst                                       
+5.1.2.20	 Belanja Barang Untuk Diserahkan kepada Masyarakat/Pihak Ketiga
+5.1.2.20.01	 Belanja Barang Yang Akan Diserahkan Kepada Masyarakat
+5.1.2.20.02	 Belanja Barang Yang Akan Diserahkan Kepada Pihak Ketiga
+5.1.2.21	 Belanja Barang Untuk Dijual kepada Masyarakat/Pihak Ketiga
+5.1.2.21.01	 Belanja Barang Yang Akan Dijual Kepada Masyarakat
+5.1.2.21.02	 Belanja Barang Yang Akan Dijual Kepada Pihak Ketiga
+5.1.2.22	 Belanja Beasiswa Pendidikan PNS
+5.1.2.22.01	 Belanja beasiswa tugas belajar D3
+5.1.2.22.02	 Belanja beasiswa tugas belajar S1
+5.1.2.22.03	 Belanja beasiswa tugas belajar S2
+5.1.2.22.04	 Belanja beasiswa tugas belajar S3
+5.1.2.22.05	 Dst                            .
+5.1.2.23.01	 Belanja kursus-kursus singkat/ pelatihan
+5.1.2.23.02	 Belanja sosialisasi
+5.1.2.23.03	 Belanja bimbingan teknis
+5.1.2.23.04	 Dst                                       
+5.1.2.24	 Belanja Honorarium Non Pegawai
+5.1.2.24.01	 Honorarium Tenaga Ahli/Narasumber/Instruktur
+5.1.2.24.02	 Moderator
+5.1.2.24.03	 Dst            ..
+5.1.2.25	 Honorarium PNS
+5.1.2.25.01	 Honorarium Panitia Pelaksana Kegiatan
+5.1.2.25.02	 Honorarium Tim Pengadaan Barang dan Jasa
+5.1.2.25.03	 Honorarium Tenaga Ahli/Instruktur/Narasumber
+5.1.2.25.04	 Dst ...............
+5.1.2.26	 Honorarium Non PNS
+5.1.2.26.01	 Honorarium Tenaga Ahli/Instruktur/Narasumber
+5.1.2.26.02	 Honorarium Pegawai Honorer/Tidak Tetap
+5.1.2.26.03	 Dst                                       
+5.1.2.27	 Uang untuk diberikan kepada Pihak Ketiga/Masyarakat
+5.1.2.27.01	 Uang untuk diberikan kepada Pihak Ketiga
+5.1.2.27.02	 Uang untuk diberikan kepada Masyarakat
+5.1.2.27.03	 Dst                                       
+5.1.3	 Belanja Bunga
+5.1.3.01	 Bunga Utang Pinjaman
+5.1.3.01.01	 Bunga Utang Pinjaman kepada Pemerintah
+5.1.3.01.02	 Bunga Utang Pinjaman kepada Pemerintah Daerah lainnya
+5.1.3.01.03	 Bunga Utang Pinjaman kepada Lembaga Keuangan Bank
+5.1.3.01.04	 Bunga Utang Pinjaman kepada Lembaga Keuangan Bukan Bank
+5.1.3.01.05	 Bunga Utang Pinjaman Lainnya
+5.1.3.02	 Bunga Utang Obligasi
+5.1.3.02.01	 Bunga Utang Obligasi
+5.1.3.2.06	 Alat Angkut Apung Bermotor
+5.1.4	 Belanja Subsidi
+5.1.4.01	 Belanja Subsidi
+5.1.4.01.01	 Belanja Subsidi kepada BUMN
+5.1.4.01.02	 Belanja Subsidi kepada BUMD
+5.1.4.01.03	 Belanja Subsidi kepada Pihak Ketiga Lainnya
+5.1.5	 Belanja Hibah
+5.1.5.01	 Belanja Hibah kepada Pemerintah
+5.1.5.01.01	 Belanja Hibah kepada Pemerintah
+5.1.5.02	 Belanja Hibah kepada Pemerintah Daerah lainnya
+5.1.5.02.01	 Hibah kepada Pemerintah Provinsi
+5.1.5.02.02	 Hibah kepada Pemerintah Kabupaten
+5.1.5.02.03	 Hibah kepada Pemerintah Kota
+5.1.5.03	 Belanja Hibah kepada Perusahaan Daerah/BUMD
+5.1.5.03.01	 Belanja Hibah kepada Perusahaan Daerah/BUMD .......
+5.1.5.03.02	 Dst.........
+5.1.5.04	 Belanja Hibah kepada Kelompok Masyarakat
+5.1.5.04.01	 Belanja Hibah kepada Kelompok Masyarakat .........
+5.1.5.04.02	 Dst    
+5.1.5.05	 Belanja Hibah kepada Organisasi Kemasyarakatan
+5.1.5.05.01	 Belanja Hibah kepada Organisasi Kemasyarakatan ........
+5.1.5.05.02	 Dst    
+5.1.5.06	 Belanja Hibah Dana BOS untuk Satuan Pendidikan Dasar ***
+5.1.5.06.01	 Belanja Hibah Dana BOS ke Satuan Pendidikan Dasar di Kabupaten/Kota ...........
+5.1.5.06.02	 Dst                                       
+5.1.6	 Belanja Bantuan Sosial
+5.1.6.01	 Belanja Bantuan Sosial kepada Organisasi Sosial Kemasyarakatan
+5.1.6.01.01	 Belanja Bantuan Sosial kepada Organisasi Sosial Kemasyarakatan ....
+5.1.6.01.02	 Dst..........
+5.1.6.02	 Belanja Bantuan Sosial kepada Masyarakat
+5.1.6.02.01	 Belanja Bantuan Sosial kepada                         
+5.1.6.02.02	 Dst                                       
+5.2	 BELANJA MODAL
+5.2.1	 Belanja Modal Tanah
+5.2.1.01	 Belanja modal Pengadaan Tanah Perkampungan
+5.2.1.01.01	 Belanja modal Pengadaan Tanah Kampung
+5.2.1.01.02	 Belanja modal Pengadaan Tanah Emplasmen
+5.2.1.01.03	 Belanja modal Pengadaan Tanah Kuburan
+5.2.1.01.04	 Dst.......
+5.2.1.02.01	 Belanja modal Pengadaan Tanah Sawah Satu Tahun Ditanami
+5.2.1.02.02	 Belanja modal Pengadaan Tanah Tegalan
+5.2.1.02.03	 Belanja modal Pengadaan Tanah Ladang
+5.2.1.02.04	 Dst.......
+5.2.1.03	 Belanja modal Pengadaan Tanah Perkebunan
+5.2.1.03.01	 Belanja modal Pengadaan Tanah Perkebunan .........
+5.2.1.03.02	 Dst.......
+5.2.1.04	 Belanja modal Pengadaan Kebun Campuran
+5.2.1.04.01	 Belanja modal Pengadaan Bidang Tanah Yang Tidak Ada Jaringan Pengairan
+5.2.1.04.02	 Belanja modal Pengadaan Tumbuh Liar Bercampur Jenis Lain
+5.2.1.04.03	 Dst.......
+5.2.1.05	 Belanja modal Pengadaan Hutan
+5.2.1.05.01	 Belanja modal Pengadaan Hutan Lebat
+5.2.1.05.02	 Belanja modal Pengadaan Hutan Belukar
+5.2.1.05.03	 Belanja modal Pengadaan Hutan Tanaman Jenis
+5.2.1.05.04	 Belanja modal Pengadaan Hutan Alam Sejenis/Hutan Rawa
+5.2.1.05.05	 Belanja modal Pengadaan Hutan Untuk Penggunaan Khusus
+5.2.1.05.06	 Dst.......
+5.2.1.06	 Belanja modal Pengadaan Kolam Ikan
+5.2.1.06.01	 Belanja modal Pengadaan Tambak
+5.2.1.06.02	 Belanja modal Pengadaan Air Tawar
+5.2.1.06.03	 Dst.......
+5.2.1.07	 Belanja modal Pengadaan Tanah Danau/Rawa
+5.2.1.07.01	 Belanja modal Pengadaan tanah Rawa
+5.2.1.07.02	 Belanja modal Pengadaan tanah Danau
+5.2.1.08	 Belanja modal Pengadaan Tanah Tandus/Rusak
+5.2.1.08.01	 Belanja modal Pengadaan Tanah Tandus
+5.2.1.08.02	 Belanja modal Pengadaan Tanah Rusak
+5.2.1.09	 Belanja modal Pengadaan Tanah Alang-alang dan Padang Rumput
+5.2.1.09.01	 Belanja modal Pengadaan tanah Alang-alang
+5.2.1.09.02	 Belanja modal Pengadaan tanah Padang Rumput
+5.2.1.10	 Belanja modal Pengadaan Tanah Pengguna Lain
+5.2.1.10.01	 Belanja modal Pengadaan Tanah Pengguna Lain...
+5.2.1.10.02	 Dst.......
+5.2.1.11	 Belanja modal Pengadaan Tanah Untuk Bangunan Gedung
+5.2.1.11.01	 Belanja modal Pengadaan Tanah Bangunan Perumahan/Gedung Tempat Tinggal
+5.2.1.11.02	 Belanja modal Pengadaan Tanah Untuk Bangunan Gedung Perdagangan/Perusahaan
+5.2.1.11.03	 Belanja modal Pengadaan Tanah Untuk Bangunan Industri
+5.2.1.11.04	 Belanja modal Pengadaan Tanah Untuk Bangunan Tempat Kerja/Jasa
+5.2.1.11.05	 Belanja modal Pengadaan Tanah Kosong
+5.2.1.11.06	 Belanja modal Pengadaan Tanah Peternakan
+5.2.1.11.07	 Belanja modal Pengadaan Tanah Bangunan Pengairan
+5.2.1.11.08	 Belanja modal Pengadaan Tanah Bangunan Jalan dan Jembatan
+5.2.1.11.09	 Belanja modal Pengadaan Tanah Lembiran/Bantaran/Lepe-lepe/Setren dst
+5.2.1.11.10	 Dst.......
+5.2.1.12	 Belanja modal Pengadaan Tanah Pertambangan
+5.2.1.12.01	 Belanja modal Pengadaan Pertambangan .........
+5.2.1.12.02	 Dst.......
+5.2.1.13	 Belanja modal Pengadaan Tanah Untuk Bangunan Bukan Gedung
+5.2.1.13.01	 Belanja modal Pengadaan Tanah Lapangan Olah Raga
+5.2.1.13.02	 Belanja modal Pengadaan Tanah Lapangan Parkir
+5.2.1.13.03	 Belanja modal Pengadaan Tanah Lapangan Penimbun Barang
+5.2.1.13.04	 Belanja modal Pengadaan Tanah Lapangan Pemancar dan Studio Alam
+5.2.1.13.05	 Belanja modal Pengadaan Tanah Lapangan Pengujian/Pengolahan
+5.2.1.13.06	 Belanja modal Pengadaan Tanah Lapangan Terbang
+5.2.1.13.07	 Belanja modal Pengadaan Tanah Untuk Bangunan Jalan
+5.2.1.13.08	 Belanja modal Pengadaan Tanah Untuk Bangunan Air
+5.2.1.13.09	 Belanja modal Pengadaan Tanah Untuk Bangunan Instalasi
+5.2.1.13.10	 Belanja modal Pengadaan Tanah Untuk Bangunan Jaringan
+5.2.1.13.11	 Belanja modal Pengadaan Tanah Untuk Bangunan Bersejarah
+5.2.1.13.12	 Belanja modal Pengadaan Tanah Untuk Bangunan Gedung Olah Raga
+5.2.1.13.13	 Belanja modal Pengadaan Tanah Untuk Bangunan Tempat Ibadah
+5.2.1.13.14	 Dst.......
+5.2.2	 Belanja Modal Peralatan dan Mesin
+5.2.2.01	 Belanja modal Pengadaan Alat-Alat Besar Darat
+5.2.2.01.01	 Belanja modal Pengadaan Tractor
+5.2.2.01.02	 Belanja modal Pengadaan Grader
+5.2.2.01.03	 Belanja modal Pengadaan Excavator
+5.2.2.01.04	 Belanja modal Pengadaan Pile Driver
+5.2.2.01.05	 Belanja modal Pengadaan Hauler
+5.2.2.01.06	 Belanja modal Pengadaan Asphal Equipment
+5.2.2.01.07	 Belanja modal Pengadaan Compacting Equipment
+5.2.2.01.08	 Belanja modal Pengadaan Aggregate $ Concrete Equipment
+5.2.2.01.09	 Belanja modal Pengadaan Loader
+5.2.2.01.10	 Belanja modal Pengadaan Alat Pengangkat
+5.2.2.01.11	 Belanja modal Pengadaan Mesin Proses
+5.2.2.02	 Belanja modal Pengadaan Alat-Alat Besar Apung
+5.2.2.02.01	 Belanja modal Pengadaan Dredger
+5.2.2.02.02	 Belanja modal Pengadaan Floating Excavator
+5.2.2.02.03	 Belanja modal Pengadaan Amphibi Dredger
+5.2.2.02.04	 Belanja modal Pengadaan Kapal Tarik
+5.2.2.02.05	 Belanja modal Pengadaan Mesin Proses Apung
+5.2.2.02.06	 Dst.......
+5.2.2.03	 Belanja modal Pengadaan Alat-alat Bantu
+5.2.2.03.01	 Belanja modal Pengadaan Alat Penarik
+5.2.2.03.02	 Belanja modal Pengadaan Feeder
+5.2.2.03.03	 Belanja modal Pengadaan Compressor
+5.2.2.03.04	 Belanja modal Pengadaan Electric Generating Set
+5.2.2.03.05	 Belanja modal Pengadaan Pompa
+5.2.2.03.06	 Belanja modal Pengadaan Mesin Bor
+5.2.2.03.07	 Belanja modal Pengadaan Unit Pemeliharaan Lapangan
+5.2.2.03.08	 Belanja modal Pengadaan Alat Pengolahan Air Kotor
+5.2.2.03.09	 Belanja modal Pengadaan Pembangkit Uap Air Panas/Sistem Generator
+5.2.2.03.10	 Dst.......
+5.2.2.04	 Belanja modal Pengadaan Alat Angkutan Darat Bermotor
+5.2.2.04.01	 Belanja modal Pengadaan Kendaraan Dinas Bermotor Perorangan
+5.2.2.04.02	 Belanja modal Pengadaan Kendaraan Bermotor Penumpang
+5.2.2.04.03	 Belanja modal Pengadaan Kendaraan Bermotor Angkutan Barang
+5.2.2.04.04	 Belanja modal Pengadaan Kendaraan Bermotor Khusus
+5.2.2.04.05	 Belanja modal Pengadaan Kendaraan Bermotor Beroda Dua
+5.2.2.04.06	 Belanja modal Pengadaan Kendaraan Bermotor Beroda Tiga
+5.2.2.05	 Belanja modal Pengadaan Alat Angkutan Darat Tak Bermotor
+5.2.2.05.01	 Belanja modal Pengadaan Kendaraan Bermotor Angkutan Barang
+5.2.2.05.02	 Belanja modal Pengadaan Kendaraan Tak Bermotor Berpenumpang
+5.2.2.06	 Belanja modal Pengadaan Alat Angkut Apung Bermotor
+5.2.2.06.01	 Belanja modal Pengadaan Alat Angkut Apung Bermotor Barang
+5.2.2.06.02	 Belanja modal Pengadaan Alat Angkut Apung Bermotor Penumpang
+5.2.2.06.03	 Belanja modal Pengadaan Alat Angkut Apung Bermotor Khusus
+5.2.2.07	 Belanja modal Pengadaan Alat Angkut Apung Tak Bermotor
+5.2.2.07.01	 Belanja modal Pengadaan Alat Angkut Apung Tak Bermotor Untuk Barang
+5.2.2.07.02	 Belanja modal Pengadaan Alat Angkut Apung Tak Bermotor Penumpang
+5.2.2.07.03	 Belanja modal Pengadaan Alat Angkut Apung Tak Bermotor Khusus
+5.2.2.08	 Belanja modal Pengadaan Alat Angkut Bermotor Udara
+5.2.2.08.01	 Belanja modal Pengadaan Pesawat Terbang
+5.2.2.08.02	 Dst.......
+5.2.2.09	 Belanja modal Pengadaan Alat Bengkel Bermesin
+5.2.2.09.01	 Belanja modal Pengadaan Perkakas Konstruksi Logam Terpasang pada Pondasi
+5.2.2.09.02	 Belanja modal Pengadaan Perkakas Konstruksi Logam yang Berpindah
+5.2.2.09.03	 Belanja modal Pengadaan Perkakas Bengkel Listrik
+5.2.2.09.04	 Belanja modal Pengadaan Perkakas Bengkel Service
+5.2.2.09.05	 Belanja modal Pengadaan Perkakas Pengangkat Bermesin
+5.2.2.09.06	 Belanja modal Pengadaan Perkakas Bengkel Kayu
+5.2.2.09.07	 Belanja modal Pengadaan Perkakas Bengkel Khusus
+5.2.2.09.08	 Belanja modal Pengadaan Peralatan Las
+5.2.2.09.09	 Belanja modal Pengadaan Perkakas Pabrik Es
+5.2.2.09.10	 Dst.......
+5.2.2.10	 Belanja modal Pengadaan Alat Bengkel Tak Bermesin
+5.2.2.10.01	 Belanja modal Pengadaan Perkakas Bengkel Konstruksi Logam
+5.2.2.10.02	 Belanja modal Pengadaan Perkakas Bengkel Listrik
+5.2.2.10.03	 Belanja modal Pengadaan Perkakas Bengkel Service
+5.2.2.10.04	 Belanja modal Pengadaan Perkakas Pengangkat
+5.2.2.10.05	 Belanja modal Pengadaan Perkakas Standar (Standart Tool)
+5.2.2.10.06	 Belanja modal Pengadaan Perkakas Khusus (Special Tool)
+5.2.2.10.07	 Belanja modal Pengadaan Perkakas Bengkel Kerja
+5.2.2.10.08	 Belanja modal Pengadaan Peralatan Tukang-tukang Besi
+5.2.2.10.09	 Belanja modal Pengadaan Peralatan Tukang Kayu
+5.2.2.10.10	 Belanja modal Pengadaan Peralatan Tukang Kulit
+5.2.2.10.11	 Belanja modal PengadaanPeralatan Ukur
+5.2.2.10.12	 Dst.......
+5.2.2.11	 Belanja modal Pengadaan Alat Ukur
+5.2.2.11.01	 Belanja modal Pengadaan Alat Ukur universal
+5.2.2.11.02	 Belanja modal Pengadaan Alat Ukur/Test Intelegensia
+5.2.2.11.03	 Belanja modal Pengadaan Alat Ukur/Test Alat Kepribadian
+5.2.2.11.04	 Belanja modal Pengadaan Alat Ukur /Test Klinis Lain
+5.2.2.11.05	 Belanja modal Pengadaan Alat Calibrasi
+5.2.2.11.06	 Belanja modal Pengadaan Oscilloscope
+5.2.2.11.07	 Belanja modal Pengadaan Universal Tester
+5.2.2.11.08	 Belanja modal Pengadaan Alat Ukur/Pembanding
+5.2.2.11.09	 Belanja modal Pengadaan Alat Ukur Lainnya
+5.2.2.11.10	 Belanja modal Pengadaan Alat Timbangan/Blora
+5.2.2.11.11	 Belanja modal Pengadaan Anak Timbangan/Biasa
+5.2.2.11.12	 Belanja modal Pengadaan Takaran Kering
+5.2.2.11.13	 Belanja modal Pengadaan Takaran Bahan Bangunan
+5.2.2.11.14	 Belanja modal Pengadaan Takaran Latex/Getah Susu
+5.2.2.11.15	 Belanja modal Pengadaan Gelas Takar Berbagai Capasitas
+5.2.2.11.16	 Dst.......
+5.2.2.12.01	 Belanja modal Pengadaan Alat Pengolahan Tanah dan Tanaman
+5.2.2.12.02	 Belanja modal pengadaan Alat Panen/Pengolahan
+5.2.2.12.03	 Belanja modal Pengadaan Alat-Alat Peternakan
+5.2.2.12.04	 Belanja modal Pengadaan Alat Penyimpanan Hasil Percobaan Pertanian
+5.2.2.12.05	 Belanja modal Pengadaan Alat Laboratorium Pertanian
+5.2.2.12.06	 Belanja modal Pengadaan Alat Procesing
+5.2.2.12.07	 Belanja modal Pengadaan Alat Pasca Panen
+5.2.2.12.08	 Belanja modal Pengadaan Alat Produksi Perikanan
+5.2.2.12.09	 Dst.......
+5.2.2.13	 Belanja modal Pengadaan Alat Pemeliharaan Tanaman/Alat Penyimpan
+5.2.2.13.01	 Belanja modal Pengadaan Alat Pemeliharaan Tanaman
+5.2.2.13.02	 Belanja modal Pengadaan Alat Panen
+5.2.2.13.03	 Belanja modal Pengadaan Alat Penyimpanan
+5.2.2.13.04	 Belanja modal Pengadaan Alat Laboratorium
+5.2.2.13.05	 Belanja modal Pengadaan Alat Penangkap Ikan
+5.2.2.13.06	 Dst.......
+5.2.2.14	 Belanja modal Pengadaan Alat Kantor
+5.2.2.14.01	 Belanja modal Pengadaan Mesin Ketik
+5.2.2.14.02	 Belanja modal Pengadaan Mesin Hitung/Jumlah
+5.2.2.14.03	 Belanja modal Pengadaan Alat Reproduksi (Pengganda)
+5.2.2.14.04	 Belanja modal Pengadaan Alat Penyimpanan Perlengkapan Kantor
+5.2.2.14.05	 Belanja modal Pengadaan Alat Kantor Lainnya
+5.2.2.14.06	 Dst.......
+5.2.2.15	 Belanja modal Pengadaan Alat Rumah Tangga
+5.2.2.15.01	 Belanja modal Pengadaan Meubelair
+5.2.2.15.02	 Belanja modal Pengadaan Alat Pengukur Waktu
+5.2.2.15.03	 Belanja modal Pengadaan Alat Pembersih
+5.2.2.15.04	 Belanja modal Pengadaan Alat Pendingin
+5.2.2.15.05	 Belanja modal Pengadaan Alat Dapur
+5.2.2.15.06	 Belanja modal Pengadaan Alat Rumah Tangga Lainnya (Home Use)
+5.2.2.15.07	 Belanja modal Pengadaan Alat Pemadam Kebakaran
+5.2.2.15.08	 Dst.......
+5.2.2.16	 Belanja modal Pengadaan Komputer
+5.2.2.16.01	 Belanja modal Pengadaan Komputer Unit/Jaringan
+5.2.2.16.02	 Belanja modal Pengadaan Peralatan Komputer Mainframe
+5.2.2.16.03	 Belanja modal Pengadaan Peralatan Mini Komputer
+5.2.2.16.04	 Belanja modal Pengadaan Peralatan Personal Komputer
+5.2.2.16.05	 Belanja modal Pengadaan Perlatan Jaringan
+5.2.2.16.06	 Dst.......
+5.2.2.17	 Belanja modal Pengadaan Meja Dan Kursi Kerja/Rapat Pejabat
+5.2.2.17.01	 Belanja modal Pengadaan Meja Kerja Pejabat
+5.2.2.17.02	 Belanja modal Pengadaan Meja Rapat Pejabat
+5.2.2.17.03	 Belanja modal Pengadaan Kursi Kerja Pejabat
+5.2.2.17.04	 Belanja modal Pengadaan Kursi Rapat Pejabat
+5.2.2.17.05	 Belanja modal Pengadaan Kursi Hadap Depan Meja Kerja Pejabat
+5.2.2.17.06	 Belanja modal Pengadaan Kursi Tamu di Ruangan Pejabat
+5.2.2.17.07	 Belanja modal Pengadaan Lemari dan Arsip Pejabat
+5.2.2.17.08	 Dst.......
+5.2.2.18	 Belanja modal Pengadaan Alat Studio
+5.2.2.18.01	 Belanja modal Pengadaan Peralatan Studio Visual
+5.2.2.18.02	 Belanja modal Pengadaan Peralatan Studio Video dan Film
+5.2.2.18.03	 Belanja modal Pengadaan Peralatan Studio Video dan Film A
+5.2.2.18.04	 Belanja modal Pengadaan Peralatan Cetak
+5.2.2.18.05	 Belanja modal Pengadaan Peralatan Computing
+5.2.2.18.06	 Belanja modal Pengadaan Peralatan Pemetaan Ukur
+5.2.2.18.07	 Dst.......
+5.2.2.19	 Belanja modal Pengadaan Alat Komunikasi
+5.2.2.19.01	 Belanja modal Pengadaan Alat Komunikasi Telephone
+5.2.2.19.02	 Belanja modal Pengadaan Alat Komunikasi Radio SSB
+5.2.2.19.03	 Belanja modal Pengadaan Alat Komunikasi Radio HF/FM
+5.2.2.19.04	 Belanja modal Pengadaan Alat Komunikasi Radio VHF
+5.2.2.19.05	 Belanja modal Pengadaan Alat Komunikasi Radio UHF
+5.2.2.19.06	 Belanja modal Pengadaan Alat Komunikasi Sosial
+5.2.2.19.07	 Belanja modal Pengadaan Alat-alat Sandi
+5.2.2.19.08	 Dst.......
+5.2.2.20	 Belanja modal Pengadaan Peralatan Pemancar
+5.2.2.20.01	 Belanja modal Pengadaan Peralatan Pemancar MF/MW
+5.2.2.20.02	 Belanja modal pengadaan Peralatan Pemancar HF/SW
+5.2.2.20.03	 Belanja modal Pengadaan Peralatan Pemancar VHF/FM
+5.2.2.20.04	 Belanja modal Pengadaan Peralatan Pemancar UHF
+5.2.2.20.05	 Belanja modal Pengadaan Peralatan Pemancar SHF
+5.2.2.20.06	 Belanja modal Pengadaan Peralatan Antena MF/MW
+5.2.2.20.07	 Belanja modal Pengadaan Peralatan Antena HF/SW
+5.2.2.20.08	 Belanja modal Pengadaan Peralatan Antena VHF/FM
+5.2.2.20.09	 Belanja modal Pengadaan Peralatan Antena UHF
+5.2.2.20.10	 Belanja modal Pengadaan Peralatan Antena SHF/Parabola
+5.2.2.20.11	 Belanja modal Pengadaan Peralatan Translator VHF/VHF
+5.2.2.20.12	 Belanja modal Pengadaan Peralatan Translator UHF/UHF
+5.2.2.20.13	 Belanja modal Pengadaan Peralatan Translator VHF/UHF
+5.2.2.20.14	 Belanja modal Pengadaan Peralatan Translator UHF/VHF
+5.2.2.20.16	 Belanja modal Pengadaan Peralatan Microvawe Terestrial
+5.2.2.20.17	 Belanja modal Pengadaan Peralatan Microvawe TVRO
+5.2.2.20.18	 Belanja modal Pengadaan Peralatan Dummy Load
+5.2.2.20.19	 Belanja modal Pengadaan Switcher Antena
+5.2.2.20.20	 Belanja modal Pengadaan Switcher/Menara Antena
+5.2.2.20.21	 Belanja modal Pengadaan Feeder
+5.2.2.20.22	 Belanja modal Pengadaan Humitity Control
+5.2.2.20.23	 Belanja modal Pengadaan Program Input Equipment
+5.2.2.20.24	 Belanja modal Pengadaan Peralatan Antena Penerima VHF
+5.2.2.20.25	 Dst.......
+5.2.2.21	 Belanja modal Pengadaan Alat Kedokteran
+5.2.2.21.01	 Belanja modal Pengadaan Alat Kedokteran Umum
+5.2.2.21.02	 Belanja modal Pengadaan Alat Kedokteran Gigi
+5.2.2.21.03	 Belanja modal Pengadaan Alat Kedokteran Keluarga Berencana
+5.2.2.21.04	 Belanja modal Pengadaan Alat Kedokteran Mata
+5.2.2.21.05	 Belanja modal Pengadaan Alat Kedokteran T.H.T
+5.2.2.21.06	 Belanja modal Pengadaan Alat Rotgen
+5.2.2.21.07	 Belanja modal Pengadaan Alat Farmasi
+5.2.2.21.08	 Belanja modal Pengadaan Alat Kedokteran Bedah
+5.2.2.21.09	 Belanja modal Pengadaan Alat Kesehatan Kebidanan dan Penyakit Kandungan
+5.2.2.21.10	 Belanja modal Pengadaan Alat Kedokteran Bagian Penyakit Dalam
+5.2.2.21.11	 Belanja modal Pengadaan Mortuary
+5.2.2.21.12	 Belanja modal Pengadaan Alat Kesehatan Anak
+5.2.2.21.13	 Belanja modal Pengadaan Poliklinik Set
+5.2.2.21.14	 Belanja modal Pengadaan Alat Kedokteran Penderita Cacat Tubuh
+5.2.2.21.15	 Belanja modal Pengadaan Alat Kedokteran Neurologi (syaraf)
+5.2.2.21.16	 Belanja modal Pengadaan Alat Kedokteran Jantung
+5.2.2.21.17	 Belanja modal Pengadaan Alat Kedokteran Nuklir
+5.2.2.21.18	 Belanja modal Pengadaan Alat Kedokteran Radiologi
+5.2.2.21.19	 Belanja modal Pengadaan Alat Kedokteran Kulit dan Kelamin
+5.2.2.21.20	 Belanja modal Pengadaan Alat Kedokteran Gawat Darurat
+5.2.2.21.21	 Belanja modal Pengadaan Alat Kedokteran Jiwa
+5.2.2.21.22	 Belanja modal Pengadaan Alat Kedokteran Hewan
+5.2.2.21.23	 Dst.......
+5.2.2.22	 Belanja modal Pengadaan Alat Kesehatan
+5.2.2.22.01	 Belanja modal Pengadaan Alat Kesehatan Perawatan
+5.2.2.22.02	 Belanja modal Pengadaan Alat Kesehatan Rehabilitasi Medis
+5.2.2.22.03	 Belanja modal Pengadaan Alat Kesehatan Matra Laut
+5.2.2.22.04	 Belanja modal Pengadaan Alat Kesehatan Matra Udara
+5.2.2.22.05	 Belanja modal Pengadaan Alat Kesehatan Kedokteran Kepolisian
+5.2.2.22.06	 Belanja modal Pengadaan Alat Kesehatan Olahraga
+5.2.2.22.07	 Dst.......
+5.2.2.23	 Belanja modal Pengadaan Unit-Unit Laboratorium
+5.2.2.23.01	 Belanja modal Pengadaan Alat Laboratorium Kimia Air
+5.2.2.23.02	 Belanja modal Pengadaan Alat Laboratorium Microbiologi
+5.2.2.23.03	 Belanja modal Pengadaan Alat Laboratorium Hidro Kimia
+5.2.2.23.04	 Belanja modal Pengadaan Alat Laboratorium Model/Hidrolika
+5.2.2.23.05	 Belanja modal Pengadaan Alat laboratorium Buatan/Geologi
+5.2.2.23.06	 Belanja modal Pengadaan Alat Laboratorium Bahan Bangunan Konstruksi
+5.2.2.23.07	 Belanja modal Pengadaan Alat Laboratorium Aspal Cat & Kimia
+5.2.2.23.08	 Belanja modal Pengadaan Alat laboratorium Mekanik Tanah dan Batuan
+5.2.2.23.09	 Belanja modal Pengadaan Alat Laboratorium Cocok Tanam
+5.2.2.23.10	 Belanja modal Pengadaan Alat Laboratorium Logam		 Listrik	
+5.2.2.23.11	 Belanja modal Pengadaan Alat Laboratorium Logam
+5.2.2.23.12	 Belanja modal Pengadaan Alat Laboratorium Umum
+5.2.2.23.13	 Belanja modal Pengadaan Alat Laboratorium Umum A
+5.2.2.23.14	 Belanja modal Pengadaan Alat Laboratorium Kedokteran
+5.2.2.23.15	 Belanja modal Pengadaan Alat Laboratorium Microbiologi
+5.2.2.23.16	 Belanja modal Pengadaan Alat Laboratorium Kimia
+5.2.2.23.17	 Belanja modal Pengadaan Alat Laboratorium Microbiologi A
+5.2.2.23.18	 Belanja modal Pengadaan Alat Laboratorium Patologi
+5.2.2.23.19	 Belanja modal Pengadaan Alat Laboratorium Immunologi
+5.2.2.23.20	 Belanja modal Pengadaan Alat Laboratorium Hematologi
+5.2.2.23.21	 Belanja modal Pengadaan Alat Laboratorium Film
+5.2.2.23.22	 Belanja modal Pengadaan Alat Laboratorium Makanan
+5.2.2.23.23	 Belanja modal Pengadaan Alat Laboratorium Standarisasi
+5.2.2.23.24	 Belanja modal Pengadaan Alat Laboratorium Farmasi
+5.2.2.23.25	 Belanja modal Pengadaan Alat Laboratorium Fisika
+5.2.2.23.26	 Belanja modal Pengadaan Alat Laboratorium Hidrodinamika
+5.2.2.23.27	 Belanja modal Pengadaan Alat Laboratorium Klimatologi
+5.2.2.23.28	 Belanja modal Pengadaan Alat Laboratorium Proses Peleburan
+5.2.2.23.29	 Belanja modal Pengadaan Alat Laboratorium Pasir
+5.2.2.23.30	 Belanja modal Pengadaan Alat Laboratorium Proses Pembuatan Cetakan
+5.2.2.23.31	 Belanja modal Pengadaan Alat Laboratorium Proses Pembuatan Pola
+5.2.2.23.32	 Belanja modal Pengadaan Alat Laboratorium Metalography
+5.2.2.23.33	 Belanja modal Pengadaan Alat Laboratorium Proses Pengelasan
+5.2.2.23.34	 Belanja modal Pengadaan Alat Laboratorium Uji Proses Pengelasan
+5.2.2.23.35	 Belanja modal Pengadaan Alat Laboratorium Proses Pembuatan Logam
+5.2.2.23.36	 Belanja modal Pengadaan Alat Laboratorium Matrologie
+5.2.2.23.37	 Belanja modal Pengadaan Alat Laboratorium Proses Pelapisan Logam
+5.2.2.23.38	 Belanja modal Pengadaan Alat Laboratorium Proses Pengolahan Panas
+5.2.2.23.39	 Belanja modal Pengadaan Alat Laboratorium Proses Teknologi Textil
+5.2.2.23.40	 Belanja modal Pengadaan Alat Laboratorium Uji Tekstel
+5.2.2.23.41	 Belanja modal Pengadaan Alat Laboratorium Proses Teknologi Keramik
+5.2.2.23.42	 Belanja modal Pengadaan Alat Laboratorium Proses Teknologi Kulit Karet
+5.2.2.23.43	 Belanja modal Pengadaan Alat Laboratorium Uji Kulit
+5.2.2.23.45	 Belanja modal Pengadaan Alat Laboratorium Proses Teknologi Selulosa
+5.2.2.23.46	 Belanja modal Pengadaan Alat Laboratorium Pertanian
+5.2.2.23.47	 Belanja modal Pengadaan Alat Laboratorium Pertanian A
+5.2.2.23.48	 Belanja modal Pengadaan Alat Laboratorium Pertanian B
+5.2.2.23.49	 Belanja modal Pengadaan Alat Laboratorium Elektronika dan Daya
+5.2.2.23.50	 Belanja modal Pengadaan Alat Laboratorium Energi Surya
+5.2.2.23.51	 Belanja modal Pengadaan Alat Laboratorium Konversi Batubara dan Biomas
+5.2.2.23.52	 Belanja modal Pengadaan Alat Laboratorium Oceanografi
+5.2.2.23.53	 Belanja modal Pengadaan Alat Laboratorium Lingkungan Perairan
+5.2.2.23.54	 Belanja modal Pengadaan Alat Laboratorium Biologi Peralatan
+5.2.2.23.55	 Belanja modal Pengadaan Alat Laboratorium Biologi
+5.2.2.23.56	 Belanja modal Pengadaan Alat Laboratorium Geofisika
+5.2.2.23.57	 Belanja modal Pengadaan Alat Laboratorium Tambang
+5.2.2.23.58	 Belanja modal Pengadaan Alat Laboratorium Proses/Teknik Kimia
+5.2.2.23.59	 Belanja modal Pengadaan Alat Laboratorium Proses Industri
+5.2.2.23.60	 Belanja modal Pengadaan Alat Laboratorium Kesehatan Kerja
+5.2.2.23.61	 Belanja modal Pengadaan Laboratorium Kearsipan
+5.2.2.23.62	 Belanja modal Pengadaan Laboratorium Hematologi & Urinalisis
+5.2.2.23.63	 Belanja modal Pengadaan Laboratorium Hematologi & Urinalisis A
+5.2.2.23.64	 Belanja modal Pengadaan Alat Laboratorium Lainnya
+5.2.2.23.65	 Dst.......
+5.2.2.24	 Belanja modal Pengadaan Alat Peraga/Praktek Sekolah
+5.2.2.24.01	 Belanja modal Pengadaan Bidang Studi : Bahasa Indonesia
+5.2.2.24.02	 Belanja modal Pengadaan Bidang Studi : Matematika
+5.2.2.24.03	 Belanja modal Pengadaan Bidang Studi : IPA Dasar
+5.2.2.24.04	 Belanja modal Pengadaan Bidang Studi : IPA Lanjutan
+5.2.2.24.05	 Belanja modal Pengadaan Bidang Studi : IPA Menengah
+5.2.2.24.06	 Belanja modal Pengadaan Bidang Studi : IPA Atas
+5.2.2.24.07	 Belanja modal Pengadaan Bidang Studi : IPS
+5.2.2.24.08	 Belanja modal Pengadaan Bidang Studi : Agama Islam
+5.2.2.24.09	 Belanja modal Pengadaan Bidang Studi : Ketrampilan
+5.2.2.24.10	 Belanja modal Pengadaan Bidang Studi : Kesenian
+5.2.2.24.11	 Belanja modal Pengadaan Bidang Studi : Olah Raga
+5.2.2.24.12	 Belanja modal Pengadaan Bidang Studi : PMP
+5.2.2.24.13	 Belanja modal Pengadaan Alat Peraga/Praktek Sekolah Bidang Pendidikan/Keterampilan Lain-lain
+5.2.2.24.14	 Dst.......
+5.2.2.25	 Belanja modal Pengadaan Unit Alat Laboratorium Kimia Nuklir
+5.2.2.25.01	 Belanja modal Pengadaan Analytical instrument
+5.2.2.25.02	 Belanja modal Pengadaan Instrument Probe/Sensor
+5.2.2.25.03	 Belanja modal Pengadaan General Laboratory Tool
+5.2.2.25.04	 Belanja modal Pengadaan Instrument Probe/Sensor A
+5.2.2.25.05	 Belanja modal Pengadaan Glassware Plastic/Utensils
+5.2.2.25.06	 Belanja modal Pengadaan Laboratory Safety Equipment
+5.2.2.25.07	 Dst.......
+5.2.2.26	 Belanja modal Pengadaan Alat Laboratorium Fisika Nuklir / Elektronika
+5.2.2.26.01	 Belanja modal Pengadaan Radiation Detector
+5.2.2.26.02	 Belanja modal Pengadaan Modular Counting and Scentific
+5.2.2.26.03	 Belanja modal Pengadaan Assembly/Accounting System
+5.2.2.26.04	 Belanja modal Pengadaan Recorder Display
+5.2.2.26.05	 Belanja modal Pengadaan System/Power Supply
+5.2.2.26.06	 Belanja modal Pengadaan Measuring / Testing Device
+5.2.2.26.07	 Belanja modal Pengadaan Opto Electronics
+5.2.2.26.08	 Belanja modal Pengadaan Accelator
+5.2.2.26.09	 Belanja modal Pengadaan Reactor Expermental System
+5.2.2.26.10	 Dst.......
+5.2.2.27	 Belanja modal Pengadaan Alat Proteksi Radiasi / Proteksi Lingkungan
+5.2.2.27.01	 Belanja modal Pengadaan Alat Ukur Fisika Kesehatan
+5.2.2.27.02	 Belanja modal Pengadaan Alat Kesehatan Kerja
+5.2.2.27.03	 Belanja modal Pengadaan Proteksi Lingkungan
+5.2.2.27.04	 Belanja modal Pengadaan Meteorological Equipment
+5.2.2.27.05	 Belanja modal Pengadaan Sumber Radiasi
+5.2.2.27.06	 Dst.......
+5.2.2.28	 Belanja modal Pengadaan Radiation Aplication and Non Destructive Testing Laboratory (BATAM)
+5.2.2.28.01	 Belanja modal Pengadaan Radiation Application Equipment
+5.2.2.28.02	 Belanja modal Pengadaan Non Destructive Test (NDT) Device
+5.2.2.28.03	 Belanja modal Pengadaan Peralatan Umum Kedoteran /Klinik Nuklir
+5.2.2.28.04	 Belanja modal Pengadaan Peralatan Hidrologi
+5.2.2.28.05	 Dst.......
+5.2.2.29	 Belanja modal Pengadaan Alat Laboratorium Lingkungan Hidup
+5.2.2.29.01	 Belanja modal Pengadaan Alat laboratorium Kualitas Air dan tanah
+5.2.2.29.02	 Belanja modal Pengadaan Alat Laboratorium Kualitas Udara
+5.2.2.29.03	 Belanja modal Pengadaan Alat Laboratorium Kebisingan dan Getaran
+5.2.2.29.04	 Belanja modal Pengadaan Laboratorium Lingkungan
+5.2.2.29.05	 Belanja modal Pengadaan Alat Laboratorium Penunjang
+5.2.2.29.06	 Dst.......
+5.2.2.30.01	 Belanja modal Pengadaan Towing Carriage
+5.2.2.30.02	 Belanja modal Pengadaan Wave Generator and Absorber
+5.2.2.30.03	 Belanja modal Pengadaan Data Accquistion and Analyzing System
+5.2.2.30.04	 Belanja modal Pengadaan Cavitation Tunnel
+5.2.2.30.05	 Belanja modal Pengadaan Overhead Cranes
+5.2.2.30.06	 Belanja modal Pengadaan Peralatan umum
+5.2.2.30.07	 Belanja modal Pengadaan Pemesinan : Model Ship Workshop
+5.2.2.30.08	 Belanja modal Pengadaan Pemesinan : Propeller Model Workshop
+5.2.2.30.09	 Belanja modal Pengadaan Pemesinan : Mechanical Workshop
+5.2.2.30.10	 Belanja modal Pengadaan Pemesinan : Precision Mechanical Workshop
+5.2.2.30.11	 Belanja modal Pengadaan Pemesinan Painting Shop
+5.2.2.30.12	 Belanja modal Pengadaan Pemesinan : Ship Model Preparation Shop
+5.2.2.30.13	 Belanja modal Pengadaan Pemesinan : Electrical Workshop
+5.2.2.30.14	 Belanja modal Pengadaan MOB
+5.2.2.30.15	 Belanja modal Pengadaan Photo and Film Equipment
+5.2.2.30.16	 Dst.......
+5.2.2.31	 Belanja modal Pengadaan Senjata Api
+5.2.2.31.01	 Belanja modal Pengadaan Senjata Genggam
+5.2.2.31.02	 Belanja modal Senjata Pinggang
+5.2.2.31.03	 Belanja modal Senjata Bahu/Senjata Laras Panjang
+5.2.2.31.04	 Belanja modal Senapan Mesin
+5.2.2.31.05	 Belanja modal Mortir
+5.2.2.31.06	 Belanja modal Anti Lapis Baja
+5.2.2.31.07	 Belanja modal Artileri Medan (Armed)
+5.2.2.31.08	 Belanja modal Artileri Pertahanan Udara (Arhanud)
+5.2.2.31.09	 Belanja modal Peluru Kendali/Rudal
+5.2.2.31.10	 Belanja modal Kavaleri
+5.2.2.31.11	 Belanja modal Senjata Lain-lain
+5.2.2.32	 Belanja modal Pengadaan Persenjataan Non Senjata Api
+5.2.2.32.01	 Belanja modal Pengadaan Alat Keamanan
+5.2.2.32.02	 Belanja modal Pengadaan Non Senjata Api
+5.2.2.33	 Belanja modal Pengadaan Amunisi
+5.2.2.33.01	 Belanja modal Pengadaan Amunisi Umum
+5.2.2.33.02	 Belanja modal Pengadaan Amunisi Darat
+5.2.2.34	 Belanja modal Pengadaan Senjata Sinar
+5.2.2.34.01	 Belanja modal Pengadaan Laser
+5.2.2.34.02	 Dst.......
+5.2.2.35	 Belanja modal Pengadaan Alat Keamanan dan Perlindungan
+5.2.2.35.01	 Belanja modal Pengadaan Alat Bantu Keamanan
+5.2.2.35.02	 Belanja modal Pengadaan Alat Perlindungan
+5.2.2.35.03	 Belanja modal Pengadaan Alat Bantu Lalu Lintas Darat dan Air
+5.2.2.35.04	 Dst.......
+5.2.3	 Belanja Modal Gedung dan Bangunan
+5.2.3.01	 Belanja modal Pengadaan Bangunan Gedung Tempat Kerja
+5.2.3.01.01	 Belanja modal Pengadaan Bangunan Gedung Kantor
+5.2.3.01.02	 Belanja modal Pengadaan Bangunan Gudang
+5.2.3.01.03	 Belanja modal Pengadaan Bangunan Gudang Untuk Bengkel
+5.2.3.01.04	 Belanja modal Pengadaan Bangunan Gedung Instalasi
+5.2.3.01.05	 Belanja modal Pengadaan Bangunan Gedung Laboratorium
+5.2.3.01.06	 Belanja modal Pengadaan Bangunan Kesehatan
+5.2.3.01.07	 Belanja modal Pengadaan Bangunan Oceanarium/Opservatorium
+5.2.3.01.08	 Belanja modal Pengadaan Bangunan Gedung Tempat Ibadah
+5.2.3.01.09	 Belanja modal Pengadaan Bangunan Gedung Tempat Pertemuan
+5.2.3.01.10	 Belanja modal Pengadaan Bangunan Gedung Tempat Pendidikan
+5.2.3.01.11	 Belanja modal Pengadaan Bangunan Gedung Tempat Olah Raga
+5.2.3.01.12	 Belanja modal Pengadaan Bangunan Gedung Pertokoan/Koperasi/Pasar
+5.2.3.01.13	 Belanja modal Pengadaan Bangunan Gedung Untuk Pos Jaga
+5.2.3.01.14	 Belanja modal Pengadaan Bangunan Gedung Garasi/Pool
+5.2.3.01.15	 Belanja modal Pengadaan Bangunan Gedung Pemotongan Hewan
+5.2.3.01.16	 Belanja modal Pengadaan Bangunan Gedung Pabrik
+5.2.3.01.17	 Belanja modal Pengadaan Bangunan Stasiun Bus
+5.2.3.01.18	 Belanja modal Pengadaan Bangunan Kandang Hewan/Ternak
+5.2.3.01.19	 Belanja modal Pengadaan Bangunan Gedung Perpustakaan
+5.2.3.01.20	 Belanja modal Pengadaan Bangunan Gedung Museum
+5.2.3.01.21	 Belanja modal Pengadaan Bangunan Gedung Terminal/Pelabuhan/Bandar
+5.2.3.01.22	 Belanja modal Pengadaan Bangunan Pengujian Kelaikan
+5.2.3.01.23	 Belanja modal Pengadaan Bangunan Lembaga Pemasyarakatan
+5.2.3.01.24	 Belanja modal Pengadaan Bangunan Rumah Tahanan
+5.2.3.01.25	 Belanja modal Pengadaan Bangunan Gedung Kramatorium
+5.2.3.01.26	 Belanja modal Pengadaan Bangunan Pembakaran Bangkai Hewan
+5.2.3.01.27	 Belanja modal Pengadaan Bangunan Gedung Tempat Kerja Lainnya
+5.2.3.02.01	 Belanja modal Pengadaan Bangunan Rumah Negara Golongan I
+5.2.3.02.02	 Belanja modal Pengadaan Bangunan Rumah Negara Golongan II
+5.2.3.02.03	 Belanja modal Pengadaan Bangunan Rumah Negara Goloongan III
+5.2.3.02.04	 Belanja modal Pengadaan Bangunan Mess/Wisma/Bungalow/Tempat Peristirahatan
+5.2.3.02.05	 Belanja modal Pengadaan Bangunan Asrama
+5.2.3.02.06	 Belanja modal Pengadaan Bangunan Hotel
+5.2.3.02.07	 Belanja modal Pengadaan Bangunan Motel
+5.2.3.02.08	 Belanja modal Pengadaan Bangunan Flat/Rumah Susun
+5.2.3.02.09	 Dst.......
+5.2.3.03	 Belanja modal Pengadaan Bangunan Menara
+5.2.3.03.01	 Belanja modal Pengadaan Bangunan Menara Perambuan Penerang Pantai
+5.2.3.03.02	 Belanja modal Pengadaan Bangunan Perambut Penerangan Pantai Tidak Bermenara
+5.2.3.03.03	 Belanja modal Pengadaan Bangunan Menara Telekomunikasi
+5.2.3.03.04	 Dst.......
+5.2.3.04	 Belanja modal Pengadaan Bangunan Bersejarah
+5.2.3.04.01	 Belanja modal Pengadaan Istana Peringatan
+5.2.3.04.02	 Belanja modal Pengadaan Rumah Adat
+5.2.3.04.03	 Belanja modal Pengadaan Rumah Peningggalan Sejarah
+5.2.3.04.04	 Belanja modal Pengadaan Makam Sejarah
+5.2.3.04.05	 Belanja modal Pengadaan Bangunan Tempat Ibadah Bersejarah
+5.2.3.04.06	 Dst.......
+5.2.3.05	 Belanja modal Pengadaan Tugu Peringatan
+5.2.3.05.01	 Belanja modal Pengadaan Tugu Kemerdekaan
+5.2.3.05.02	 Belanja modal Pengadaan Tugu Pembangunan
+5.2.3.05.03	 Belanja modal Pengadaan Tugu Peringatan Lainnya
+5.2.3.06	 Belanja modal Pengadaan Candi
+5.2.3.06.01	 Belanja modal Pengadaan Candi Hindhu
+5.2.3.06.02	 Belanja modal Pengadaan Candi Budha
+5.2.3.06.03	 Belanja modal Pengadaan Candi Lainnya
+5.2.3.07	 Belanja modal Pengadaan Monumen/Bangunan Bersejarah
+5.2.3.07.01	 Belanja modal Pengadaan Bangunan Bersejarah lainnya
+5.2.3.08	 Belanja modal Pengadaan Tugu Peringatan
+5.2.3.08.01	 Belanja modal Pengadaan Tugu Peringatan
+5.2.3.09	 Belanja modal Pengadaan Tugu Titik Kontrol/Pasti
+5.2.3.09.01	 Belanja modal Pengadaan Tugu/Tanda Batas
+5.2.3.09.02	 Dst.......
+5.2.3.10	 Belanja modal Pengadaan Rambu-Rambu
+5.2.3.10.01	 Belanja modal Pengadaan Rambu Bersuar Lalu Lintas Darat
+5.2.3.10.02	 Belanja modal Pengadaan Rambu Tidak Bersuar
+5.2.3.10.03	 Dst.......
+5.2.3.11	 Belanja modal Pengadaan Rambu-Rambu Lalu Lintas Udara
+5.2.3.11.01	 Belanja modal Pengadaan Rumwey/Threshold Light
+5.2.3.11.02	 Belanja modal Pengadaan Visual Approach Slope Indicator (VASI)
+5.2.3.11.03	 Belanja modal Pengadaan Approach Light
+5.2.3.11.04	 Belanja modal Pengadaan Rumwey Identification Light (Rells)
+5.2.3.11.05	 Belanja modal Pengadaan Signal
+5.2.3.11.06	 Belanja modal Pengadaan Flood Light
+5.2.3.11.07	 Dst.......
+5.2.4	 Belanja Modal Jalan
+5.2.4.01	 Belanja modal Pengadaan Jalan
+5.2.4.01.01	 Belanja modal Pengadaan Jalan Negara/Nasional
+5.2.4.01.02	 Belanja modal Pengadaan Jalan Propinsi
+5.2.4.01.03	 Belanja modal Pengadaan Jalan Kabupaten/Kota
+5.2.4.01.04	 Belanja modal Pengadaan Jalan Desa
+5.2.4.01.05	 Belanja modal Pengadaan Jalan Khusus
+5.2.4.01.06	 Belanja modal Pengadaan Jalan Tol
+5.2.4.01.07	 Belanja modal Pengadaan Jalan Kereta
+5.2.4.01.08	 Belanja modal Pengadaan Landasan Pacu Pesawat Terbang
+5.2.4.01.09	 Dst.......
+5.2.4.02	 Belanja modal Pengadaan Jembatan
+5.2.4.02.01	 Belanja modal Pengadaan Jembatan Negara/Nasional
+5.2.4.02.02	 Belanja modal Pengadaan Jembatan Propinsi
+5.2.4.02.03	 Belanja modal Pengadaan Jembatan Kabupaten/Kota
+5.2.4.02.04	 Belanja modal Pengadaan Jembatan Desa
+5.2.4.02.05	 Belanja modal Pengadaan Jembatan Khusus
+5.2.4.02.06	 Belanja modal Pengadaan Jembatan Pada Jalan Tol
+5.2.4.02.07	 Belanja modal Pengadaan Jembatan Pada Jalan Kereta Api
+5.2.4.02.08	 Belanja modal Pengadaan Jembatan Pada Landasan Pacu Pesawat Terbang
+5.2.4.02.09	 Belanja modal Pengadaan Jembatan Penyeberangan
+5.2.4.02.10	 Dst.......
+5.2.4.03.01	 Belanja modal Pengadaan Bangunan Waduk
+5.2.4.03.02	 Belanja modal Pengadaan Bangunan Pengambilan Irigasi
+5.2.4.03.03	 Belanja modal Pengadaan Bangunan Pembawa Irigasi
+5.2.4.03.04	 Belanja modal Pengadaan Bangunan Pembuang Irigasi
+5.2.4.03.05	 Belanja modal Pengadaan Bangunan Pengaman Irigasi
+5.2.4.03.06	 Belanja modal Pengadaan Bangunan Pelengkap Irigasi
+5.2.4.03.07	 Dst.......
+5.2.4.04	 Belanja modal Pengadaan Bangunan Air Pasang Surut
+5.2.4.04.01	 Belanja modal Pengadaan Bangunan Waduk
+5.2.4.04.02	 Belanja modal Pengadaan Bangunan Pengambilan Pasang Surut
+5.2.4.04.03	 Belanja modal Pengadaan Bangunan Pembawa Pasang Surut
+5.2.4.04.04	 Belanja modal Pengadaan Bangunan Pembuang Pasang Surut
+5.2.4.04.05	 Belanja modal Pengadaan Bangunan Pengaman Pasang Surut
+5.2.4.04.06	 Belanja modal Pengadaan Bangunan Pelengkap Pasang Surut
+5.2.4.04.07	 Belanja modal Pengadaan Bangunan Sawah Pasang Surut
+5.2.4.04.08	 Dst.......
+5.2.4.05	 Belanja modal Pengadaan Bangunan Air Rawa
+5.2.4.05.01	 Belanja modal Pengadaan Bangunan Air Pengembang Rawa dan Poder
+5.2.4.05.02	 Belanja modal Pengadaan Bangunan Pengembalian Pasang Rawa
+5.2.4.05.03	 Belanja modal Pengadaan Bangunan Pembawa Pasang Rawa
+5.2.4.05.04	 Belanja modal Pengadaan Bangunan Pembuang Pasang Rawa
+5.2.4.05.05	 Belanja modal Pengadaan Bangunan Pengamanan Pasang Surut
+5.2.4.05.06	 Belanja modal Pengadaan Bangunan Pelengkap Pasang Rawa
+5.2.4.05.07	 Belanja modal Pengadaan Bangunan Sawah Pengembangan Rawa
+5.2.4.05.08	 Dst.......
+5.2.4.06	 Belanja modal Pengadaan Bangunan Pengaman Sungai dan Penanggulangan Bencana Alam
+5.2.4.06.01	 Belanja modal Pengadaan Bangunan Waduk Penanggulangan Sungai
+5.2.4.06.02	 Belanja modal Pengadaan Bangunan Pengambilan Pengamanan Sungai
+5.2.4.06.03	 Belanja modal Pengadaan Bangunan Pembuang Pengaman
+5.2.4.06.04	 Belanja modal Pengadaan Bangunan Pembuang Pengaman Sungai
+5.2.4.06.05	 Belanja modal Pengadaan Bangunan Pengaman Pengamanan Sungai
+5.2.4.06.06	 Belanja modal Pengadaan Bangunan Pelengkap Pengamanan Sungai
+5.2.4.06.07	 Dst.......
+5.2.4.07	 Belanja modal Pengadaan Bangunan Pengembangan Sumber Air dan Air Tanah
+5.2.4.07.01	 Belanja modal Pengadaan Bangunan Waduk Pengembangan Sumber Air
+5.2.4.07.02	 Belanja modal Pengadaan Bangunan Pengambilan Pengembangan Sumber Air
+5.2.4.07.03	 Belanja modal Pengadaan Bangunan Pembawa Pengembangan Sumber Air
+5.2.4.07.04	 Belanja modal Pengadaan Bangunan Pembuang Pengembangan Sumber Air
+5.2.4.07.05	 Belanja modal Pengadaan Bangunan Pengamanan Pengembangan Sumber Air
+5.2.4.07.06	 Belanja modal Pengadaan Bangunan Pelengkap Pengembangan Sumber Air
+5.2.4.07.07	 Dst.......
+5.2.4.08	 Belanja modal Pengadaan Bangunan Air Bersih/Baku
+5.2.4.08.01	 Belanja modal Pengadaan Waduk Air Bersih/Air Baku
+5.2.4.08.02	 Belanja modal Pengadaan Bangunan Pengambilan Air Bersih/Baku
+5.2.4.08.03	 Belanja modal Pengadaan Bangunan Pembawa Air Bersih
+5.2.4.08.04	 Belanja modal Pengadaan Bangunan Pembuang Air Bersih/Air Baku
+5.2.4.08.05	 Belanja modal Pengadaan Bangunan Pelengkap Air Bersih/Air Baku
+5.2.4.08.06	 Dst.......
+5.2.4.09	 Belanja modal Pengadaan Bangunan Air Kotor
+5.2.4.09.01	 Belanja modal Pengadaan Bangunan Pembawa Air Kotor
+5.2.4.09.02	 Belanja modal Pengadaan Bangunan Waduk Air Kotor
+5.2.4.09.03	 Belanja modal Pengadaan Bangunan Pembuangan Air Kotor
+5.2.4.09.04	 Belanja modal Pengadaan Bangunan Pengaman Air Kotor
+5.2.4.09.05	 Belanja modal Pengadaan Bangunan Pelengkap Air Kotor
+5.2.4.09.06	 Dst.......
+5.2.4.10	 Belanja modal Pengadaan Bangunan Air
+5.2.4.10.01	 Belanja modal Pengadaan Bangunan Air Laut
+5.2.4.10.02	 Belanja modal Pengadaan Bangunan Air Tawar
+5.2.4.10.03	 Dst.......
+5.2.4.11	 Belanja modal Pengadaan Instalasi Air Minum Bersih
+5.2.4.11.01	 Belanja modal Pengadaan Air Muka Tanah
+5.2.4.11.02	 Belanja modal Pengadaan Air Sumber /Mata Air
+5.2.4.11.03	 Belanja modal Pengadaan Air Tanah Dalam
+5.2.4.11.04	 Belanja modal Pengadaan Air Tanah Dangkal
+5.2.4.11.05	 Belanja modal Pengadaan Air Bersih/Air Baku Lainnya
+5.2.4.11.06	 Dst.......
+5.2.4.12	 Belanja modal Pengadaan Instalasi Air Kotor
+5.2.4.12.01	 Belanja modal Pengadaan Instalasi Air Kotor
+5.2.4.12.02	 Belanja modal Pengadaan Instalasi Air Buangan Industri
+5.2.4.12.03	 Belanja modal Pengadaan Instalasi Air Buangan Pertanian
+5.2.4.12.04	 Dst.......
+5.2.4.13	 Belanja modal Pengadaan Instalasi Pengolahan Sampah Non Organik
+5.2.4.13.01	 Belanja modal Pengadaan Instalasi Pengolahan Sampah Organik
+5.2.4.13.02	 Belanja modal Pengadaan Instalasi Pengolahan Sampah Non Organik
+5.2.4.14	 Belanja modal Pengadaan Instalasi Pengolahan Bahan Bangunan
+5.2.4.14.01	 Belanja modal Pengadaan Instalasi Pengolahan Bahan Bangunan
+5.2.4.15	 Belanja modal Pengadaan Instalasi Pembangkit Listrik
+5.2.4.15.02	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Diesel
+5.2.4.15.03	 Belanja modal Pengadaan Pembangkit Liatrik Tenaga Mikro (Hidro)
+5.2.4.15.04	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Angin (PLTAN)
+5.2.4.15.05	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Uap (PLTU)
+5.2.4.15.06	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Nuklir (PLTN)
+5.2.4.15.07	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Gas (PLTG)
+5.2.4.15.08	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Panas Bumi (PLTP)
+5.2.4.15.09	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Tenaga Surya (PLTS)
+5.2.4.15.10	 Belanja modal Pengadaan Pembangkit Listrik Tenaga Biogas (PLTB)
+5.2.4.15.11	 Belanja modal Pengadaan Instalasi Pembangkit Listrik Tenaga Samudera/Gelombang Samudera (PLTSm)
+5.2.4.15.12	 Dst.......
+5.2.4.16	 Belanja modal Pengadaan Instalasi Gardu Listrik
+5.2.4.16.01	 Belanja modal Pengadaan Instalasi Gardu Listrik Induk
+5.2.4.16.02	 Belanja modal Pengadaan Instalasi Gardu Listrik Distribusi
+5.2.4.16.03	 Belanja modal Pengadaan Instalasi Pusat Pengatur Listrik
+5.2.4.16.04	 Dst.......
+5.2.4.17	 Belanja modal Pengadaan Instalasi Pertahanan
+5.2.4.17.01	 Belanja modal Pengadaan Instalasi Pertahanan Di Darat
+5.2.4.17.02	 Dst.......
+5.2.4.18	 Belanja modal Pengadaan Instalasi Gas
+5.2.4.18.01	 Belanja modal Pengadaan Instalasi Gardu Gas
+5.2.4.18.02	 Belanja modal Pengadaan Instalasi Jaringan Pipa Gas
+5.2.4.18.03	 Dst.......
+5.2.4.19	 Belanja modal Pengadaan Instalasi Pengaman
+5.2.4.19.01	 Belanja modal Pengadaan Instalasi Pengaman Penangkal Petir
+5.2.4.19.02	 Dst.......
+5.2.4.20	 Belanja modal Pengadaan Jaringan Air Minum
+5.2.4.20.01	 Belanja modal Pengadaan Jaringan Pembawa
+5.2.4.20.02	 Belanja modal Pengadaan Jaringan Induk Distribusi
+5.2.4.20.03	 Belanja modal Pengadaan Jaringan Cabang Distribusi
+5.2.4.20.04	 Belanja modal Pengadaan Jaringan Sambungan Kerumah
+5.2.4.20.05	 Dst.......
+5.2.4.21	 Belanja modal Pengadaan Jaringan Listrik
+5.2.4.21.01	 Belanja modal Pengadaan Jaringan Transmisi
+5.2.4.21.02	 Belanja modal Pengadaan Jaringan Distribusi
+5.2.4.22	 Belanja modal Pengadaan Jaringan Telepon
+5.2.4.22.01	 Belanja modal Pengadaan Jaringan Telepon Di atas Tanah
+5.2.4.22.02	 Belanja modal Pengadaan Jaringan Telepon Di bawah Tanah
+5.2.4.22.03	 Belanja modal Pengadaan Jaringan Telepon Didalam Air
+5.2.4.23	 Belanja modal Pengadaan Jaringan Gas
+5.2.4.23.01	 Belanja modal Pengadaan Jaringan Pipa Gas Transmisi
+5.2.4.23.02	 Belanja modal Pengadaan Jaringan Pipa Distribusi
+5.2.4.23.03	 Belanja modal Pengadaan Jaringan Pipa Dinas
+5.2.4.23.04	 Belanja modal Pengadaan Jaringan BBM
+5.2.4.23.05	 Dst.......
+5.2.5	 Belanja Modal Aset Tetap Lainnya
+5.2.5.01	 Belanja modal Pengadaan Buku
+5.2.5.01.01	 Belanja modal Pengadaan Umum
+5.2.5.01.02	 Belanja modal Pengadaan Filsafat
+5.2.5.01.03	 Belanja modal Pengadaan Agama
+5.2.5.01.04	 Belanja modal Pengadaan Ilmu Sosial
+5.2.5.01.05	 Belanja modal Pengadaan Ilmu Bahasa
+5.2.5.01.06	 Belanja modal Pengadaan Matematika & Pengetahuan alam
+5.2.5.01.07	 Belanja modal Pengadaan Ilmu Pengetahuan Praktis
+5.2.5.01.08	 Belanja modal Pengadaan Arsitektur		 Olah raga	
+5.2.5.01.09	 Belanja modal Pengadaan Buku Geografi		 Sejarah	
+5.2.5.01.10	 Dst.......
+5.2.5.02	 Belanja modal Pengadaan Terbitan
+5.2.5.02.01	 Belanja modal Pengadaan Terbitan Berkala
+5.2.5.02.02	 Belanja modal Pengadaan Buku Laporan
+5.2.5.02.03	 Dst.......
+5.2.5.03	 Belanja modal Pengadaan Barang-Barang Perpustakaan
+5.2.5.03.01	 Belanja modal Pengadaan Peta
+5.2.5.03.02	 Belanja modal Pengadaan Naskah (Manuskrip)
+5.2.5.03.03	 Belanja modal Pengadaan Musik
+5.2.5.03.04	 Belanja modal Pengadaan Karya Grafika (Graphic Material)
+5.2.5.03.05	 Belanja modal Pengadaan Three Dimensional Artetacs and Realita
+5.2.5.03.06	 Belanja modal Pengadaan Bentuk Micro (Microform)
+5.2.5.03.07	 Belanja modal Pengadaan Rekaman Suara
+5.2.5.03.08	 Belanja modal Pengadaan Berkas Komputer (Computer Files)
+5.2.5.03.09	 Belanja modal Pengadaan Film Bergerak dan Rekaman Video
+5.2.5.03.10	 Belanja modal Pengadaan Tarscalt
+5.2.5.03.11	 Dst.......
+5.2.5.04.01	 Belanja modal Pengadaan Pahatan
+5.2.5.04.02	 Belanja modal Pengadaan Lukisan
+5.2.5.04.03	 Belanja modal Pengadaan Alat Kesenian
+5.2.5.04.04	 Belanja modal Pengadaan Alat Olah Raga
+5.2.5.04.05	 Belanja modal Pengadaan Tanda Penghargaan
+5.2.5.04.06	 Belanja modal Pengadaan Maket dan Foto Dokumen
+5.2.5.04.07	 Belanja modal Pengadaan Benda-benda Bersejarah
+5.2.5.04.08	 Belanja modal Pengadaan Barang Kerajinan
+5.2.5.04.09	 Dst.......
+5.2.5.05	 Belanja modal Pengadaan Alat Olah Raga Lainnya
+5.2.5.05.01	 Belanja modal Pengadaan Senam
+5.2.5.05.02	 Belanja modal Pengadaan Alat Olah Raga Air
+5.2.5.05.03	 Belanja modal Pengadaan Alat Olah Raga Udara
+5.2.5.05.04	 Belanja modal Pengadaan Alat Olah Raga Lainnya
+5.2.5.05.05	 Dst.......
+5.2.5.06	 Belanja modal Pengadaan Hewan
+5.2.5.06.01	 Belanja modal Pengadaan Binatang Ternak
+5.2.5.06.02	 Belanja modal Pengadaan Binatang Unggas
+5.2.5.06.03	 Belanja modal Pengadaan Binatang Melata
+5.2.5.06.04	 Belanja modal Pengadaan Binatang Ikan
+5.2.5.06.05	 Belanja modal Pengadaan Hewan Kebun Binatang
+5.2.5.06.06	 Belanja modal Pengadaan Hewan Pengamanan
+5.2.5.06.07	 Dst.......
+5.2.5.07	 Belanja modal Pengadaan Tanaman
+5.2.5.07.01	 Belanja modal Pengadaan Tanaman Perkebunan
+5.2.5.07.02	 Belanja modal Pengadaan Tanaman Holtikultura
+5.2.5.07.03	 Belanja modal Pengadaan Tanaman Kehutanan
+5.2.5.07.04	 Belanja modal Pengadaan Tanaman Hias
+5.2.5.07.05	 Belanja modal Pengadaan Tanaman Obat dan Kosmetika
+5.2.5.07.06	 Dst.......
+5.3	 BELANJA TAK TERDUGA
+5.3.1	 Belanja Tak Terduga
+5.3.1.01	 Belanja Tak Terduga
+5.3.1.01.01	 Belanja Tak Terduga
+50.9.1.2.23	 Beban kursus		 sosialisasi dan bimbingan teknis PNS	
+51.9.1.7.01.06	 Beban Penyusutan Alat Angkut Apung Bermotor
+52.9.1.8.02.02	 Beban Penyisihan Bagian Lancar Tagihan Pinjaman Jangka Panjang kepada Entitas Lainnya
+53.9.3.3	 Defisit dari Kegiatan Non Operasional Lainnya - LO
+6	 TRANSFER
+6.1	 TRANSFER BAGI HASIL PENDAPATAN
+6.1.1	 Transfer Bagi Hasil Pajak Daerah
+6.1.1.01	 Transfer Bagi Hasil Pajak Daerah Kepada Pemerintahan Kabupaten/Kota
+6.1.1.01.01	 Transfer Bagi Hasil Pajak Daerah Kepada Pemerintahan Kabupaten/Kota ......
+6.1.1.01.02	 Dst....
+6.1.2	 Transfer Bagi Hasil Pendapatan Lainnya
+6.1.2.01	 Transfer Bagi Hasil Pendapatan Lainnya Kepada Pemerintahan Kabupaten/Kota
+6.1.2.01.01	 Transfer Bagi Hasil Pendapatan Lainnya Kepada Pemerintahan Kabupaten/Kota .........
+6.1.2.01.02	 Dst                                       
+6.1.3.2.15	 Alat Rumah Tangga
+6.2	 TRANSFER BANTUAN KEUANGAN
+6.2.1	 Transfer Bantuan Keuangan ke Pemerintah Daerah Lainnya
+6.2.1.01	 Bantuan Keuangan ke Propinsi
+6.2.1.01.01	 Bantuan Keuangan ke Propinsi ..........
+6.2.1.01.02	 Dst ..........
+6.2.1.02	 Bantuan Keuangan ke Kabupaten/Kota
+6.2.1.02.01	 Bantuan Keuangan ke Kabupaten/Kota ..........
+6.2.1.02.02	 Dst ..........
+6.2.2	 Transfer Bantuan Keuangan ke Desa
+6.2.2.01	 Transfer Bantuan Keuangan ke Desa
+6.2.2.01.01	 Transfer Bantuan Keuangan ke Desa ...........
+6.2.2.01.02	 Dst ..........
+6.2.3	 Transfer Bantuan Keuangan Lainnya
+6.2.3.01	 Bantuan Keuangan kepada Partai Politik
+6.2.3.01.01	 Bantuan Keuangan kepada Partai Politik ........
+6.2.3.01.02	 Dst ..........
+6.2.4	 Transfer Dana Otonomi Khusus
+6.2.4.01	 Transfer Dana Otsus Kabupaten/Kota
+6.2.4.01.01	 Transfer Dana Otsus Kabupaten/Kota ..........
+6.2.4.01.02	 Dst ..........
+7.1	 PENERIMAAN PEMBIAYAAN
+7.1.1	 Penggunaan SiLPA
+7.1.1.01	 Penggunaan SiLPA tahun sebelumnya
+7.1.1.01.01	 Penggunaan SiLPA tahun sebelumnya
+7.1.2	 Pencairan Dana Cadangan
+7.1.2.01	 Pencairan Dana Cadangan
+7.1.2.01.01	 Pencairan Dana Cadangan ............
+7.1.2.01.02	 Dst ...........
+7.1.3	 Hasil Penjualan Kekayaan Daerah yang Dipisahkan
+7.1.3.01	 Hasil Penjualan Kekayaan Daerah yang Dipisahkan
+7.1.3.01.01	 Hasil penjualan kekayaan daerah yang dipisahkan pada perusahaan milik Pemerintah/ BUMN
+7.1.3.01.02	 Hasil penjualan kekayaan daerah yang dipisahkan pada perusahaan milik daerah/ BUMD
+7.1.3.01.03	 Hasil penjualan kekayaan daerah yang dipisahkan pada perusahaan milik swasta
+7.1.3.2.21.15	 Alat Kedokteran Neurologi (syaraf)
+7.1.4	 Pinjaman Dalam Negeri
+7.1.4.01	 Pinjaman Dalam Negeri dari Bank
+7.1.4.01.01	 Pinjaman Dalam Negeri dari Bank ............
+7.1.4.01.02	 Dst ............
+7.1.4.02	 Pinjaman Dalam Negeri dari Lembaga Keuangan Bukan Bank
+7.1.4.02.01	 Pinjaman Dalam Negeri dari Lembaga Keuangan Bukan Bank
+7.1.4.03	 Penerimaan Hasil Penerbitan Obligasi Daerah
+7.1.4.03.01	 Penerimaan Hasil Penerbitan Obligasi Daerah
+7.1.4.04	 Pinjaman Dalam Negeri dari Pemerintah Pusat
+7.1.4.04.01	 Pinjaman Dalam Negeri dari Pemerintah Pusat
+7.1.4.05	 Pinjaman Dalam Negeri dari Pemerintah Provinsi Lainnya
+7.1.4.05.01	 Pinjaman Dalam Negeri dari Pemerintah Provinsi Lainnya
+7.1.4.06	 Pinjaman Dalam Negeri dari Pemerintah Kabupaten/Kota
+7.1.4.06.01	 Pinjaman Dalam Negeri dari Pemerintah Kabupaten/Kota
+7.1.5	 Penerimaan Kembali Piutang
+7.1.5.01	 Penerimaan Kembali Piutang kepada Perusahaan Negara
+7.1.5.01.01	 Penerimaan Kembali Piutang kepada Perusahaan Negara
+7.1.5.02	 Penerimaan Kembali Piutang kepada Perusahaan Daerah
+7.1.5.02.01	 Penerimaan Kembali Piutang kepada Perusahaan Daerah
+7.1.5.03	 Penerimaan Kembali Piutang kepada Pemerintah Pusat
+7.1.5.03.01	 Penerimaan Kembali Piutang kepada Pemerintah Pusat
+7.1.5.04	 Penerimaan Kembali Piutang kepada Pemerintah Daerah Lainnya
+7.1.5.04.01	 Penerimaan Kembali Piutang kepada Pemerintah Daerah Lainnya
+7.1.5.05	 Penerimaan Kembali Piutang Lainnya
+7.1.5.05.01	 Penerimaan Kembali Piutang Lainnya
+7.1.6	 Penerimaan Kembali Investasi Non Permanen Lainnya
+7.1.6.01	 Penerimaan Kembali Investasi dalam Proyek Pembangunan
+7.1.6.01.01	 Penerimaan Kembali Investasi dalam Proyek Pembangunan
+7.1.6.02	 Penarikan Dana Bergulir
+7.1.6.02.01	 Penarikan Dana Bergulir
+7.1.6.03	 Pencairan Deposito Jangka Panjang
+7.1.6.03.01	 Pencairan Deposito Jangka Panjang
+7.1.6.04	 Penerimaan Kembali Investasi Non Permanen Lainnya
+7.1.6.04.01	 Penerimaan Kembali Investasi Non Permanen Lainnya
+7.1.7	 Pinjaman Luar Negeri
+7.1.7.01	 Pinjaman Luar Negeri
+7.1.7.01.01	 Pinjaman Luar Negeri
+7.1.8	 Penerimaan Utang Jangka Panjang Lainnya
+7.1.8.01	 Penerimaan Utang Jangka Panjang Lainnya
+7.1.8.01.01	 Penerimaan Utang Jangka Panjang Lainnya
+7.2.1	 Pembentukan Dana Cadangan
+7.2.1.01	 Pembentukan Dana Cadangan
+7.2.1.01.01	 Pembentukan Dana Cadangan
+7.2.2	 Penyertaan Modal/Investasi Pemerintah Daerah
+7.2.2.01	 Penyertaan Modal pada BUMN
+7.2.2.01.01	 Penyertaan Modal pada BUMN
+7.2.2.02	 Penyertaan Modal pada BUMD
+7.2.2.02.01	 Penyertaan Modal pada BUMD
+7.2.2.03	 Penyertaan Modal pada Perusahaan Swasta
+7.2.2.03.01	 Penyertaan Modal pada Perusahaan Swasta
+7.2.3	 Pembayaran Pokok Pinjaman Dalam Negeri
+7.2.3.01	 Pembayaran Pokok Pinjaman kepada Bank
+7.2.3.01.01	 Pembayaran Pokok Pinjaman kepada Bank
+7.2.3.02	 Pembayaran Pokok Pinjaman kepada Lembaga Keuangan Bukan Bank
+7.2.3.02.01	 Pembayaran Pokok Pinjaman kepada Lembaga Keuangan Bukan Bank
+7.2.3.03	 Pelunasan Obligasi Daerah
+7.2.3.03.01	 Pelunasan Obligasi Daerah
+7.2.3.04	 Pembayaran Pokok Pinjaman kepada Pemerintah Pusat
+7.2.3.04.01	 Pembayaran Pokok Pinjaman kepada Pemerintah Pusat
+7.2.3.05	 Pembayaran Pokok Pinjaman kepada Pemerintah Provinsi Lainnya
+7.2.3.05.01	 Pembayaran Pokok Pinjaman kepada Pemerintah Provinsi Lainnya
+7.2.3.06	 Pembayaran Pokok Pinjaman kepada Pemerintah Kabupaten/Kota
+7.2.3.06.01	 Pembayaran Pokok Pinjaman kepada Pemerintah Kabupaten/Kota
+7.2.4	 Pemberian Pinjaman Daerah
+7.2.4.01	 Pemberian Pinjaman Daerah kepada Perusahaan Negara
+7.2.4.01.01	 Pemberian Pinjaman Daerah kepada Perusahaan Negara
+7.2.4.02	 Pemberian Pinjaman Daerah kepada Perusahaan Daerah
+7.2.4.02.01	 Pemberian Pinjaman Daerah kepada Perusahaan Daerah
+7.2.4.03	 Pemberian Pinjaman Daerah kepada Pemerintah Pusat
+7.2.4.03.01	 Pemberian Pinjaman Daerah kepada Pemerintah Pusat
+7.2.4.04	 Pemberian Pinjaman Daerah kepada Pemerintah Daerah Lainnya
+7.2.4.04.01	 Pemberian Pinjaman Daerah kepada Pemerintah Daerah Lainnya
+7.2.5	 Pengeluaran Investasi Non Permanen Lainnya
+7.2.5.01	 Pembentukan Investasi dalam Proyek Pembangunan
+7.2.5.01.01	 Pembentukan Investasi dalam Proyek Pembangunan
+7.2.5.02	 Pembentukan Dana Bergulir
+7.2.5.02.01	 Pembentukan Dana Bergulir
+7.2.5.03	 Pembentukan Deposito Jangka Panjang
+7.2.5.03.01	 Pembentukan Deposito Jangka Panjang
+7.2.5.04	 Pembentukan Investasi Non Permanen Lainnya
+7.2.5.04.01	 Pembentukan Investasi Non Permanen Lainnya
+7.2.6	 Pembayaran Pokok Pinjaman Luar Negeri
+7.2.6.01	 Pembayaran Pokok Pinjaman Luar Negeri
+7.2.6.01.01	 Pembayaran Pokok Pinjaman Luar Negeri
+7.2.7	 Pembayaran Utang Jangka Panjang Lainnya
+7.2.7.01	 Pembayaran Utang Jangka Panjang Lainnya
+7.2.7.01.01	 Pembayaran Utang Jangka Panjang Lainnya
+8	 PENDAPATAN - LO
+8.1	 PENDAPATAN ASLI DAERAH (PAD) - LO
+8.1.1	 Pendapatan Pajak Daerah - LO
+8.1.1.01	 Pajak Kendaraan Bermotor (PKB) - LO
+8.1.1.01.01	 PKB - Mobil Penumpang - Sedan - LO
+8.1.1.01.02	 PKB - Mobil Penumpang - Jeep - LO
+8.1.1.01.03	 PKB - Mobil Penumpang - Minibus - LO
+8.1.1.01.04	 PKB - Mobil Bus - Microbus - LO
+8.1.1.01.05	 PKB - Mobil Bus - Bus - LO
+8.1.1.01.06	 PKB - Mobil Barang/ Beban - Pick Up - LO
+8.1.1.01.07	 PKB - Mobil Barang/ Beban - Light Truck - LO
+8.1.1.01.08	 PKB - Mobil Barang/ Beban - Truck - LO
+8.1.1.01.10	 PKB - Sepeda Motor - Sepeda Motor Roda
+8.1.1.01.11	 PKB - Kendaraan Bermotor yang Dioperasikan di Air - LO
+8.1.1.01.12	 Dst ..........
+8.1.1.02	 Bea Balik Nama Kendaraan Bermotor (BBNKB) - LO
+8.1.1.02.01	 BBNKB -Mobil Penumpang - Sedan - LO
+8.1.1.02.02	 BBNKB -Mobil Penumpang - Jeep - LO
+8.1.1.02.03	 BBNKB -Mobil Penumpang - Minibus - LO
+8.1.1.02.04	 BBNKB -Mobil Bus - Microbus - LO
+8.1.1.02.05	 BBNKB -Mobil Bus - Bus - LO
+8.1.1.02.06	 BBNKB -Mobil Barang/ Beban - Pick Up - LO
+8.1.1.02.07	 BBNKB -Mobil Barang/ Beban - Light Truck - LO
+8.1.1.02.08	 BBNKB -Mobil Barang/ Beban - Truck - LO
+8.1.1.02.09	 BBNKB -Sepeda Motor - Sepeda Motor Roda
+8.1.1.02.10	 BBNKB -Sepeda Motor - Sepeda Motor Roda
+8.1.1.02.11	 BBNKB -Kendaraan Bermotor yang Dioperasikan di Air - LO
+8.1.1.02.12	 Dst.............
+8.1.1.03	 Pajak Bahan Bakar Kendaraan Bermotor - LO
+8.1.1.03.01	 Pajak Bahan Bakar Premium - LO
+8.1.1.03.02	 Pajak Bahan Bakar Pertamax - LO
+8.1.1.03.03	 Pajak Bahan Bakar Pertamax Plus - LO
+8.1.1.03.04	 Pajak Bahan Bakar Solar - LO
+8.1.1.03.05	 Pajak Bahan Bakar Gas - LO
+8.1.1.03.06	 Dst ..............
+8.1.1.04	 Pajak Air Permukaan - LO
+8.1.1.04.01	 Pajak Air Permukaan - LO
+8.1.1.05	 Pajak Rokok - LO
+8.1.1.05.01	 Pajak Rokok - LO
+8.1.1.06	 Pajak Hotel - LO
+8.1.1.06.01	 Hotel - LO
+8.1.1.06.02	 Motel - LO
+8.1.1.06.03	 Losmen - LO
+8.1.1.06.04	 Gubuk Pariwisata - LO
+8.1.1.06.05	 Wisma Pariwisata - LO
+8.1.1.06.06	 Pesanggrahan - LO
+8.1.1.06.07	 Rumah Penginapan dan sejenisnya - LO
+8.1.1.06.08	 Rumah Kos dengan jumlah kamar lebih dari
+8.1.1.06.09	 Dst   ..
+8.1.1.07	 Pajak Restoran - LO
+8.1.1.07.01	 Restoran - LO
+8.1.1.07.02	 Rumah Makan - LO
+8.1.1.07.03	 Kafetaria - LO
+8.1.1.07.04	 Kantin - LO
+8.1.1.07.05	 Warung - LO
+8.1.1.07.06	 Bar - LO
+8.1.1.07.07	 Jasa Boga/ Katering - LO
+8.1.1.07.08	 Dst   ..
+8.1.1.08	 Pajak Hiburan - LO
+8.1.1.08.01	 Tontonan Film/Bioskop - LO
+8.1.1.08.02	 Pagelaran Kesenian/Musik/Tari/Busana - LO
+8.1.1.08.03	 Kontes Kecantikan		 dan sejenisnya - LO	
+8.1.1.08.04	 Pameran - LO
+8.1.1.08.05	 Diskotik		 Klab Malam dan sejenisnya - LO	
+8.1.1.08.06	 Sirkus/Akrobat/Sulap - LO
+8.1.1.08.07	 Permainan Bilyar		 Bowling - LO	
+8.1.1.08.08	 Pacuan Kuda		 Permainan Ketangkasan - LO	
+8.1.1.08.09	 Panti Pijat		 Mandi Uap/ Spa dan Pusat Kebugaran (fitnes center) - LO	
+8.1.1.08.10	 Pertandingan Olahraga - LO
+8.1.1.08.11	 Dst   ..
+8.1.1.09	 Pajak Reklame - LO
+8.1.1.09.01	 Pajak Reklame Papan/Billboard/Videotron/Megatron - LO
+8.1.1.09.02	 Pajak Reklame Kain - LO
+8.1.1.09.03	 Pajak Reklame Melekat/Stiker - LO
+8.1.1.09.04	 Pajak Reklame Selebaran - LO
+8.1.1.09.05	 Pajak Reklame Berjalan - LO
+8.1.1.09.06	 Pajak Reklame Udara - LO
+8.1.1.09.07	 Pajak Reklame Apung - LO
+8.1.1.09.08	 Pajak Reklame Suara - LO
+8.1.1.09.09	 Pajak Reklame Film/Slide - LO
+8.1.1.09.10	 Pajak Reklame Peragaan - LO
+8.1.1.09.11	 Dst   ..
+8.1.1.10	 Pajak Penerangan Jalan - LO
+8.1.1.10.01	 Pajak Penerangan Jalan dihasilkan sendiri - LO
+8.1.1.10.02	 Pajak Penerangan Jalan sumber lain - LO
+8.1.1.11	 Pajak Parkir - LO
+8.1.1.11.01	 Pajak Parkir - LO
+8.1.1.12.01	 Pajak Air Tanah - LO
+8.1.1.13	 Pajak Sarang Burung Walet - LO
+8.1.1.13.01	 Pajak Sarang Burung Walet - LO
+8.1.1.14	 Pajak Mineral Bukan Logam dan Batuan - LO
+8.1.1.14.01	 Asbes - LO
+8.1.1.14.02	 Batu Tulis - LO
+8.1.1.14.03	 Batu setengah permata - LO
+8.1.1.14.04	 Batu Kapur - LO
+8.1.1.14.05	 Batu Apung - LO
+8.1.1.14.06	 Batu Permata - LO
+8.1.1.14.07	 Bentonit - LO
+8.1.1.14.08	 Dolomit - LO
+8.1.1.14.09	 Feldspar - LO
+8.1.1.14.10	 Garam Batu (Halite) - LO
+8.1.1.14.11	 Grafit - LO
+8.1.1.14.12	 Granit/Andesit - LO
+8.1.1.14.13	 Gips - LO
+8.1.1.14.14	 Kalsit - LO
+8.1.1.14.15	 Kaolin - LO
+8.1.1.14.16	 Leusit - LO
+8.1.1.14.17	 Magnesit - LO
+8.1.1.14.18	 Mika - LO
+8.1.1.14.19	 Marmer - LO
+8.1.1.14.20	 Nitrat - LO
+8.1.1.14.21	 Opsidien - LO
+8.1.1.14.22	 Oker - LO
+8.1.1.14.23	 Pasir dan kerikil - LO
+8.1.1.14.24	 Pasir Kuarsa - LO
+8.1.1.14.25	 Perlit - LO
+8.1.1.14.26	 Phospat - LO
+8.1.1.14.27	 Talk - LO
+8.1.1.14.28	 Tanah Serap (Fullers earth) - LO
+8.1.1.14.29	 Tanah Diatome - LO
+8.1.1.14.30	 Tanah Liat - LO
+8.1.1.14.31	 Tawas (Alum) - LO
+8.1.1.14.32	 Tras - LO
+8.1.1.14.33	 Yarosif - LO
+8.1.1.14.34	 Zeolit - LO
+8.1.1.14.35	 Basal - LO
+8.1.1.14.36	 Trakit - LO
+8.1.1.14.37	 Mineral bukan logam dan lainnya - LO
+8.1.1.15	 Pajak Bumi dan Bangunan Pedesaan dan Perkotaan - LO
+8.1.1.15.01	 Pajak Bumi dan Bangunan Perdesaan dan Perkotaan - LO
+8.1.1.16	 Bea Perolehan Hak Atas Tanah dan Bangunan (BPHTB) - LO
+8.1.1.16.01	 BPHTB - Pemindahan Hak - LO
+8.1.1.16.02	 BPHTB - Pemberian Hak Baru - LO
+8.1.2	 Pendapatan Retribusi Daerah - LO
+8.1.2.01	 Retribusi Pelayanan Kesehatan - LO
+8.1.2.01.01	 Pelayanan kesehatan di Puskesmas - LO
+8.1.2.01.02	 Puskesmas keliling - LO
+8.1.2.01.03	 Puskesmas pembantu - LO
+8.1.2.01.04	 Balai Pengobatan - LO
+8.1.2.01.05	 Rumah Sakit Umum Daerah - LO
+8.1.2.01.06	 Tempat pelayanan kesehatan lainnya yang sejenis yang dimiliki dan/atau dikelola oleh pemda - LO
+8.1.2.02	 Retribusi Pelayanan Persampahan/ Kebersihan - LO
+8.1.2.02.01	 Pengambilan/Pengumpulan Sampah dari sumbernya ke lokasi pembuangan sementara - LO
+8.1.2.02.02	 Pengangkutan Sampah dari Sumbernya dan/atau lokasi pembuangan sementara ke lokasi pembuangan/pembuangan akhir sampah - LO
+8.1.2.02.03	 Penyediaan Lokasi Pembuangan/Pemusnahan Akhir Sampah - LO
+8.1.2.03	 Retribusi Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil - LO
+8.1.2.03.01	 Kartu Tanda Penduduk - LO
+8.1.2.03.02	 Kartu Keterangan Bertempat Tinggal - LO
+8.1.2.03.03	 Kartu Identitas Kerja - LO
+8.1.2.03.04	 Kartu Penduduk Sementara - LO
+8.1.2.03.05	 Kartu Identitas Penduduk Musiman - LO
+8.1.2.03.06	 Kartu Keluarga - LO
+8.1.2.03.07	 Akta Catatan Sipil - LO
+8.1.2.04	 Retribusi Pelayanan Pemakaman dan Pengabuan Mayat - LO
+8.1.2.04.01	 Pelayanan Penguburan/Pemakaman - LO
+8.1.2.04.02	 Sewa Tempat Pemakaman atau Pembakaran/Pengabuan Mayat - LO
+8.1.2.05	 Retribusi Pelayanan Parkir di Tepi Jalan Umum - LO
+8.1.2.05.01	 Penyediaan Pelayanan Parkir di Tepi Jalan Umum - LO
+8.1.2.06	 Retribusi Pelayanan Pasar - LO
+8.1.2.06.01	 Pelataran - LO
+8.1.2.06.02	 Los - LO
+8.1.2.06.03	 Kios - LO
+8.1.2.07.01	 Retribusi PKB - Mobil Penumpang - Sedan - LO
+8.1.2.07.02	 Retribusi PKB - Mobil Penumpang - Jeep - LO
+8.1.2.07.03	 Retribusi PKB - Mobil Penumpang - Minibus - LO
+8.1.2.07.04	 Retribusi PKB - Mobil Bus - Microbus - LO
+8.1.2.07.05	 Retribusi PKB - Mobil Bus - Bus - LO
+8.1.2.07.06	 Retribusi PKB - Mobil Barang/ Beban - Pick Up - LO
+8.1.2.07.07	 Retribusi PKB - Mobil Barang/ Beban - Light Truck - LO
+8.1.2.07.08	 Retribusi PKB - Mobil Barang/ Beban - Truck - LO
+8.1.2.07.09	 Retribusi PKB - Sepeda Motor - Sepeda Motor Roda
+8.1.2.07.10	 Retribusi PKB - Sepeda Motor - Sepeda Motor Roda
+8.1.2.07.11	 Retribusi PKB - Kendaraan Bermotor yang Dioperasikan di Air - LO
+8.1.2.07.12	 Dst   ..
+8.1.2.08	 Retribusi Pemeriksaan Alat Pemadam Kebakaran - LO
+8.1.2.08.01	 Pelayanan Pemeriksaan dan/atau Pengujian Alat Pemadam Kebakaran - LO
+8.1.2.08.02	 Alat Penanggulangan Kebakaran - LO
+8.1.2.08.03	 Alat Penyelematan Jiwa - LO
+8.1.2.08.04	 Dst   ..
+8.1.2.09	 Retribusi Penggantian Biaya Cetak Peta - LO
+8.1.2.09.01	 Penyediaan Peta Dasar (Garis) - LO
+8.1.2.09.02	 Penyediaan Peta Foto - LO
+8.1.2.09.03	 Penyediaan Peta Digital - LO
+8.1.2.09.04	 Penyediaan Peta Tematik - LO
+8.1.2.09.05	 Penyediaan Peta Teknis (Struktur) - LO
+8.1.2.10	 Retribusi Penyediaan dan/atau Penyedotan Kakus - LO
+8.1.2.10.01	 Penyediaan dan/atau Penyedotan Kakus - LO
+8.1.2.11	 Retribusi Pengolahan Limbah Cair - LO
+8.1.2.11.01	 Rumah Tangga - LO
+8.1.2.11.02	 Perkantoran - LO
+8.1.2.11.03	 Industri - LO
+8.1.2.12	 Retribusi Pelayanan Tera/Tera Ulang - LO
+8.1.2.12.01	 Pengujian Alat-alat ukur		 timbang	 dan perlengkapannya - LO
+8.1.2.12.02	 Pengujian dalam keadaan terbungkus - LO
+8.1.2.13	 Retribusi Pelayanan Pendidikan - LO
+8.1.2.13.01	 Pelayanan Penyelenggaraan Pendidikan - LO
+8.1.2.13.02	 Pelatihan Teknis - LO
+8.1.2.14	 Retribusi Pengendalian Menara Telekomunikasi - LO
+8.1.2.14.01	 Pemanfaatan ruang untuk menara telekomunikasi - LO
+8.1.2.15	 Retribusi Pemakaian Kekayaan Daerah - LO
+8.1.2.15.01	 Penyewaan Tanah dan Bangunan - LO
+8.1.2.15.02	 Laboratorium - LO
+8.1.2.15.03	 Ruangan -LO
+8.1.2.15.04	 Kendaraan Bermotor - LO
+8.1.2.16	 Retribusi Pasar Grosir dan/ atau Pertokoan - LO
+8.1.2.16.01	 Penyediaan Fasilitas Pasar Grosir berbagai Jenis Barang - LO
+8.1.2.16.02	 Fasilitas Pasar/Pertokoan yang Dikontrakkan - LO
+8.1.2.16.03	 Fasilitas Pasar atau Pertokoan yang disediakan/diselenggarakan oleh Pemerintah Daerah - LO
+8.1.2.17	 Retribusi Tempat Pelelangan - LO
+8.1.2.17.01	 Pelelangan Ikan - LO
+8.1.2.17.02	 pelelangan Ternak - LO
+8.1.2.17.03	 Pelelangan Hasil Bumi - LO
+8.1.2.17.04	 Pelelangan Hasil Hutan - LO
+8.1.2.17.05	 Jasa Pelelangan serta Fasilitas Lainnya yang disediakan di Tempat Pelelangan - LO
+8.1.2.18	 Retribusi Terminal - LO
+8.1.2.18.01	 Pelayanan Penyediaan Tempat Parkir untuk Kendaraan Penumpang dan Bis Umum - LO
+8.1.2.18.02	 Tempat Kegiatan Usaha - LO
+8.1.2.18.03	 Fasilitas Lainnya di Lingkungan Terminal - LO
+8.1.2.19	 Retribusi Tempat Khusus Parkir - LO
+8.1.2.19.01	 Pelayanan Tempat Khusus Parkir - LO
+8.1.2.20	 Retribusi Tempat Penginapan/ Pesanggrahan/ Villa - LO
+8.1.2.20.01	 Pelayanan Tempat Penginapan/Pesanggrahan/Vila - LO
+8.1.2.21	 Retribusi Rumah Potong Hewan - LO
+8.1.2.21.01	 Pelayanan Pemeriksaan Kesehatan Hewan sebelum dipotong - LO
+8.1.2.21.02	 Pelayanan Pemeriksaan Kesehatan Hewan sesudah dipotong - LO
+8.1.2.22	 Retribusi Pelayanan Kepelabuhan - LO
+8.1.2.22.01	 Pelayanan Jasa ke Pelabuhan - LO
+8.1.2.23	 Retribusi Tempat Rekreasi dan Olah raga- LO
+8.1.2.23.01	 Pelayanan Tempat Rekreasi - LO
+8.1.2.23.02	 Pelayanan Tempat Pariwisata - LO
+8.1.2.23.03	 Pelayanan Tempat olahraga - LO
+8.1.2.24.01	 Pelayanan Penyebrangan Orang - LO
+8.1.2.24.02	 Pelayanan Penyebrangan Barang - LO
+8.1.2.25	 Retribusi Penjualan Produksi Usaha Daerah - LO
+8.1.2.25.01	 Penjualan Hasil Produksi Usaha Daerah - LO
+8.1.2.26	 Retribusi Izin Mendirikan Bangunan - LO
+8.1.2.26.01	 Pemberian Izin Mendirikan Bangunan - LO
+8.1.2.27	 Retribusi Izin Tempat Penjualan Minuman Beralkohol - LO
+8.1.2.27.01	 Pemberian Izin untuk Tempat Penjualan Minuman Beralkohol - LO
+8.1.2.28	 Retribusi Izin Gangguan - LO
+8.1.2.28.01	 Pemberian Izin Gangguan tempat Usaha/Kegiatan kepada Orang Pribadi - LO
+8.1.2.28.02	 Pemberian Izin Gangguan tempat Usaha/Kegiatan kepada Badan - LO
+8.1.2.29	 Retribusi Izin Trayek - LO
+8.1.2.29.01	 Pemberian Izin Trayek kepada Orang Pribadi - LO
+8.1.2.29.02	 Pemberian Izin Trayek kepada Badan - LO
+8.1.2.30	 Retribusi Izin Perikanan - LO
+8.1.2.30.01	 Pemberian Izin usaha Perikanan kepada Orang Pribadi - LO
+8.1.2.30.02	 Pemberian Izin usaha Perikanan kepada Badan - LO
+8.1.2.31	 Retribusi Pengendalian Lalu Lintas - LO
+8.1.2.31.01	 Penggunaan ruas jalan terentu - LO
+8.1.2.31.02	 Penggunaan koridor tertentu -LO
+8.1.2.31.03	 Penggunaan kawasan tertentu pada waktu tertentu oleh kendaraan bermotor perseorangan dan barang - LO
+8.1.2.32	 Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA) - LO
+8.1.2.32.01	 Pemberian Perpanjangan IMTA kepada Pemberi Kerja Tenaga Kerja Asing - LO
+8.1.3	 Pendapatan Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan - LO
+8.1.3.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Daerah/BUMD - LO
+8.1.3.01.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Daerah - LO
+8.1.3.01.02	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada BUMD .............. - LO
+8.1.3.01.03	 Dst ..............
+8.1.3.02	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Pemerintah/BUMN - LO
+8.1.3.02.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada BUMN - LO
+8.1.3.02.02	 Dst ..............
+8.1.3.03	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Swasta - LO
+8.1.3.03.01	 Bagian Laba yang dibagikan kepada Pemda (deviden) atas penyertaan modal pada Perusahaan Milik Swasta   . - LO
+8.1.3.03.02	 Dst ..............
+8.1.3.2.24	 Alat Peraga/Praktek Sekolah
+8.1.4	 Lain-lain PAD Yang Sah - LO
+8.1.4.01	 Hasil Penjualan Aset Daerah Yang Tidak Dipisahkan - LO
+8.1.4.01.01	 Hasil Penjualan Tanah - LO
+8.1.4.01.02	 Hasil Penjualan Peralatan dan Mesin - LO
+8.1.4.01.03	 Hasil Penjualan Gedung dan Bangunan - LO
+8.1.4.01.04	 Hasil Penjualan Jalan
+8.1.4.01.05	 Hasil Penjualan Aset Tetap Lainnya - LO
+8.1.4.02	 Hasil Penjualan Aset Lainnya - LO
+8.1.4.02.01	 Hasil Penjualan Aset Lainnya - LO
+8.1.4.03	 Penerimaan Jasa Giro - LO
+8.1.4.03.01	 Jasa Giro Kas Daerah - LO
+8.1.4.03.02	 Jasa Giro Kas Bendahara - LO
+8.1.4.03.03	 Jasa Giro Dana Cadangan - LO
+8.1.4.03.04	 Dst ..............
+8.1.4.04	 Pendapatan Bunga - LO
+8.1.4.04.01	 Pendapatan Bunga Deposito ....... - LO
+8.1.4.04.02	 Pendapatan Bunga Dana Bergulir .............. - LO
+8.1.4.04.03	 Dst ..............
+8.1.4.05	 Tuntutan Ganti Kerugian Daerah - LO
+8.1.4.05.01	 Tuntutan Ganti Kerugian Daerah Terhadap Bendahara - LO
+8.1.4.05.02	 Tuntutan Ganti Kerugian Daerah Terhadap Pegawai Negeri Bukan Bendahara - LO
+8.1.4.06	 Komisi
+8.1.4.06.01	 Penerimaan Komisi dari Penempatan Kas Daerah - LO
+8.1.4.06.02	 Penerimaan Potongan dari .............. - LO
+8.1.4.06.03	 Penerimaan Keuntungan Selisih Nilai Tukar Rupiah dari .............. - LO
+8.1.4.06.04	 Dst ..............
+8.1.4.07	 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan - LO
+8.1.4.07.01	 Pendapatan Denda atas Keterlambatan Pelaksanaan Pekerjaan - LO
+8.1.4.07.02	 Dst ..............
+8.1.4.08.01	 Pendapatan Denda Pajak Kendaraan Bermotor - LO
+8.1.4.08.02	 Pendapatan Denda Bea Balik Nama Kendaraan Bermotor - LO
+8.1.4.08.03	 Pendapatan Denda Pajak Bahan Bakar Kendaraan Bermotor - LO
+8.1.4.08.04	 Pendapatan Denda Pajak Air Permukaan - LO
+8.1.4.08.05	 Pendapatan Denda Pajak Rokok - LO
+8.1.4.08.06	 Pendapatan Denda Pajak Hotel - LO
+8.1.4.08.07	 Pendapatan Denda Pajak Restoran - LO
+8.1.4.08.08	 Pendapatan Denda Pajak Hiburan - LO
+8.1.4.08.09	 Pendapatan Denda Pajak Reklame - LO
+8.1.4.08.10	 Pendapatan Denda Pajak Penerangan Jalan - LO
+8.1.4.08.11	 Pendapatan Denda Pajak Parkir - LO
+8.1.4.08.12	 Pendapatan Denda Pajak Air Tanah - LO
+8.1.4.08.13	 Pendapatan Denda Pajak Sarang Burung Walet - LO
+8.1.4.08.14	 Pendapatan Denda Pajak Mineral Bukan Logam dan Batuan - LO
+8.1.4.08.15	 Pendapatan Denda Pajak Bumi dan Bangunan Perdesaan dan Perkotaan - LO
+8.1.4.08.16	 Pendapatan Denda Bea Perolehan Hak Atas Tanah dan Bangunan - LO
+8.1.4.09	 Pendapatan Denda Retribusi - LO
+8.1.4.09.01	 Pendapatan Denda Retribusi Pelayanan Kesehatan - LO
+8.1.4.09.02	 Pendapatan Denda Retribusi Pelayanan Persampahan/ Kebersihan - LO
+8.1.4.09.03	 Pendapatan Denda Retribusi Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil - LO
+8.1.4.09.04	 Pendapatan Denda Retribusi Pelayanan Pemakaman dan Pengabuan Mayat - LO
+8.1.4.09.05	 Pendapatan Denda Retribusi Pelayanan Parkir di Tepi Jalan Umum - LO
+8.1.4.09.06	 Pendapatan Denda Retribusi Pelayanan Pasar - LO
+8.1.4.09.07	 Pendapatan Denda Retribusi Pengujian Kendaraan Bermotor - LO
+8.1.4.09.08	 Pendapatan Denda Retribusi Pemeriksaan Alat Pemadam Kebakaran - LO
+8.1.4.09.09	 Pendapatan Denda Retribusi Penggantian Biaya Cetak Peta - LO
+8.1.4.09.10	 Pendapatan Denda Retribusi Penyediaan dan/atau Penyedotan Kakus - LO
+8.1.4.09.11	 Pendapatan Denda Retribusi Pengolahan Limbah Cair - LO
+8.1.4.09.12	 Pendapatan Denda Retribusi Pelayanan Tera/Tera Ulang - LO
+8.1.4.09.13	 Pendapatan Denda Retribusi Pelayanan Pendidikan - LO
+8.1.4.09.14	 Pendapatan Denda Retribusi Pengendalian Menara Telekomunikasi - LO
+8.1.4.09.15	 Pendapatan Denda Retribusi Pemakaian Kekayaan Daerah - LO
+8.1.4.09.16	 Pendapatan Denda Retribusi Pasar Grosir dan/ atau Pertokoan - LO
+8.1.4.09.17	 Pendapatan Denda Retribusi Tempat Pelelangan - LO
+8.1.4.09.18	 Pendapatan Denda Retribusi Terminal - LO
+8.1.4.09.19	 Pendapatan Denda Retribusi Tempat Khusus Parkir - LO
+8.1.4.09.20	 Pendapatan Denda Retribusi Tempat Penginapan/ Pesanggrahan/ Villa - LO
+8.1.4.09.21	 Pendapatan Denda Retribusi Rumah Potong Hewan - LO
+8.1.4.09.22	 Pendapatan Denda Retribusi Pelayanan Kepelabuhan - LO
+8.1.4.09.23	 Pendapatan Denda Retribusi Tempat Rekreasi dan Olah raga- LO
+8.1.4.09.24	 Pendapatan Denda Retribusi Penyebrangan Air - LO
+8.1.4.09.25	 Pendapatan Denda Retribusi Penjualan Produksi Usaha Daerah - LO
+8.1.4.09.26	 Pendapatan Denda Retribusi Izin Mendirikan Bangunan - LO
+8.1.4.09.27	 Pendapatan Denda Retribusi Izin Tempat Penjualan Minuman Beralkohol - LO
+8.1.4.09.28	 Pendapatan Denda Retribusi Izin Gangguan - LO
+8.1.4.09.29	 Pendapatan Denda Retribusi Izin Trayek - LO
+8.1.4.09.30	 Pendapatan Denda Retribusi Izin Perikanan - LO
+8.1.4.09.31	 Pendapatan Denda Retribusi Pengendalian Lalu Lintas - LO
+8.1.4.09.32	 Pendapatan Denda Retribusi Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA) - LO
+8.1.4.10	 Pendapatan Denda Pemanfaatan Aset Daerah - LO
+8.1.4.10.01	 Pendapatan Denda Sewa Aset Daerah - LO
+8.1.4.10.02	 Pendapatan Denda Kerjasama Pemanfaatan Aset Daerah - LO
+8.1.4.10.03	 Pendapatan Denda Bangun Guna Serah - LO
+8.1.4.10.04	 Pendapatan Denda Bangun Serah Guna - LO
+8.1.4.11	 Pendapatan Denda Atas Pelanggaran Perda - LRA
+8.1.4.11.01	 Pendapatan Denda Atas Pelanggaran Perda - LRA
+8.1.4.11.02	 Dst ........................
+8.1.4.12	 Pendapatan Hasil Eksekusi atas Jaminan - LO
+8.1.4.12.01	 Hasil Eksekusi Atas Jaminan atas Pelaksanaan Pengadaan Barang/Jasa - LO
+8.1.4.12.02	 Hasil Eksekusi Atas Jaminan atas Pembongkaran Reklame - LO
+8.1.4.12.03	 Dst ..............
+8.1.4.13	 Pendapatan dari Pengembalian -LO
+8.1.4.13.01	 Pendapatan dari Pengembalian Pajak Penghasilan Pasal
+8.1.4.13.02	 Pendapatan Dari Pengembalian Kelebihan Pembayaran Asuransi Kesehatan - LO
+8.1.4.13.03	 Pendapatan Dari Pengembalian Kelebihan Pembayaran Gaji dan Tunjangan - LO
+8.1.4.13.04	 Pendapatan Dari Pengembalian Kelebihan Pembayaran Perjalanan Dinas - LO
+8.1.4.13.05	 Dst ..............
+8.1.4.14	 Fasilitas Sosial dan Fasilitas Umum - LO
+8.1.4.14.01	 Fasilitas Sosial - LO
+8.1.4.14.02	 Fasilitas Umum - LO
+8.1.4.14.03	 Dst ..............
+8.1.4.15	 Pendapatan Penyelenggaraan Sekolah dan Diklat - LO
+8.1.4.15.01	 Pendapatan Penyelenggaraan Sekolah - LO
+8.1.4.15.02	 Pendapatan Penyelenggaraan Diklat - LO
+8.1.4.15.03	 Dst ..............
+8.1.4.16	 Pendapatan dari Penyelenggaraan Pendidikan dan Pelatihan - LO
+8.1.4.16.01	 Uang Pendaftaran/Ujian Masuk - LO
+8.1.4.16.02	 Uang Sekolah/Pendidikan dan Pelatihan - LO
+8.1.4.16.03	 Uang Ujian Kenaikan Tingkat/Kelas - LO
+8.1.4.16.04	 Dst ..............
+8.1.4.17	 Pendapatan dari Angsuran/Cicilan Penjualan - LO
+8.1.4.17.02	 Angsuran/Cicilan Penjualan Kenderaan Perorangan Dinas - LO
+8.1.4.17.03	 Dst   ..
+8.1.4.18	 Hasil dari Pemanfaatan Kekayaan Daerah - LO
+8.1.4.18.01	 Hasil dari Pemanfaatan Kekayaan Daerah Sewa - LO
+8.1.4.18.02	 Hasil dari Pemanfaatan Kekayaan Daerah Kerjasama Pemanfaatan- LO
+8.1.4.18.03	 Hasil dari Pemanfaatan Kekayaan Daerah Bangun Guna Serah - LO
+8.1.4.18.04	 Hasil dari Pemanfaatan Kekayaan Daerah Bangun Serah Guna - LO
+8.1.4.19	 Pendapatan Zakat* - LO
+8.1.4.19.01	 Pendapatan Zakat*   ... - LO
+8.1.4.19.02	 Dst ..............
+8.1.4.20	 Pendapatan BLUD - LO
+8.1.4.20.01	 Pendapatan Jasa Layanan Umum BLUD - LO
+8.1.4.20.02	 Pendapatan Hibah BLUD - LO
+8.1.4.20.03	 Pendapatan Hasil Kerjasama BLUD - LO
+8.1.4.20.04	 Dst ................
+8.1.4.21	 Lain-lain PAD yang Sah Lainnya - LO
+8.1.4.21.01	 Lain-lain PAD yang Sah Lainnya - LO
+8.2	 PENDAPATAN TRANSFER - LO
+8.2.1	 Pendapatan Transfer Pemerintah Pusat -LO
+8.2.1.01	 Bagi Hasil Pajak - LO
+8.2.1.01.01	 Bagi Hasil dari Pajak Bumi dan Bangunan sektor Pertambangan - LO
+8.2.1.01.02	 Bagi Hasil dari Pajak Bumi dan Bangunan sektor Perkebunan - LO
+8.2.1.01.03	 Bagi Hasil dari Pajak Bumi dan Bangunan sektor Perhutanan - LO
+8.2.1.01.04	 Bagi Hasil dari Pajak Penghasilan (PPh) Pasal
+8.2.1.01.05	 Bagi Hasil Cukai Hasil Tembakau - LO
+8.2.1.02	 Bagi Hasil Bukan Pajak/Sumber Daya Alam - LO
+8.2.1.02.01	 Bagi Hasil dari Iuran Hak Pengusahaan Hutan - LO
+8.2.1.02.02	 Bagi Hasil dari Provisi Sumber Daya Hutan - LO
+8.2.1.02.03	 Bagi Hasil dari Dana Reboisasi - LO
+8.2.1.02.04	 Bagi Hasil dari Iuran Tetap (Land-Rent) - LO
+8.2.1.02.05	 Bagi Hasil dari Iuran Eksplorasi dan Iuran Eksploitasi (Royalti) - LO
+8.2.1.02.06	 Bagi Hasil dari Pungutan Pengusahaan Perikanan - LO
+8.2.1.02.07	 Bagi Hasil dari Pungutan Hasil Perikanan - LO
+8.2.1.02.08	 Bagi Hasil dari Pertambangan Minyak Bumi - LO
+8.2.1.02.09	 Bagi Hasil dari Pertambangan Gas Bumi - LO
+8.2.1.02.10	 Bagi Hasil dari Pertambangan Panas Bumi - LO
+8.2.1.03	 Dana Alokasi Umum (DAU) - LO
+8.2.1.03.01	 Dana Alokasi Umum - LO
+8.2.1.04	 Dana Alokasi Khusus (DAK) - LO
+8.2.1.04.01	 DAK Bidang Infrastruktur Jalan - LO
+8.2.1.04.02	 DAK Bidang Infrastruktur Irigasi - LO
+8.2.1.04.03	 DAK Bidang Infrastruktur Air Minum - LO
+8.2.1.04.04	 DAK Bidang Infrastruktur Sanitasi- LO
+8.2.1.04.05	 DAK Bidang Keluarga Berencana - LO
+8.2.1.04.06	 DAK Bidang Kehutanan - LO
+8.2.1.04.07	 DAK Bidang Perumahan dan Kawasan Pemukiman - LO
+8.2.1.04.08	 DAK Bidang Kesehatan - LO
+8.2.1.04.09	 DAK Bidang Kelautan dan Perikanan - LO
+8.2.1.04.10	 DAK Bidang Prasarana Pemerintahan - LO
+8.2.1.04.11	 DAK Bidang Transportasi Perdesaan - LO
+8.2.1.04.12	 DAK Bidang Perdagangan - LO
+8.2.1.04.13	 DAK Bidang Lingkungan Hidup - LO
+8.2.1.04.14	 DAK Bidang Sarana dan Prasarana Daerah Tertinggal (SPDT) - LO
+8.2.1.04.15	 DAK Bidang Pertanian - LO
+8.2.1.04.16	 DAK Bidang Energi Pedesaan - LO
+8.2.1.04.17	 DAK Bidang Sarana dan Prasarana Kawasan Perbatasan - LO
+8.2.1.04.18	 DAK Bidang Pendidikan - LO
+8.2.1.04.19	 DAK Bidang Keselamatan Transportasi Darat - LO
+8.2.1.04.20	 Dst                     
+8.2.2	 Pendapatan Transfer Pemerintah Pusat - Lainnya - LO
+8.2.2.01	 Dana Otonomi Khusus - LO
+8.2.2.01.01	 Dana Otonomi Khusus - LO
+8.2.2.01.02	 Dana Tambahan Infrastruktur- LO
+8.2.2.02	 Dana Keistimewaan - LO**
+8.2.2.02.01	 Dana Keistimewaan - LO
+8.2.2.03.01	 Tunjangan Profesi Guru PNSD - LO
+8.2.2.03.02	 Dana Tambahan Penghasilan Guru PNSD - LO
+8.2.2.03.03	 Dana Insentif Daerah - LO
+8.2.2.03.04	 Dana Proyek Pemerintah Daerah dan Desentralisasi Provinsi - LO
+8.2.2.03.05	 Bantuan Operasional Sekolah - LO***
+8.2.2.03.06	 Dst ..............
+8.2.3	 Pendapatan Transfer Pemerintah Daerah Lainnya - LO
+8.2.3.01	 Pendapatan Bagi Hasil Pajak - LO
+8.2.3.01.01	 Pendapatan Bagi Hasil Pajak   .. - LO
+8.2.3.01.02	 Dst                   
+8.2.3.02	 Pendapatan Bagi hasil Lainnya - LO
+8.2.3.02.01	 Pendapatan Bagi hasil Lainnya   . - LO
+8.2.3.02.02	 Dst                   
+8.2.3.03	 Pendapatan Dana Otonomi Khusus-LO
+8.2.3.03.01	 Pendapatan Dana Otonomi Khusus-LO
+8.2.4	 Bantuan Keuangan - LO
+8.2.4.01	 Bantuan Keuangan dari Pemerintah Daerah Provinsi Lainnya - LO
+8.2.4.01.01	 Bantuan Keuangan dari Pemerintah Daerah Provinsi        - LO
+8.2.4.01.02	 Dst ..............
+8.2.4.02	 Bantuan Keuangan dari Pemerintah Daerah Kabupaten - LO
+8.2.4.02.01	 Bantuan Keuangan dari Pemerintah Daerah Kabupaten       ..            .. - LO
+8.2.4.02.02	 Dst    .
+8.2.4.03	 Bantuan Keuangan dari Pemerintah Daerah Kota - LRA
+8.2.4.03.01	 Bantuan Keuangan dari Pemerintah Daerah Kota                            . - LRA
+8.2.4.03.02	 Dst ..............
+8.3	 LAIN-LAIN PENDAPATAN DAERAH YANG SAH - LO
+8.3.1	 Pendapatan Hibah - LO
+8.3.1.01	 Pendapatan Hibah dari Pemerintah - LO
+8.3.1.01.01	 Pendapatan Hibah dari Pemerintah - LO
+8.3.1.02	 Pendapatan Hibah dari Pemerintah Daerah Lainnya - LO
+8.3.1.02.01	 Pendapatan Hibah dari Pemerintah Daerah Lainnya - LO
+8.3.1.03	 Pendapatan Hibah dari Badan/Lembaga/Organisasi Swasta dalam Negeri - LO
+8.3.1.03.01	 Pendapatan Hibah dari Badan/Lembaga/Organisasi Swasta dalam Negeri   . - LO
+8.3.1.03.02	 Dst ..............
+8.3.1.04	 Pendapatan Hibah dari kelompok masyarakat/perorangan - LO
+8.3.1.04.01	 Pendapatan Hibah dari kelompok masyarakat - LO
+8.3.1.04.02	 Pendapatan Hibah dari kelompok perorangan - LO
+8.3.2	 Dana Darurat - LO
+8.3.2.01	 Dana Darurat - LO
+8.3.2.01.01	 Korban/Kerusakan Akibat Bencana Alam - LO
+8.3.2.01.02	 Dst ..............
+8.3.3	 Pendapatan Lainnya - LO
+8.3.3.01	 Pendapatan Lainnya - LO
+8.3.3.01.01	 Pendapatan Lainnya - LO
+8.3.3.01.02	 Dst ..............
+8.4	 SURPLUS NON OPERASIONAL - LO
+8.4.1	 Surplus Penjualan Aset Non Lancar - LO
+8.4.1.01	 Surplus Penjualan Aset Non Lancar - LO
+8.4.1.01.01	 Surplus Penjualan Aset Tanah - LO
+8.4.1.01.02	 Surplus Penjualan Aset Peralatan dan Mesin - LO
+8.4.1.01.03	 Surplus Penjualan Aset Gedung dan Bangunan - LO
+8.4.1.01.04	 Surplus Penjualan Aset Non Lancar/Aset Tetap Lainnya - LO
+8.4.1.01.05	 Surplus Penjualan Aset Lain-lain - LO
+8.4.1.01.06	 Surplus Pelepasan Investasi Jangka Panjang - LO
+8.4.1.01.07	 Dst ..............
+8.4.2	 Surplus Penyelesaian Kewajiban Jangka Panjang - LO
+8.4.2.01	 Surplus Penyelesaian Kewajiban Jangka Panjang - LO
+8.4.2.01.01	 Surplus Penyelesaian Utang Dalam Negeri Sektor Perbankan - LO
+8.4.2.01.02	 Surplus Penyelesaian Utang Dari Lembaga Keuangan Bukan Bank - LO
+8.4.2.01.03	 Surplus Penyelesaian Utang Dalam Negeri- Obligasi - LO
+8.4.2.01.04	 Surplus Penyelesaian Utang Pemerintah Pusat - LO
+8.4.2.01.05	 Surplus Penyelesaian Utang Pemerintah Provinsi - LO
+8.4.2.01.06	 Surplus Penyelesaian Utang Pemerintah Kabupaten/Kota - LO
+8.4.2.01.07	 Surplus Penyelesaian Premium (Diskonto) Obligasi - LO
+8.4.2.01.08	 Dst ..............
+8.4.3	 Surplus dari Kegiatan Non Operasional Lainnya - LO
+8.4.3.01.01	 Surplus dari Kegiatan Non Operasional Lainnya - LO
+8.4.3.01.02	 Surplus Pelepasan Investasi Jangka Pendek- LO
+8.4.3.01.03	 Dst ..........................
+8.5	 PENDAPATAN LUAR BIASA - LO
+8.5.1	 Pendapatan Luar Biasa - LO
+8.5.1.01	 Pendapatan Pos Luar Biasa - LO
+8.5.1.01.01	 Pendapatan Pos Luar Biasa - LO
+9	 BEBAN
+9.1	 BEBAN OPERASI - LO
+9.1.1	 Beban Pegawai - LO
+9.1.1.01	 Beban Gaji dan Tunjangan - LO
+9.1.1.01.01	 Gaji Pokok PNS / Uang Representasi - LO
+9.1.1.01.02	 Tunjangan Keluarga - LO
+9.1.1.01.03	 Tunjangan Jabatan - LO
+9.1.1.01.04	 Tunjangan Fungsional - LO
+9.1.1.01.05	 Tunjangan Fungsional Umum - LO
+9.1.1.01.06	 Tunjangan Beras - LO
+9.1.1.01.07	 Tunjangan PPh/Tunjangan Khusus - LO
+9.1.1.01.08	 Pembulatan Gaji - LO
+9.1.1.01.09	 Iuran Jaminan Kesehatan - LO
+9.1.1.01.10	 Uang Paket - LO
+9.1.1.01.11	 Tunjangan Badan Musyawarah - LO
+9.1.1.01.12	 Tunjangan Komisi - LO
+9.1.1.01.13	 Tunjangan Badan Anggaran - LO
+9.1.1.01.14	 Tunjangan Badan Kehormatan - LO
+9.1.1.01.15	 Tunjangan Alat Kelengkapan Lainnya - LO
+9.1.1.01.16	 Tunjangan Perumahan - LO
+9.1.1.01.17	 Uang Duka Wafat/Tewas - LO
+9.1.1.01.18	 Uang Jasa Pengabdian - LO
+9.1.1.01.19	 Belanja Penunjang Operasional Pimpinan DPRD - LO
+9.1.1.01.20	 Tunjangan Kesehatan DPRD - LO
+9.1.1.01.21	 Dst ...................
+9.1.1.02	 Beban Tambahan Penghasilan PNS - LO
+9.1.1.02.01	 Tambahan Penghasilan berdasarkan beban kerja - LO
+9.1.1.02.02	 Tambahan Penghasilan berdasarkan tempat bertugas - LO
+9.1.1.02.03	 Tambahan Penghasilan berdasarkan kondisi kerja - LO
+9.1.1.02.04	 Tambahan Penghasilan berdasarkan kelangkaan profesi - LO
+9.1.1.02.05	 Dst                      .
+9.1.1.03	 Beban Penerimaan lainnya Pimpinan dan anggota DPRD serta KDH/WKDH - LO
+9.1.1.03.01	 Beban Tunjangan Komunikasi Intensif Pimpinan dan Anggota DPRD - LO
+9.1.1.03.02	 Beban Penunjang Operasional KDH/WKDH - LO
+9.1.1.03.03	 Dst                      .
+9.1.1.04	 Beban Pemungutan Pajak Bumi dan Bangunan - LO
+9.1.1.04.01	 Beban Pemungutan Pajak Bumi dan Bangunan Pertambangan - LO
+9.1.1.04.02	 Beban Pemungutan Pajak Bumi dan Bangunan Perkebunan - LO
+9.1.1.04.03	 Beban Pemungutan Pajak Bumi dan Bangunan Perhutanan - LO
+9.1.1.05	 Insentif Pemungutan Pajak Daerah
+9.1.1.05.01	 Insentif Pemungutan Pajak Daerah - Pajak Kendaraan Bermotor - LO
+9.1.1.05.02	 Insentif Pemungutan Pajak Daerah - Bea Balik Nama Kendaraan Bermotor - LO
+9.1.1.05.03	 Insentif Pemungutan Pajak Daerah - Pajak Bahan Bakar Kendaraan Bermotor - LO
+9.1.1.05.04	 Insentif Pemungutan Pajak Daerah - Pajak Air Permukaan - LO
+9.1.1.05.05	 Insentif Pemungutan Pajak Daerah - Pajak Rokok - LO
+9.1.1.05.06	 Insentif Pemungutan Pajak Daerah - Pajak Hotel - LO
+9.1.1.05.07	 Insentif Pemungutan Pajak Daerah - Pajak Restoran - LO
+9.1.1.05.08	 Insentif Pemungutan Pajak Daerah - Pajak Hiburan - LO
+9.1.1.05.09	 Insentif Pemungutan Pajak Daerah - Pajak Reklame - LO
+9.1.1.05.10	 Insentif Pemungutan Pajak Daerah - Pajak Penerangan Jalan - LO
+9.1.1.05.11	 Insentif Pemungutan Pajak Daerah - Pajak Parkir - LO
+9.1.1.05.12	 Insentif Pemungutan Pajak Daerah - Pajak Air Tanah - LO
+9.1.1.05.13	 Insentif Pemungutan Pajak Daerah - Pajak Sarang Burung Walet - LO
+9.1.1.05.14	 Insentif Pemungutan Pajak Daerah - Pajak Mineral Bukan Logam dan Batuan - LO
+9.1.1.05.15	 Insentif Pemungutan Pajak Daerah - Pajak Bumi dan Bangunan Pedesaan dan Perkotaan - LO
+9.1.1.05.16	 Insentif Pemungutan Pajak Daerah - Bea Perolehan Hak Atas Tanah dan Bangunan - LO
+9.1.1.06	 Insentif Pemungutan Retribusi Daerah
+9.1.1.06.01	 Insentif Pemungutan Retribusi Daerah - Pelayanan Kesehatan - LO
+9.1.1.06.02	 Insentif Pemungutan Retribusi Daerah - Pelayanan Persampahan/ Kebersihan - LO
+9.1.1.06.03	 Insentif Pemungutan Retribusi Daerah - Penggantian Biaya Cetak Kartu Tanda Penduduk dan Akta Catatan Sipil - LO
+9.1.1.06.04	 Insentif Pemungutan Retribusi Daerah - Pelayanan Pemakaman dan Pengabuan Mayat - LO
+9.1.1.06.05	 Insentif Pemungutan Retribusi Daerah - Pelayanan Parkir di Tepi Jalan Umum - LO
+9.1.1.06.06	 Insentif Pemungutan Retribusi Daerah - Pelayanan Pasar - LO
+9.1.1.06.07	 Insentif Pemungutan Retribusi Daerah - Pengujian Kendaraan Bermotor - LO
+9.1.1.06.08	 Insentif Pemungutan Retribusi Daerah - Pemeriksaan Alat Pemadam Kebakaran - LO
+9.1.1.06.09	 Insentif Pemungutan Retribusi Daerah - Penggantian Biaya Cetak Peta - LO
+9.1.1.06.10	 Insentif Pemungutan Retribusi Daerah - Penyediaan dan/atau Penyedotan Kakus - LO
+9.1.1.06.11	 Insentif Pemungutan Retribusi Daerah - Pengolahan Limbah Cair - LO
+9.1.1.06.13	 Insentif Pemungutan Retribusi Daerah - Pelayanan Pendidikan - LO
+9.1.1.06.14	 Insentif Pemungutan Retribusi Daerah - Pengendalian Menara Telekomunikasi - LO
+9.1.1.06.15	 Insentif Pemungutan Retribusi Daerah - Pemakaian Kekayaan Daerah - LO
+9.1.1.06.16	 Insentif Pemungutan Retribusi Daerah - Pasar Grosir dan/ atau Pertokoan - LO
+9.1.1.06.17	 Insentif Pemungutan Retribusi Daerah - Tempat Pelelangan - LO
+9.1.1.06.18	 Insentif Pemungutan Retribusi Daerah - Terminal - LO
+9.1.1.06.19	 Insentif Pemungutan Retribusi Daerah - Tempat Khusus Parkir - LO
+9.1.1.06.20	 Insentif Pemungutan Retribusi Daerah - Tempat Penginapan/ Pesanggrahan/ Villa - LO
+9.1.1.06.21	 Insentif Pemungutan Retribusi Daerah - Rumah Potong Hewan - LO
+9.1.1.06.22	 Insentif Pemungutan Retribusi Daerah - Pelayanan Kepelabuhan - LO
+9.1.1.06.23	 Insentif Pemungutan Retribusi Daerah - Tempat Rekreasi dan Olah raga- LO
+9.1.1.06.24	 Insentif Pemungutan Retribusi Daerah - Penyebrangan Air - LO
+9.1.1.06.25	 Insentif Pemungutan Retribusi Daerah - Penjualan Produksi Usaha Daerah - LO
+9.1.1.06.26	 Insentif Pemungutan Retribusi Daerah - Izin Mendirikan Bangunan - LO
+9.1.1.06.27	 Insentif Pemungutan Retribusi Daerah - Izin Tempat Penjualan Minuman Beralkohol - LO
+9.1.1.06.28	 Insentif Pemungutan Retribusi Daerah - Izin Gangguan - LO
+9.1.1.06.29	 Insentif Pemungutan Retribusi Daerah - Izin Trayek - LO
+9.1.1.06.30	 Insentif Pemungutan Retribusi Daerah - Izin Perikanan - LO
+9.1.1.06.31	 Insentif Pemungutan Retribusi Daerah - Pengendalian Lalu Lintas - LO
+9.1.1.06.32	 Insentif Pemungutan Retribusi Daerah - Perpanjangan Izin Mempekerjakan Tenaga Kerja Asing (IMTA) - LO
+9.1.1.07	 Uang Lembur - LO
+9.1.1.07.01	 Uang Lembur PNS - LO
+9.1.1.07.02	 Uang Lembur Non PNS - LO
+9.1.2	 Beban Barang dan Jasa
+9.1.2.01	 Beban Bahan Pakai Habis
+9.1.2.01.01	 Beban Persediaan alat tulis kantor
+9.1.2.01.02	 Beban Persediaan dokumen/administrasi tender
+9.1.2.01.03	 Beban Persediaan alat listrik dan elektronik ( lampu pijar
+9.1.2.01.04	 Beban Persediaan perangko
+9.1.2.01.05	 Beban Persediaan peralatan kebersihan dan bahan pembersih
+9.1.2.01.06	 Beban Persediaan Bahan Bakar Minyak/Gas
+9.1.2.01.07	 Beban Persediaan pengisian tabung pemadam kebakaran
+9.1.2.01.08	 Beban Persediaan pengisian isi tabung gas
+9.1.2.01.09	 Dst    .
+9.1.2.02	 Beban Persediaan Bahan/ Material
+9.1.2.02.01	 Beban Persediaan bahan baku bangunan
+9.1.2.02.02	 Beban Persediaan bahan/bibit tanaman
+9.1.2.02.03	 Beban Persediaan bibit ternak
+9.1.2.02.04	 Beban Persediaan bahan obat-obatan
+9.1.2.02.05	 Beban Persediaan bahan kimia
+9.1.2.02.06	 Beban Persediaan Makanan Pokok
+9.1.2.02.07	 Dst                   
+9.1.2.03	 Beban Jasa Kantor
+9.1.2.03.01	 Beban Jasa telepon
+9.1.2.03.02	 Beban Jasa air
+9.1.2.03.03	 Beban Jasa listrik
+9.1.2.03.04	 Beban Jasa pengumuman lelang/ pemenang lelang
+9.1.2.03.05	 Beban Jasa surat kabar/majalah
+9.1.2.03.06	 Beban Jasa kawat/faksimili/internet
+9.1.2.03.07	 Beban Jasa paket/pengiriman
+9.1.2.03.08	 Beban Jasa Sertifikasi
+9.1.2.03.09	 Beban Jasa Transaksi Keuangan
+9.1.2.03.10	 Beban Jasa administrasi pungutan Pajak Penerangan Jalan Umum
+9.1.2.03.11	 Beban Jasa administrasi pungutan Pajak Bahan Bakar Kendaraan Bermotor
+9.1.2.03.12	 Dst    ..
+9.1.2.04	 Beban Premi Asuransi
+9.1.2.04.01	 Beban Jasa Premi Asuransi Kesehatan
+9.1.2.04.02	 Beban Jasa Premi Asuransi Barang Milik Daerah
+9.1.2.04.03	 Dst                                       
+9.1.2.05	 Beban Perawatan Kendaraan Bermotor
+9.1.2.05.01	 Beban Jasa Service
+9.1.2.05.02	 Beban Penggantian Suku Cadang
+9.1.2.05.03	 Beban Bahan Bakar Minyak/Gas dan pelumas
+9.1.2.05.04	 Beban Jasa KIR
+9.1.2.05.05	 Beban Pajak Kendaraan Bermotor
+9.1.2.05.06	 Beban Bea Balik Nama Kendaraan Bermotor
+9.1.2.06	 Beban Cetak dan Penggandaan
+9.1.2.06.01	 Beban Cetak
+9.1.2.06.02	 Beban Penggandaan
+9.1.2.07	 Beban Sewa Rumah/Gedung/Gudang/Parkir
+9.1.2.07.01	 Beban sewa rumah jabatan/rumah dinas
+9.1.2.07.02	 Beban sewa gedung/ kantor/tempat
+9.1.2.07.03	 Beban sewa ruang rapat/pertemuan
+9.1.2.07.04	 Beban sewa tempat parkir/uang tambat/hanggar sarana mobilitas
+9.1.2.07.05	 Dst    .
+9.1.2.08.01	 Beban Sewa Sarana Mobilitas Darat
+9.1.2.08.02	 Beban Sewa Sarana Mobilitas Air
+9.1.2.08.03	 Beban Sewa Sarana Mobilitas Udara
+9.1.2.08.04	 Dst    
+9.1.2.09	 Beban Sewa Alat Berat
+9.1.2.09.01	 Beban Sewa Eskavator
+9.1.2.09.02	 Beban Sewa Buldoser
+9.1.2.09.03	 Dst    
+9.1.2.10	 Beban Sewa Perlengkapan dan Peralatan Kantor
+9.1.2.10.01	 Beban sewa meja kursi
+9.1.2.10.02	 Beban sewa komputer dan printer
+9.1.2.10.03	 Beban sewa proyektor
+9.1.2.10.04	 Beban sewa generator
+9.1.2.10.05	 Beban sewa tenda
+9.1.2.10.06	 Beban sewa pakaian adat/tradisional
+9.1.2.10.07	 Dst    .
+9.1.2.11	 Beban Makanan dan Minuman
+9.1.2.11.01	 Beban makanan dan minuman harian pegawai
+9.1.2.11.02	 Beban makanan dan minuman rapat
+9.1.2.11.03	 Beban makanan dan minuman tamu
+9.1.2.11.04	 Beban makanan dan minuman pelatihan
+9.1.2.11.05	 Dst    
+9.1.2.12	 Beban Pakaian Dinas dan Atributnya
+9.1.2.12.01	 Beban pakaian Dinas KDH dan WKDH
+9.1.2.12.02	 Beban Pakaian Sipil Harian (PSH)
+9.1.2.12.03	 BebanPakaian Sipil Lengkap (PSL)
+9.1.2.12.04	 Beban Pakaian Dinas Harian (PDH)
+9.1.2.12.05	 Beban Pakaian Dinas Upacara (PDU)
+9.1.2.12.06	 Dst    
+9.1.2.13	 Belanja Pakaian Kerja
+9.1.2.13.01	 Beban pakaian kerja lapangan
+9.1.2.13.02	 Dst    
+9.1.2.14	 Belanja Pakaian khusus dan hari-hari tertentu
+9.1.2.14.01	 Beban pakaian KORPRI
+9.1.2.14.02	 Beban pakaian adat daerah
+9.1.2.14.03	 Beban pakaian batik tradisional
+9.1.2.14.04	 Beban pakaian olahraga
+9.1.2.14.05	 Dst    
+9.1.2.15	 Beban Perjalanan Dinas
+9.1.2.15.01	 Beban perjalanan dinas dalam daerah
+9.1.2.15.02	 Beban perjalanan dinas luar daerah
+9.1.2.15.03	 Beban perjalanan dinas luar negeri
+9.1.2.16	 Beban Perjalanan Pindah Tugas
+9.1.2.16.01	 Beban perjalanan pindah tugas dalam daerah
+9.1.2.16.02	 Beban perjalanan pindah tugas luar daerah
+9.1.2.17	 Beban Pemulangan Pegawai
+9.1.2.17.01	 Beban pemulangan pegawai yang pensiun dalam daerah
+9.1.2.17.02	 Beban pemulangan pegawai yang pensiun luar daerah
+9.1.2.18	 Beban Pemeliharaan
+9.1.2.18.01	 Beban Pemeliharan Tanah
+9.1.2.18.02	 Beban Pemeliharan Peralatan dan Mesin
+9.1.2.18.03	 Beban Pemeliharan Gedung dan Bangunan
+9.1.2.18.04	 Beban Pemeliharan Jalan		 dan Jaringan	
+9.1.2.18.05	 Beban Pemeliharan Aset Tetap Lainnya
+9.1.2.18.06	 Dst                                       
+9.1.2.19	 Beban Jasa Konsultasi
+9.1.2.19.01	 Beban Jasa Konsultansi Penelitian
+9.1.2.19.02	 Beban Jasa Konsultansi Perencanaan
+9.1.2.19.03	 Beban Jasa Konsultansi Pengawasan
+9.1.2.19.04	 Dst    
+9.1.2.20	 Beban Barang Untuk Diserahkan kepada Masyarakat/Pihak Ketiga
+9.1.2.20.01	 Beban Barang Yang Akan Diserahkan Kepada Masyarakat
+9.1.2.20.02	 Beban Barang Yang Akan Diserahkan Kepada Pihak Ketiga
+9.1.2.21	 Beban Barang Untuk Dijual kepada Masyarakat/Pihak Ketiga
+9.1.2.21.01	 Beban Barang Yang Akan Dijual Kepada Masyarakat
+9.1.2.21.02	 Beban Barang Yang Akan Dijual Kepada Pihak Ketiga
+9.1.2.22	 Beban Beasiswa Pendidikan PNS
+9.1.2.22.01	 Beban beasiswa tugas belajar D3
+9.1.2.22.02	 Beban beasiswa tugas belajar S1
+9.1.2.22.03	 Beban beasiswa tugas belajar S2
+9.1.2.22.04	 Beban beasiswa tugas belajar S3
+9.1.2.22.05	 Dst                         
+9.1.2.23.01	 Beban kursus-kursus singkat/ pelatihan
+9.1.2.23.02	 Beban sosialisasi
+9.1.2.23.03	 Beban bimbingan teknis
+9.1.2.23.04	 Dst                         
+9.1.2.24	 Beban Honorarium Non Pegawai
+9.1.2.24.01	 Honorarium Tenaga Ahli/Narasumber/Instruktur
+9.1.2.24.02	 Moderator
+9.1.2.24.03	 Dst            ..
+9.1.2.25	 Honorarium PNS
+9.1.2.25.01	 Honorarium Panitia Pelaksana Kegiatan
+9.1.2.25.02	 Honorarium Tim Pengadaan Barang dan Jasa
+9.1.2.25.03	 Honorarium Tenaga Ahli/Instruktur/Narasumber
+9.1.2.25.04	 Dst      
+9.1.2.26	 Honorarium Non PNS
+9.1.2.26.01	 Honorarium Tenaga Ahli/Instruktur/Narasumber
+9.1.2.26.02	 Honorarium Pegawai Honorer/Tidak Tetap
+9.1.2.26.03	 Dst      
+9.1.2.27	 Uang untuk diberikan kepada Pihak Ketiga/Masyarakat
+9.1.2.27.01	 Uang untuk diberikan kepada Pihak Ketiga
+9.1.2.27.02	 Uang untuk diberikan kepada Pihak Masyarakat
+9.1.2.27.03	 Dst      
+9.1.3	 Beban Bunga
+9.1.3.01	 Bunga Utang Pinjaman
+9.1.3.01.01	 Beban Bunga Utang Pinjaman kepada Pemerintah
+9.1.3.01.02	 Beban Bunga Utang Pinjaman kepada Pemerintah Daerah lainnya
+9.1.3.01.03	 Beban Bunga Utang Pinjaman kepada Lembaga Keuangan Bank
+9.1.3.01.04	 Beban Bunga Utang Pinjaman kepada Lembaga Keuangan Bukan Bank
+9.1.3.01.05	 Bunga Utang Pinjaman Lainnya
+9.1.3.02	 Bunga Utang Obligasi
+9.1.3.02.01	 Bunga Utang Obligasi
+9.1.3.2.31	 Senjata Api
+9.1.4	 Beban Subsidi
+9.1.4.01	 Beban Subsidi
+9.1.4.01.01	 Beban Subsidi kepada BUMN
+9.1.4.01.02	 Beban Subsidi kepada BUMD
+9.1.4.01.03	 Beban Subsidi kepada Pihak Ketiga Lainnya
+9.1.5	 Beban Hibah
+9.1.5.01	 Beban Hibah kepada Pemerintah
+9.1.5.01.01	 Beban Hibah Barang kepada Pemerintah
+9.1.5.02	 Beban Hibah kepada Pemerintah Daerah lainnya
+9.1.5.02.01	 Beban Hibah kepada Pemerintah Provinsi
+9.1.5.02.02	 Beban Hibah kepada Pemerintah Kabupaten
+9.1.5.02.03	 Beban Hibah kepada Pemerintah Kota
+9.1.5.03	 Beban Hibah kepada Perusahaan Daerah/BUMD
+9.1.5.03.01	 Beban Hibah kepada Perusahaan Daerah/BUMD   ..
+9.1.5.03.02	 Dst   ..
+9.1.5.04	 Beban Hibah kepada Kelompok Masyarakat
+9.1.5.04.01	 Dst   ..
+9.1.5.05	 Beban Hibah kepada Organisasi Kemasyarakatan
+9.1.5.05.01	 Beban Hibah kepada Organisasi Kemasyarakatan   ..
+9.1.5.05.02	 Dst    
+9.1.5.06	 Beban Hibah Dana BOS untuk Satuan Pendidikan Dasar***
+9.1.5.06.01	 Beban Hibah Dana BOS ke Satuan Pendidikan Dasar di Kabupaten/Kota   ..
+9.1.5.06.02	 Dst    
+9.1.6	 Beban Bantuan Sosial
+9.1.6.01	 Beban Bantuan Sosial kepada Organisasi Sosial Kemasyarakatan
+9.1.6.01.01	 Beban Bantuan Sosial kepada Organisasi Sosial Kemasyarakatan    
+9.1.6.01.02	 Dst                         
+9.1.6.02	 Beban Bantuan Sosial kepada Masyarakat
+9.1.6.02.01	 Beban Bantuan Sosial kepada    .
+9.1.6.02.02	 Dst                         
+9.1.7	 Beban Penyusutan dan Amortisasi
+9.1.7.01	 Beban Penyusutan Peralatan dan Mesin
+9.1.7.01.01	 Beban Penyusutan Alat-Alat Besar Darat
+9.1.7.01.02	 Beban Penyusutan Alat-Alat Besar Apung
+9.1.7.01.03	 Beban Penyusutan Alat-alat Bantu
+9.1.7.01.04	 Beban Penyusutan Alat Angkutan Darat Bermotor
+9.1.7.01.05	 Beban Penyusutan Alat Angkutan Berat Tak Bermotor
+9.1.7.01.07	 Beban Penyusutan Alat Angkut Apung Tak Bermotor
+9.1.7.01.08	 Beban Penyusutan Alat Angkut Bermotor Udara
+9.1.7.01.09	 Beban Penyusutan Alat Bengkel Bermesin
+9.1.7.01.10	 Beban Penyusutan Alat Bengkel Tak Bermesin
+9.1.7.01.11	 Beban Penyusutan Alat Ukur
+9.1.7.01.12	 Beban Penyusutan Alat Pengolahan Pertanian
+9.1.7.01.13	 Beban Penyusutan Alat Pemeliharaan Tanaman/Alat Penyimpan Pertanian
+9.1.7.01.14	 Beban Penyusutan Alat Kantor
+9.1.7.01.15	 Beban Penyusutan Alat Rumah Tangga
+9.1.7.01.16	 Beban Penyusutan Peralatan Komputer
+9.1.7.01.17	 Beban Penyusutan Meja Dan Kursi Kerja/Rapat Pejabat
+9.1.7.01.18	 Beban Penyusutan Alat Studio
+9.1.7.01.19	 Beban Penyusutan Alat Komunikasi
+9.1.7.01.20	 Beban Penyusutan Peralatan Pemancar
+9.1.7.01.21	 Beban Penyusutan Alat Kedokteran
+9.1.7.01.22	 Beban Penyusutan Alat Kesehatan
+9.1.7.01.23	 Beban Penyusutan Unit-Unit Laboratorium
+9.1.7.01.24	 Beban Penyusutan Alat Peraga/Praktek Sekolah
+9.1.7.01.25	 Beban Penyusutan Unit Alat Laboratorium Kimia Nuklir
+9.1.7.01.26	 Beban Penyusutan Alat Laboratorium Fisika Nuklir / Elektronika
+9.1.7.01.27	 Beban Penyusutan Alat Proteksi Radiasi / Proteksi Lingkungan
+9.1.7.01.28	 Beban Penyusutan Radiation Aplication and Non Destructive Testing Laboratory (BATAM)
+9.1.7.01.29	 Beban Penyusutan Alat Laboratorium Lingkungan Hidup
+9.1.7.01.30	 Beban Penyusutan Peralatan Laboratorium Hidrodinamika
+9.1.7.01.31	 Beban Penyusutan Senjata Api
+9.1.7.01.32	 Beban Penyusutan Persenjataan Non Senjata Api
+9.1.7.01.33	 Beban Penyusutan Alat Keamanan dan Perlindungan
+9.1.7.02	 Beban Penyusutan Gedung dan Bangunan
+9.1.7.02.01	 Beban Penyusutan Bangunan Gedung Tempat Kerja
+9.1.7.02.02	 Beban Penyusutan Bangunan Gedung Tempat Tinggal
+9.1.7.02.03	 Beban Penyusutan Bangunan Menara
+9.1.7.02.04	 Beban Penyusutan Bangunan Bersejarah
+9.1.7.02.05	 Beban Penyusutan Tugu Peringatan
+9.1.7.02.06	 Beban Penyusutan Candi
+9.1.7.02.07	 Beban Penyusutan Monumen/Bangunan Bersejarah
+9.1.7.02.08	 Beban Penyusutan Tugu Peringatan Lain
+9.1.7.02.09	 Beban Penyusutan Tugu Titik Kontrol/Pasti
+9.1.7.02.10	 Beban Penyusutan Bangunan Rambu-Rambu
+9.1.7.02.11	 Beban Penyusutan Bangunan Rambu-Rambu Lalu Lintas Udara
+9.1.7.03	 Beban Penyusutan Jalan		 dan Jaringan	
+9.1.7.03.01	 Beban Penyusutan Jalan
+9.1.7.03.02	 Beban Penyusutan Jembatan
+9.1.7.03.03	 Beban Penyusutan Bangunan Air Irigasi
+9.1.7.03.04	 Beban Penyusutan Bangunan Air Pasang Surut
+9.1.7.03.05	 Beban Penyusutan Bangunan Air Rawa
+9.1.7.03.06	 Beban Penyusutan Bangunan Pengaman Sungai dan Penanggulangan Bencana Alam
+9.1.7.03.07	 Beban Penyusutan Bangunan Pengembangan Sumber Air dan Air Tanah
+9.1.7.03.08	 Beban Penyusutan Bangunan Air Bersih/Baku
+9.1.7.03.09	 Beban Penyusutan Bangunan Air Kotor
+9.1.7.03.10	 Beban Penyusutan Bangunan Air
+9.1.7.03.11	 Beban Penyusutan Instalasi Air Minum/Air Bersih
+9.1.7.03.12	 Beban Penyusutan Instalasi Air Kotor
+9.1.7.03.13	 Beban Penyusutan Instalasi Pengolahan Sampah
+9.1.7.03.14	 Beban Penyusutan Instalasi Pengolahan Bahan Bangunan
+9.1.7.03.15	 Beban Penyusutan Instalasi Pembangkit Listrik
+9.1.7.03.16	 Beban Penyusutan Instalasi Gardu Listrik
+9.1.7.03.17	 Beban Penyusutan Instalasi Pertahanan
+9.1.7.03.18	 Beban Penyusutan Instalasi Gas
+9.1.7.03.19	 Beban Penyusutan Instalasi Pengaman
+9.1.7.03.20	 Beban Penyusutan Jaringan Air Minum
+9.1.7.03.21	 Beban Penyusutan Jaringan Listrik
+9.1.7.03.22	 Beban Penyusutan Jaringan Telepon
+9.1.7.03.23	 Beban Penyusutan Jaringan Gas
+9.1.7.04	 Beban Amortisasi Aset Tidak Berwujud
+9.1.7.04.01	 Beban Amortisasi Goodwill
+9.1.7.04.02	 Beban Amortisasi Lisensi dan frenchise
+9.1.7.04.03	 Beban Amortisasi Hak Cipta
+9.1.7.04.04	 Beban Amortisasi Paten
+9.1.7.04.05	 Beban Amortisasi Aset Tidat Berwujud Lainnya
+9.1.8	 Beban Penyisihan Piutang
+9.1.8.01	 Beban Penyisihan Piutang Pendapatan
+9.1.8.01.01	 Beban Penyisihan Piutang Pajak
+9.1.8.01.02	 Beban Penyisihan Piutang Retribusi
+9.1.8.01.03	 Beban Penyisihan Piutang Hasil Pengelolaan Kekayaan Daerah yang Dipisahkan
+9.1.8.01.04	 Beban Penyisihan Piutang Lain-lain PAD yang Sah
+9.1.8.01.05	 Beban Penyisihan Piutang Transfer Pemerintah Pusat
+9.1.8.01.06	 Beban Penyisihan Piutang Transfer Pemerintah Pusat - Lainnya
+9.1.8.01.07	 Beban Penyisihan Piutang Transfer Pemerintah Daerah Lainnya
+9.1.8.01.08	 Beban Penyisihan Piutang Bantuan Keuangan
+9.1.8.01.09	 Beban Penyisihan Piutang Hibah
+9.1.8.01.10	 Beban Penyisihan Piutang Pendapatan Lainnya
+9.1.8.01.11	 Dst                         
+9.1.8.02	 Beban Penyisihan Piutang Lainnya
+9.1.8.02.01	 Beban Penyisihan Bagian Lancar Tagihan Jangka Panjang
+9.1.8.02.03	 Beban Penyisihan Bagian Lancar Tagihan Penjualan Angsuran
+9.1.8.02.04	 Beban Penyisihan Bagian lancar Tuntutan Ganti Rugi
+9.1.8.02.05	 Beban Penyisihan Uang Muka
+9.1.8.02.06	 Dst                         
+9.1.9	 Beban Lain-lain
+9.1.9.01	 Beban Penurunan Nilai Investasi
+9.1.9.01.01	 Beban Penurunan Nilai Investasi
+9.1.9.02	 Beban Penyisihan Dana Bergulir
+9.1.9.02.01	 Beban Penyisihan Dana Bergulir
+9.1.9.03	 Beban Lain-lain
+9.1.9.03.01	 Beban Lain-lain
+9.2	 BEBAN TRANSFER
+9.2.1	 Beban Transfer Bagi Hasil Pajak Daerah
+9.2.1.01	 Beban Transfer Bagi Hasil Pajak Daerah Kepada Pemerintahan Kabupaten/Kota
+9.2.1.01.01	 Beban Transfer Bagi Hasil Pajak Daerah Kepada Pemerintahan Kabupaten/Kota   .
+9.2.1.01.02	 Dst   .
+9.2.2	 Beban Transfer Bagi Hasil Pendapatan Lainnya
+9.2.2.01	 Beban Transfer Bagi Hasil Pendapatan Lainnya Kepada Pemerintahan Kabupaten/Kota
+9.2.2.01.01	 Beban Transfer Bagi Hasil Pendapatan Lainnya Kepada Pemerintahan Kabupaten/Kota   ..
+9.2.2.01.02	 Dst                                       
+9.2.3	 Beban Transfer Bantuan Keuangan ke Pemerintah Daerah Lainnya
+9.2.3.01	 Beban Transfer Bantuan Keuangan ke Propinsi
+9.2.3.01.01	 Beban Transfer Bantuan Keuangan ke Propinsi   .
+9.2.3.01.02	 Dst   ..
+9.2.3.02	 Beban Transfer Bantuan Keuangan ke Kabupaten/Kota
+9.2.3.02.01	 Beban Transfer Bantuan Keuangan ke Kabupaten/Kota   ..
+9.2.3.02.02	 Dst   ..
+9.2.4	 Beban Transfer Bantuan Keuangan ke Desa
+9.2.4.01	 Beban Transfer Bantuan Keuangan ke Desa
+9.2.4.01.01	 Beban Transfer Bantuan Keuangan ke Desa   .
+9.2.4.01.02	 Dst   .
+9.2.5	 Beban Transfer Bantuan Keuangan Lainnya
+9.2.5.01	 Beban Transfer Bantuan Kepada Partai Politik
+9.2.5.01.01	 Beban Transfer Bantuan Kepada Partai Politik   ..
+9.2.5.01.02	 Dst   .
+9.2.6	 Beban Transfer Dana Otonomi Khusus
+9.2.6.01	 Beban Transfer Dana Otsus Kabupaten/Kota
+9.2.6.01.01	 Beban Transfer Dana Otsus Kabupaten/Kota   
+9.2.6.01.02	 Dst   .
+9.3	 DEFISIT NON OPERASIONAL
+9.3.1	 Defisit Penjualan Aset Non Lancar - LO
+9.3.1.01	 Defisit Penjualan Aset Non Lancar - LO
+9.3.1.01.01	 Defisit Penjualan Aset Tanah - LO
+9.3.1.01.02	 Defisit Penjualan Aset Peralatan dan Mesin - LO
+9.3.1.01.03	 Defisit Penjualan Aset Gedung dan Bangunan - LO
+9.3.1.01.04	 Defisit Penjualan Aset Non Lancar/Aset Tetap Lainnya - LO
+9.3.1.01.05	 Defisit Pelepasan Investasi Jangka Panjang - LO
+9.3.1.01.06	 Defisit Penjualan Aset Lain-lain - LO
+9.3.1.01.07	 Dst                         
+9.3.2	 Defisit Penyelesaian Kewajiban Jangka Panjang - LO
+9.3.2.01	 Defisit Penyelesaian Kewajiban Jangka Panjang - LO
+9.3.2.01.01	 Defisit Penyelesaian Utang Dalam Negeri Sektor Perbankan - LO
+9.3.2.01.02	 Defisit Penyelesaian Utang Dari Lembaga Keuangan Bukan Bank - LO
+9.3.2.01.03	 Defisit Penyelesaian Utang Dalam Negeri - Obligasi - LO
+9.3.2.01.04	 Defisit Penyelesaian Utang Pemerintah Pusat - LO
+9.3.2.01.05	 Defisit Penyelesaian Utang Pemerintah Provinsi - LO
+9.3.2.01.06	 Defisit Penyelesaian Utang Pemerintah Kabupaten/Kota - LO
+9.3.2.01.07	 Defisit Penyelesaian Premium (Diskonto) Obligasi - LO
+9.3.2.01.08	 Dst                         
+9.3.3.01	 Defisit dari Kegiatan Non Operasional Lainnya - LO
+9.3.3.01.01	 Defisit dari Kegiatan Non Operasional Lainnya - LO
+9.3.3.01.02	 Defisit Pelepasan Investasi Jangka Pendek - LO
+9.3.3.01.03	 Dst                         
+9.4	 BEBAN LUAR BIASA
+9.4.1	 Beban Luar Biasa
+9.4.1.01	 Beban Luar Biasa
+9.4.1.01.01	 Beban Bencana Alam
+9.4.1.01.02	 Beban Luar Biasa Lainnya

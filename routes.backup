@@ -1,0 +1,241 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.13
+-- Dumped by pg_dump version 9.1.3
+-- Started on 2014-12-31 14:02:04
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 206 (class 1259 OID 186108)
+-- Dependencies: 2041 2042 2043 5
+-- Name: routes; Type: TABLE; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+CREATE TABLE routes (
+    id integer NOT NULL,
+    kode character varying(32),
+    disabled smallint DEFAULT 0 NOT NULL,
+    created timestamp without time zone DEFAULT now() NOT NULL,
+    updated timestamp without time zone,
+    create_uid integer DEFAULT 1 NOT NULL,
+    update_uid integer,
+    nama character varying(128),
+    path character varying(256) NOT NULL,
+    factory character varying(256),
+    perm_name character varying(16)
+);
+
+
+ALTER TABLE public.routes OWNER TO aagusti;
+
+--
+-- TOC entry 205 (class 1259 OID 186106)
+-- Dependencies: 5 206
+-- Name: routes_id_seq; Type: SEQUENCE; Schema: public; Owner: aagusti
+--
+
+CREATE SEQUENCE routes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.routes_id_seq OWNER TO aagusti;
+
+--
+-- TOC entry 2051 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: routes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: aagusti
+--
+
+ALTER SEQUENCE routes_id_seq OWNED BY routes.id;
+
+
+--
+-- TOC entry 2052 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: routes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: aagusti
+--
+
+SELECT pg_catalog.setval('routes_id_seq', 182, true);
+
+
+--
+-- TOC entry 2040 (class 2604 OID 186111)
+-- Dependencies: 206 205 206
+-- Name: id; Type: DEFAULT; Schema: public; Owner: aagusti
+--
+
+ALTER TABLE ONLY routes ALTER COLUMN id SET DEFAULT nextval('routes_id_seq'::regclass);
+
+
+--
+-- TOC entry 2048 (class 0 OID 186108)
+-- Dependencies: 206
+-- Data for Name: routes; Type: TABLE DATA; Schema: public; Owner: aagusti
+--
+
+COPY routes (id, kode, disabled, created, updated, create_uid, update_uid, nama, path, factory, perm_name) FROM stdin;
+161	ar-invoice-item-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit AR Invoice	/ar-invoice-item/{id}/edit	\N	edit
+141	routes-add	0	2014-12-24 03:04:42.837591	2014-12-30 19:39:51.475003	1	1	Tambah Route	/routes/add		add
+109	app-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Aplikasi	/app/add	\N	add
+119	user-group-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Group User	/user-group/add	\N	add
+129	gaji-peg-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Gaji Pegawai	/gaji-peg/add	\N	add
+142	routes-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Route	/routes/{id}/edit	\N	edit
+73	carousel-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Carousel	/carousel/{id}/edit	\N	edit
+120	user-group-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Group User	/user-group/{id}/edit	\N	edit
+130	gaji-peg-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Gaji Pegawai	/gaji-peg/{id}/edit	\N	edit
+162	ar-invoice-item-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus AR Invoice	/ar-invoice-item/{id}/delete	\N	delete
+143	routes-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Route	/routes/{id}/delete	\N	delete
+74	carousel-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Carousel	/carousel/{id}/delete	\N	delete
+137	eis-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Executive Summary	/eis/act/{act}	\N	read
+117	rekening-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Rekening Act	/rekening/act/{act}	\N	read
+163	ar-invoice-item-act	0	2014-12-24 03:04:42.837591	\N	1	\N	AR Invoice Act	/ar-invoice-item/act/{act}	\N	read
+144	routes-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Route Act	/routes/act/{act}	\N	read
+164	ar-invoice-item-csv	0	2014-12-24 03:04:42.837591	\N	1	\N	AR Invoice Act	/ar-invoice-item/csv/{csv}	\N	read
+70	admin	0	2014-12-24 03:04:42.837591	\N	1	\N	Administrator	/admin	\N	read
+71	carousel	0	2014-12-24 03:04:42.837591	\N	1	\N	Carousel	/carousel	\N	read
+139	main	0	2014-12-24 03:04:42.837591	\N	1	\N	Main Aplikasi	/main	\N	read
+135	gaji-potongan-csv	0	2014-12-24 03:04:42.837591	\N	1	\N	Gaji Potongan Act	/gaji-potongan/csv	\N	read
+133	gaji-peg-csv	0	2014-12-24 03:04:42.837591	\N	1	\N	Gaji Pegawai Act	/gaji-peg/csv	\N	read
+140	routes	0	2014-12-24 03:04:42.837591	\N	1	\N	Route	/routes	\N	read
+145	routes-csv	0	2014-12-24 03:04:42.837591	\N	1	\N	Route Act	/routes/csv/{act}	\N	read
+138	eis-calc-all	0	2014-12-24 03:04:42.837591	\N	1	\N	Executive Summary Calc	/eis/calc-all	\N	read
+151	group-routes-csv	0	2014-12-24 03:04:42.837591	\N	1	\N	Group Route csv	/group/routes/csv/{act}	\N	read
+149	group-routes-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Group Route	/group/routes/{id}/{id2}/delete	\N	delete
+127	user-unit-act	0	2014-12-24 03:04:42.837591	\N	1	\N	User Unit Act	/user/unit/act/{act}	\N	read
+159	ar-invoice-item	0	2014-12-24 03:04:42.837591	\N	1	\N	AR Invoice	/ar-invoice-item	\N	view
+160	ar-invoice-item-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah AR Invoice	/ar-invoice-item/add	\N	add
+86	eis-chart-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Tambah eis-chart	/eis-chart/add	\N	add
+72	carousel-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Carousel	/carousel/add	\N	add
+98	eis-item-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah eis-item	/eis-item/add	\N	add
+99	eis-item-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit eis-item	/eis-item/{id}/edit	\N	edit
+100	eis-item-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus eis-item	/eis-item/{id}/delete	\N	delete
+75	carousel-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Carousel	/carousel/act/{act}	\N	read
+150	group-routes-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Group Route Act	/group/routes/act/{act}	\N	read
+37	home	0	2014-12-24 03:04:42.837591	2014-12-30 19:36:59.116097	1	1	Home	/	None	read
+85	eis-chart	0	2014-12-24 03:04:42.837591	\N	1	\N	eis-chart	/eis-chart	\N	read
+39	login	0	2014-12-24 03:04:42.837591	\N	1	\N	Login	/login	\N	read
+97	eis-item	0	2014-12-24 03:04:42.837591	\N	1	\N	EIS item	/eis-item	\N	read
+173	ar-payment-item-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah AR Payment	/ar-payment-item/add	\N	add
+174	ar-payment-item-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit AR Payment	/ar-payment-item/{id}/edit	\N	edit
+175	ar-payment-item-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus AR Payment	/ar-payment-item/{id}/delete	\N	delete
+176	ar-payment-item-act	0	2014-12-24 03:04:42.837591	\N	1	\N	AR Payment Act	/ar-payment-item/act/{act}	\N	read
+155	anggaran	0	2014-12-24 03:04:42.837591	\N	1	\N	Anggaran	/anggaran	\N	view
+177	ar-payment-item-csv	0	2014-12-24 03:04:42.837591	\N	1	\N	AR Payment Act	/ar-payment-item/csv/{csv}	\N	read
+172	ar-payment-item	0	2014-12-24 03:04:42.837591	\N	1	\N	AR Payment	/ar-payment-item	\N	view
+87	eis-chart-item	0	2014-12-24 03:04:42.837591	\N	1	\N	EIS-chart-item	/eis-chart-item/{chart_id}	\N	read
+88	eis-chart-item-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah eis-chart-item	/eis-chart-item/{chart_id/add	\N	add
+89	eis-chart-item-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit eis-chart-item	/eis-chart-item/{chart_id}/{id}/edit	\N	edit
+154	skpd	0	2014-12-24 03:04:42.837591	\N	1	\N	Penatausahaan dan Akuntansi SKPD	/skpd	\N	view
+90	eis-chart-item-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus eis-chart-item	/eis-chart-item/{chart_id}/{id}/delete	\N	delete
+91	eis-chart-item-act	0	2014-12-24 03:04:42.837591	\N	1	\N	eis-chart-item	/eis-chart-item/{chart_id}/act/{act}	\N	read
+179	ar-report-item-inv-tgl	0	2014-12-24 03:04:42.837591	\N	1	\N	Laporan Penetapan Pertanggal	/ar-report-item/inv-tgl	\N	read
+180	ar-report-item-inv-bln	0	2014-12-24 03:04:42.837591	\N	1	\N	Laporan Penetapan Bulanan	/ar-report-item/inv-bln	\N	read
+181	ar-report-item-pay-tgl	0	2014-12-24 03:04:42.837591	\N	1	\N	Laporan Penetapan Pertanggal	/ar-report-item/pay-tgl	\N	read
+182	ar-report-item-pay-bln	0	2014-12-24 03:04:42.837591	\N	1	\N	Laporan Penetapan Bulanan	/ar-report-item/pay-bln	\N	read
+178	ar-report-item	0	2014-12-24 03:04:42.837591	\N	1	\N	Laporan Pendapatan	/ar-report-item	\N	view
+106	eis-slide-act	0	2014-12-24 03:04:42.837591	\N	1	\N	eis-slide	/eis-slide/act/{act}	\N	read
+114	rekening-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Rekening	/rekening/add	\N	add
+44	user-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah user	/user/add	\N	add
+50	group-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah group	/group/add	\N	add
+54	urusan-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah urusan	/urusan/add	\N	add
+59	unit-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah unit	/unit/add	\N	add
+66	gaji-potongan-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Potongan	/gaji-potongan/add	\N	add
+147	group-routes-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah Group Route	/group/routes/add	\N	add
+103	eis-slide-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah eis-slide	/eis-slide/add	\N	add
+115	rekening-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Rekening	/rekening/{id}/edit	\N	edit
+45	user-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit user	/user/{id}/edit	\N	edit
+82	eis-chart-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit eis-chart	/eis-chart/{id}/edit	\N	edit
+51	group-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit group	/group/{id}/edit	\N	edit
+55	urusan-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit urusan	/urusan/{id}/edit	\N	edit
+60	unit-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit unit	/unit/{id}/edit	\N	edit
+67	gaji-potongan-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Potongan	/gaji-potongan/{id}/edit	\N	edit
+104	eis-slide-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit eis-slide	/eis-slide/{id}/edit	\N	edit
+110	app-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit Aplikasi	/app/{id}/edit	\N	edit
+116	rekening-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Rekening	/rekening/{id}/delete	\N	delete
+46	user-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus user	/user/{id}/delete	\N	delete
+83	eis-chart-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus eis-chart	/eis-chart/{id}/delete	\N	delete
+52	group-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus group	/group/{id}/delete	\N	delete
+56	urusan-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus urusan	/urusan/{id}/delete	\N	delete
+61	unit-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus unit	/unit/{id}/delete	\N	delete
+68	gaji-potongan-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Potongan	/gaji-potongan/{id}/delete	\N	delete
+105	eis-slide-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus eis-slide	/eis-slide/{id}/delete	\N	delete
+111	app-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Aplikasi	/app/{id}/delete	\N	delete
+121	user-group-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Group User	/user-group/{id}/delete	\N	delete
+131	gaji-peg-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus Gaji Pegawai	/gaji-peg/{id}/delete	\N	delete
+101	eis-item-act	0	2014-12-24 03:04:42.837591	\N	1	\N	eis-item	/eis-item/act{act}	\N	read
+47	change-act	0	2014-12-24 03:04:42.837591	\N	1	\N	change	/change/{act}	\N	read
+43	user-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Users	/user/act/{act}	\N	read
+49	group-act	0	2014-12-24 03:04:42.837591	\N	1	\N	NULL	/group/act/{act}	\N	read
+57	urusan-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Action	/urusan/act/{act}	\N	read
+62	unit-act	0	2014-12-24 03:04:42.837591	\N	1	\N	AdminFactory	/unit/act/{act}	\N	read
+64	gaji-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Action	/gaji/act/{act}	\N	read
+69	gaji-potongan-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Action Potongan Gaji	/gaji-potongan/act/{act}	\N	read
+84	eis-chart-act	0	2014-12-24 03:04:42.837591	\N	1	\N	eis-chart	/eis-chart/act/{act}	\N	read
+132	gaji-peg-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Gaji Pegawai Act	/gaji-peg/act/{act}	\N	read
+112	app-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Aplikasi Act	/app/act/{act}	\N	read
+122	user-group-act	0	2014-12-24 03:04:42.837591	\N	1	\N	Group User Act	/user-group/act/{act}	\N	read
+113	rekening	0	2014-12-24 03:04:42.837591	\N	1	\N	Rekening	/rekening	\N	read
+40	logout	0	2014-12-24 03:04:42.837591	\N	1	\N	Logout	/logout	\N	read
+41	password	0	2014-12-24 03:04:42.837591	\N	1	\N	Change password	/password	\N	read
+42	user	0	2014-12-24 03:04:42.837591	\N	1	\N	Users	/user	\N	read
+48	group	0	2014-12-24 03:04:42.837591	\N	1	\N	Groups	/group	\N	read
+53	urusan	0	2014-12-24 03:04:42.837591	\N	1	\N	urusans	/urusan	\N	read
+58	unit	0	2014-12-24 03:04:42.837591	\N	1	\N	units	/unit	\N	read
+65	gaji-potongan	0	2014-12-24 03:04:42.837591	\N	1	\N	Potongan Gaji	/gaji-potongan	\N	read
+63	gaji	0	2014-12-24 03:04:42.837591	\N	1	\N	Gaji	/gaji	\N	read
+146	group-routes	0	2014-12-24 03:04:42.837591	\N	1	\N	Group Route	/group/routes	\N	read
+102	eis-slide	0	2014-12-24 03:04:42.837591	\N	1	\N	EIS slide	/eis-slide	\N	read
+108	app	0	2014-12-24 03:04:42.837591	\N	1	\N	Aplikasi	/app	\N	read
+118	user-group	0	2014-12-24 03:04:42.837591	\N	1	\N	Group User	/user-group	\N	read
+128	gaji-peg	0	2014-12-24 03:04:42.837591	\N	1	\N	Gaji Pegawai	/gaji-peg	\N	read
+136	eis	0	2014-12-24 03:04:42.837591	\N	1	\N	Executive Summary	/eis	\N	read
+123	user-unit	0	2014-12-24 03:04:42.837591	\N	1	\N	User Unit	/user/unit	\N	read
+124	user-unit-add	0	2014-12-24 03:04:42.837591	\N	1	\N	Tambah User Unit	/user/unit/add	\N	add
+125	user-unit-edit	0	2014-12-24 03:04:42.837591	\N	1	\N	Edit User Unit	/user/unit/{id}/edit	\N	edit
+126	user-unit-delete	0	2014-12-24 03:04:42.837591	\N	1	\N	Hapus User Unit	/user/unit/{id}/delete	\N	delete
+\.
+
+
+--
+-- TOC entry 2045 (class 2606 OID 202074)
+-- Dependencies: 206 206
+-- Name: routes_kode_key; Type: CONSTRAINT; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY routes
+    ADD CONSTRAINT routes_kode_key UNIQUE (kode);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 186116)
+-- Dependencies: 206 206
+-- Name: routes_pkey; Type: CONSTRAINT; Schema: public; Owner: aagusti; Tablespace: 
+--
+
+ALTER TABLE ONLY routes
+    ADD CONSTRAINT routes_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2014-12-31 14:02:05
+
+--
+-- PostgreSQL database dump complete
+--
+

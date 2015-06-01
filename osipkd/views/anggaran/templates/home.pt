@@ -1,0 +1,21 @@
+<html metal:use-macro="load: base.pt">
+<div metal:fill-slot="content">
+
+<!-- Main component for a primary marketing message or call to action -->
+<div class="well">
+<h1>os-Anggaran</h1>
+<p><img src="/files/logo.png" class="img-float img-thumbnail"/>
+Selamat Datang di Aplikasi <code>Anggaran Pendapatan dan Belanja Daerah</code>
+
+<p>Aplikasi Anggaran adalah aplikasi yang digunakan untuk menganggarkan kegiatan-kegitan 
+   yang akan dilaksanakan pada pemerintah daerah module ini terdiri dari:
+<p><ul>
+   <li>Anggaran Pendapatan</li>
+   <li>Anggaran Belanja Tidak Langsung</li>
+   <li>Anggaran Belanja Langsung</li>
+   <li>Anggaran Pembiayaan</li>
+   </ul>
+</div><!--well-->
+
+</div>
+</html>

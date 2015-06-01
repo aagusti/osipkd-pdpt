@@ -1,0 +1,42 @@
+<html metal:use-macro="load: ../../apptemplate.pt">
+    <div metal:fill-slot="nav">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Seting <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/anggaran/001">Tahun Anggaran</a></li>
+                    <li><a href="/anggaran/002">SKPD</a></li>
+                </ul>
+            </li>
+
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anggaran <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/anggaran/010">Pendapatan</a></li>
+                    <li><a href="/anggaran/021">Belanja Tidak Langsung</a></li>
+                    <li><a href="/anggaran/022">Belanja Langsung</a></li>
+                    <li><a href="/anggaran/031">Penerimaan</a></li>
+                    <li><a href="/anggaran/032">Pengeluaran</a></li>
+                </ul>
+            </li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laporan <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/anggaran/r000">Master Data</a></li>
+                    <li><a href="/anggaran/r100">Rencana Kegiatan Anggaran</a></li>
+                    <li><a href="/anggaran/r200">Dokumen Pelaksanaan Anggaran</a></li>
+                    <li><a href="/anggaran/r300">Rencana Perubahan Kegiatan Anggaran</a></li>
+                    <li><a href="/anggaran/r400">Dokumen Perubahan Pelaksanaan Anggaran</a></li>
+                    <li><a href="/anggaran/r500">APBD</a></li>
+                    <li><a href="/anggaran/r600">APBD Perubahan</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div metal:fill-slot="content">
+        <div metal:define-slot="content2">
+        </div>
+    </div>
+</html>

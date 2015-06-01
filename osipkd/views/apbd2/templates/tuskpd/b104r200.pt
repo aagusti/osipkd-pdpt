@@ -1,0 +1,356 @@
+<html metal:use-macro="load: ../tuskpd/template.pt">
+  <div metal:fill-slot="content2" class="panel panel-default ">
+    <script>
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/anggaran/022/grid";
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource": oTableUrl,
+            "bServerSide": true,
+            "bProcessing": true,
+            
+            "sDom": '<"toolbar">frtip',
+            "bScrollCollapse": true,
+            "bSort": true,
+            "bInfo": false,
+            "bFilter": true,
+            "bAutoWidth": false,
+            "bPaginate": true,
+            "sPaginationType": "full_numbers",
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [
+                {
+                    "bSearchable": false,
+                    "bVisible": false,
+                    "aTargets": [0,4,5,6,7]
+                },
+                {
+                    // The `data` parameter refers to the data for the cell (defined by the
+                    // `data` option, which defaults to the column being worked with, in
+                    // this case `data: 0`.
+                    "render": function ( data, type, row ) {
+                        return row[4]+'.'+row[5]+'.'+row[6]+'-'+row[7];
+                    },
+                    "targets": 1
+                },
+            ],
+            "aoColumns": [
+                null, {
+                    "sWidth": "75px"
+                }, null, null, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "150px",
+                }
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        //$("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+		
+        $('#btn_cetak').click(function () {
+            if($('#unit_nm').val()=='Pilih Unit') {
+                alert('Silahkan pilih Unit terlebih dahulu!');
+                return;
+            }
+            
+            var jenis = $('input[name="jenis"]:checked').val();
+            var tipe = $('#tipe').val();
+            var mulai = ($('#mulai').val()).substr(6,4)+"-"+($('#mulai').val()).substr(3,2)+"-"+($('#mulai').val()).substr(0,2);
+            var selesai = ($('#selesai').val()).substr(6,4)+"-"+($('#selesai').val()).substr(3,2)+"-"+($('#selesai').val()).substr(0,2);
+            
+            if($('#mulai').val()=='') {
+                alert('Silahkan isikan tanggal terlebih dahulu!');
+                return;
+            }
+            if($('#selesai').val()=='') {
+                alert('Silahkan isikan tanggal terlebih dahulu!');
+                return;
+            }
+            if(jenis==undefined) {
+                alert('Silahkan pilih laporan yang akan ditampilkan!');
+                return;
+            } 
+            
+            /*if (jenis=='3') {
+                if(mID)
+                    window.open('/b104/r100/'+jenis+'?tipe='+tipe+'&mulai='+mulai+'&selesai='+selesai+'&id='+mID);
+                else
+                    alert('Silahkan pilih Kegiatan ID');
+            }
+            else*/
+                window.open('/b104/r200/'+jenis+'?tipe='+tipe+'&mulai='+mulai+'&selesai='+selesai);
+
+        });
+        
+        $('input[name="jenis"]').click(function () {
+            var jenis = $(this).val();
+            if (jenis=='221')
+                $('#div_tblkegiatan').show();
+            else
+                $('#div_tblkegiatan').hide();
+        });
+        
+        $("#mulai,#selesai").datepicker({dateFormat:'dd-mm-yy'});
+        
+        $('#div_tblkegiatan').hide();
+        $('input[name="jenis"]').prop('checked', false);
+        
+        $("#btn_close").click(function () {
+            window.location = "/b100";
+            return false;
+        });	
+      });
+    </script>
+    
+    <div class="panel-heading">
+        <div class="row">
+            <label class="control-label col-xs-2">Tahun </label>
+            <label class="control-label col-xs-1">${datas.tahun}</label>
+        </div>
+        <div class="row">
+            <label class="control-label col-xs-2">SKPD/SKPKD</label>
+            <div class="col-xs-7">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                    <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                    </span>
+                    <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${datas.unit_nm}" readonly>
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="btn_unit" 
+                        tal:attributes="disabled 'disabled' if datas.all_unit==0 else None">...</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>LAPORAN REGISTER SPM</h3>
+            </div>
+        </div>
+        <div class="form-group">
+        <div class="row">
+            <label class="control-label col-xs-2" for="mulai">Mulai</label>
+            <div class="col-xs-2">
+                <input class="form-control" type="text" name="mulai" id="mulai" value="" />
+            </div>
+            <div class="col-xs-2">
+              <div class="input-group">
+                <span class="input-group-addon">s.d</span>
+                <input class="form-control" type="text" name="selesai" id="selesai" value="" />
+              </div>
+            </div>
+            </div>
+        </div>
+          
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label col-xs-2" for="tipe">Type</label>
+                <div class="col-xs-2">
+                    <select class="form-control" id="tipe" name="tipe">
+                        <option value="0">Semua Jenis</option>
+                        <option value="1">UP</option>
+                        <option value="2">TU</option>
+                        <option value="3">GU</option>
+                        <option value="4">LS</option>
+                    </select>
+                </div>
+            </div>
+        </div>   
+
+        <div class="form-group">
+            <div class="row">
+                <label class="control-label col-xs-2" for="jenis">Report</label>
+                <div class="col-xs-2">
+                    <div class="form-group"> 
+                        <div class="radio">
+                            <label><input type="radio" name="jenis" value="1">Standard</label>
+                        </div>
+                        <div class="radio">
+                            <label><input type="radio" name="jenis" value="2">SKPD</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="form-group">
+        <div class="col-xs-3">
+            <button type="button" class="btn-primary" id="btn_cetak">Cetak Laporan</button>
+            <button type="button" class="btn-warning" id="btn_close">Tutup</button>
+        </div>  
+    </div>    
+    <br><br><br>
+    <!-- Modal Unit -->
+    <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/admin/unit/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource": tblUnitUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible" : true,  "aTargets": [1,2] },
+            {"bSearchable": false, "bVisible" : false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": true,  "bSortable": false, "aTargets": [3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%",
+               "sClass": "center"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID = aData[0];
+                urusanKd = aData[1];
+                unitKd = aData[2];
+                unitNm = aData[3];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /* end datatable unit*/
+
+        $('#btn_pilih1').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $.ajax({
+              type: "POST",
+              url: "/admin/change/unit",
+              data: "unit_id="+unitID,
+              success: function (html) {
+                if (html.success == true) {
+                  $('#unit_nm').val(unitNm);
+                  $('#unit_kd').text(urusanKd+'.'+unitKd);
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Urusan</th>
+                  <th>Kd Unit</th>
+                  <th>Nama</th>
+                  <th>Singkatan</th>
+                  <th>Kategori</th>
+                  <th>Urusan</th>
+                  <th>Disabled</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>     
+    <!-- End Modal -->
+  </div> 
+</html>

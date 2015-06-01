@@ -1,0 +1,436 @@
+<html metal:use-macro="load: ../admin/admin.pt">
+    <div metal:fill-slot="admin" class="panel panel-default">
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/admin/pejabat/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+
+                $("#btn_close").click(function () {
+                    window.location = '/admin/pejabat';
+                    return false;
+                });
+                $( "#mulai,#selesai" ).datepicker({dateFormat:'dd-mm-yy'});
+            });
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Pejabat</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <fieldset>
+                    <input type="hidden" name="id" id="id" value="${datas.id}">
+                    <div class="form-group">
+                        <label for="pegawai_id" class="control-label col-sm-2">NIP/Nama</label>
+                        <input type="hidden" name="pegawai_id" id="pegawai_id" value="${rows and rows.pegawais.id or None}"> 
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                               <span class="input-group-btn">
+                                    <span class="form-control" type="text" name="pegawai_kd" id="pegawai_kd" readonly="True">${rows and rows.pegawais.kode}</span>
+                               </span>
+                                    <input  type="text" class="form-control" id="pegawai_nm" name="pegawai_nm" value="${rows and rows.pegawais.nama or None}" disabled>
+                               <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="btn_pegawai">...</button>
+                               </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jabatan_id" class="control-label col-sm-2">Jabatan</label>
+                        <input type="hidden" name="jabatan_id" id="jabatan_id" value="${rows and rows.jabatans.id or None}"> 
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                               <span class="input-group-btn">
+                                    <span class="form-control" type="text" name="jabatan_kd" id="jabatan_kd" readonly="True">${rows and rows.jabatans.kode}</span>
+                               </span>
+                                    <input  type="text" class="form-control" id="jabatan_nm" name="jabatan_nm" value="${rows and rows.jabatans.nama or None}" disabled>
+                               <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="btn_jabatan">...</button>
+                               </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="unit_id" class="control-label col-sm-2">Nama Unit</label>
+                        <input type="hidden" name="unit_id" id="unit_id" value="${rows and rows.units.id or None}"> 
+                        <div class="col-xs-5">
+                            <div class="input-group">
+                               <span class="input-group-btn">
+                                    <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${rows and rows.units.kode}</span>
+                               </span>
+                                    <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${rows and rows.units.nama or None}" disabled>
+                               <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" id="btn_unit">...</button>
+                               </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mulai" class="control-label col-sm-2">Mulai</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="mulai" id="mulai" value="${rows and rows.mulai}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="selesai" class="control-label col-sm-2">Selesai</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="selesai" id="selesai" value="${rows and rows.selesai}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan" class="control-label col-sm-2">Keterangan</label>
+                        <div class="col-sm-2">
+                            <textarea class="form-control" name="keterangan" id="keterangan"> ${rows and rows.keterangan}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">&nbsp;</label>
+                        <label class="col-sm-2">
+                        <input type="checkbox" name="disabled" id="disabled" 
+                            tal:attributes="checked 'checked' if rows and rows.disabled==1 else None">&nbsp;Disabled
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">&nbsp;</label>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                            <button type="reset" class="btn btn-info" id="btn_cancel">Batal</button>
+                            <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <!-- Modal Unit -->
+    <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/admin/unit/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource"    : tblUnitUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,
+          "sDom"           : '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : true,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": true, "bVisible": false, "aTargets": [0,4,5,6,7] }, 
+            {"bSearchable": true, "bVisible": true, "aTargets": [1,2,3] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "10%"}, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "10%",
+               "sClass": "left"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; urusanKd = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1     = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID    = aData[0];
+                urusanKd  = aData[1];
+                unitKd    = aData[2];
+                unitNm    = aData[3];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        
+        
+        /* end datatable unit*/
+
+        $('#btn_pilih1').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $('#unit_id').val(unitID);
+            $('#unit_nm').val(unitNm);
+            $('#unit_kd').text(urusanKd+'.'+unitKd);
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Urusan</th>
+                  <th>Kd Unit</th>
+                  <th>Nama</th>
+                  <th>Singkatan</th>
+                  <th>Kategori</th>
+                  <th>Urusan</th>
+                  <th>Disabled</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>      <!-- End Modal -->
+                
+                <!-- Modal Jabatan -->
+    <script>
+      /* start datatable jabatan*/
+      var jabatanID, jabatanNm;
+      var iPos1;
+      var tblJabatan;
+      var tblJabatanUrl = "/admin/jabatan/grid";
+
+      $(document).ready(function () {
+        $('#btn_jabatan').click(function() {
+            $('#dlgJabatan').modal('show');
+        });
+
+        tblJabatan = $('#tblJabatan').dataTable({
+          "sAjaxSource"    : tblJabatanUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,
+          "sDom"           : '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : true,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": true, "bVisible": false, "aTargets": [0] }, 
+            {"bSearchable": true, "bVisible": true, "aTargets": [1,2] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "25%"}, 
+              {"sWidth": "25%",   
+               "sClass": "left"}
+          ],
+        });
+        
+        $('#tblJabatan tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                jabatanID = ''; jabatanKd='';jabatanNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1     = tblJabatan.fnGetPosition(this);
+                var aData = tblJabatan.fnGetData(iPos1);
+                jabatanID = aData[0];
+                jabatanKd = aData[1];
+                jabatanNm = aData[2];
+                tblJabatan.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        
+        
+        /* end datatable jabatan*/
+
+        $('#btn_pilih2').click(function() {
+          if(jabatanID) {
+            $('#dlgJabatan').modal('hide');
+            $('#jabatan_id').val(jabatanID);
+            $('#jabatan_nm').val(jabatanNm);
+            $('#jabatan_kd').text(jabatanKd);
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgJabatan" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgJabatanLabel">Pilih Jabatan</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblJabatan">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Jabatan</th>
+                  <th>Nama</th> 
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih2" name="btn_pilih2">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>      <!-- End Modal -->
+    
+                <!-- Modal Pegawai -->
+    <script>
+      /* start datatable pegawai*/
+      var pegawaiID, pegawaiNm;
+      var iPos1;
+      var tblPegawai;
+      var tblPegawaiUrl = "/admin/pegawai/grid";
+
+      $(document).ready(function () {
+        $('#btn_pegawai').click(function() {
+            $('#dlgPegawai').modal('show');
+        });
+
+        tblPegawai = $('#tblPegawai').dataTable({
+          "sAjaxSource"    : tblPegawaiUrl,
+          "bServerSide"    : true,
+          "bProcessing"    : true,
+          "sDom"           : '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort"          : true,
+          "bInfo"          : false,
+          "bFilter"        : true,
+          "bAutoWidth"     : false,
+          "bPaginate"      : true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": true, "bVisible": false, "aTargets": [0] }, 
+            {"bSearchable": true, "bVisible": true, "aTargets": [1,2] }, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "10%"},
+              {"sWidth": "10%",
+               "sClass": "left"}
+          ],
+        });
+        
+        $('#tblPegawai tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                pegawaiID = ''; pegawaiKd='';pegawaiNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1     = tblPegawai.fnGetPosition(this);
+                var aData = tblPegawai.fnGetData(iPos1);
+                pegawaiID = aData[0];
+                pegawaiKd = aData[1];
+                pegawaiNm = aData[2];
+                tblPegawai.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        
+        
+        /* end datatable pegawai*/
+
+        $('#btn_pilih3').click(function() {
+          if(pegawaiID) {
+            $('#dlgPegawai').modal('hide');
+            $('#pegawai_id').val(pegawaiID);
+            $('#pegawai_nm').val(pegawaiNm);
+            $('#pegawai_kd').text(pegawaiKd);
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>
+    <div class="modal fade" id="dlgPegawai" tabindex="-1" role="dialog" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="dlgPegawaiLabel">Pilih Pegawai Kerja</h4>
+          </div>
+          <div class="modal-body">
+
+            <table class="table table-bordered table-hover table-condensed" id="tblPegawai">
+              <thead>
+                <tr>
+                  <th>Index</th>
+                  <th>Kd Pegawai</th>
+                  <th>Nama Pegawai</th> 
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pilih3" name="btn_pilih3">Pilih</button>
+          </div>
+        </div>
+      </div>
+    </div>      <!-- End Modal -->           
+    </div>
+</html>

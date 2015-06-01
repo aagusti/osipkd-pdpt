@@ -1,0 +1,334 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <h4>Daftar Gaji PNS</h4>
+    <hr>
+        <form class="form-horizontal" id="myform" name="myform">
+            <input  type="hidden" id="unit_id" name="unit_id" value="${request.session['unit_id']}">
+            <div class="form-group">
+                <label class="control-label col-xs-1" style="text-align: left !important;">SKPD</label>
+                <div class="col-xs-10">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" id="btn_unit">${request.session['unit_kd']}</button>
+                        </span>
+                        <input  type="text" class="form-control" id="unit_nm" name="unit_nm" value="${request.session['unit_nm']}" readonly>
+                    </div>
+                    <div class="input-group col-xs-10" >
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="tahun" class="control-label col-xs-1" style="text-align: left !important;">Tahun</label>
+                <div class="col-xs-1">
+                    <input class="form-control" type="text" name="tahun" id="tahun" value="${request.session['tahun']}">
+                </div>
+                <div class="form-group">
+                    <label for="bulan" class="control-label col-xs-1">Bulan</label>
+                    <div class="col-xs-2">
+                        <div class="input-group">
+                            <select id="bulan" name="bulan" class="form-control">
+                                <option tal:repeat="bulan request.months"
+                                    tal:attributes="value bulan[0];
+                                    selected bulan[0]==request.session['bulan'] and True or False" >
+                                    <span tal:replace="bulan[1]" />
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <div class="row">
+            <div class="col-xs-12">
+                <table id="table1" class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Kotor</th>
+                            <th>Potongan</th>
+                            <th>Bersih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <div class="panel-body">
+        <div class="page-header">
+        </div>        
+        
+        
+    </div>
+    <!-- Modal Unit -->
+    <div class="modal fade" id="dlgUnit" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="dlgUnitLabel">Pilih Unit Kerja</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-hover table-condensed" id="tblUnit">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Kode</th>
+                                <th>Nama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="btn_pilih1" name="btn_pilih1">Pilih</button>
+                </div>
+            </div>
+        </div>
+    </div>     <!-- End Modal -->
+  </div>
+  
+  <div metal:fill-slot="scripts">
+    <script>
+      var mID;
+      var mThn;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/gaji-peg/act/grid";
+      Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
+        var n = this,
+            decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+            decSeparator = decSeparator == undefined ? "." : decSeparator,
+            thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+            sign = n < 0 ? "-" : "",
+            i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+            j = (j = i.length) > 3 ? j % 3 : 0;
+        return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
+      };
+
+        
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+          "sDom": '<"toolbar">lfrtip',
+          "sAjaxSource": oTableUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, 100],
+              [10, 25, 50, 100]
+          ],
+          "aoColumnDefs": [{
+                        "bSearchable": false,
+                        "bVisible": false,
+                        "aTargets": [0]
+                    }],
+          "aoColumns": [
+              null,
+              {"width": "120px"},
+              null,
+              {"width": "100px", "sClass":"right"},
+              {"width": "100px", "sClass":"right"},
+              {"width": "100px", "sClass":"right"},
+          ]
+        });
+          
+        var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_import" class="btn btn btn-primary" type="button">Import</button>',
+          '	<button id="btn_csv" class="btn btn btn-primary" type="button">CSV</button>',
+          '	&nbsp;',
+          '</div>',
+        ];
+
+
+        var tb = tb_array.join(' ');
+        $("div.toolbar").html(tb);
+        $("div.toolbar").attr('style', 'display:block; float: left; margin-bottom:6px; line-height:16px;');
+
+        
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                //mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                mID = aData[0];
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                        /*oTable2.fnReloadAjax("egaji/grid2?id=" + mID);*/                
+            }
+        });
+        
+        /***********************************************************************
+        ******IMPORT DATA FROM SQL SERVER
+        ***********************************************************************/
+        $('#btn_import').click(function () {
+            $.ajax({
+              type: "POST",
+              url: "/gaji-peg/act/import",
+              data: "tahun="+$("#tahun").val()+"&bulan="+$("#bulan").val(),
+              success: function (html) {
+                if (html.success == true) {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'/static/images/img/ajax-loader.gif'\' /> Loading...")
+              }
+            });
+        });
+
+        $('#btn_csv').click(function () {
+            window.location = '/gaji-peg/csv';
+        });
+        
+        $('#bulan').change(function () {
+            $.ajax({
+              type: "POST",
+              url: "/change/tahun",
+              data: "tahun="+$("#tahun").val()+"&bulan="+$("#bulan").val(),
+              success: function (html) {
+                if (html.success == true) {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'/static/images/ajax-loader.gif'\'/> Loading...")
+              }
+            });
+        });
+      });
+      
+      var dtable = $(".datatable").dataTable().api();
+
+      // Grab the datatables input box and alter how it is bound to events
+      $("#table1_filter input")
+          .unbind() // Unbind previous default bindings
+          .bind("input", function(e) { // Bind our desired behavior
+              alert(e);
+              if(this.value.length >= 3 || e.keyCode == 13) {
+                  oTable.search(this.value).draw();
+              }
+              if(this.value == "") {
+                  oTable.search("").draw();
+              }
+              return;
+          });      
+    </script>
+   <script>
+      /* start datatable unit*/
+      var unitID, unitNm;
+      var iPos1;
+      var tblUnit;
+      var tblUnitUrl = "/unit/act/grid";
+
+      $(document).ready(function () {
+        $('#btn_unit').click(function() {
+            $('#dlgUnit').modal('show');
+        });
+
+        tblUnit = $('#tblUnit').dataTable({
+          "sAjaxSource": tblUnitUrl,
+          "bServerSide": true,
+          "bProcessing": true,
+          
+          "sDom": '<"toolbar">frtip',
+          "bScrollCollapse": true,
+          "bSort": true,
+          "bInfo": false,
+          "bFilter": true,
+          "bAutoWidth": false,
+          "bPaginate": true,
+          "sPaginationType": "full_numbers",
+          
+          "lengthMenu": [
+              [10, 25, 50, 100],
+              [10, 25, 50, 100]
+          ],
+          "aoColumnDefs": [
+            {"bSearchable": false, "bVisible": false, "aTargets": [0]}, 
+          ],
+
+          "aoColumns": [
+              null, 
+              {"sWidth": "20px"},
+              {"sWidth": "50px"}
+          ],
+        });
+        
+        $('#tblUnit tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                unitID = ''; unitKd='';unitNm='';
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = tblUnit.fnGetPosition(this);
+                var aData = tblUnit.fnGetData(iPos1);
+                unitID = aData[0];
+                unitKd = aData[1];
+                unitNm = aData[2];
+                tblUnit.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /* end datatable unit*/
+
+        $('#btn_pilih1').click(function() {
+          if(unitID) {
+            $('#dlgUnit').modal('hide');
+            $.ajax({
+              type: "POST",
+              url: "/unit/act/changeid",
+              data: "unit_id="+unitID,
+              success: function (html) {
+                if (html.success == true) {
+                  $('#unit_nm').val(unitNm);
+                  $('#btn_unit').text(unitKd);
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'/static/images/ajax-loader.gif'\' /> Loading...")
+              }
+            });
+          }else
+            alert ('Silahkan pilih salah satu atau batal!');
+        });
+      });
+    </script>    
+  </div>
+</html>

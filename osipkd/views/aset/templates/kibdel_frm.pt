@@ -1,0 +1,363 @@
+<html metal:use-macro="load: aset_unit.pt">
+    <div metal:fill-slot="unit" class="panel panel-default">
+        <script type='text/javascript'>
+        
+            $(document).ready(function () {
+            
+                /* start datatable kibs*/
+                var kibID, kibNm;
+                var iPos;
+                var tblKib;
+                var tblKibUrl = "/aset/kib/grid?unit_id="+${datas.units and datas.units.id or 0};
+                tblKib = $('#tblKib').dataTable({
+                    "sAjaxSource": tblKibUrl,
+                    "bServerSide": true,
+                    "bProcessing": true,
+                    
+                    "sDom": '<"toolbar">frtip',
+                    "bScrollCollapse": true,
+                    "bSort": true,
+                    "bInfo": false,
+                    "bFilter": true,
+                    "bAutoWidth": false,
+                    "bPaginate": true,
+                    "sPaginationType": "full_numbers",
+                    
+                    "lengthMenu": [
+                        [10, 25, 50, -1],
+                        [10, 25, 50, "All"]
+                    ],
+                    "aoColumnDefs": [
+                        {"bSearchable": false, "bVisible": false, "aTargets": [0,3,4,5] }, 
+                        {"bSearchable": true, "bVisible": true, "aTargets": [1,2] }, 
+                    ],
+
+                    "aoColumns": [
+                        null, {
+                            "sWidth": "20%"
+                        },
+                        null, {
+                            "sWidth": "20%"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }, {
+                            "sWidth": "10%",
+                            "sClass": "center"
+                        }
+                    ],
+                });
+                
+                $('#tblKib tbody').on('click', 'tr', function () {
+                    if ($(this).hasClass('selected')) {
+                        kibID = ''; kibNm='';
+                        $(this).removeClass('selected');
+                    } else {
+                        iPos = tblKib.fnGetPosition(this);
+                        var aData = tblKib.fnGetData(iPos);
+                        kibID = aData[0];
+                        kibNm = aData[3];
+                        tblKib.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+                
+                /* end datatable kategori */
+
+                
+                $( "#tanggal").datepicker({
+                    dateFormat:'yy-mm-dd', 
+                    changeMonth:true, 
+                    changeYear:true
+                });
+                
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/aset/kibdel/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                                $("#id").val(html.id);                              
+                                
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+                
+                $('.units').change(function() {
+                    var url = "${datas.url}aset/kibdel/grid?unit_id="+$("#unit_id").val();
+                    oTable.fnReloadAjax(url);
+                    alert(url);
+                });
+                
+                $("#btn_close").click(function () {
+                    window.location = '/aset/kibdel';
+                    return false;
+                });
+                
+                $('#oTabs a').click(function (e) {
+                    e.preventDefault()
+                    $(this).tab('show')
+                })
+
+                $('#btn_kib').click(function() {
+                    $('#dlgKib').modal('show');
+                });
+                
+                $('#btn_pilih').click(function() {
+                    if(kibID) {
+                        $('#dlgKib').modal('hide');
+                        alert('Not Implemented') ;
+                    } else
+                        alert ('Silahkan pilih salah satu atau batal!');
+                });
+
+                $('#btn_unit').click(function() {
+                    $('#dlgUnit').modal('show');
+                });
+                
+                $('#btn_add_item').click(function(){
+                   var url = "/aset/kib/grid?unit_id="+$('#unit_id').val();
+                   tblKib.fnReloadAjax(url);
+                   $('#dlgKib').modal('show');
+                });
+                
+                $('#btn_remove_item').click(function(){
+                   alert('not implemented yet');
+                });
+        });
+        </script>
+        
+        <!-- Kibs Data -->
+        <div class="modal fade" id="dlgKib" tabindex="-1" role="dialog" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="dlgKategoriLabel">Pilih Kategori</h4>
+                    </div>
+                    <div class="modal-body">
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>SKPD</th>
+                        <th>Kode</th>
+                        <th>Reg.</th>
+                        <th>Nama Barang</th>
+                        <th>Thn</th>
+                        <th>Thn. Beli</th>
+                        <th>Harga</th>
+                        <th>Kond</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-primary" id="btn_pilih" name="btn_pilih">Pilih</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Penghapusan Barang</h3>
+        </div>
+
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data" role="form">
+                <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="unit_id">SKPD</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <input class="form-control" type="hidden" name="unit_id" id="unit_id" value="${rows and rows.unit_id or datas.units and datas.units.id}" />
+                                        <input class="form-control" readonly style="width:20%;" type="text" name="unit_kd" id="unit_kd" value="${rows and rows.units.kode or datas.units and datas.units.kode}" />
+                                        <input class="form-control" readonly style="width:80%;" type="text" name="unit_nm" id="unit_nm" value="${rows and rows.units.nama or datas.units and datas.units.nama}" />
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-info" id="btn_unit" name="btn_unit">...</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="kode">Kode</label>
+                                    <div class="col-sm-10">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode}" />
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="uraian">Uraian</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="uraian" id="uraian" value="${rows and rows.uraian}" />
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="tanggal">Tanggal</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control" type="text" style="width:225px;" readonly name="tanggal" id="tanggal" value="${rows and rows.tanggal}" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="alasan">Alasan</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="alasan" id="alasan" value="${rows and rows.alasan}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                <div class="form-group">
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                            <button type="reset" class="btn btn-info" id="btn_cancel">Batal</button>
+                            <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                    </div>
+                </div>
+            </form>
+         <script>         
+          var mID;
+          var oTable;
+          var iPos;
+           
+          $(document).ready(function () {
+            var oTableUrl = "/aset/kibdel/grid2?delete_id="+$("id").val()";
+
+            if (typeof $("#unit_id").val()!="undefined"){
+                oTableUrl = "/aset/kibdel/grid2?delete_id=0";
+            }
+          
+          oTable = $('#table1').dataTable({
+            "sAjaxSource": oTableUrl,
+            "bServerSide": true,
+            "bProcessing": true,
+            
+            "sDom": '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort": true,
+            "bInfo": false,
+            "bFilter": true,
+            "bAutoWidth": false,
+            "bPaginate": true,
+            "sPaginationType": "full_numbers",
+            "lengthMenu": [
+                [20, 50, 100, -1],
+                [20, 50, 100, "All"]],
+            "aoColumnDefs": [
+              {
+                "bSearchable": false,
+                "bVisible": false,
+                "aTargets": [0]},
+              {
+                 "aTargets": [3],
+                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                   var $currencyCell = $(nTd);
+                   var commaValue = ("000000"+$currencyCell.text()).slice(-6);
+                   $currencyCell.text(commaValue);
+                 }},
+              {
+                 "aTargets": [7],
+                 "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                   var $currencyCell = $(nTd);
+                   var commaValue = $currencyCell.text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                   $currencyCell.text(commaValue);
+                 }}
+               ],
+
+            "aoColumns": [
+                null, 
+                {"sWidth": "80px" }, 
+                {"sWidth": "90px" }, 
+                {"sWidth": "40px",
+                 "sClass": "right" },
+                null, 
+                {"sWidth": "40px"},
+                {"sWidth": "40px",
+                 "sClass": "center"}, 
+                {"sWidth": "100px",
+                 "sClass": "right"}, 
+                {"sWidth": "45px",
+                 "sClass": "center"}],
+                });
+                
+             var tb_array = [
+                '<div class="btn-group pull-left">',
+                '	<button id="btn_add_item" class="btn btn-primary" type="button">Tambah</button>',
+                '	<button id="btn_remove_item" class="btn btn-primary" type="button">Hapus</button>',
+                '   &nbsp;',
+                '</div>',
+            ];
+            
+            var tb = tb_array.join(' ');
+            $("div.toolbar").html(tb);
+
+            
+             });   
+
+            </script>
+        
+        <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>SKPD</th>
+                        <th>Kode</th>
+                        <th>Reg.</th>
+                        <th>Nama Barang</th>
+                        <th>Thn</th>
+                        <th>Hapus</th>
+                        <th>Harga</th>
+                        <th>Kond</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        
+        </div>
+    </div>
+</html>

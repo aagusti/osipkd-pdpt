@@ -1,0 +1,559 @@
+from pyramid.httpexceptions import HTTPFound
+from pyramid.httpexceptions import HTTPForbidden
+from pyramid.httpexceptions import HTTPNotFound
+from pyramid.view import view_config
+from pyramid.security import remember
+from pyramid.security import forget
+from pyramid.security import has_permission
+from sqlalchemy import *
+from sqlalchemy.orm import aliased
+from sqlalchemy.exc import DBAPIError
+from sqlalchemy import func
+from osipkd.views.views import *
+from osipkd.models.model_base import *
+from osipkd.models.aset_models import *
+from osipkd.models.apbd_admin_models import *
+
+import os
+from pyramid.renderers import render_to_response
+
+def _upper(chain):
+    ret = chain.upper()
+    if ret:
+        return ret
+    else:
+        return chain
+        
+class ViewAsetMaster(BaseViews):
+    # HOME
+    @view_config(route_name="aset", renderer="../../templates/aset/aset.pt")
+    def aset(self):
+        params = self.request.params
+        self.app='aset'
+        if self.logged:
+            return dict(datas=self.datas)
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+    # MASTER
+    @view_config(route_name="aset_kebijakan", renderer="../../templates/aset/kebijakan.pt")
+    def aset_kebijakan(self):
+        params = self.request.params
+        if self.logged:
+            kategoris = AsetKategoriModel.get_enabled()
+            return dict(datas=self.datas, kategoris=kategoris)
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+
+    @view_config(route_name="aset_kebijakan_frm", renderer="../../templates/aset/kebijakan_frm.pt")
+    def aset_kebijakan_frm(self):
+        req = self.request
+        params = req.params
+        url_dict = req.matchdict
+        kategoris = AsetKategoriModel.get_enabled()
+
+        if self.logged and self.is_akses_mod('aset_kebijakan'):
+            self.datas['id'] = 'id' in url_dict and int(url_dict['id']) or 0
+            row = AsetKebijakanModel.get_by_id(self.datas['id'])
+            if row:
+                rows = AsetKebijakanModel.row2dict(row)
+                return dict(datas=self.datas, rows=rows, kategoris=kategoris)
+            else:
+                if self.datas['id']>0:
+                    return HTTPNotFound()
+            return dict(datas=self.datas,rows='',kategoris=kategoris)
+            
+            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+            
+    @view_config(route_name="aset_kebijakan_act", renderer="json")
+    def aset_kebijakan_act(self):
+        req    = self.request
+        params = req.params
+        url_dict = req.matchdict
+
+        if self.logged :
+            pk_id = 'id' in params and int(params['id']) or 0
+            if url_dict['act']=='grid' and self.is_akses_mod('read'):
+                # defining columns
+                columns = []
+                columns.append(ColumnDT('id'))
+                columns.append(ColumnDT('kode'))
+                columns.append(ColumnDT('uraian'))
+                columns.append(ColumnDT('tahun'))
+                columns.append(ColumnDT('minimum'))
+                columns.append(ColumnDT('kategoris.uraian'))
+                columns.append(ColumnDT('disabled'))
+                query = DBSession.query(AsetKebijakanModel).\
+                        join(AsetKategoriModel).\
+                        filter(AsetKebijakanModel.kategori_id==AsetKategoriModel.id)
+
+                rowTable = DataTables(req, AsetKebijakanModel, query, columns)
+                return rowTable.output_result()
+            elif url_dict['act']=='save':
+                p = params.copy()
+                if 'disabled' not in p:
+                    p['disabled']=0
+                else:
+                    p['disabled']=1
+
+                if pk_id and self.is_akses_mod('edit'): #update
+                    p['update_uid'] = self.session['user_id']
+                    rows = AsetKebijakanModel.update(p)
+                elif self.is_akses_mod('insert'): #insert
+                    p['create_uid'] = self.session['user_id']
+                    p['update_uid'] = self.session['user_id']
+                    rows = AsetKebijakanModel.tambah(p)
+                else:
+                    rows={}
+                
+                if rows:
+                    self.d['msg']='Sukses Simpan Data'
+                    self.d['success']=True
+                else:
+                    self.d['msg']='Gagal Simpan Data'
+                
+                return self.d
+                
+            elif url_dict['act']=='delete' and self.is_akses_mod('delete'):
+                d={}
+                d['id'] = pk_id
+                rows = AsetKebijakanModel.hapus(d)
+                if rows:
+                    self.d['msg']='Sukses Hapus Data'
+                    self.d['success']=True
+                return self.d
+                
+            else:
+                HTTPNotFound()            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+
+    @view_config(route_name="aset_kategori", renderer="../../templates/aset/kategori.pt")
+    def aset_kategori(self):
+        params = self.request.params
+        if self.logged:
+            return dict(datas=self.datas)
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+
+    @view_config(route_name="aset_kategori_frm", renderer="../../templates/aset/kategori_frm.pt")
+    def aset_kategori_frm(self):
+        req = self.request
+        params = req.params
+        url_dict = req.matchdict
+        if self.logged and self.is_akses_mod('aset_kategori'):
+            self.datas['id'] = 'id' in url_dict and int(url_dict['id']) or 0
+            row = AsetKategoriModel.get_by_id(self.datas['id'])
+            if row:
+                rows = AsetKategoriModel.row2dict(row)
+                return dict(datas=self.datas, rows=rows)
+            else:
+                if self.datas['id']>0:
+                    return HTTPNotFound()
+            return dict(datas=self.datas,rows='')
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+            
+    @view_config(route_name="aset_kategori_act", renderer="json")
+    def aset_kategori_act(self):
+        req    = self.request
+        params = req.params
+        url_dict = req.matchdict
+
+        if self.logged :
+            pk_id = 'id' in params and int(params['id']) or 0
+            if url_dict['act']=='grid' and self.is_akses_mod('read'):
+                # defining columns
+                columns = []
+                columns.append(ColumnDT('id'))
+                columns.append(ColumnDT('kode'))
+                columns.append(ColumnDT('uraian'))
+                #columns.append(ColumnDT('parent_id'))
+                columns.append(ColumnDT('uraian2'  or None))
+                columns.append(ColumnDT('level_id'))
+                columns.append(ColumnDT('disabled'))
+                AliasAset = aliased(AsetKategoriModel)
+                query = DBSession.query(AsetKategoriModel.id, 
+                                        AsetKategoriModel.kode,
+                                        AsetKategoriModel.uraian,
+                                        #AsetKategoriModel.parent_id,
+                                        AliasAset.uraian.label('uraian2'),
+                                        AsetKategoriModel.level_id,
+                                        AsetKategoriModel.disabled)\
+                        .outerjoin(AliasAset)
+                row = query.first()
+                
+                rowTable = DataTables(req, AsetKategoriModel, query, columns)
+                return rowTable.output_result()
+
+            elif url_dict['act']=='save':
+                p = params.copy()
+                if 'disabled' not in p:
+                    p['disabled']=0
+                else:
+                    p['disabled']=1
+
+                if pk_id and self.is_akses_mod('edit'): #update
+                    p['update_uid'] = self.session['user_id']
+                    rows = AsetKategoriModel.update(p)
+                elif self.is_akses_mod('insert'): #insert
+                    p['create_uid'] = self.session['user_id']
+                    p['update_uid'] = self.session['user_id']
+                    
+                    rows = AsetKategoriModel.tambah(p)
+                else:
+                    rows=0
+                
+                if rows:
+                    self.d['msg']='Sukses Simpan Data'
+                    self.d['success']=True
+                    self.d['id'] = rows
+                else:
+                    self.d['msg']='Gagal Simpan Data'
+                
+                return self.d
+                
+            elif url_dict['act']=='delete' and self.is_akses_mod('delete'):
+                d={}
+                d['id'] = pk_id
+                rows = AsetKategoriModel.hapus(d)
+                if rows:
+                    self.d['msg']='Sukses Hapus Data'
+                    self.d['success']=True
+                return self.d
+                
+            else:
+                HTTPNotFound()            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+            
+class ViewAsetKib(BaseViews):
+    @view_config(route_name="aset_kib", renderer="../../templates/aset/kib.pt")
+    def aset_kib(self):
+        params = self.request.params
+        if self.logged:
+            return dict(datas=self.datas, rows='')
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+
+    @view_config(route_name="aset_kib_frm", renderer="../../templates/aset/kib_frm.pt")
+    def aset_kib_frm(self):
+        req = self.request
+        params = req.params
+        url_dict = req.matchdict
+        if self.logged and self.is_akses_mod('aset_kib'):
+            self.datas['id'] = 'id' in url_dict and int(url_dict['id']) or 0
+            row = AsetKibModel.get_by_id(self.datas['id'])
+            pemiliks = AsetPemilikModel.get_rows()
+            if row:
+                return dict(datas=self.datas, rows=row, pemiliks=pemiliks)
+            else:
+                if self.datas['id']>0:
+                    return HTTPNotFound()
+            return dict(datas=self.datas,rows='', pemiliks=pemiliks)
+            
+            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+            
+    @view_config(route_name="aset_kib_act", renderer="json")
+    def aset_kib_act(self):
+        req    = self.request
+        params = req.params
+        url_dict = req.matchdict
+
+        if self.logged :
+            pk_id = 'id' in params and params['id'] or 0
+            #print url_dict['act']
+            if url_dict['act']=='grid' and self.is_akses_mod('read'):
+                # defining columns
+                columns = []
+                columns.append(ColumnDT('id'))
+                columns.append(ColumnDT('units.kode'))
+                columns.append(ColumnDT('kats.kode'))
+                columns.append(ColumnDT('no_register'))
+                columns.append(ColumnDT('uraian'))
+                columns.append(ColumnDT('tahun'))
+                columns.append(ColumnDT('th_beli'))
+                columns.append(ColumnDT('harga'))
+                columns.append(ColumnDT('kondisi'))
+
+                unit_id = self.session["unit_id"] or params["unit_id"]
+
+                query = DBSession.query(AsetKibModel)\
+                        .join(AsetKategoriModel)\
+                        .join(UnitModel)\
+                        .filter(AsetKibModel.unit_id==unit_id)
+                rowTable = DataTables(req, AsetKibModel, query, columns)
+                return rowTable.output_result()
+
+            elif url_dict['act']=='save':
+                p = params.copy()
+                #print p
+                for i1, i2 in p.items():
+                    p[i1] = i2 or None
+
+                if not p['kategori_kd'][:2]=='01':
+                    p['a_luas_m2']=None
+                    p['a_alamat']=None
+                    p['a_hak_tanah']=None
+                    p['a_sertifikat_tanggal']=None
+                    p['a_sertifikat_nomor']=None
+                    p['a_penggunaan']=None
+    
+                if not p['kategori_kd'][:2]=='02':
+                    p['b_kd_ruang']=None
+                    p['b_merk']=None
+                    p['b_type']=None
+                    p['b_cc']=None
+                    p['b_bahan']=None
+                    p['b_nomor_pabrik']=None
+                    p['b_nomor_rangka']=None
+                    p['b_nomor_mesin']=None
+                    p['b_nomor_polisi']=None
+                    p['b_nomor_bpkb']=None
+                    p['b_ukuran']=None
+                    p['b_warna']=None
+                    p['b_thbuat']=None
+
+                if not p['kategori_kd'][:2]=='03':
+                    p['c_bertingkat_tidak']=None
+                    p['c_beton_tidak']=None
+                    p['c_luas_lantai']=None
+                    p['c_lokasi']=None
+                    p['c_dokumen_tanggal']=None
+                    p['c_dokumen_nomor']=None
+                    p['c_status_tanah']=None
+                    p['c_kode_tanah']=None
+                    p['c_luas_bangunan']=None
+    
+                if not p['kategori_kd'][:2]=='04':
+                    p['d_konstruksi']=None
+                    p['d_panjang']=None
+                    p['d_lebar']=None
+                    p['d_luas']=None
+                    p['d_lokasi']=None
+                    p['d_dokumen_tanggal']=None
+                    p['d_dokumen_nomor']=None
+                    p['d_status_tanah']=None
+                    p['d_kode_tanah']=None
+                    
+                if not p['kategori_kd'][:2]=='05':
+                    p['e_judul']=None
+                    p['e_pencipta']=None
+                    p['e_bahan']=None
+                    p['e_spek']=None
+                    p['e_asal']=None
+                    p['e_ukuran']=None
+                    p['e_jenis']=None
+                    
+                if not p['kategori_kd'][:2]=='06':
+                    p['f_bertingkat_tidak']=None
+                    p['f_beton_tidak']=None
+                    p['f_panjang']=None
+                    p['f_lebar']=None
+                    p['f_luas_lantai']=None
+                    p['f_lokasi']=None
+                    p['f_dokumen_tanggal']=None
+                    p['f_dokumen_nomor']=None
+                    p['f_status_tanah']=None
+                    p['f_kode_tanah']=None
+                    p['f_luas_bangunan']=None
+                    
+                for item in ['kategori_kd', 'unit_kd', 'unit_nm', 'kategori_nm']:
+                    del p[item]
+                jumlah = 0
+                if p['jumlah']:
+                    jumlah = int(float(p['jumlah']))
+                    harga = int(float(p['harga'])) / jumlah
+                    p['jumlah'] = 1
+                    p['harga'] = harga
+                    p['nilai_sisa'] = harga
+                    
+                if pk_id and self.is_akses_mod('edit'): #update
+                    p['update_uid'] = self.session['user_id']
+                    jumlah = jumlah - 1
+                    rows = AsetKibModel.update(p)
+                else:
+                    rows={}
+
+                if jumlah>0:
+                    if self.is_akses_mod('insert'):
+                        p['id'] = 0
+                        for i in range(jumlah):
+                            p['create_uid'] = self.session['user_id']
+                            p['update_uid'] = self.session['user_id']
+                            r = DBSession.query(func.max(AsetKibModel.no_register).label('max_reg'))\
+                                 .filter(AsetKibModel.unit_id==p['unit_id'],
+                                            AsetKibModel.kategori_id==p['kategori_id'])\
+                                 .one()
+                            if r and r.max_reg:
+                                p['no_register'] = r.max_reg+1
+                            else:
+                                p['no_register'] = 1
+                            rows = AsetKibModel.tambah(p)
+                
+                if rows:
+                    self.d['msg']='Sukses Simpan Data'
+                    self.d['success']=True
+                else:
+                    self.d['msg']='Gagal Simpan Data'
+                
+                return self.d
+                
+            elif url_dict['act']=='delete' and self.is_akses_mod('delete'):
+                d={}
+                d['id'] = pk_id
+                rows = AsetKibModel.hapus(d)
+                if rows:
+                    self.d['msg']='Sukses Hapus Data'
+                    self.d['success']=True
+                return self.d
+                
+            else:
+                HTTPNotFound()            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+            
+class ViewAsetKibDel(BaseViews):
+    @view_config(route_name="aset_kib_del", renderer="../../templates/aset/kibdel.pt")
+    def aset_kib_del(self):
+        params = self.request.params
+        if self.logged:
+            return dict(datas=self.datas, rows='')
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+
+    @view_config(route_name="aset_kib_del_frm", renderer="../../templates/aset/kibdel_frm.pt")
+    def aset_kib_del_frm(self):
+        req = self.request
+        params = req.params
+        url_dict = req.matchdict
+        #print url_dict
+        if self.logged and self.is_akses_mod('aset_kib_del'):
+            self.datas['id'] = 'id' in url_dict and int(url_dict['id']) or 0
+            row = AsetDelModel.get_by_id(self.datas['id'])
+            if row:
+                rows = AsetDelModel.row2dict(row)
+                return dict(datas=self.datas, rows=rows)
+            else:
+                if self.datas['id']>0:
+                    return HTTPNotFound()
+            return dict(datas=self.datas,rows='')
+            
+            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+            
+    @view_config(route_name="aset_kib_del_act", renderer="json")
+    def aset_kib_del_act(self):
+        req    = self.request
+        params = req.params
+        url_dict = req.matchdict
+
+        if self.logged :
+            pk_id = 'id' in params and int(params['id']) or 0
+            if url_dict['act']=='grid' and self.is_akses_mod('read'):
+               # defining columns
+                columns = []
+                columns.append(ColumnDT('id'))
+                columns.append(ColumnDT('kibs.units.kode'))
+                columns.append(ColumnDT('kibs.kats.kode'))
+                columns.append(ColumnDT('kibs.no_register'))
+                columns.append(ColumnDT('kibs.uraian'))
+                columns.append(ColumnDT('kibs.tahun'))
+                columns.append(ColumnDT('tanggal'))
+                columns.append(ColumnDT('kibs.harga'))
+                columns.append(ColumnDT('kibs.kondisi'))
+
+                unit_id = self.session["unit_id"] or params["unit_id"]
+
+                query = DBSession.query(AsetDelItemModel)\
+                          .join(AsetKibModel)\
+                          .join(UnitModel)\
+                          .join(AsetKategoriModel)\
+                          .filter(AsetKibModel.unit_id==unit_id)
+                                
+                rowTable = DataTables(req, AsetDelItemModel, query, columns)
+                return rowTable.output_result()
+
+            if url_dict['act']=='grid2' and self.is_akses_mod('read'):
+               # defining columns
+                columns = []
+                columns.append(ColumnDT('id'))
+                columns.append(ColumnDT('kibs.units.kode'))
+                columns.append(ColumnDT('kibs.kats.kode'))
+                columns.append(ColumnDT('kibs.no_register'))
+                columns.append(ColumnDT('kibs.uraian'))
+                columns.append(ColumnDT('kibs.tahun'))
+                columns.append(ColumnDT('tanggal'))
+                columns.append(ColumnDT('kibs.harga'))
+                columns.append(ColumnDT('kibs.kondisi'))
+
+                delete_id = params["delete_id"]
+
+                query = DBSession.query(AsetDelItemModel)\
+                          .join(AsetKibModel)\
+                          .join(UnitModel)\
+                          .join(AsetKategoriModel)\
+                          .filter(AsetKibModel.delete_id==delete_id)
+                                
+                rowTable = DataTables(req, AsetDelItemModel, query, columns)
+                return rowTable.output_result()
+                
+
+            elif url_dict['act']=='save':
+                p = params.copy()
+                if 'disabled' not in p:
+                    p['disabled']=0
+                else:
+                    p['disabled']=1
+                for item in ['unit_kd', 'unit_nm']:
+                    del p[item]
+                    
+                if pk_id and self.is_akses_mod('edit'): #update
+                    p['update_uid'] = self.session['user_id']
+                    rows = AsetDelModel.update(p)
+                elif self.is_akses_mod('insert'): #insert
+                    p['create_uid'] = self.session['user_id']
+                    p['update_uid'] = self.session['user_id']
+                    rows = AsetDelModel.tambah(p)
+                else:
+                    rows=0
+                
+                if rows:
+                    self.d['msg']='Sukses Simpan Data'
+                    self.d['success']=True
+                    self.d['id']=rows
+                else:
+                    self.d['msg']='Gagal Simpan Data'
+                return self.d
+                
+            elif url_dict['act']=='delete'and self.is_akses_mod('delete'):
+                d={}
+                d['id'] = pk_id
+                rows = AsetDelItemModel.hapus(d)
+                if rows:
+                    self.d['msg']='Sukses Hapus Data'
+                    self.d['success']=True
+                return self.d
+                
+            else:
+                HTTPNotFound()            
+        else:
+            headers=forget(self.request)
+            return HTTPFound(location='/login?app=%s' % self.app, headers=headers)
+

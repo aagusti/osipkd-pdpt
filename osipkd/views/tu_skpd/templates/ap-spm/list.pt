@@ -1,0 +1,439 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content" class="container">
+    <h4>${request.title}</h4>
+    <hr>
+  <form id="header" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+      class="form-horizontal">
+    <fieldset class="deformFormFieldset">
+
+      <!--Tahun---------------------------------------------------------------->
+      <div class="form-group">
+        <div class="col-md-3">
+          <div id="item-tahun">
+            <label for="tahun" class="control-label col-md-3" id="req-tahun">
+                    Tahun</label>
+            <div class="col-md-9">
+               <input id="tahun" class=" form-control " type="text" 
+                      value="${request.session['tahun']}" 
+                      readonly name="tahun">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+           <input id="tahun_nm" class=" form-control " type="text" value="${request.session['ag_step_nm']}" name="tahun_nm" readonly>
+        </div>
+        
+      </div>
+
+      <!----------------------------------------------------------------------->
+      <input id="unit_id" type="hidden" value="${request.session['unit_id']}" name="unit_id">
+      <div class="form-group"><!--SKPD-->
+        <div class="col-md-3">
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-3" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-9">
+               <input id="unit_kd" class="form-control typeahead" type="text" value="${request.session['unit_kd']}" name="unit_kd">
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="unit_nm" class=" form-control " type="text" value="${request.session['unit_nm']}" name="unit_nm">
+        </div>
+
+      <script>
+        $('#unit_kd').typeahead({
+            "hint": true,
+            "highlight": true,
+            "minLength": 1,
+            "remote": "/unit/act/headofkode?term=%QUERY", 
+        },
+        {
+          "name": 'unit_kd',
+          "displayKey": 'value',
+        }); 
+                
+        $('#unit_nm').typeahead({
+            "hint": true,
+            "highlight": true,
+            "minLength": 1,
+            "remote": "/unit/act/headofnama?term=%QUERY", 
+        },
+        {
+          "name": 'unit_nm',
+          "displayKey": 'value',
+        }); 
+        
+         function change_unit(){
+            $.ajax({
+              type: "POST",
+              url: "/unit/act/changeid",
+              data: "unit_id="+$('#unit_id').val(),
+              success: function (html) {
+                if (html.success == true) {
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  $('#unit_kd').val('');
+                  $('#unit_nm').val('');
+                  $('#unit_id').val('');
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+        }
+        
+        $('#unit_kd').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#unit_nm').val(datum.nama);
+              $('#unit_id').val(datum.id);
+              change_unit();
+        });
+
+        $('#unit_nm').bind('typeahead:selected', function(obj, datum, name) {      
+              $('#unit_kd').val(datum.kode);
+              $('#unit_id').val(datum.id);
+              change_unit()
+        });
+      </script> 
+        
+      </div>
+    </fieldset>
+    </form>
+
+    <table class="table table-bordered table-hover table-condensed" id="table1">
+      <thead>
+        <tr>
+            <th>Index</th>
+            <th>No. SPM</th>
+            <th>Tanggal SPM</th>
+            <th>Jenis</th>
+            <th>Uraian</th>
+            <th>Nilai</th>
+            <th>Posting</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
+    <script>
+      var mID, mID2, mID3;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/ap-spm/act/grid";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_tambah"   class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit"     class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete"   class="btn btn btn-danger"  type="button">Hapus</button>',
+          '	<button id="btn_print"    class="btn btn btn-primary" type="button">Cetak</button>',
+          '	<button id="btn_posting"  class="btn btn btn-success" type="button">Posting</button>',
+          '	<button id="btn_unposting" class="btn btn btn-info" type="button">UnPosting</button>',
+          ' <button id="btn_close"    class="btn btn-warning"     type="button" >Tutup</button>',
+          '	&nbsp;',
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,           
+            "sDom"           : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false,
+                "bVisible"   : false,
+                "aTargets"   : [0,7]
+            },{
+                "bSearchable": true,
+                "aTargets"   : [1,2,4]
+            },{
+                "bSearchable": false,
+                "aTargets"   : [3,5,6]
+            },{
+                "sClass"   : "right",
+                "aTargets" : [5],
+                "mRender"  : function (data, type, full) {
+                return formatNumber(data);}
+            },{
+                "aTargets" : [3], // Untuk Jenis
+                "mRender"  : function (data, type, full) {
+                    if (data == "1") {
+                        return 'UP';
+                    } else if (data == "2") {
+                        return 'TU';
+                    } else if (data == "3") {
+                        return 'GU';
+                    } else if (data == "4") {
+                        return 'LS';
+                    }
+                }
+            },{
+                "aTargets" : [6], // Untuk Posting
+                "mRender"  : function (data, type, full) {
+                    if (data == "0") {
+                        return 'N';
+                    } else if (data == "1") {
+                        return 'Y';
+                    }
+                }
+            }],
+            "aoColumns": [
+                null, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "30px"}, 
+                {"sWidth": "200px"}, 
+                {"sWidth": "100px"},
+                {"sWidth": "20px","class":"right"},
+                {"sWidth": "30px"},
+            ],
+            
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+
+                switch(aData[6]){
+                    case '1' :
+                        $('td',nRow).css("background-color","#ddffdd")
+                        break;
+                }
+            },
+        });
+
+        function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+				        No_Spm = aData[1];
+                Uraian = aData[4];
+                Jenis  = aData[3];
+                mID2 = aData[7];
+                mID3 = aData[6];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /**********************************************************************/
+        $('#btn_tambah').click(function () {
+            window.location = '/ap-spm/add';
+        });
+
+        $('#btn_posting').click(function () {
+            if (mID) {
+                window.location = '/ap-spm/' + mID +'/posting';
+            } else {
+                alert('Silahkan pilih data yang akan diposting');
+            }
+        });
+        
+        $('#btn_unposting').click(function () {
+            if (mID) {
+                if(mID3=="0"){
+                    alert('Data tidak dapat di UnPosting.'); }
+                else{window.location = '/ap-spm/' + mID +'/unposting';}
+            } else {
+                alert('Silahkan pilih data yang akan diunposting');
+            }
+        });
+        
+        $('#btn_edit').click(function () {
+            if (mID) {
+                window.location = '/ap-spm/' + mID +'/edit';
+            } else {
+                alert('Silahkan pilih data yang akan diedit');
+            }
+        });
+        $('#btn_delete').click(function () {
+            if (mID) {
+                if(mID2=="0" || mID2=="None"){
+                    window.location = '/ap-spm/' + mID +'/delete'; }
+                else{alert('Data tidak dapat dihapus, karena masih mempunyai biaya potongan.');}
+            } else {
+                alert('Silahkan pilih data yang akan di hapus');
+            }
+        });
+        $('#btn_print').click(function () {
+          if (mID) {
+            $('#No_Spm').val(No_Spm);
+            $('#Uraian').val(Uraian);
+            $('#Jenis').val(Jenis);
+            
+				    if($('#Jenis').val()=="1"){
+                $('#Jenis').val('UP');				
+				    }
+				    else if($('#Jenis').val()=="2"){
+                $('#Jenis').val('TU');				
+				    }
+				    else if($('#Jenis').val()=="3"){
+                $('#Jenis').val('GU');				
+				    }
+				    else if($('#Jenis').val()=="4"){
+                $('#Jenis').val('LS');				
+				    }
+				    else {
+                $('#Jenis').val('');				
+				    }
+
+			      $('#dlgRpt').modal('show');
+
+          } else {
+              alert('Silahkan pilih Kegiatan ID');
+          }
+        });
+
+        $('#btn_pil_rpt').click(function () {
+          var rpt = $('input[name="rpt"]:checked').val();
+          if (mID) {
+            /*if(rpt==1){
+              url = "/ap-report-skpd/act/spm"+rpt+"?id="+mID;
+              window.open(url);
+            }
+            else if(rpt==2){
+              url = "/ap-report-skpd/act/spm"+rpt+"?id="+mID;
+              window.open(url);
+            }
+            else if(rpt==3){
+              url = "/ap-report-skpd/act/spm"+rpt+"?id="+mID;
+              window.open(url);
+            }
+            else if(rpt==4){
+              url = "/ap-report-skpd/act/spm?id="+mID;
+              window.open(url);
+            }
+            else if(rpt==5){
+              url = "/ap-report-skpd/act/spm"+rpt+"?id="+mID;
+    					window.open(url);
+				    }
+				    else if(rpt==6){*/
+              url = "/ap-report-skpd/act/spm"+rpt+"?id="+mID;
+					    window.open(url);
+				    /*}*/
+
+          } else {
+                alert('Silahkan pilih Kegiatan ID');
+          }
+        });
+         $("#btn_close").click(function () {
+            window.location = '/tu-skpd';
+            return false;
+        });
+     });
+    </script>
+          <!-- Modal Report -->
+    <div class="modal fade" id="dlgRpt">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Pilih Report</h4>
+          </div>
+
+            <div class="modal-body">
+          <div class="col-md-3">
+            <input id="No_Spm" class="form-control typeahead" type="text" value="" name="No_Spm" readonly="true">
+          </div>
+          <div class="col-md-7">
+            <input id="Uraian" class=" form-control" type="text" value="" name="Uraian" readonly="true">
+                </div>
+          <div class="col-md-2">
+            <input id="Jenis" class=" form-control" type="text" value="" name="Jenis" readonly="true">
+                </div>
+        </div>
+
+          <div class="modal-body">
+        <label class="control-label col-md-3" for="rpt">Jenis Laporan</label>
+        <div class="modal-body">
+          <div class="radio">
+            <label class="col-md-6"><input type="radio" name="rpt" value="01">Surat Pengantar</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="02">Surat Pernyataan</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="12">Surat Pernyataan (TU)</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="03">Format SPM</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="04">SPTJM Pihak Ketiga 1</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="05">SPTJM Pihak Ketiga 2</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="06">SPTJM LS</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="07">SPTJM GU</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="08">SPTJB GU</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="09">SPTJB LS</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="10">SPTJB LS Pihak Ketiga</label>
+                </div>
+                <div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="11">Checklist</label>
+                </div>
+                <!--div class="radio">
+                    <label class="col-md-6"><input type="radio" name="rpt" value="6">SPTJM</label>
+                </div-->
+        </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btn_pil_rpt" name="btn_pil_rpt">Cetak</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+        <!-- End Modal -->
+
+  </div> <!--End Metal-->
+</html>

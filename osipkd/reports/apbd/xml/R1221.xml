@@ -1,0 +1,63 @@
+<apbd>
+<kegiatan>
+<tahun>2014</tahun>
+<urusan_kd>0.00</urusan_kd>
+<urusan_nm>Urusan SKPD3</urusan_nm>
+<urusan_kd1>1.02</urusan_kd1>
+<urusan_nm1>Kesehatan</urusan_nm1>
+<unit_id>2</unit_id>
+<unit_kd>01</unit_kd>
+<unit_nm>Dinas Kesehatan</unit_nm>
+<program_kd>01</program_kd>
+<program_nm>Program Pelayanan Administrasi Perkantoran</program_nm>
+<kegiatan_kd>01</kegiatan_kd>
+<kegiatan_nm>Penyediaan jasa surat menyurat</kegiatan_nm>
+<lokasi />
+<target />
+<sasaran />
+<amt_lalu />
+<amt_yad />
+<kegiatan_sub_id>17</kegiatan_sub_id>
+<indikator>
+<tipe>2</tipe>
+<no_urut>1</no_urut>
+<tolok_ukur_1>Tolok Ukur Keluaran</tolok_ukur_1>
+<volume_1>2</volume_1>
+<satuan_1>buah</satuan_1>
+</indikator>
+<indikator>
+<tipe>1</tipe>
+<no_urut>1</no_urut>
+<tolok_ukur_1>Tolok Ukur Keluaran</tolok_ukur_1>
+<volume_1>2</volume_1>
+<satuan_1>buah</satuan_1>
+</indikator>
+<item>
+<rek_kd>5.2.2.01.02</rek_kd>
+<rek_nm>Belanja dokumen/administrasi tender</rek_nm>
+<level_id>1</level_id>
+<item_kd>1</item_kd>
+<item_nm>Nama item</item_nm>
+<volume1>1</volume1>
+<volume2>1</volume2>
+<volume3>1</volume3>
+<volume4>1</volume4>
+<harga1>1</harga1>
+<harga2>1</harga2>
+<harga3>1</harga3>
+<harga4>1</harga4>
+<satuan11>1</satuan11>
+<satuan12>1</satuan12>
+<satuan21>1</satuan21>
+<satuan22>1</satuan22>
+<satuan31>1</satuan31>
+<satuan32>1</satuan32>
+<satuan41>1</satuan41>
+<satuan42>1</satuan42>
+<jumlah1>1</jumlah1>
+<jumlah2>1</jumlah2>
+<jumlah3>1</jumlah3>
+<jumlah4>1</jumlah4>
+</item>
+</kegiatan>
+</apbd>

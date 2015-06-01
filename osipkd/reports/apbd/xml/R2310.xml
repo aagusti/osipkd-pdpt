@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<apbd>
+  <master>
+    <dpa>
+      <tahun>2014</tahun>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan Nm</urusan_nm>
+      <unit_id>1</unit_id>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit Nm</unit_nm>
+      <rek_kd>01.01.01.01</rek_kd>
+      <rek_kd1>01</rek_kd1>
+      <rek_kd2>01.01</rek_kd2>
+      <rek_kd3>01.01.01</rek_kd3>
+      <rek_kd4>01.01.01</rek_kd4>
+      <rek_nm>Rek Nm</rek_nm>
+      <rek_nm1>Rek Nm1</rek_nm1>
+      <rek_nm2>Rek Nm2</rek_nm2>
+      <rek_nm3>Rek Nm3</rek_nm3>
+      <rek_nm4>Rek Nm4</rek_nm4>
+      <grup>Grup</grup>
+      <grup_nm>Grup Nm</grup_nm>
+      <rek_item>Rek Item</rek_item>
+      <volume1>100</volume1>
+      <satuan1>Satuan</satuan1>
+      <harga1>1000</harga1>
+      <jumlah1>1000</jumlah1>
+      <volume2>200</volume2>
+      <satuan2>Satuan</satuan2>
+      <harga2>2000</harga2>
+      <jumlah2>2000</jumlah2>
+      <volume3>300</volume3>
+      <satuan3>Satuan</satuan3>
+      <harga3>3000</harga3>
+      <jumlah3>3000</jumlah3>
+      <volume4>400</volume4>
+      <satuan4>Satuan</satuan4>
+      <harga4>4000</harga4>
+      <jumlah4>4000</jumlah4>
+    </dpa>
+    <dpa>
+      <tahun>2014</tahun>
+      <urusan_kd>01</urusan_kd>
+      <urusan_nm>Urusan Nm</urusan_nm>
+      <unit_id>1</unit_id>
+      <unit_kd>01.01</unit_kd>
+      <unit_nm>Unit Nm</unit_nm>
+      <rek_kd>01.01.01.01</rek_kd>
+      <rek_kd1>01</rek_kd1>
+      <rek_kd2>01.01</rek_kd2>
+      <rek_kd3>01.01.01</rek_kd3>
+      <rek_kd4>01.01.01</rek_kd4>
+      <rek_nm>Rek Nm</rek_nm>
+      <rek_nm1>Rek Nm1</rek_nm1>
+      <rek_nm2>Rek Nm2</rek_nm2>
+      <rek_nm3>Rek Nm3</rek_nm3>
+      <rek_nm4>Rek Nm4</rek_nm4>
+      <grup>Grup</grup>
+      <grup_nm>Grup Nm</grup_nm>
+      <rek_item>Rek Item</rek_item>
+      <volume1>100</volume1>
+      <satuan1>Satuan</satuan1>
+      <harga1>1000</harga1>
+      <jumlah1>1000</jumlah1>
+      <volume2>200</volume2>
+      <satuan2>Satuan</satuan2>
+      <harga2>2000</harga2>
+      <jumlah2>2000</jumlah2>
+      <volume3>300</volume3>
+      <satuan3>Satuan</satuan3>
+      <harga3>3000</harga3>
+      <jumlah3>3000</jumlah3>
+      <volume4>400</volume4>
+      <satuan4>Satuan</satuan4>
+      <harga4>4000</harga4>
+      <jumlah4>4000</jumlah4>
+    </dpa>
+  </master>
+</apbd>

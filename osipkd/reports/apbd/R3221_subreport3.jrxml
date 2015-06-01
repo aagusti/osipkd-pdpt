@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="R2221_subreport3" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[apbd/kegiatan/trw]]>
+	</queryString>
+	<field name="jmltrw1" class="java.lang.String">
+		<fieldDescription><![CDATA[jmltrw1]]></fieldDescription>
+	</field>
+	<field name="jmltrw2" class="java.lang.String">
+		<fieldDescription><![CDATA[jmltrw2]]></fieldDescription>
+	</field>
+	<field name="jmltrw3" class="java.lang.String">
+		<fieldDescription><![CDATA[jmltrw3]]></fieldDescription>
+	</field>
+	<field name="jmltrw4" class="java.lang.String">
+		<fieldDescription><![CDATA[jmltrw4]]></fieldDescription>
+	</field>
+	<variable name="trw1" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{jmltrw1})]]></variableExpression>
+	</variable>
+	<variable name="trw2" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{jmltrw2})]]></variableExpression>
+	</variable>
+	<variable name="trw3" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{jmltrw3})]]></variableExpression>
+	</variable>
+	<variable name="trw4" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{jmltrw4})]]></variableExpression>
+	</variable>
+	<variable name="jumlah" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($F{jmltrw1})+Double.parseDouble($F{jmltrw2})+Double.parseDouble($F{jmltrw3})+Double.parseDouble($F{jmltrw4})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="3" width="50" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Triwulan I]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="3" width="82" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{trw1})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="17" width="82" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{trw2})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="17" width="50" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Triwulan II]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="31" width="82" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{trw3})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="31" width="50" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Triwulan III]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="45" width="82" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{trw4})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="45" width="50" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Triwulan IV]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="61" width="82" height="14"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[NumberFormat.getInstance().getNumberInstance(Locale.ITALIAN).format($V{jumlah})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="61" width="50" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="31" width="25" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[: Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="61" width="25" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[: Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="45" width="25" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[: Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="3" width="25" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[: Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="17" width="25" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[: Rp.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="52" y="60" width="104" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="52" y="75" width="104" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,48 @@
+<html metal:use-macro="load: ../base.pt">
+<div metal:fill-slot="content">
+<h4>${request.title}</h4>
+<hr>
+<div tal:content="structure form"/>
+<script>
+  //Untuk Rekening APBD
+  $('#rekening_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#rekening_id').val(datum.id);
+        $('#rekening_nm').val(datum.nama);
+  });
+  $('#rekening_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#rekening_id').val(datum.id);
+        $('#rekening_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening LO
+  $('#lo_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#lo_sap_id').val(datum.id);
+        $('#lo_sap_nm').val(datum.nama);
+  });
+  $('#lo_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#lo_sap_id').val(datum.id);
+        $('#lo_sap_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening LRA
+  $('#lra_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#lra_sap_id').val(datum.id);
+        $('#lra_sap_nm').val(datum.nama);
+  });
+  $('#lra_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#lra_sap_id').val(datum.id);
+        $('#lra_sap_kd').val(datum.kode);
+  });
+  
+  //Untuk Rekening Aset
+  $('#aset_sap_kd').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#aset_sap_id').val(datum.id);
+        $('#aset_sap_nm').val(datum.nama);
+  });
+  $('#aset_sap_nm').bind('typeahead:selected', function(obj, datum, name) {      
+        $('#aset_sap_id').val(datum.id);
+        $('#aset_sap_kd').val(datum.kode);
+  });
+</script>
+</div>
+</html>

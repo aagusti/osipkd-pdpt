@@ -1,0 +1,25 @@
+<html metal:use-macro="load: ../../templates/base.pt">
+<div metal:fill-slot="nav">
+    <ul class="nav navbar-nav" tal:condition="request.user">
+      <li tal:attributes="class request.path == '/efiling' and 'active'">
+          <a href="/efiling"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                  <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/efiling/kategori">Kategori</a></li>
+                    <li><a href="/efiling/lokasi">Lokasi</a></li>
+                    <li><a href="/efiling/filing">Filing</a></li>
+                </ul>
+            </li>
+      
+    </ul>
+</div>
+
+<div metal:fill-slot="content">
+    <div metal:define-slot="content"></div> 
+</div>
+<div metal:fill-slot="scripts">
+    <div metal:define-slot="scripts"></div> 
+</div>
+</html>
+

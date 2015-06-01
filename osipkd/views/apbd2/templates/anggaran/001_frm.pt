@@ -1,0 +1,170 @@
+<html metal:use-macro="load: ../anggaran/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                $("#btn_save").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/anggaran/001/save",
+                        data: $("#myform").serialize(),
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                });
+
+                $("#btn_close").click(function () {
+                    window.location = '/anggaran/001';
+                    return false;
+                });
+
+                $( "#tgl_entry,#tgl_evaluasi,#tanggal_1,#tanggal_2,#tanggal_3,#tanggal_4,#tgl_perda,#tgl_perkdh,#tgl_perda_rev,#tgl_perkdh_rev,#tgl_lpj" ).datepicker({dateFormat:'dd-mm-yy'});
+        });
+        </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Seting Tahun Anggaran</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <fieldset>
+                    <input type="hidden" name="id" id="id" value="${datas.id}">
+                    <div class="form-group">
+                        <label for="tahun" class="control-label col-sm-2">Tahun</label>
+                        <div class="col-sm-1">
+                            <input class="form-control"  type="text" name="tahun" id="tahun" value="${rows and rows.tahun}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status_apbd" class="control-label col-sm-2">Status APBD</label>
+                        <div class="col-sm-2">
+                            <select id="status_apbd" name="status_apbd" class="form-control">
+                                <option value="">Pilih Status APBD</option>
+                                <option value="1" tal:attributes="selected 'selected' if rows and rows.status_apbd=='1' else None">RKA</option>
+                                <option value="2" tal:attributes="selected 'selected' if rows and rows.status_apbd=='2' else None">DPA</option>
+                                <option value="3" tal:attributes="selected 'selected' if rows and rows.status_apbd=='3' else None">PRKA</option>
+                                <option value="4" tal:attributes="selected 'selected' if rows and rows.status_apbd=='4' else None">DPPA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_entry" class="control-label col-sm-2">Tgl. Entri</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="tgl_entry" id="tgl_entry" value="${rows and rows.tgl_entry  or None}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tgl_evaluasi" class="control-label col-sm-2">Tgl. Evaluasi</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="tgl_evaluasi" id="tgl_evaluasi" value="${rows and rows.tgl_evaluasi or None}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tanggal_1" class="control-label col-sm-2">Tgl. RKA</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="tanggal_1" id="tanggal_1" value="${rows and rows.tanggal_1  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_2" class="control-label col-sm-2">Tgl. DPA</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tanggal_2" id="tanggal_2" value="${rows and rows.tanggal_2  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_3" class="control-label col-sm-2">Tgl. PRKA</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tanggal_3" id="tanggal_3" value="${rows and rows.tanggal_3  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_4" class="control-label col-sm-2">Tgl. DPPA</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tanggal_4" id="tanggal_4" value="${rows and rows.tanggal_4  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_perda" class="control-label col-sm-2">No. Perda</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="no_perda" id="no_perda" value="${rows and rows.no_perda  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_perda" class="control-label col-sm-2">Tgl. Perda</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tgl_perda" id="tgl_perda" value="${rows and rows.tgl_perda  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_perkdh" class="control-label col-sm-2">No. Perkdh</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="no_perkdh" id="no_perkdh" value="${rows and rows.no_perkdh  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_perkdh" class="control-label col-sm-2">Tgl. Perkdh</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tgl_perkdh" id="tgl_perkdh" value="${rows and rows.tgl_perkdh  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_perda_rev" class="control-label col-sm-2">No. Perda Rev</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="no_perda_rev" id="no_perda_rev" value="${rows and rows.no_perda_rev  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_perda_rev" class="control-label col-sm-2">Tgl. Perda Rev</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tgl_perda_rev" id="tgl_perda_rev" value="${rows and rows.tgl_perda_rev  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_perkdh_rev" class="control-label col-sm-2">No. Perkdh Rev</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="no_perkdh_rev" id="no_perkdh_rev" value="${rows and rows.no_perkdh_rev  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_perkdh_rev" class="control-label col-sm-2">Tgl. Perkdh Rev</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tgl_perkdh_rev" id="tgl_perkdh_rev" value="${rows and rows.tgl_perkdh_rev  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_lpj" class="control-label col-sm-2">No. LPJ</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="no_lpj" id="no_lpj" value="${rows and rows.no_lpj  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_lpj" class="control-label col-sm-2">Tgl. LPJ</label>
+                        <div class="col-sm-2">
+                            <input class="form-control"  type="text" name="tgl_lpj" id="tgl_lpj" value="${rows and rows.tgl_lpj  or None}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">&nbsp;</label>
+                        <div class="col-sm-4">
+                            <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                            <button type="reset"  class="btn btn-info"    id="btn_cancel">Batal</button>
+                            <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</html>

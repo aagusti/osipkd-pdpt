@@ -1,0 +1,324 @@
+<html metal:use-macro="load: ../akskpd/template.pt">
+    <div metal:fill-slot="content2" class="panel panel-default">
+    
+    <style>
+    .modalkegitem {
+        width: 900px;
+    }
+    </style>
+
+    <script type='text/javascript'>
+      var mod = "/c102/003"
+      var mID;
+      var oTable;
+      var iPos;
+      var oTableUrl = mod+"/${datas and datas['grid2'] or 'grid2'}";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          ' <button id="btn_tambah" class="btn btn btn-primary" type="button">Tambah</button>',
+          ' <button id="btn_edit"   class="btn btn btn-primary" type="button">Edit</button>',
+          ' <button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          ' &nbsp;',
+          '</div>'
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true,
+            "dom"            : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+            "bUseRendered"   : false,
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            "aoColumnDefs": [{
+                "bSearchable": false, 
+                "bVisible"   : false,
+                "aTargets"   : [0]
+            },{
+                "bSearchable": true,
+                "bSortable"  : false,
+                "aTargets"   : [1,2,3,4,5]
+            },{
+                "bSearchable": false,
+                "bSortable"  : false,
+                "aTargets"   : [6]
+            },{
+                "sClass"   : "right",
+                "aTargets" : [3,4],
+                "mRender"  : function (data, type, full) {
+                return formatNumber(data);}
+            }],
+
+            "aoColumns": [
+                null, 
+                {"sWidth": "25px"},   
+                {"sWidth": "100px"}, 
+                {"sWidth": "40px"}, 
+                {"sWidth": "40px"}, 
+                {"sWidth": "100px"}, 
+                {"sWidth": "20px"}  
+            ],
+            "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                $(nRow).on("click", function (event) {
+                    if ($(this).hasClass('row_selected')) {
+                        /* mID = '';
+                        $(this).removeClass('row_selected'); */
+                    } else {
+
+                        var data = oTable.fnGetData(this);
+                        mID = data[0];
+
+                        oTable.$('tr.row_selected').removeClass('row_selected');
+                        $(this).addClass('row_selected');
+                    }
+                })
+            },
+        });
+
+        function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                mID = ''; ;
+                $(this).removeClass('selected');
+            } else {
+                iPos1 = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos1);
+                mID = aData[0];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+ 
+        $('#btn_tambah').click(function() {
+          if ($('#id').val()==''||$('#id').val()=='0'){
+             alert ("simpan dulu data master");}
+          else{
+             window.location = '/c102/997/frm/0?jurnal_id='+$('#id').val() + '&unit_id='+$('#unit_id').val(); }
+            });
+       
+        $('#btn_edit').click(function() {
+          if($('#id').val()==''||$('#id').val()=='0'){
+                alert ("simpan dulu data master");}
+          else if(mID=='0' || mID==''){
+                alert("Pilih dulu baris yang akan di edit");}
+          else{
+                window.location = '/c102/997/frm/' + mID ; }
+        });
+ 
+        $("#btn_save").click(function () {
+            $.ajax({
+                type: "POST",
+                url: mod+"/save",
+                data: $("#myform").serialize(),
+                success: function (html) {
+                    if (html.success == true) {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                    } else {
+                        $("#errors").css('display', 'inline', 'important');
+                        $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                    }
+                },
+                beforeSend: function () {
+                    $("#errors").css('display', 'inline', 'important');
+                    $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                }
+            });
+            return false;
+        });
+
+        $("#btn_close").click(function () {
+            window.location = "/c102/003";
+            return false;
+        });
+
+        $('#btn_delete').click(function () {
+            if (mID) {
+                var hapus = confirm('Hapus data ini?');
+                if (hapus == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: mod + "/delitem",
+                        data: "id=" + mID,
+                        success: function (html) {
+                            if (html.success == true) {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                                var oTable = $('#table1').dataTable();
+                                oTable.fnDraw();
+                                //TODO: Redraw after delete
+                            } else {
+                                $("#errors").css('display', 'inline', 'important');
+                                $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                            }
+                        },
+                        beforeSend: function () {
+                            $("#errors").css('display', 'inline', 'important');
+                            $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+                        }
+                    });
+                    return false;
+                };
+            } else {
+                alert('Silahkan pilih data yang akan dihapus');
+            }
+        });
+         
+        //$( "#tanggal,#tgl_source,#tgl_posted" ).datepicker({dateFormat:'dd-mm-yy'});
+        var a = $( '#tanggal' ).val();
+        var b = new Date(a);
+        var c = $( '#tgl_source' ).val();
+        var d = new Date(c);
+        var e = $( '#tgl_posted' ).val();
+        var f = new Date(e);
+        $( '#tanggal' ).datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('setDate',b);
+        $( '#tgl_source' ).datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('setDate',d);
+        $( '#tgl_posted' ).datepicker({ dateFormat: 'mm-dd-yy' }).datepicker('setDate',f);
+      }); 
+      
+    </script>
+        <div class="panel-heading">
+            <h3 class="panel-title">Jurnal Umum</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post" accept-charset="utf-8" id="myform" class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="${rows and rows.id or 0}"/>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tahun_id">Tahun</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="tahun_id" id="tahun_id"  readonly = "True" value="${rows and rows.tahun_id or datas.tahun}" />
+                    </div>
+                    <label class="control-label col-xs-2" for="unit_id">SKPD/SKPKD</label>
+                    <div class="col-xs-6">
+                        <input type="hidden" name="unit_id" id="unit_id" readonly="True" value="${datas.unit_id}" />
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                            <span class="form-control" type="text" name="unit_kd" id="unit_kd" readonly="True">${datas.unit_kd}</span>
+                            </span>
+                            <span class="form-control" type="text" name="unit_nm" id="unit_nm" readonly="True">${datas.unit_nm}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="periode">Periode</label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="text" name="periode" id="periode" value="${rows and rows.periode or None}"  required />
+                    </div>
+                    <label class="control-label col-xs-2" for="jv_type"></label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="hidden" name="jv_type" id="jv_type" value="${rows and rows.jv_type or None}"  readonly required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="kode">No. Jurnal</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="kode" id="kode" value="${rows and rows.kode or None}" required />
+                    </div>
+                    <label class="control-label col-xs-1" for="tanggal">Tgl.Jurnal</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="tanggal" id="tanggal" value="${rows and rows.tanggal or None}" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="nama">Uraian</label>
+                    <div class="col-xs-5">
+                        <input class="form-control" type="text" name="nama" id="nama" value="${rows and rows.nama  or None}" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="source">Sumber</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="source" id="source" value="${rows and rows.source or None}" required />
+                    </div>
+                    <label class="control-label col-xs-1" for="source">NoSumber</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="sourceno" id="sourceno" value="${rows and rows.sourceno or None}" required />
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tgl_source">Tgl. Sumber</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="tgl_source" id="tgl_source" value="${rows and rows.tgl_source or None}" required />
+                    </div>
+                    <label class="control-label col-xs-1" for="posted_by">Posted_by</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="posted_by" id="posted_by" value="${rows and rows.posted_by or None}" readonly required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="tgl_posted">Tgl. Posting</label>
+                    <div class="col-xs-2">
+                        <input class="form-control" type="text" name="tgl_posted" id="tgl_posted" value="${rows and rows.tgl_posted or None}" required />
+                    </div>
+	                <label class="control-label col-xs-1" for="no_urut"></label>
+                    <div class="col-xs-1">
+                        <input class="form-control" type="hidden" name="no_urut" id="no_urut" value="${rows and rows.no_urut or None}"  readonly required />
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label class="control-label col-xs-2" for="notes">Catatan</label>
+                    <div class="col-xs-5">
+                        <input class="form-control" type="text" name="notes" id="notes" value="${rows and rows.notes or None}" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2"></label>
+                      <label class="col-sm-2">
+                        <input type="checkbox" name="posted" id="posted" 
+                            tal:attributes="checked 'checked' if rows and rows.posted==1 else None">&nbsp;Posted
+                      </label>
+                    <!--label class="control-label col-sm-1">&nbsp;</label>
+                      <label class="col-sm-2">
+                        <div class="radio">
+                          <label><input type="radio" name="is_skpd" value="1">Jurnal PPKD</label>
+                        </div>
+                      </label-->
+                </div>
+
+                <div class="form-group">
+                <label class="control-label col-sm-2">&nbsp;</label>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-primary" id="btn_save">Simpan</button>
+                        <button type="reset"  class="btn btn-danger"  id="btn_cancel">Batal</button>
+                        <button type="button" class="btn btn-warning" id="btn_close">Tutup</button>
+                    </div>
+                </div>
+            </form><br>
+            <table class="table table-bordered table-hover table-condensed" id="table1">
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Kode</th>
+                        <th>Uraian</th>
+                        <th>Debet</th>
+                        <th>Kredit</th>
+                        <th>Catatan</th>
+                        <th>Kode Rekening</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>           
+            </table>
+        </div>
+        <!--panel-body-->
+  </div>
+</html>

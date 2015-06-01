@@ -1,0 +1,9 @@
+Update Tabel pada database gaji_pns yang dilakukan adalah sebagi berikut :
+
+- update table kegiatan_indikator --> column kegitan diubah menjadi kegiatan
+- update table pejabats           --> column uraian diubah menjadi character variying (200)
+- update table ap_spms            --> column tanggal diubah menjadi date
+- update table giros              --> column ap_sp2d_id dihapus
+
+Untuk Tabel routes sudah dirapikan dan ditambahkan beberapa route yang baru.
+File insert route pada file : route_all.sql

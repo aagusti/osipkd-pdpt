@@ -1,0 +1,20 @@
+<html metal:use-macro="load: ../../templates/base.pt">
+<div metal:fill-slot="nav">
+    <ul class="nav navbar-nav">
+      <li tal:attributes="class request.path == '/app' and 'active'">
+          <a href="/" class="navbar-brand"><strong>DINAS PENDAPATAN DAERAH KOTA BOGOR</strong></a></li>
+    </ul>
+</div>
+
+<div metal:fill-slot="content">
+    <link href="/static/js/chart/legend/legend.css" rel="stylesheet"-->    
+    <script type="text/javascript"  src="/static/js/chart/Chart.min.js"> </script>
+    <script type="text/javascript"  src="/static/js/chart/legend/legend.js"> </script>
+    
+    <div metal:define-slot="content"></div> 
+</div>
+<div metal:fill-slot="scripts">
+    <div metal:define-slot="scripts"></div> 
+</div>
+</html>
+

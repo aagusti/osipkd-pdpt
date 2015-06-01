@@ -1,0 +1,169 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content">
+    <h4>${request.title}</h4>
+    <hr>
+    
+    <div class="panel panel-default col-md-8">
+      <div class="panel-heading">
+        Jenis Report
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ar-item-lap" id="ar-item-lap1" value="1">
+              </span>
+              <input type="text" class="form-control" aria-label="..." readonly value="Laporan Ketetapan">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ar-item-lap" id="ar-item-lap2" value="2">
+              </span>
+              <input type="text" class="form-control" aria-label="..." readonly value="Laporan Realisasi">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ar-item-lap" id="ar-item-lap2" value="3">
+              </span>
+              <input type="text" class="form-control" aria-label="..." readonly value="Laporan Saldo Piutang">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+      </div>
+    </div>
+    
+    <div class="panel panel-default  col-md-4">
+      <div class="panel-heading">
+        Kedalaman
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ar-item-level" id="ar-item-level1" value="1">
+              </span>
+              <input type="text" class="form-control" aria-label="..." readonly value="Jenis">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ar-item-level" id="ar-item-leve2" value="2">
+              </span>
+              <input type="text" class="form-control" aria-label="..." readonly value="Objek">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ar-item-level" id="ar-item-level3" value="3">
+              </span>
+              <input type="text" class="form-control" aria-label="..." readonly value="Rincian Objek">
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="tanggal" class="control-label col-md-1" id="req-tanggal">
+              Periode</label>
+      <div class="col-md-3">
+         <input id="tanggal" class="form-control" type="text" readonly 
+                value="${request.session['tanggal']}" name="tanggal"/>
+      </div>
+      <div class="col-md-3">
+        <input id="tanggal2" class="form-control" type="text" readonly 
+                value="${request.session['tanggal2']}" name="tanggal"/>
+      </div>
+      <button id="btn_pdf" class="btn btn-success" type="button"
+              name="btn_pdf">Cetak</button>
+      <button id="btn_close" name="btn_close" type="button" class="btn btn-warning"
+          value="btn_close">Tutup</button>
+    </div>
+    <script>
+      $('#tanggal').click(
+          function(){
+            if (!Modernizr.inputtypes['date'] ||
+                "date" != "date"){
+              $('#tanggal').pickadate({"selectMonths": true,
+                "submitFormat": "yyyy-mm-dd", 
+                "selectYears": true, "format": "yyyy-mm-dd"});
+            }
+          }
+      );
+      $('#tanggal2').click(
+          function(){
+            if (!Modernizr.inputtypes['date'] ||
+                "date" != "date"){
+              $('#tanggal2').pickadate({"selectMonths": true,
+                "submitFormat": "yyyy-mm-dd", 
+                "selectYears": true, "format": "yyyy-mm-dd"});
+            }
+          }
+      );
+      
+      $('#tanggal, #tanggal2').change(function(){
+            if ($('#tanggal').val()>$('#tanggal2').val()){
+                $('#tanggal2').val($('#tanggal').val());
+            }
+            $.ajax({
+              type: "POST",
+              url: "/change/tanggal",
+              data: "tanggal="+$('#tanggal').val()+"&tanggal2="+$('#tanggal2').val(),
+              success: function (html) {
+                if (html.success == true) {
+                  $("#success").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+      });
+      
+        $("#btn_close").click(function () {
+            window.location = '/skpd';
+            return false;
+        });
+
+      $('#btn_pdf').click(function () {
+            var jenis = $('input[name="ar-item-lap"]:checked').val();
+            var level = $('input[name="ar-item-level"]:checked').val();
+            var mulai = $('#tanggal').val();
+            var selesai = $('#tanggal2').val();
+            if(jenis==undefined) {
+                alert('Silahkan pilih jenis report yang akan ditampilkan!');
+                return;
+            }
+            if(level==undefined) {
+                alert('Silahkan pilih kedalaman yang akan ditampilkan!');
+                return;
+            }
+            window.open('/ar-report-item/'+jenis+'/act/?level='+level+'&mulai='+mulai+'&selesai='+selesai);
+      });
+      
+    </script>
+  </div>
+</html>

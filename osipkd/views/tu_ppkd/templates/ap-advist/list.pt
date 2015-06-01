@@ -1,0 +1,240 @@
+<html metal:use-macro="load: ../base.pt">
+  <div metal:fill-slot="content" class="container">
+    <h4>${request.title}</h4>
+    <hr>
+  <form id="header" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+      class="form-horizontal">
+    <fieldset class="deformFormFieldset">
+  
+      <!--Tahun---------------------------------------------------------------->
+      <div class="form-group">
+        <div class="col-md-3">
+          <div id="item-tahun">
+            <label for="tahun" class="control-label col-md-3" id="req-tahun">
+                    Tahun</label>
+            <div class="col-md-9">
+               <input id="tahun" class=" form-control " type="text" 
+                      value="${request.session['tahun']}" 
+                      readonly name="tahun">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+           <input id="tahun_nm" class=" form-control " type="text" value="${request.session['ag_step_nm']}" name="tahun_nm" readonly>
+        </div>
+        
+      </div>
+
+      <!----------------------------------------------------------------------->
+      <input id="unit_id" type="hidden" value="${request.session['unit_id']}" name="unit_id">
+      <div class="form-group"><!--SKPD-->
+        <div class="col-md-3">
+          <div id="item-unit_kd">
+            <label for="unit_kd" class="control-label col-md-3" id="req-unit_kd">
+                    SKPD</label>
+            <div class="col-md-9">
+               <input id="unit_kd" class="form-control typeahead" type="text" value="${request.session['unit_kd']}" name="unit_kd">
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+           <input id="unit_nm" class=" form-control " type="text" value="${request.session['unit_nm']}" name="unit_nm">
+        </div>
+      <script>
+
+        $('#unit_kd').typeahead({
+            "hint": true,
+            "highlight": true,
+            "minLength": 1,
+            "remote": "/unit/act/headofkode?term=%QUERY", 
+        },
+        {
+          "name": 'unit_kd',
+          "displayKey": 'value',
+        }); 
+                
+        $('#unit_nm').typeahead({
+            "hint": true,
+            "highlight": true,
+            "minLength": 1,
+            "remote": "/unit/act/headofnama?term=%QUERY", 
+        },
+        {
+          "name": 'unit_nm',
+          "displayKey": 'value',
+        }); 
+        
+         function change_unit(){
+            $.ajax({
+              type: "POST",
+              url: "/unit/act/changeid",
+              data: "unit_id="+$('#unit_id').val(),
+              success: function (html) {
+                if (html.success == true) {
+                  $("#errors").html("<span class='glyphicon glyphicon-ok'></span> " + html.msg);
+                  oTable.fnReloadAjax(oTableUrl);
+                } else {
+                  $("#errors").css('display', 'inline', 'important');
+                  $("#errors").html("<span class='glyphicon glyphicon-remove'></span> " + html.msg);
+                  $('#unit_kd').val('');
+                  $('#unit_nm').val('');
+                  $('#unit_id').val('');
+                }
+              },
+              beforeSend: function () {
+                $("#errors").css('display', 'inline', 'important');
+                $("#errors").html("<img src=\'${request.static_url('osipkd:static/images/ajax-loader.gif')}\' /> Loading...")
+              }
+            });
+        }
+        
+        $('#unit_kd').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#unit_nm').val(datum.nama);
+              $('#unit_id').val(datum.id);
+              change_unit();
+        });
+
+        $('#unit_nm').bind('typeahead:selected', function(obj, datum, name) {      
+              $('#unit_kd').val(datum.kode);
+              $('#unit_id').val(datum.id);
+              change_unit()
+        });
+      </script> 
+        
+      </div>
+    </fieldset>
+    </form>
+    
+
+    <table class="table table-bordered table-hover table-condensed" id="table1">
+      <thead>
+        <tr>
+            <th>Index</th>
+            <th>No. Advist List</th>
+            <th>Tanggal</th>
+            <th>Bank / Tujuan</th>
+            <th>Nilai</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    
+    <script>
+      var mID, mID2;
+      var oTable;
+      var iPos;
+      var oTableUrl = "/ap-advist/act/grid";
+      var tb_array = [
+          '<div class="btn-group pull-left">',
+          '	<button id="btn_tambah" class="btn btn btn-primary" type="button">Tambah</button>',
+          '	<button id="btn_edit"   class="btn btn btn-primary" type="button">Edit</button>',
+          '	<button id="btn_delete" class="btn btn btn-danger"  type="button">Hapus</button>',
+          '	<button id="btn_print"  class="btn btn btn-primary" type="button">Cetak</button>',
+          ' <button id="btn_close"  class="btn btn-warning"     type="button">Tutup</button>',
+          '	&nbsp;',
+          '</div>',
+      ];
+
+      var tb = tb_array.join(' ');
+
+      $(document).ready(function () {
+        oTable = $('#table1').dataTable({
+            "sAjaxSource"    : oTableUrl,
+            "bServerSide"    : true,
+            "bProcessing"    : true, 
+            "sDom"           : '<"toolbar">lfrtip',
+            "bScrollCollapse": true,
+            "bSort"          : true,
+            "bInfo"          : false,
+            "bFilter"        : true,
+            "bAutoWidth"     : false,
+            "bPaginate"      : true,
+            "sPaginationType": "full_numbers",
+            
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            
+            "aoColumnDefs": [{
+                "bSearchable": false,
+                "bVisible"   : false,
+                "aTargets"   : [0]
+            },{
+                "bSearchable": true,
+                "bSortable"  : false,
+                "aTargets"   : [1,3]
+            },{
+                "sClass"   : "right",
+                "aTargets" : [4],
+                "mRender"  : function (data, type, full) {
+                             return formatNumber(data);}
+            }],
+            "aoColumns": [
+                null, {
+                    "sWidth": "30px"
+                }, {
+                    "sWidth": "30px",
+                }, {
+                    "sWidth": "150px",
+                }, {
+                    "sWidth": "50px",
+                }
+            ],
+        });
+        
+        function formatNumber(n) {
+                 return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                 }
+
+        $("div.toolbar").html(tb);
+
+        $('#table1 tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            } else {
+                iPos = oTable.fnGetPosition(this);
+                var aData = oTable.fnGetData(iPos);
+                mID = aData[0];
+                mID2 = aData[4];
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+        /**********************************************************************/
+        $('#btn_tambah').click(function () {
+            window.location = '/ap-advist/add';
+        });
+        $('#btn_edit').click(function () {
+            if (mID) {
+                window.location = '/ap-advist/' + mID +'/edit';
+            } else {
+                alert('Silahkan pilih data yang akan diedit');
+            }
+        });
+        $('#btn_delete').click(function () {
+            if (mID) {
+                window.location = '/ap-advist/' + mID +'/delete'; 
+            } else {
+                alert('Silahkan pilih data yang akan di hapus');
+            }
+        });
+        $('#btn_print').click(function () {
+            url = "/ap-report-sp2d/act/advist?id="+mID;
+            if (mID) {
+                   window.open(url);
+            } else {
+                alert('Silahkan pilih Kegiatan ID');
+            }
+        });
+        $("#btn_close").click(function () {
+            window.location = '/tu-ppkd';
+            return false;
+        });
+     });
+    </script>
+    
+  </div> <!--End Metal-->
+</html>

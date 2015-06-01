@@ -1,0 +1,263 @@
+<html metal:use-macro="load: ../base.pt">
+<div metal:fill-slot="content">
+<h4>${request.title}</h4>
+<hr>
+<form id="deform" method="POST" enctype="multipart/form-data" accept-charset="utf-8" 
+      class="form-horizontal">
+  <fieldset class="deformFormFieldset">
+    <input type="hidden" name="_charset_" />
+    <input type="hidden" name="__formid__" value="deform"/>
+    <div tal:condition="'id' in form"> <!--ID-->
+      <div tal:define="field form['id']" style="display: none;">
+          ${structure:field.serialize()}
+      </div>
+    </div>
+    
+    <div class="form-group"><!--SKPD-->
+      <div tal:define="field form['unit_id']" style="display: none;">
+          ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['unit_kd']"  id="item-${field.oid}">
+        <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                ${field.title}</label>
+        <div class="col-md-8">
+           ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+        </div>
+      </div>
+      <div class="col-md-8" tal:define="field form['unit_nm']" id="item-${field.oid}">
+           ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+      </div>
+      <script>
+          $('#unit_kd').bind('typeahead:selected', function(obj, datum, name) {      
+                $('#unit_id').val(datum.id);
+                $('#unit_nm').val(datum.nama);
+                $('#unit_kd').val(datum.kode);
+          });
+          $('#unit_nm').bind('typeahead:selected', function(obj, datum, name) {      
+                $('#unit_id').val(datum.id);
+                $('#unit_nm').val(datum.nama);
+                $('#unit_kd').val(datum.kode);
+          });
+      </script>
+      
+    </div>
+    
+    <div class="form-group"><!--Kegiatan-->
+      <div tal:define="field form['kegiatan_sub_id']" style="display: none;">
+          ${structure:field.serialize()}
+      </div>
+      
+      <div class="col-md-4" tal:define="field form['kegiatan_sub_kd']"  id="item-${field.oid}">
+        <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                ${field.title}</label>
+        <div class="col-md-8">
+           ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+        </div>
+      </div>
+      <div class="col-md-8" tal:define="field form['kegiatan_sub_nm']" id="item-${field.oid}">
+           ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+      </div>
+      
+      <script>
+          $('#kegiatan_sub_kd').bind('typeahead:selected', function(obj, datum, name) {      
+                $('#kegiatan_sub_id').val(datum.id);
+                $('#kegiatan_sub_nm').val(datum.nama);
+                $('#kegiatan_sub_kd').val(datum.kode);
+          });
+          $('#kegiatan_sub_nm').bind('typeahead:selected', function(obj, datum, name) {      
+                $('#kegiatan_sub_id').val(datum.id);
+                $('#kegiatan_sub_nm').val(datum.nama);
+                $('#kegiatan_sub_kd').val(datum.kode);
+          });
+      </script>
+      
+    </div>
+
+    <div class="form-group"><!--Tanggal/JV Type-->
+      <div class="col-md-4" tal:define="field form['tanggal']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+      </div>
+ 
+      <div class="col-md-4">
+        <div class="form-group" tal:define="field form['jv_type']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-2" id="req-${field.oid}" style="text-align:left;!important;">
+                  ${field.title}</label>
+          <div class="col-md-6">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group" tal:define="field form['is_skpd']" id="item-${field.oid}">
+          <div class="col-md-1">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}" style="text-align:left;!important;">
+                  ${field.title}</label>
+        </div>
+      </div>      
+    </div>
+    
+    <div class="form-group"><!--Jurnal Kode-->
+      
+      <div class="col-md-4" tal:define="field form['kode']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8" tal:define="field form['nama']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+
+ 
+    </div>
+
+
+      <div class="form-group"> <!--REFERECE-->
+        <div class="col-md-4" tal:define="field form['source_no']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        
+      </div>
+      
+      <div class="col-md-3" tal:define="field form['tgl_source']" >
+          <label for="${field.oid}" class="control-label col-md-2" id="req-${field.oid}" style="text-align:left;!important;">
+                  ${field.title}</label>
+          <div class="col-md-10">
+           ${structure:field.serialize()}
+          </div>
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+      <div class="col-md-5" tal:define="field form['source']" >
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+      
+      
+    </div>
+    <div class="form-group" tal:define="field form['notes']"><!--Catatan-->
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-2" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-10">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+    </div>
+    <div class="form-group"><!--Rekening-->
+      <div tal:define="field form['rekening_id']" id="item-${field.oid}" style="display: none;">
+           ${structure:field.serialize()}
+      </div>
+    
+      
+      <div class="col-md-4" tal:define="field form['rekening_kd']" >
+        <div id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-4" id="req-${field.oid}">
+                  ${field.title}</label>
+          <div class="col-md-8">
+             ${structure:field.serialize()}
+            <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+               tal:repeat="error field.error.messages()">
+               ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-5" tal:define="field form['rekening_nm']">
+         ${structure:field.serialize()}
+          <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+             tal:repeat="error field.error.messages()">
+             ${error}</p>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group" tal:define="field form['amount']" id="item-${field.oid}">
+          <label for="${field.oid}" class="control-label col-md-2" id="req-${field.oid}" style="text-align:left;!important;">
+                  ${field.title}</label>
+          <div class="col-md-10">
+             ${structure:field.serialize()}
+              <p id="error-${field.oid}" class="help-block" tal:condition="field.error"
+                 tal:repeat="error field.error.messages()">
+                 ${error}</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+      <script>
+        $('#rekening_kd').bind('typeahead:selected', function(obj, datum, name) {  
+              $('#rekening_nm').val(datum.nama);
+              $('#rekening_id').val(datum.id);
+        });
+
+        $('#rekening_nm').bind('typeahead:selected', function(obj, datum, name) {      
+              $('#rekening_kd').val(datum.kode);
+              $('#rekening_id').val(datum.id);
+        });
+      </script>       
+      
+      
+    <div class="col-md-offset-2"><!--Button-->
+      <div class="form-group">
+          <button id="deformsave" name="simpan" type="submit" class="btn btn-primary "
+                value="simpan">Simpan</button>
+          <button id="deformcancel" name="batal" type="submit" class="btn btn-default "
+                value="batal">Batal</button>
+      
+      </div>
+    </div>
+  </fieldset>
+</form>
+</div>
+</html>
